@@ -1,0 +1,118 @@
+namespace = HFP
+
+# Claim-duel loser who was spared. Adult intact gods cannot voluntarily turn a mortal
+# opponent's non-lethal victory into a lethal result. Godslayer opponents remain valid.
+character_event = {
+ id = HF.10104
+ title = getDuelTitle
+ picture = GFX_evt_duel_scene
+ border = GFX_event_normal_frame_war
+ portrait = event_target:other_combatant
+ sound = duel_lose
+ desc = { text = EVTDESC_HF_10104_A trigger = { has_character_flag = desc_A NOT = { has_character_flag = is_spared_poisoner } } }
+ desc = { text = EVTDESC_HF_10104_B trigger = { has_character_flag = desc_B NOT = { has_character_flag = is_spared_poisoner } } }
+ desc = { text = EVTDESC_HF_10104_C trigger = { has_character_flag = desc_C NOT = { has_character_flag = is_spared_poisoner } } }
+ desc = { text = EVTDESC_HF_10104_D trigger = { has_character_flag = is_spared_poisoner } }
+ is_triggered_only = yes
+ immediate = { set_loser_flags_and_save_opponent_effect = yes }
+
+ option = {
+  name = EVTOPTA_HF_10104
+  custom_tooltip = { text = you_lose_the_duel_tt }
+  event_target:combatant_1 = { clr_character_flag = someone_died }
+  event_target:combatant_2 = { clr_character_flag = someone_died }
+  if = { limit = { character = event_target:combatant_1 } remove_all_claims_for_combatant_1_effect = yes }
+  else = { remove_all_claims_for_combatant_2_effect = yes }
+  event_target:other_combatant = { character_event = { id = HF.10105 days = 1 } }
+  tooltip = { clean_up_after_duel_effect = yes }
+  ai_chance = { factor = 10 likes_other_combatant_score = yes }
+ }
+
+ option = {
+  name = EVTOPTB_HF_10104
+  trigger = {
+   OR = {
+    NOT = { db_is_death_guarded_true_god_trigger = yes }
+    event_target:other_combatant = { db_has_godslayer_blood_trigger = yes }
+   }
+  }
+  custom_tooltip = { text = you_lose_the_duel_tt }
+  hidden_effect = { event_target:other_combatant = { handle_claim_duel_result_effect = yes } }
+  handle_claim_duel_result_effect = yes
+  if = { limit = { can_apply_average_nickname_trigger = yes has_character_flag = injury_face has_character_flag = desc_A } give_nickname = nick_the_headless }
+  event_target:other_combatant = { save_event_target_as = db_direct_duel_killer }
+  db_mark_authorized_direct_duel_death_effect = yes
+  if = {
+   limit = { character = event_target:combatant_1 }
+   event_target:other_combatant = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_claim_duel_attacker killer = event_target:other_combatant } } clear_event_target = db_direct_duel_killer
+  }
+  else = { death = { death_reason = death_claim_duel_defender killer = event_target:other_combatant } }
+  clear_event_target = db_direct_duel_killer
+  tooltip = { clean_up_after_duel_effect = yes }
+  event_target:other_combatant = { character_event = { id = HF.10106 days = 1 } }
+  ai_chance = { factor = 10 title_tier_reduction_score = yes mult_modifier = { factor = 2 has_character_modifier = proving_bravery } }
+ }
+
+ option = {
+  name = EVTOPTC_HF_10104
+  tooltip_info_custom = available_because_dynasty_member_tt
+  trigger = {
+   ai = no
+   dynasty = event_target:other_combatant
+   event_target:combatant_1 = { has_character_flag = claim_duel@event_target:combatant_2 }
+   event_target:other_combatant = { ai = yes }
+   OR = {
+    NOT = { db_is_death_guarded_true_god_trigger = yes }
+    event_target:other_combatant = { db_has_godslayer_blood_trigger = yes }
+   }
+  }
+  custom_tooltip = { text = you_lose_the_duel_tt }
+  hidden_effect = { event_target:other_combatant = { handle_claim_duel_result_effect = yes } }
+  handle_claim_duel_result_effect = yes
+  if = { limit = { can_apply_average_nickname_trigger = yes has_character_flag = injury_face has_character_flag = desc_A } give_nickname = nick_the_headless }
+  event_target:other_combatant = { save_event_target_as = db_direct_duel_killer }
+  db_mark_authorized_direct_duel_death_effect = yes
+    if = { limit = { character = event_target:combatant_1 } event_target:other_combatant = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_claim_duel_attacker killer = event_target:other_combatant } } clear_event_target = db_direct_duel_killer }
+  else = { death = { death_reason = death_claim_duel_defender killer = event_target:other_combatant } }
+  clear_event_target = db_direct_duel_killer
+  tooltip = { clean_up_after_duel_effect = yes }
+  set_player_character = event_target:other_combatant
+  event_target:other_combatant = { character_event = { id = HF.10106 days = 1 } }
+ }
+}
+
+# Final 'kill the wounded loser anyway' event. This is a true last-line guard: even if
+# some external chain calls HFP.10111 directly, an ordinary mortal cannot kill the god.
+character_event = {
+ id = HFP.10111
+ title = getDuelTitle
+ picture = GFX_evt_duel_scene
+ border = GFX_event_normal_frame_war
+ desc = { text = EVTDESC_HFP_10111_default trigger = { NOR = { has_character_flag = intrigue_options_available has_character_flag = is_battlefield_duel } } }
+ desc = { text = EVTDESC_HFP_10111_battlefield_duel trigger = { has_character_flag = is_battlefield_duel } }
+ desc = { text = EVTDESC_HFP_10111_intrigue trigger = { has_character_flag = intrigue_options_available } }
+ is_triggered_only = yes
+ immediate = {
+  set_loser_flags_and_save_opponent_effect = yes
+  event_target:other_combatant = { save_event_target_as = db_direct_duel_killer }
+  if = {
+   limit = { db_direct_duel_death_blocked_trigger = yes }
+   db_survive_forbidden_direct_duel_effect = yes
+  }
+  else = {
+   db_mark_authorized_direct_duel_death_effect = yes
+   if = {
+    limit = { event_target:combatant_1 = { has_character_flag = deadly_duel@event_target:combatant_2 } }
+    event_target:other_combatant = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_mission_duel killer = event_target:other_combatant } } clear_event_target = db_direct_duel_killer
+   }
+      else_if = { limit = { has_character_flag = is_battlefield_duel } event_target:other_combatant = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_battle_duel killer = event_target:other_combatant } } clear_event_target = db_direct_duel_killer }
+   else = { death = { death_reason = death_duel killer = event_target:other_combatant } }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+ option = { name = EVTOPTA_HFP_10111 custom_tooltip = { text = you_lose_the_duel_tt } }
+ after = {
+  if = { limit = { event_target:other_combatant = { is_using_intrigue_trigger = yes } is_using_intrigue_trigger = no } tooltip = { handle_poison_effect = yes } }
+  hidden_effect = { clean_up_after_duel_effect = yes event_target:other_combatant = { clean_up_after_duel_effect = yes } }
+ }
+}

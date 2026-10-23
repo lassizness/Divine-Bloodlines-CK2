@@ -1,0 +1,194 @@
+namespace = DBV2
+
+# ============================================================
+# v2.1.6.9 - Divine strike result UI and recovery
+# ============================================================
+character_event = {
+ id = DBV2.1120 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes
+  has_character_flag = db_divine_judgment_recovery_pending
+  NOT = { trait = severely_injured }
+  NOT = { trait = wounded }
+  is_incapable = no
+  NOT = { trait = db_divine_judgment_survivor }
+ }
+ immediate = {
+  clr_character_flag = db_divine_judgment_recovery_pending
+  add_trait = db_divine_judgment_survivor
+  character_event = { id = DBV2.1124 }
+ }
+}
+
+
+# One-time migration from v2.1.6.8: survivors who are still wounded must finish healing before keeping the trait.
+character_event = {
+ id = DBV2.1126 hide_window = yes is_triggered_only = yes
+ trigger = { trait = db_divine_judgment_survivor NOT = { has_character_flag = db_v2169_survivor_state_migrated } }
+ immediate = {
+  set_character_flag = db_v2169_survivor_state_migrated
+  if = {
+   limit = { OR = { trait = severely_injured trait = wounded is_incapable = yes } }
+   remove_trait = db_divine_judgment_survivor
+   set_character_flag = db_divine_judgment_recovery_pending
+  }
+ }
+}
+
+# Victim-facing Zeus Thunderbolt result. Death is applied only after the player has seen the event.
+character_event = {
+ id = DBV2.1121 title = DBV2_1121_T picture = GFX_evt_norse_tempest portrait = event_target:db_divine_attacker is_triggered_only = yes
+ desc = { text = DBV2_1121_D_DEATH trigger = { has_character_flag = db_divine_outcome_kill } }
+ desc = { text = DBV2_1121_D_GOD trigger = { has_character_flag = db_divine_outcome_god } }
+ desc = { text = DBV2_1121_D_SURVIVE trigger = { has_character_flag = db_divine_outcome_severe } }
+ option = {
+  name = { text = DBV2_1121_A_DEATH trigger = { has_character_flag = db_divine_outcome_kill } }
+  name = { text = DBV2_1121_A_GOD trigger = { has_character_flag = db_divine_outcome_god } }
+  name = { text = DBV2_1121_A_SURVIVE trigger = { has_character_flag = db_divine_outcome_severe } }
+  save_event_target_as = db_divine_victim
+  if = {
+   limit = { has_character_flag = db_divine_outcome_kill }
+   event_target:db_divine_attacker = { character_event = { id = DBV2.1125 } }
+   clr_character_flag = db_divine_outcome_kill clr_character_flag = db_struck_by_thunderbolt
+   death = { death_reason = death_divine_judgment }
+  }
+  else = {
+   add_trait = severely_injured
+   remove_character_modifier = db_lightning_scorched
+   remove_character_modifier = db_lightning_scorched_divine
+   if = {
+    limit = { has_character_flag = db_divine_outcome_god }
+    add_character_modifier = { name = db_lightning_scorched_divine days = 365 }
+   }
+   else = {
+    add_character_modifier = { name = db_lightning_scorched days = 365 }
+    if = { limit = { NOT = { db_is_true_god_trigger = yes } NOT = { trait = db_divine_judgment_survivor } } set_character_flag = db_divine_judgment_recovery_pending }
+   }
+   event_target:db_divine_attacker = { character_event = { id = DBV2.1125 } }
+   clr_character_flag = db_divine_outcome_severe clr_character_flag = db_divine_outcome_god clr_character_flag = db_struck_by_thunderbolt
+  }
+ }
+}
+
+# Victim-facing Gungnir result.
+character_event = {
+ id = DBV2.1122 title = DBV2_1122_T picture = GFX_evt_melee portrait = event_target:db_divine_attacker is_triggered_only = yes
+ desc = { text = DBV2_1122_D_DEATH trigger = { has_character_flag = db_divine_outcome_kill } }
+ desc = { text = DBV2_1122_D_GOD trigger = { has_character_flag = db_divine_outcome_god } }
+ desc = { text = DBV2_1122_D_SURVIVE trigger = { has_character_flag = db_divine_outcome_severe } }
+ option = {
+  name = { text = DBV2_1122_A_DEATH trigger = { has_character_flag = db_divine_outcome_kill } }
+  name = { text = DBV2_1122_A_GOD trigger = { has_character_flag = db_divine_outcome_god } }
+  name = { text = DBV2_1122_A_SURVIVE trigger = { has_character_flag = db_divine_outcome_severe } }
+  save_event_target_as = db_divine_victim
+  if = {
+   limit = { has_character_flag = db_divine_outcome_kill }
+   event_target:db_divine_attacker = { character_event = { id = DBV2.1125 } }
+   clr_character_flag = db_divine_outcome_kill clr_character_flag = db_struck_by_gungnir
+   death = { death_reason = death_divine_spear }
+  }
+  else = {
+   add_trait = severely_injured
+   if = { limit = { NOT = { db_is_true_god_trigger = yes } NOT = { trait = db_divine_judgment_survivor } } set_character_flag = db_divine_judgment_recovery_pending }
+   event_target:db_divine_attacker = { character_event = { id = DBV2.1125 } }
+   clr_character_flag = db_divine_outcome_severe clr_character_flag = db_divine_outcome_god clr_character_flag = db_struck_by_gungnir
+  }
+ }
+}
+
+# Victim-facing Seidr curse notification and application.
+character_event = {
+ id = DBV2.1123 title = DBV2_1123_T desc = DBV2_1123_D picture = GFX_evt_sacrifice portrait = event_target:db_divine_attacker is_triggered_only = yes
+ option = {
+  name = DBV2_1123_A
+  save_event_target_as = db_divine_victim
+  remove_character_modifier = db_seidr_curse
+  remove_character_modifier = db_seidr_curse_divine
+  if = { limit = { db_is_intact_true_god_trigger = yes } add_character_modifier = { name = db_seidr_curse_divine years = 3 } }
+  else = { add_character_modifier = { name = db_seidr_curse years = 3 } }
+  event_target:db_divine_attacker = { character_event = { id = DBV2.1125 } }
+ }
+}
+
+character_event = {
+ id = DBV2.1124 title = DBV2_1124_T desc = DBV2_1124_D picture = GFX_evt_healer is_triggered_only = yes
+ option = { name = DBV2_1124_A prestige = 100 }
+}
+
+# Feedback to the god using the power.
+character_event = {
+ id = DBV2.1125 title = DBV2_1125_T portrait = event_target:db_divine_victim is_triggered_only = yes
+ desc = { text = DBV2_1125_D_THUNDER_DEATH trigger = { has_character_flag = db_divine_attacker_thunderbolt has_character_flag = db_divine_attacker_killed } }
+ desc = { text = DBV2_1125_D_THUNDER_SURVIVE trigger = { has_character_flag = db_divine_attacker_thunderbolt has_character_flag = db_divine_attacker_survived } }
+ desc = { text = DBV2_1125_D_THUNDER_GOD trigger = { has_character_flag = db_divine_attacker_thunderbolt has_character_flag = db_divine_attacker_god_resisted } }
+ desc = { text = DBV2_1125_D_GUNGNIR_DEATH trigger = { has_character_flag = db_divine_attacker_gungnir has_character_flag = db_divine_attacker_killed } }
+ desc = { text = DBV2_1125_D_GUNGNIR_SURVIVE trigger = { has_character_flag = db_divine_attacker_gungnir has_character_flag = db_divine_attacker_survived } }
+ desc = { text = DBV2_1125_D_GUNGNIR_GOD trigger = { has_character_flag = db_divine_attacker_gungnir has_character_flag = db_divine_attacker_god_resisted } }
+ desc = { text = DBV2_1125_D_SEIDR trigger = { has_character_flag = db_divine_attacker_seidr } }
+ option = {
+  name = { text = DBV2_1125_A_DEATH trigger = { OR = { AND = { has_character_flag = db_divine_attacker_thunderbolt has_character_flag = db_divine_attacker_killed } AND = { has_character_flag = db_divine_attacker_gungnir has_character_flag = db_divine_attacker_killed } } } }
+  name = { text = DBV2_1125_A_SURVIVE trigger = { OR = { AND = { has_character_flag = db_divine_attacker_thunderbolt has_character_flag = db_divine_attacker_survived } AND = { has_character_flag = db_divine_attacker_gungnir has_character_flag = db_divine_attacker_survived } } } }
+  name = { text = DBV2_1125_A_GOD trigger = { has_character_flag = db_divine_attacker_god_resisted } }
+  name = { text = DBV2_1125_A_SEIDR trigger = { has_character_flag = db_divine_attacker_seidr } }
+  clr_character_flag = db_divine_attacker_thunderbolt clr_character_flag = db_divine_attacker_gungnir clr_character_flag = db_divine_attacker_seidr
+  clr_character_flag = db_divine_attacker_killed clr_character_flag = db_divine_attacker_survived clr_character_flag = db_divine_attacker_god_resisted
+ }
+}
+
+# ============================================================
+# v2.1.6.9 - canonical regalia migration for existing saves
+# ============================================================
+character_event = {
+ id = DBV2.1130 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes
+  NOT = { has_character_flag = db_v2169_canonical_relics_granted }
+  OR = {
+   has_character_flag = zeus_blood_founder
+   has_character_flag = db_hera
+   has_character_flag = db_poseidon
+   has_character_flag = db_hades
+   has_character_flag = db_demeter
+   has_character_flag = db_hestia
+   has_character_flag = db_frigg
+  }
+ }
+ immediate = {
+  if = {
+   limit = { has_character_flag = zeus_blood_founder }
+   if = { limit = { NOT = { has_artifact = db_thunderbolt_of_zeus } NOT = { any_character = { has_artifact = db_thunderbolt_of_zeus } } } add_artifact = db_thunderbolt_of_zeus }
+  }
+  else_if = {
+   limit = { has_character_flag = db_hera }
+   if = { limit = { NOT = { has_artifact = db_scepter_of_hera } NOT = { any_character = { has_artifact = db_scepter_of_hera } } } add_artifact = db_scepter_of_hera }
+   if = { limit = { NOT = { has_artifact = db_diadem_of_hera } NOT = { any_character = { has_artifact = db_diadem_of_hera } } } add_artifact = db_diadem_of_hera }
+  }
+  else_if = {
+   limit = { has_character_flag = db_poseidon }
+   if = { limit = { NOT = { has_artifact = db_trident_of_poseidon } NOT = { any_character = { has_artifact = db_trident_of_poseidon } } } add_artifact = db_trident_of_poseidon }
+   if = { limit = { NOT = { has_artifact = db_chariot_of_poseidon } NOT = { any_character = { has_artifact = db_chariot_of_poseidon } } } add_artifact = db_chariot_of_poseidon }
+  }
+  else_if = {
+   limit = { has_character_flag = db_hades }
+   if = { limit = { NOT = { has_artifact = db_helm_of_hades } NOT = { any_character = { has_artifact = db_helm_of_hades } } } add_artifact = db_helm_of_hades }
+   if = { limit = { NOT = { has_artifact = db_scepter_of_hades } NOT = { any_character = { has_artifact = db_scepter_of_hades } } } add_artifact = db_scepter_of_hades }
+  }
+  else_if = {
+   limit = { has_character_flag = db_demeter }
+   if = { limit = { NOT = { has_artifact = db_torches_of_demeter } NOT = { any_character = { has_artifact = db_torches_of_demeter } } } add_artifact = db_torches_of_demeter }
+   if = { limit = { NOT = { has_artifact = db_cornucopia_of_demeter } NOT = { any_character = { has_artifact = db_cornucopia_of_demeter } } } add_artifact = db_cornucopia_of_demeter }
+  }
+  else_if = {
+   limit = { has_character_flag = db_hestia }
+   if = { limit = { NOT = { has_artifact = db_sacred_flame_of_hestia } NOT = { any_character = { has_artifact = db_sacred_flame_of_hestia } } } add_artifact = db_sacred_flame_of_hestia }
+   if = { limit = { NOT = { has_artifact = db_veil_of_hestia } NOT = { any_character = { has_artifact = db_veil_of_hestia } } } add_artifact = db_veil_of_hestia }
+  }
+  else_if = {
+   limit = { has_character_flag = db_frigg }
+   if = { limit = { NOT = { has_artifact = db_distaff_of_frigg } NOT = { any_character = { has_artifact = db_distaff_of_frigg } } } add_artifact = db_distaff_of_frigg }
+   if = { limit = { NOT = { has_artifact = db_keys_of_fensalir } NOT = { any_character = { has_artifact = db_keys_of_fensalir } } } add_artifact = db_keys_of_fensalir }
+  }
+  db_grant_divine_council_access_effect = yes
+  set_character_flag = db_v2169_canonical_relics_granted
+ }
+}

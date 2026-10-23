@@ -1,0 +1,15 @@
+Divine Bloodlines 2.2.7.2 COMPLETE rebuild
+- Canonical divine family court/council/commander recovery for Hera, Poseidon, Hades, Demeter, Hestia, Frigg.
+- Player/AI founder start host is exactly 2,000 once; auto-arrival now marks db_start_host_received to prevent duplicate recovery hosts.
+- Divine Union supports same-faith divine unions as well as interfaith unions.
+- AI-only Olympus/Asgard identity retained; player-selected founders never receive those kingdoms automatically.
+- Landless auto-arrived Zeus/Odin now prepare for 90 days, raise era-scaled 4k/8k/12k/16k return hosts, gain a canonical county claim and start a real claim war; 5-year retry protection.
+- Canonical family rallies back to restored divine court after successful return.
+- Zeus eagle chariot retained as a unique non-weapon divine artifact.
+- Thunderbolt and Gungnir remain non-weapon divine relics; Labrys/Bident/Trident/Gram are weapon-slot artifacts.
+- Added canonical relic pool: Apollo Bow, Artemis Bow, Hermes Caduceus, Aphrodite Girdle, Golden Fleece, Megingjord, Jarngreipr, Skidbladnir, Brisingamen, Gjallarhorn, Gram. Vanilla Mjolnir remains the one canonical Mjolnir and is not duplicated.
+- Added globally unique relic-search decisions/events and old-save uniqueness flag recovery.
+- Full-god Zeus descendants inherit the shape suite; full-god Odin descendants inherit Rune Insight. Founder/head and artifact powers remain separately gated.
+- Designated divine heir remains a personal Zeus/Odin/pantheon-head mechanic independent of Olympus/Asgard.
+- Expanded Labyrinth chain for Labrys remains separate from Cronus' Sickle.
+- RU text remains Windows-1251; localisation CSV structure validated.

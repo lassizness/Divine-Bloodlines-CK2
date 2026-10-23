@@ -1,0 +1,40 @@
+namespace = HF
+
+# v2.2.7.4.4: last-line protection for Legendary Journey duel deaths.
+character_event = {
+ id = HF.12201
+ title = getDuelTitle
+ picture = GFX_evt_duel_scene
+ border = GFX_event_normal_frame_war
+ portrait = event_target:other_combatant
+ desc = { text = EVTDESC_HF_12201_A trigger = { has_character_flag = WL_desc_A } }
+ desc = { text = EVTDESC_HF_12201_B trigger = { has_character_flag = WL_desc_B } }
+ desc = { text = EVTDESC_HF_12201_C trigger = { has_character_flag = WL_desc_C } }
+ desc = { text = EVTDESC_HF_12201_D trigger = { has_character_flag = WL_desc_D } }
+ desc = { text = EVTDESC_HF_12201_E trigger = { has_character_flag = WL_desc_E } }
+ desc = { text = EVTDESC_HF_12201_X picture = GFX_evt_cornered_duel_hf trigger = { has_character_flag = WL_desc_X } }
+ desc = { text = EVTDESC_HF_12201_Y picture = GFX_evt_dueling_knights_hf trigger = { has_character_flag = WL_desc_Y } }
+ desc = { text = EVTDESC_HF_12201_Z picture = GFX_evt_dueling_knights_hf trigger = { has_character_flag = WL_desc_Z } }
+ is_triggered_only = yes
+ immediate = {
+  set_loser_flags_and_save_opponent_effect = yes
+  event_target:other_combatant = { save_event_target_as = db_direct_duel_killer }
+  if = {
+   limit = { db_direct_duel_death_blocked_trigger = yes }
+   db_survive_forbidden_direct_duel_effect = yes
+  }
+  else = {
+   db_mark_authorized_direct_duel_death_effect = yes
+   if = { limit = { character = event_target:combatant_1 } death = { death_reason = death_legendary_fail_duel killer = event_target:other_combatant } }
+   else = { death = { death_reason = death_legendary_win_duel killer = event_target:other_combatant } }
+  }
+  clear_event_target = db_direct_duel_killer
+  clean_up_after_duel_effect = yes
+ }
+ option = {
+  name = EVTOPTA_HFP_10104
+  custom_tooltip = { text = you_lose_the_duel_tt }
+  if = { limit = { has_character_flag = WL_desc_C } show_portrait = event_target:target_ruler }
+  hidden_effect = { FROM = { clean_up_after_duel_effect = yes } clean_up_after_duel_effect = yes }
+ }
+}

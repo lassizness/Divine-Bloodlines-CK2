@@ -1,0 +1,918 @@
+﻿KEY;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+DBV2_100_A;Take the form of a swan.;;;;;;;;;;;;;x
+DBV2_100_B;Take the form of a bull.;;;;;;;;;;;;;x
+DBV2_100_C;Take the form of an eagle.;;;;;;;;;;;;;x
+DBV2_100_D;The divine body bends before your will. Which guise shall the mortal world behold?;;;;;;;;;;;;;x
+DBV2_100_E;Take the form of a serpent.;;;;;;;;;;;;;x
+DBV2_100_T;A Shape Worthy of Zeus;;;;;;;;;;;;;x
+DBV2_110_A;Let divine blood enter the mortal world.;;;;;;;;;;;;;x
+DBV2_110_D;The chosen mortal stands before a god hidden beneath another shape.;;;;;;;;;;;;;x
+DBV2_110_T;Divine Visitation;;;;;;;;;;;;;x
+DBV2_121_A;Let them remember the sound of your hooves.;;;;;;;;;;;;;x
+DBV2_121_D;In the shape of a colossal white bull, you thunder toward your chosen target. Mortal courage buckles before the presence of a god.;;;;;;;;;;;;;x
+DBV2_121_T;The Bull of Olympus;;;;;;;;;;;;;x
+DBV2_122_A;Nothing beneath the clouds escapes my gaze.;;;;;;;;;;;;;x
+DBV2_122_D;From the high air you watch roads, halls and courtyards that no mortal spy could observe so freely.;;;;;;;;;;;;;x
+DBV2_122_T;The Eagle Above;;;;;;;;;;;;;x
+DBV2_123_A;Leave the shadow of Olympus behind.;;;;;;;;;;;;;x
+DBV2_123_D;Silent scales carry you through spaces barred to men. A whisper, a mark, and your presence is gone before anyone understands what entered.;;;;;;;;;;;;;x
+DBV2_123_T;The Serpent in the House;;;;;;;;;;;;;x
+DBV2_124_D;Your divine body contracts and flows into the white shape of a swan. Beneath the feathers the will of Zeus remains unchanged.;;;;;;;;;;;;;x
+DBV2_124_T;Feathers of the Thunderer;;;;;;;;;;;;;x
+DBV2_125_D;Muscle and divine force replace the human silhouette. The earth itself seems smaller beneath your hooves.;;;;;;;;;;;;;x
+DBV2_125_T;The White Bull;;;;;;;;;;;;;x
+DBV2_126_D;Wings open where arms stood a heartbeat before. As the eagle, the world of mortals lies exposed below.;;;;;;;;;;;;;x
+DBV2_126_T;Lord of the High Sky;;;;;;;;;;;;;x
+DBV2_127_D;Your form narrows into silent coils. Doors and guards mean little to a god who can move unseen along the floor.;;;;;;;;;;;;;x
+DBV2_127_T;The Serpent Shape;;;;;;;;;;;;;x
+DBV2_200_A;War.;;;;;;;;;;;;;x
+DBV2_200_B;Plots.;;;;;;;;;;;;;x
+DBV2_200_C;Rule.;;;;;;;;;;;;;x
+DBV2_200_D;The carved signs shift beneath your gaze. Their meaning can be bent toward one purpose.;;;;;;;;;;;;;x
+DBV2_200_E;Fate.;;;;;;;;;;;;;x
+DBV2_200_T;The Runes Answer;;;;;;;;;;;;;x
+DBV2_210_A;Watch my halls. Find plots before they ripen.;;;;;;;;;;;;;x
+DBV2_210_D;The ravens return with more than omens. They bring names whispered behind closed doors, the measure of armies, hidden roads and scraps of forgotten lore. Decide where the Allfather’s sight is needed most.;;;;;;;;;;;;;x
+DBV2_210_T;Huginn and Muninn Return;;;;;;;;;;;;;x
+DBV2_220_A;Let the fury take me.;;;;;;;;;;;;;x
+DBV2_220_D;The old fury rises — not mere anger, but the ecstasy of battle itself.;;;;;;;;;;;;;x
+DBV2_220_T;Odin's Fury;;;;;;;;;;;;;x
+DBV2_230_A;Walk among mortals.;;;;;;;;;;;;;x
+DBV2_230_D;A hood and a staff are enough to hide even a god from those who only see what they expect.;;;;;;;;;;;;;x
+DBV2_230_T;The Grey Wanderer;;;;;;;;;;;;;x
+DBV2_240_A;Bind the curse.;;;;;;;;;;;;;x
+DBV2_240_D;The old magic coils around your target. This will be no passing ill omen: the curse will sap body, judgment, fertility and strength for years.;;;;;;;;;;;;;x
+DBV2_240_T;Seidr Curse;;;;;;;;;;;;;x
+DBV2_250_A;Give an eye for wisdom.;;;;;;;;;;;;;x
+DBV2_250_D;Knowledge without sacrifice is shallow. The well asks for what cannot be casually restored.;;;;;;;;;;;;;x
+DBV2_250_T;The Price of Wisdom;;;;;;;;;;;;;x
+DBV2_260_A;Hang upon Yggdrasil.;;;;;;;;;;;;;x
+DBV2_260_D;You know the price of the deepest runes. Even immortal flesh will remember the ordeal.;;;;;;;;;;;;;x
+DBV2_260_T;Nine Nights on the Tree;;;;;;;;;;;;;x
+DBV2_300_A;Call them down from Olympus.;;;;;;;;;;;;;x
+DBV2_300_D;Bronze rings against bronze. The ancient guardians of Zeus await the command to descend into mortal war.;;;;;;;;;;;;;x
+DBV2_300_T;The Kouretes Answer;;;;;;;;;;;;;x
+DBV2_301_A;Open the gates.;;;;;;;;;;;;;x
+DBV2_301_D;Beyond the veil, the chosen dead strike shield against shield and wait for the Allfather's blood to call them.;;;;;;;;;;;;;x
+DBV2_301_T;The Gates of Valhalla;;;;;;;;;;;;;x
+DBV2_320_A;Release the bolt.;;;;;;;;;;;;;x
+DBV2_320_D;The weapon of Zeus blazes in your hand. Divine lightning can annihilate mortals, wound demigods, but cannot extinguish an intact immortal god.;;;;;;;;;;;;;x
+DBV2_320_T;The Thunderbolt Falls;;;;;;;;;;;;;x
+DBV2_400_A;Follow the trail.;;;;;;;;;;;;;x
+DBV2_400_D;Legends, broken inscriptions and impossible witnesses point toward a place where the old world may still touch this one.;;;;;;;;;;;;;x
+DBV2_400_T;A Trail of Divine Relics;;;;;;;;;;;;;x
+DBV2_450_A;Strike.;;;;;;;;;;;;;x
+DBV2_450_D;The Sickle was forged to wound what should not be wound. Against divine blood, its edge seeks something deeper than flesh.;;;;;;;;;;;;;x
+DBV2_450_T;The Adamantine Edge;;;;;;;;;;;;;x
+DBV2_470_A;Unite the blood of the Two Thrones.;;;;;;;;;;;;;x
+DBV2_470_D;Zeus and Odin are both complete within you. With the two signature weapons as anchors, the old separation of pantheons might be broken.;;;;;;;;;;;;;x
+DBV2_470_T;The Four Components;;;;;;;;;;;;;x
+DBV2_500_D;For the first time, the blood of Olympus and the blood of the Allfather have fused in one mortal line. Priests call it omen, blasphemy or promise.;;;;;;;;;;;;;x
+DBV2_500_T;Thunder Among Ravens;;;;;;;;;;;;;x
+DBV2_502_D;A child has been born directly from the FULL blood of two divine traditions. Cults and enemies alike will remember this birth.;;;;;;;;;;;;;x
+DBV2_502_T;A Child of Two Heavens;;;;;;;;;;;;;x
+DBV2_510_D;A generation of divine descendants has matured into proven heroes. The Age of Heroes has begun: active adult demigods gain a lasting heroic-era bonus, and established heroes face trials more frequently.;;;;;;;;;;;;;x
+DBV2_510_T;A New Age of Heroes;;;;;;;;;;;;;x
+DBV2_520_D;The living heads of Zeus and Odin now stand on opposite sides of war. Their followers see more than a mortal quarrel.;;;;;;;;;;;;;x
+DBV2_520_T;War of the Pantheons;;;;;;;;;;;;;x
+DBV2_521_D;Olympus and the northern heavens have found common cause. The mortal world watches an alliance no priest expected to witness.;;;;;;;;;;;;;x
+DBV2_521_T;Alliance of Sky and Ravens;;;;;;;;;;;;;x
+DBV2_522_D;Kouretes and Einherjar march in the same war on opposing sides. Legends that once belonged to different worlds now collide.;;;;;;;;;;;;;x
+DBV2_522_T;Olympus Meets Valhalla;;;;;;;;;;;;;x
+DBV2_530_D;The four divine components have been joined by will rather than chance. The old order of the gods can no longer remain untouched.;;;;;;;;;;;;;x
+DBV2_530_T;Convergence of the Pantheons;;;;;;;;;;;;;x
+DBV2_540_A;Olympus trembles.;;;;;;;;;;;;;x
+DBV2_540_D;For a heartbeat the sky falls silent. Thunder no longer answers its first lord: the true Zeus has left the world. Every carrier of his blood feels the rupture, and Olympus enters an age of heirs.;;;;;;;;;;;;;x
+DBV2_540_T;Zeus Is Dead;;;;;;;;;;;;;x
+DBV2_541_A;The ravens carry the news.;;;;;;;;;;;;;x
+DBV2_541_D;The ravens fall silent and ancient runes seem to dim. The true Odin has left the world. His blood feels the emptiness where the Allfather's voice once stood, and Valhalla waits for a new keeper of the inheritance.;;;;;;;;;;;;;x
+DBV2_541_T;Odin Is Dead;;;;;;;;;;;;;x
+DBV2_CANCEL;Not now.;;;;;;;;;;;;;x
+DBV2_OK;Continue.;;;;;;;;;;;;;x
+DBV2_RELIGION_LOCK_TT;Divine blood does not permit abandoning its ancestral faith.;;;;;;;;;;;;;x
+db_aegis_of_zeus;Aegis;;;;;;;;;;;;;x
+db_aegis_of_zeus_desc;The terrible protection of Olympus, an emblem of divine authority and near-impregnable defence.;;;;;;;;;;;;;x
+db_age_of_heroes;Age of Heroes;;;;;;;;;;;;;x
+db_ambrosia;Ambrosia of Olympus;;;;;;;;;;;;;x
+db_ambrosia_desc;Food of the gods. In this mod it is one of the keys to restoring immortality severed by Cronus' Sickle.;;;;;;;;;;;;;x
+db_apple_of_idunn;Apple of Idunn;;;;;;;;;;;;;x
+db_apple_of_idunn_desc;A fruit of renewed divine life. It is required for Odin's line to restore severed immortality.;;;;;;;;;;;;;x
+db_assume_divine_form;Assume a Divine Form;;;;;;;;;;;;;x
+db_assume_divine_form_desc;Choose one of Zeus' four animal forms. The form changes the portrait and unlocks its own actions until you return to the true form.;;;;;;;;;;;;;x
+db_blood_two_thrones;Blood of the Two Thrones;;;;;;;;;;;;;x
+db_blood_two_thrones_desc;The four divine components have been deliberately joined by ritual. This being is no longer merely a descendant of one pantheon.;;;;;;;;;;;;;x
+db_bull_fear;Terror of the Divine Bull;;;;;;;;;;;;;x
+db_bull_intimidate;Terrorize as the Divine Bull;;;;;;;;;;;;;x
+db_bull_intimidate_desc;Charge into the target's presence in the form of the divine bull and break their nerve.;;;;;;;;;;;;;x
+db_bull_terrorized;Terror of the Divine Bull;;;;;;;;;;;;;x
+db_call_einherjar;Call the Einherjar;;;;;;;;;;;;;x
+db_call_einherjar_desc;As legitimate FULL head of Odin's line, open the way from Valhalla. Their number scales with age: 2,000 / 4,000 / 7,000 / 12,000 / 20,000.;;;;;;;;;;;;;x
+db_call_kouretes;Summon the Kouretes;;;;;;;;;;;;;x
+db_call_kouretes_desc;As legitimate FULL head of Zeus' line, call the immortal guardians of Olympus. Their number scales with age: 2,000 / 4,000 / 7,000 / 12,000 / 20,000.;;;;;;;;;;;;;x
+db_cast_seidr_curse;Cast Seidr;;;;;;;;;;;;;x
+db_cast_seidr_curse_desc;Lay a powerful three-year Seidr curse on another character, crippling health, fertility, combat ability and all major attributes. Intact gods receive a divine-safe version that cannot bypass immortality through health loss.;;;;;;;;;;;;;x
+db_child_two_pantheons;Child of Two Heavens;;;;;;;;;;;;;x
+db_child_two_pantheons_desc;Born directly from FULL representatives of Zeus and Odin, this child stands at the center of cults, prophecies and dynastic struggle.;;;;;;;;;;;;;x
+db_converge_four_bloods;Unite the Four Divine Components;;;;;;;;;;;;;x
+db_converge_four_bloods_desc;A 250-year-old legitimate bearer of Zeus P/M and Odin P/M may attempt the supreme convergence ritual while holding the two signature weapons.;;;;;;;;;;;;;x
+db_destroy_sickle_of_cronus;Destroy the Sickle of Cronus;;;;;;;;;;;;;x
+db_destroy_sickle_of_cronus_desc;Destroy the Sickle of Cronus.;;;;;;;;;;;;;x
+db_divine_late_fertility;Divine Vitality;;;;;;;;;;;;;x
+db_divine_late_fertility_desc;Active divine blood preserves fertility and vitality beyond mortal age limits.;;;;;;;;;;;;;x
+db_divine_protection_tt;A true god cannot be killed by an ordinary mortal plot or duel. The Adamantine Sickle of Cronus is required to break divine protection.;;;;;;;;;;;;;x
+db_divine_visitation;Divine Visitation;;;;;;;;;;;;;x
+db_divine_visitation_desc;Visit an adult woman while wearing one of Zeus' divine forms. Any child follows the normal P/M inheritance rules.;;;;;;;;;;;;;x
+db_draupnir;Draupnir;;;;;;;;;;;;;x
+db_draupnir_desc;Odin's golden ring, an emblem of inexhaustible wealth, kingship and sacred prestige.;;;;;;;;;;;;;x
+db_eagle_vision;Eye of the Eagle;;;;;;;;;;;;;x
+db_eagle_watch;Watch from the Heavens;;;;;;;;;;;;;x
+db_eagle_watch_desc;Circle above the target as Zeus' eagle and study their court from the sky.;;;;;;;;;;;;;x
+db_eagle_watched;Watched from the Heavens;;;;;;;;;;;;;x
+db_fading_divine_spark;Fading Divine Spark;;;;;;;;;;;;;x
+db_fate_thunder_blood;Blood of Fate and Thunder;;;;;;;;;;;;;x
+db_fate_thunder_blood_desc;Odin P has met Zeus M. Prophecy, intrigue and heavenly authority mingle in this hybrid line.;;;;;;;;;;;;;x
+db_form_bull;Bull Form;;;;;;;;;;;;;x
+db_form_eagle;Eagle Form;;;;;;;;;;;;;x
+db_form_serpent;Serpent Form;;;;;;;;;;;;;x
+db_form_swan;Swan Form;;;;;;;;;;;;;x
+db_grey_wanderer;Grey Wanderer;;;;;;;;;;;;;x
+db_grey_wanderer_desc;Travel under a mortal guise in search of secrets, wealth and knowledge.;;;;;;;;;;;;;x
+db_guard_cooldown;Divine Host Recently Summoned;;;;;;;;;;;;;x
+db_gungnir;Gungnir;;;;;;;;;;;;;x
+db_gungnir_desc;Odin's spear, bearer of oaths and certainty in battle. Its wielder gains terrifying martial and prophetic authority.;;;;;;;;;;;;;x
+db_gungnir_power;Invoke Gungnir's Foresight;;;;;;;;;;;;;x
+db_gungnir_power_desc;Invoke Gungnir's Foresight.;;;;;;;;;;;;;x
+db_helm_of_hades;Helm of Hades;;;;;;;;;;;;;x
+db_helm_of_hades_desc;The Helm of Darkness hides its bearer from the sight of mortals and gods. It is granted to Zeus' created brother Hades at campaign start.;;;;;;;;;;;;;x
+db_huginn_muninn;Huginn and Muninn;;;;;;;;;;;;;x
+db_huginn_muninn_desc;Send Huginn and Muninn across the world, then choose whether their knowledge will guard your court, scout war, or deepen your wisdom for one year.;;;;;;;;;;;;;x
+db_hurl_thunderbolt;Cast Down the Thunderbolt;;;;;;;;;;;;;x
+db_hurl_thunderbolt_desc;Strike a target of any age with Zeus Thunderbolt. Mortal: 35% death / 65% severe wound, demigod: 15% / 85%, divine-judgment survivor: 10% / 90%, an intact true god cannot be killed. Cooldown: 1 year.;;;;;;;;;;;;;x
+db_lightning_scorched;Scorched by Divine Lightning;;;;;;;;;;;;;x
+db_mark_chosen_of_valhalla;Mark a Chosen of Valhalla;;;;;;;;;;;;;x
+db_mark_chosen_of_valhalla_desc;Mark a worthy adult warrior as bound for Valhalla.;;;;;;;;;;;;;x
+db_mead_of_poetry;Mead of Poetry;;;;;;;;;;;;;x
+db_mead_of_poetry_desc;The divine mead of inspiration, eloquence and wisdom.;;;;;;;;;;;;;x
+db_mjolnir_storm;Call the Storm of Mjolnir;;;;;;;;;;;;;x
+db_mjolnir_storm_desc;Call the Storm of Mjolnir.;;;;;;;;;;;;;x
+db_mourning_odin;Mourning Odin;;;;;;;;;;;;;x
+db_mourning_zeus;Mourning Zeus;;;;;;;;;;;;;x
+db_odin_age_100;Raven-Eyed;;;;;;;;;;;;;x
+db_odin_age_16;Awakening of the Allfather;;;;;;;;;;;;;x
+db_odin_age_250;Ancient Skald of War;;;;;;;;;;;;;x
+db_odin_age_50;Rune-Knower;;;;;;;;;;;;;x
+db_odin_age_500;Heir of the Allfather;;;;;;;;;;;;;x
+db_odin_maternal_bloodline;Blood of Odin — Maternal Line (M);;;;;;;;;;;;;x
+db_odin_maternal_bloodline_desc;MATERNAL COMPONENT OF ODIN (M). The half associated with fate, memory, wisdom and the Norns passes ONLY from the biological mother. A man may carry M but cannot transmit it as a father. FULL blood appears only when the child actually receives Odin P from the father and Odin M from the mother;;;;;;;;;;;;;x
+db_odin_paternal_bloodline;Blood of Odin — Paternal Line (P);;;;;;;;;;;;;x
+db_odin_paternal_bloodline_desc;PATERNAL COMPONENT OF ODIN (P). The Allfather's inheritance of war, will, runes and Valhalla passes ONLY from the biological father. Odin carries both P and M, but as a father transmits only P. An ordinary wife, concubine or lover without Odin M cannot produce a FULL child with him. If the mother truly supplies Odin M, the child becomes FULL regardless of legitimacy. Repeated mortal marriages weaken demigod branches into faded and latent blood.;;;;;;;;;;;;;x
+db_odins_fury;Odin's Fury;;;;;;;;;;;;;x
+db_odins_fury_desc;Enter Odin's terrible battle-fury for a time, at the risk of bodily injury.;;;;;;;;;;;;;x
+db_olympian_god;Olympian God;;;;;;;;;;;;;x
+db_olympian_god_desc;An immortal Olympian deity in his own right. This status is used for the canonical brothers of Zeus and is not inherited as Zeus blood.;;;;;;;;;;;;;x
+db_pantheon_alliance;Alliance of Sky and Ravens;;;;;;;;;;;;;x
+db_pantheon_war;War of the Pantheons;;;;;;;;;;;;;x
+db_portrait_bull;Bull Form;;;;;;;;;;;;;x
+db_portrait_eagle;Eagle Form;;;;;;;;;;;;;x
+db_portrait_serpent;Serpent Form;;;;;;;;;;;;;x
+db_portrait_swan;Swan Form;;;;;;;;;;;;;x
+db_price_of_wisdom;Price of Wisdom;;;;;;;;;;;;;x
+db_price_of_wisdom_desc;Sacrifice an eye for permanent wisdom. Odin himself already bears this price.;;;;;;;;;;;;;x
+db_pyrrhic_dance_of_kouretes;Pyrrhic Dance of the Kouretes;;;;;;;;;;;;;x
+db_relic_search_cooldown;Recent Relic Quest;;;;;;;;;;;;;x
+db_restore_odin_immortality;Restore the Secret of Eternal Life;;;;;;;;;;;;;x
+db_restore_odin_immortality_desc;Restore the Secret of Eternal Life.;;;;;;;;;;;;;x
+db_restore_zeus_immortality;Rekindle the Spark of Olympus;;;;;;;;;;;;;x
+db_restore_zeus_immortality_desc;Rekindle the Spark of Olympus.;;;;;;;;;;;;;x
+db_return_true_form;Return to True Form;;;;;;;;;;;;;x
+db_return_true_form_desc;Discard the current animal form and reveal Zeus exactly as he appeared before transforming.;;;;;;;;;;;;;x
+db_revere_divine_100;Reverence for a Century-Old Immortal;;;;;;;;;;;;;x
+db_revere_divine_16;Respect for Full Divine Blood;;;;;;;;;;;;;x
+db_revere_divine_250;Reverence for an Ancient Immortal;;;;;;;;;;;;;x
+db_revere_divine_50;Respect for a Mature Immortal;;;;;;;;;;;;;x
+db_revere_divine_500;Awe before a Living God;;;;;;;;;;;;;x
+db_revere_founder;Reverence for the Divine Founder;;;;;;;;;;;;;x
+db_rune_fate;Runes of Fate;;;;;;;;;;;;;x
+db_rune_governance;Runes of Rule;;;;;;;;;;;;;x
+db_rune_insight;Seek Runic Insight;;;;;;;;;;;;;x
+db_rune_insight_desc;Open an event and choose what the runes shall reveal: war, plots, rule or fate.;;;;;;;;;;;;;x
+db_rune_plots;Runes of Intrigue;;;;;;;;;;;;;x
+db_rune_war;Runes of War;;;;;;;;;;;;;x
+db_runes_of_yggdrasil;Runes of Yggdrasil;;;;;;;;;;;;;x
+db_runes_of_yggdrasil_desc;Forbidden runic knowledge won at terrible cost, opening the deepest mysteries of fate and sorcery.;;;;;;;;;;;;;x
+db_scepter_of_olympus;Scepter of Olympus;;;;;;;;;;;;;x
+db_scepter_of_olympus_desc;A symbol of heavenly kingship, inspiring obedience, prestige and sacred authority.;;;;;;;;;;;;;x
+db_seek_aegis;Seek the Aegis;;;;;;;;;;;;;x
+db_seek_aegis_desc;Seek the Aegis.;;;;;;;;;;;;;x
+db_seek_ambrosia;Seek Ambrosia;;;;;;;;;;;;;x
+db_seek_ambrosia_desc;Seek Ambrosia.;;;;;;;;;;;;;x
+db_seek_apple;Seek an Apple of Idunn;;;;;;;;;;;;;x
+db_seek_apple_desc;Seek an Apple of Idunn.;;;;;;;;;;;;;x
+db_seek_draupnir;Seek Draupnir;;;;;;;;;;;;;x
+db_seek_draupnir_desc;Seek Draupnir.;;;;;;;;;;;;;x
+db_seek_mead;Seek the Mead of Poetry;;;;;;;;;;;;;x
+db_seek_mead_desc;Seek the Mead of Poetry.;;;;;;;;;;;;;x
+db_seek_runes;Seek the Runes of Yggdrasil;;;;;;;;;;;;;x
+db_seek_runes_desc;Seek the Runes of Yggdrasil.;;;;;;;;;;;;;x
+db_seek_scepter;Seek the Scepter of Olympus;;;;;;;;;;;;;x
+db_seek_scepter_desc;Seek the Scepter of Olympus.;;;;;;;;;;;;;x
+db_seidr_curse;Seidr Curse;;;;;;;;;;;;;x
+db_serpent_infiltrate;Infiltrate as the Serpent;;;;;;;;;;;;;x
+db_serpent_infiltrate_desc;Slip unseen into the target's surroundings in serpent form and leave a divine mark.;;;;;;;;;;;;;x
+db_serpent_mark;Marked by the Serpent;;;;;;;;;;;;;x
+db_serpent_shadow;Serpent in the Shadows;;;;;;;;;;;;;x
+db_severed_immortality;Severed Divinity;;;;;;;;;;;;;x
+db_severed_immortality_desc;The Adamantine Sickle of Cronus has cut the bond between divine blood and eternal life. The blood remains, but natural death can claim this god unless immortality is restored.;;;;;;;;;;;;;x
+db_sickle_of_cronus;Adamantine Sickle of Cronus;;;;;;;;;;;;;x
+db_sickle_of_cronus_desc;A unique anti-divine weapon. The first successful strike severs immortality without removing divine blood, a second can end a severed god forever. At campaign start it is placed into mortal hands, never into Zeus' or Odin's inventory.;;;;;;;;;;;;;x
+db_sickle_sever_immortality;Challenge a God with the Sickle of Cronus;;;;;;;;;;;;;x
+db_sickle_sever_immortality_desc;Challenge any true god within diplomatic reach of the world map to a real duel while wielding the Sickle. A lethal-quality victory against an intact god severs immortality instead of killing, a later lethal victory can kill the already-severed god.;;;;;;;;;;;;;x
+db_stormrune_blood;Storm-Rune Blood;;;;;;;;;;;;;x
+db_stormrune_blood_desc;Zeus P has met Odin M. Thunder answers runes in this hybrid blood, creating a mortal but formidable bridge between Olympus and the North.;;;;;;;;;;;;;x
+db_thunderbolt_of_zeus;Thunderbolt of Zeus;;;;;;;;;;;;;x
+db_thunderbolt_of_zeus_desc;The sovereign weapon of the sky-father. It crackles with divine lightning and answers most fiercely to the blood of Zeus.;;;;;;;;;;;;;x
+db_thunderbolt_power;Channel the Storm;;;;;;;;;;;;;x
+db_thunderbolt_power_desc;Draw the power of Zeus' Thunderbolt into yourself for 180 days, increasing martial skill and personal combat ability.;;;;;;;;;;;;;x
+db_trident_of_poseidon;Trident of Poseidon;;;;;;;;;;;;;x
+db_trident_of_poseidon_desc;Poseidon's canonical weapon and symbol of dominion over sea, storms and earthquakes. It is granted to Zeus' created brother Poseidon at campaign start.;;;;;;;;;;;;;x
+db_valhalla_shield_wall;Shield Wall of Valhalla;;;;;;;;;;;;;x
+db_yggdrasil_nine_nights;Hang Nine Nights on Yggdrasil;;;;;;;;;;;;;x
+db_yggdrasil_nine_nights_desc;Attempt the highest runic ordeal. Success grants permanent mastery, failure can maim even a god.;;;;;;;;;;;;;x
+db_yggdrasil_rune_master;Master of Yggdrasil Runes;;;;;;;;;;;;;x
+db_zeus_age_100;Century-Old;;;;;;;;;;;;;x
+db_zeus_age_16;Awakened Blood;;;;;;;;;;;;;x
+db_zeus_age_250;Ancient;;;;;;;;;;;;;x
+db_zeus_age_50;Mature Immortal;;;;;;;;;;;;;x
+db_zeus_age_500;Living God;;;;;;;;;;;;;x
+db_zeus_maternal_bloodline;Blood of Zeus — Maternal Line (M);;;;;;;;;;;;;x
+db_zeus_maternal_bloodline_desc;MATERNAL COMPONENT OF ZEUS (M). The life-bearing half of Olympian divinity passes ONLY from the biological mother. A man may carry M, but he cannot transmit it as a father. A father possessing both Zeus P and Zeus M does not automatically give both to his children. Thus a child of Zeus and an ordinary wife, concubine or lover without Zeus M receives only P. If the mother truly carries M and the father supplies P, legitimacy is irrelevant: the child is FULL.;;;;;;;;;;;;;x
+db_zeus_paternal_bloodline;Blood of Zeus — Paternal Line (P);;;;;;;;;;;;;x
+db_zeus_paternal_bloodline_desc;PATERNAL COMPONENT OF ZEUS (P). The spark of thunder, sovereignty and Olympian power passes ONLY from the biological father. Marriage type, concubinage, adultery and bastardy do not alter this rule. Zeus himself carries both P and M, but as a father he transmits only P. If the mother does not carry Zeus M, the child cannot become FULL. If the father supplies Zeus P and the mother truly supplies Zeus M, FULL blood awakens even in a bastard. Repeated unions of demigods with ordinary mortals weaken the branch until the blood becomes latent.;;;;;;;;;;;;;x
+einherjar;Einherjar;;;;;;;;;;;;;x
+einherjar_MORALE;Einherjar Morale;;;;;;;;;;;;;x
+einherjar_defensive;Einherjar Defence;;;;;;;;;;;;;x
+einherjar_offensive;Einherjar Offence;;;;;;;;;;;;;x
+kouretes;Kouretes;;;;;;;;;;;;;x
+kouretes_MORALE;Kouretes Morale;;;;;;;;;;;;;x
+kouretes_defensive;Kouretes Defence;;;;;;;;;;;;;x
+kouretes_offensive;Kouretes Offence;;;;;;;;;;;;;x
+odin_demigod_blood;Demigod of Odin;;;;;;;;;;;;;x
+odin_demigod_blood_desc;Only one component of Odin is present. The character is mortal but long-lived and gifted in war, knowledge or intrigue, at adulthood the blood manifests as a random northern aspect. This character can help restore FULL blood in later generations.;;;;;;;;;;;;;x
+odin_faded_blood;Fading Blood of Odin;;;;;;;;;;;;;x
+odin_faded_blood_desc;The Allfather's blood has weakened through repeated mortal unions. Its runic force may sink into a latent state, yet ancient inheritance does not always disappear forever and can reawaken generations later.;;;;;;;;;;;;;x
+odin_origin_marker;Incarnation of Odin;;;;;;;;;;;;;x
+odin_origin_marker_desc;Select this only for the ruler who must become Odin when the campaign begins. His name, Norse culture, Germanic pagan faith, divine blood and canonical wife Frigg will be created automatically.;;;;;;;;;;;;;x
+pure_divine_blood_odin;Full Blood of Odin;;;;;;;;;;;;;x
+pure_divine_blood_odin_desc;Both components of Odin have truly united in this character: P came from the father and M from the mother. Bastardy does not prevent FULL if both components were actually inherited. FULL blood awakens immortality, resistance to disease and bodily decline, century-based growth, runic powers and authority over Valhalla. An ordinary mortal without the Sickle of Cronus should have no plot or duel path to kill such a god.;;;;;;;;;;;;;x
+pure_divine_blood_zeus;Full Blood of Zeus;;;;;;;;;;;;;x
+pure_divine_blood_zeus_desc;Both components of Zeus have truly united in this character: P came through the father and M through the mother. Legitimacy does not matter. FULL blood awakens immortality at adulthood, resists disease, frailty and incapacity, grows stronger over centuries, and opens the highest powers of Olympus. An ordinary mortal cannot kill such a god by plot or duel without the Sickle of Cronus.;;;;;;;;;;;;;x
+zeus_demigod_blood;Demigod of Zeus;;;;;;;;;;;;;x
+zeus_demigod_blood_desc;Only one component of Zeus is present. The character is mortal but unnaturally healthy, strong and long-lived, at adulthood the blood manifests as a random heroic aspect. This character can help restore FULL blood in later generations.;;;;;;;;;;;;;x
+zeus_faded_blood;Fading Blood of Zeus;;;;;;;;;;;;;x
+zeus_faded_blood_desc;The divine component no longer manifests as a full bloodline. Too many generations have mixed with mortals. Without renewed union with a god or demigod, the inheritance becomes latent;;;;;;;;;;;;;x
+zeus_origin_marker;Incarnation of Zeus;;;;;;;;;;;;;x
+zeus_origin_marker_desc;Select this only for the ruler who must become Zeus when the campaign begins. His name, Greek culture, Hellenic faith, divine blood, canonical wife Hera and brothers Poseidon and Hades will be created automatically.;;;;;;;;;;;;;x
+db_godcaptor;God-Captor;;;;;;;;;;;;;x
+db_godcaptor_desc;This character achieved the nearly impossible: capturing and holding a true god. Mortals admire the feat, while gods remember the insult.;;;;;;;;;;;;;x
+db_first_godslayer;First Godslayer;;;;;;;;;;;;;x
+db_first_godslayer_desc;The first mortal or demigod to kill a true god with Cronus' Sickle. The deed changed the blood of the killer's descendants forever.;;;;;;;;;;;;;x
+db_godslayer_bloodline;Bloodline of the Godslayers;;;;;;;;;;;;;x
+db_godslayer_bloodline_desc;Descendants of the first true Godslayer can challenge divine immortality without Cronus' Sickle.;;;;;;;;;;;;;x
+db_form_power_cooldown;Exhausted Animal Form;;;;;;;;;;;;;x
+db_swan_veil;Swan Veil;;;;;;;;;;;;;x
+db_swan_charmed;Charmed by the Divine Swan;;;;;;;;;;;;;x
+db_bull_war_roar;Roar of the Heavenly Bull;;;;;;;;;;;;;x
+db_bull_broken;Broken by the Bull;;;;;;;;;;;;;x
+db_eagle_sky_guard;Sky Watch;;;;;;;;;;;;;x
+db_eagle_omen;Eagle Omen;;;;;;;;;;;;;x
+db_serpent_whispers;Serpent Whispers;;;;;;;;;;;;;x
+db_serpent_venom;Strike with Divine Venom;;;;;;;;;;;;;x
+db_odin_power_cooldown;Allfather Power Exhaustion;;;;;;;;;;;;;x
+db_raven_exposed;Secrets Exposed by Ravens;;;;;;;;;;;;;x
+db_runic_oath;Sacred Runic Oath;;;;;;;;;;;;;x
+db_runic_blessing;Runic Blessing;;;;;;;;;;;;;x
+db_valkyrie_favor;Favor of the Valkyries;;;;;;;;;;;;;x
+db_draupnir_bounty;Invoke Draupnir's Bounty;;;;;;;;;;;;;x
+db_poetic_inspiration;Mead of Poetry Inspiration;;;;;;;;;;;;;x
+db_sleipnir_favor;Sleipnir's Favor;;;;;;;;;;;;;x
+db_godslayer_hunt_cooldown;After a God-Hunt;;;;;;;;;;;;;x
+db_divine_escape_cooldown;After a Divine Escape;;;;;;;;;;;;;x
+db_divine_captive_fury;Fury of a Captive God;;;;;;;;;;;;;x
+db_hero_warrior;Heroic Path: Warrior;;;;;;;;;;;;;x
+db_hero_seeker;Heroic Path: Seeker;;;;;;;;;;;;;x
+db_hero_guardian;Heroic Path: Guardian;;;;;;;;;;;;;x
+db_hero_sage;Heroic Path: Sage;;;;;;;;;;;;;x
+db_hero_trickster;Heroic Path: Trickster;;;;;;;;;;;;;x
+db_heroic_trial_cooldown;Recent Heroic Trial;;;;;;;;;;;;;x
+db_hero_cult;Hero Cult;;;;;;;;;;;;;x
+db_divine_reform_mission;Sacred Goal: Restore the Faith;;;;;;;;;;;;;x
+db_divine_dominion_mission;Sacred Goal: Dominion of the Faith;;;;;;;;;;;;;x
+db_return_of_gods;Return of the Gods;;;;;;;;;;;;;x
+db_world_of_gods;World of Gods and Mortals;;;;;;;;;;;;;x
+db_swan_hide_among_mortals;Hide Among Mortals;;;;;;;;;;;;;x
+db_swan_hide_among_mortals_desc;Use the swan form to disappear among mortals and gain temporary secrecy.;;;;;;;;;;;;;x
+db_bull_war_roar_desc;Manifest the bull's divine fury during war.;;;;;;;;;;;;;x
+db_eagle_hunt_plotters;Hunt Plotters from the Sky;;;;;;;;;;;;;x
+db_eagle_hunt_plotters_desc;Circle the realm as an eagle and improve plot discovery.;;;;;;;;;;;;;x
+db_serpent_listen_in_shadows;Listen from the Shadows;;;;;;;;;;;;;x
+db_serpent_listen_in_shadows_desc;Use the serpent form to slip into places inaccessible to men and gather secrets.;;;;;;;;;;;;;x
+db_valkyrie_blessing;Invoke the Valkyries;;;;;;;;;;;;;x
+db_valkyrie_blessing_desc;Call on the Valkyries for a temporary battle blessing.;;;;;;;;;;;;;x
+db_draupnir_bounty_desc;Awaken Draupnir and gain wealth and prestige.;;;;;;;;;;;;;x
+db_call_sleipnir;Call Sleipnir;;;;;;;;;;;;;x
+db_call_sleipnir_desc;Call Odin's eight-legged steed. While imprisoned, this gives a strong chance to escape.;;;;;;;;;;;;;x
+db_seek_sickle_of_cronus;Seek Cronus' Sickle;;;;;;;;;;;;;x
+db_seek_sickle_of_cronus_desc;Follow ancient clues to the lost adamantine Sickle, the weapon capable of severing a true god's immortality.;;;;;;;;;;;;;x
+db_vow_restore_olympus;Vow to Restore Olympus;;;;;;;;;;;;;x
+db_vow_restore_olympus_desc;Make restoration and reformation of the Hellenic faith a divine goal. Taking the vow grants strong claims on all five Hellenic holy sites. After reformation, pursue its spread and dominion.;;;;;;;;;;;;;x
+db_vow_restore_asgard;Vow to Restore the Allfather's Faith;;;;;;;;;;;;;x
+db_vow_restore_asgard_desc;Make restoration and reformation of the Germanic faith a divine goal. Taking the vow grants strong claims on all five Germanic holy sites. After reformation, spread it across Midgard.;;;;;;;;;;;;;x
+db_swan_charm;Charm as the Swan;;;;;;;;;;;;;x
+db_swan_charm_desc;Appear before a chosen character in the divine swan form.;;;;;;;;;;;;;x
+db_bull_divine_charge;Divine Charge;;;;;;;;;;;;;x
+db_bull_divine_charge_desc;Charge a chosen character in the form of the heavenly bull.;;;;;;;;;;;;;x
+db_eagle_divine_omen;Grant an Eagle Omen;;;;;;;;;;;;;x
+db_eagle_divine_omen_desc;Appear as a heavenly eagle and grant a sign.;;;;;;;;;;;;;x
+db_serpent_whisper_secrets;Whisper for Secrets;;;;;;;;;;;;;x
+db_serpent_whisper_secrets_desc;Infiltrate the target as a serpent and mark them for intrigue.;;;;;;;;;;;;;x
+db_serpent_venom_desc;Poison a mortal or demigod in serpent form. An intact true god cannot be targeted.;;;;;;;;;;;;;x
+db_ravens_scout_target;Send Huginn and Muninn;;;;;;;;;;;;;x
+db_ravens_scout_target_desc;Send Huginn and Muninn to a specific character. For one year the target suffers exposed secrets; if that character is currently plotting, the ravens reveal the plot to you. You also gain a dossier that improves your intrigue and plot power.;;;;;;;;;;;;;x
+db_gungnir_strike;Hurl Gungnir;;;;;;;;;;;;;x
+db_gungnir_strike_desc;Cast Gungnir at a target of any age. Mortal: 30% death / 70% severe wound, demigod: 12% / 88%, divine-judgment survivor: 8% / 92%, an intact true god cannot be killed. Cooldown: 1 year.;;;;;;;;;;;;;x
+db_bind_sacred_oath;Bind a Sacred Oath;;;;;;;;;;;;;x
+db_bind_sacred_oath_desc;Bind the target with a runic sacred oath for 3 years. Costs 100 Piety. The target gains the Sacred Oath modifier and +25 opinion of Odin, Odin power cooldown: 180 days.;;;;;;;;;;;;;x
+db_rune_bless_target;Grant a Runic Blessing;;;;;;;;;;;;;x
+db_rune_bless_target_desc;Mark a chosen character with protective and martial runes.;;;;;;;;;;;;;x
+db_mead_inspire_target;Grant Poetic Inspiration;;;;;;;;;;;;;x
+db_mead_inspire_target_desc;Share the Mead of Poetry and empower a chosen character.;;;;;;;;;;;;;x
+db_godslayer_challenge;Hunt a God;;;;;;;;;;;;;x
+db_godslayer_challenge_desc;Godslayer blood can challenge a true god without the Sickle. Success bypasses divine immortality, but failure is dangerous.;;;;;;;;;;;;;x
+db_judge_divine_prisoner;Judge a Captive God;;;;;;;;;;;;;x
+db_judge_divine_prisoner_desc;Attempt to deal with a true god in your prison. Without the Sickle or Godslayer blood, the god survives.;;;;;;;;;;;;;x
+DBV2_100_A_TT;The transformation changes the visible animal form without replacing the character's human identity, culture or origin.;;;;;;;;;;;;;x
+DBV2_100_B_TT;The transformation changes the visible animal form without replacing the character's human identity, culture or origin.;;;;;;;;;;;;;x
+DBV2_100_C_TT;The transformation changes the visible animal form without replacing the character's human identity, culture or origin.;;;;;;;;;;;;;x
+DBV2_100_E_TT;The transformation changes the visible animal form without replacing the character's human identity, culture or origin.;;;;;;;;;;;;;x
+DBV2_600_T;Divine Enchantment;;;;;;;;;;;;;x
+DBV2_600_D;In the form of a swan, the boundary between beauty and miracle becomes a weapon. You can leave the target enchanted by an encounter with a creature carrying the will of Olympus.;;;;;;;;;;;;;x
+DBV2_600_A;Let this form never be forgotten.;;;;;;;;;;;;;x
+DBV2_602_T;Charge of the Heavenly Bull;;;;;;;;;;;;;x
+DBV2_602_D;The ground trembles beneath your hooves. In this form Zeus does not hide his strength — he turns it into a blow capable of breaking a mortal and shaking even a demigod.;;;;;;;;;;;;;x
+DBV2_602_A;Sweep them from your path.;;;;;;;;;;;;;x
+DBV2_604_T;An Omen from the Heavens;;;;;;;;;;;;;x
+DBV2_604_D;The eagle circles above the chosen one. To some it promises glory, to others it is a warning that the heavens are watching.;;;;;;;;;;;;;x
+DBV2_604_A;Let them remember the gaze of Olympus.;;;;;;;;;;;;;x
+DBV2_606_T;Whispers in the Dark;;;;;;;;;;;;;x
+DBV2_606_D;The serpent passes through cracks and dark rooms where guards are useless. A few overheard words can be worth more than an army.;;;;;;;;;;;;;x
+DBV2_606_A;Remember every word.;;;;;;;;;;;;;x
+DBV2_607_T;Venom of the Divine Serpent;;;;;;;;;;;;;x
+DBV2_607_D;One bite, and what spreads through the target's blood is no ordinary venom, but a fragment of the Thunderer's will.;;;;;;;;;;;;;x
+DBV2_607_A;Let the venom do its work.;;;;;;;;;;;;;x
+DBV2_611_T;A God in Your Dungeon;;;;;;;;;;;;;x
+DBV2_611_D;The impossible has become fact: a true god is in your hands. Ordinary bars do not make such a being mortal, but the capture itself will enter legend.;;;;;;;;;;;;;x
+DBV2_611_A;Let the world remember who accomplished this.;;;;;;;;;;;;;x
+DBV2_614_T;Divine Escape;;;;;;;;;;;;;x
+DBV2_614_D;Locks, walls and guards prove insufficient. Divine power finds an opening where a mortal would see only stone and iron.;;;;;;;;;;;;;x
+DBV2_614_A;Freedom.;;;;;;;;;;;;;x
+DBV2_615_T;Judgment of an Immortal;;;;;;;;;;;;;x
+DBV2_615_D;A captive god stands before you. Ordinary execution cannot end this life. Everything depends on whether you bear the Sickle of Cronus or the blood of the first Godslayer.;;;;;;;;;;;;;x
+DBV2_615_A;Pass judgment.;;;;;;;;;;;;;x
+DBV2_620_T;Huginn and Muninn Return;;;;;;;;;;;;;x
+DBV2_620_D;Huginn and Muninn return from the target’s court with names, routes, habits and whispered plans. If the target was weaving an active plot, the ravens expose it. Their dossier remains useful for a full year.;;;;;;;;;;;;;x
+DBV2_620_A;Nothing is hidden from the Allfather.;;;;;;;;;;;;;x
+DBV2_621_T;Gungnir Cast;;;;;;;;;;;;;x
+DBV2_621_D;Gungnir rests in your hand, bound to oath and inevitability. If you cast it, a mortal may die outright, one who survives will be grievously wounded.;;;;;;;;;;;;;x
+DBV2_621_A;Cast Gungnir.;;;;;;;;;;;;;x
+DBV2_622_T;An Oath Before the Allfather;;;;;;;;;;;;;x
+DBV2_622_D;Runes flare as the chosen one speaks the oath. Breaking these words will now be more than politics — it will be sacrilege.;;;;;;;;;;;;;x
+DBV2_622_A;The words have been heard.;;;;;;;;;;;;;x
+DBV2_623_T;Runic Blessing;;;;;;;;;;;;;x
+DBV2_623_D;You trace runes of protection, strength and clarity over the chosen one. Their power is not eternal, but while the marks remain fresh, fate is kinder.;;;;;;;;;;;;;x
+DBV2_623_A;Let the runes guide them.;;;;;;;;;;;;;x
+DBV2_626_T;A Draught of Inspiration;;;;;;;;;;;;;x
+DBV2_626_D;The Mead of Poetry touches the chosen one's lips. Words gain force, memory sharpens, and ordinary speech begins to sound like a skald's song.;;;;;;;;;;;;;x
+DBV2_626_A;Let their voice be remembered.;;;;;;;;;;;;;x
+DBV2_627_T;Sleipnir;;;;;;;;;;;;;x
+DBV2_627_D;The Allfather's eight-legged steed answers the call. Neither road, guard nor ordinary wall seems quite so final with Sleipnir beneath you.;;;;;;;;;;;;;x
+DBV2_627_A;To the saddle.;;;;;;;;;;;;;x
+DBV2_642_T;Gods Can Die;;;;;;;;;;;;;x
+DBV2_642_D;For the first time, a true god has fallen forever by a hand of the mortal world. The Sickle of Cronus proved that eternity can be severed, and the killer's blood has changed forever. From this day there is a lineage even gods may fear.;;;;;;;;;;;;;x
+DBV2_642_A;A new age has begun.;;;;;;;;;;;;;x
+DBV2_645_T;Challenge of the Godslayer;;;;;;;;;;;;;x
+DBV2_645_D;The blood of the first Godslayer answers the challenge. This will be resolved as a real duel: victory can kill even an intact true god, while failure can still destroy the challenger.;;;;;;;;;;;;;x
+DBV2_645_A;Face the god in mortal combat.;;;;;;;;;;;;;x
+DBV2_660_T;The Path of a Hero;;;;;;;;;;;;;x
+DBV2_660_D;Your divine blood alone does not make a legend. Experience, reputation and ambition have finally brought you to the point where a heroic path can be chosen. Each path permanently shapes how this demigod develops.;;;;;;;;;;;;;x
+DBV2_660_A;Warrior — +3 Martial, +20 Personal Combat Skill.;;;;;;;;;;;;;x
+DBV2_660_B;Seeker — +1 Martial, +2 Intrigue, +2 Learning.;;;;;;;;;;;;;x
+DBV2_660_C;Guardian — +2 Diplomacy, +2 Martial, +1 Health.;;;;;;;;;;;;;x
+DBV2_660_E;Sage — +4 Learning, +2 Stewardship.;;;;;;;;;;;;;x
+DBV2_660_F;Trickster — +4 Intrigue, +2 Diplomacy, +15% Plot Power.;;;;;;;;;;;;;x
+DBV2_662_T;A Hero's Trial;;;;;;;;;;;;;x
+DBV2_662_D;Fate again demands a deed worthy of divine blood. The path you chose suggests how you will answer.;;;;;;;;;;;;;x
+DBV2_662_A;Meet the danger head-on.;;;;;;;;;;;;;x
+DBV2_662_B;Go where others dare not.;;;;;;;;;;;;;x
+DBV2_662_C;Protect those who cannot protect themselves.;;;;;;;;;;;;;x
+DBV2_662_E;Understand the trial before acting.;;;;;;;;;;;;;x
+DBV2_662_F;Outwit fate.;;;;;;;;;;;;;x
+DBV2_665_T;A Hero Cult Is Born;;;;;;;;;;;;;x
+DBV2_665_D;Your deeds are already retold as legend. People leave offerings, tell children of your exploits, and begin to see in you more than a bearer of divine blood.;;;;;;;;;;;;;x
+DBV2_665_A;Legends outlive mortals.;;;;;;;;;;;;;x
+DBV2_666_T;A Great Hero Has Died;;;;;;;;;;;;;x
+DBV2_666_D;A demigod around whom a true cult had formed has left the world of the living. Death did not erase the name: songs, shrines and stories will preserve the hero's memory.;;;;;;;;;;;;;x
+DBV2_671_T;Child of the Thunderer;;;;;;;;;;;;;x
+DBV2_671_D;The first demigod of Zeus' line has been born. The divine blood of Olympus now flows through a child who remains mortal, yet no longer belongs wholly to mankind.;;;;;;;;;;;;;x
+DBV2_672_T;Blood of the Allfather;;;;;;;;;;;;;x
+DBV2_672_D;The first demigod of Odin's line has been born. Above the cradle one can almost hear distant ravens, and mortals begin to understand that the blood of old gods lives among them again.;;;;;;;;;;;;;x
+DBV2_673_T;A New God Walks the World;;;;;;;;;;;;;x
+DBV2_673_D;For the first time since the founders arrived, a new true god has been born. This is no merely powerful descendant: both sides of divine blood joined and awakened true immortality.;;;;;;;;;;;;;x
+DBV2_674_T;Sleeping Blood Awakens;;;;;;;;;;;;;x
+DBV2_674_D;A line thought almost dissolved among mortals has unexpectedly produced active divine blood again. The old legends were not dead — they were waiting for a generation.;;;;;;;;;;;;;x
+DBV2_683_T;The Return of the Gods;;;;;;;;;;;;;x
+DBV2_683_D;There are now too many divine descendants to dismiss as rare wonders. Courts discuss marriages with demigods, priests argue over omens, and rulers build policy around the blood of gods.;;;;;;;;;;;;;x
+DBV2_684_T;A World of Gods and Mortals;;;;;;;;;;;;;x
+DBV2_684_D;Gods, demigods and their celebrated descendants have become a permanent part of politics. The world can no longer be divided between ordinary people and distant myths: myths live, wage war, marry and rule beside mortals.;;;;;;;;;;;;;x
+DBV2_690_T;The Legend of Cronus' Sickle;;;;;;;;;;;;;x
+DBV2_690_D;With true gods walking the world, the oldest myth is remembered again: Gaia gave Cronus an adamant Sickle capable of wounding divine nature itself. After the fall of the Titans, the weapon vanished. No one knows where it lies now.;;;;;;;;;;;;;x
+DBV2_690_A;Then somewhere there is a weapon against gods.;;;;;;;;;;;;;x
+DBV2_691_T;Trail of the Sickle;;;;;;;;;;;;;x
+DBV2_691_D;Old temple lists and fragments of songs point toward the route by which the relic may have been carried after the fall of the Titans. The search will be long and costly.;;;;;;;;;;;;;x
+DBV2_691_A;Begin the search.;;;;;;;;;;;;;x
+DBV2_692_T;The Ruined Sanctuary;;;;;;;;;;;;;x
+DBV2_692_D;The trail leads to a long-abandoned sanctuary. Among the ruins are signs of Cronus, but no certainty whether they lead to the relic or another legend.;;;;;;;;;;;;;x
+DBV2_692_A;Continue.;;;;;;;;;;;;;x
+DBV2_693_T;Adamant in the Darkness;;;;;;;;;;;;;x
+DBV2_693_D;Deep within the hiding place lies a weapon whose metal has not dulled with age. If the old stories are true, this is the Sickle of Cronus itself.;;;;;;;;;;;;;x
+DBV2_693_A;Take the Sickle.;;;;;;;;;;;;;x
+DBV2_694_T;The Sickle of Cronus Is Found;;;;;;;;;;;;;x
+DBV2_694_D;The lost adamant Sickle has appeared in the world again. To mortals it is hope and temptation. To true gods it is news that a weapon exists which can sever their immortality.;;;;;;;;;;;;;x
+DBV2_695_T;A False Trail;;;;;;;;;;;;;x
+DBV2_695_D;The search yielded only ancient debris and empty legends. The Sickle remains lost, and another trail will have to wait for years.;;;;;;;;;;;;;x
+DBV2_732_T;Olympus Reborn;;;;;;;;;;;;;x
+DBV2_732_D;The Hellenic faith has been reformed. For the gods of Olympus this is not the end of the journey, but the beginning of a new goal: spread the restored faith far beyond its ancient holy places.;;;;;;;;;;;;;x
+DBV2_733_T;The Allfather's Faith Reborn;;;;;;;;;;;;;x
+DBV2_733_D;The Germanic faith has been reformed. The old gods no longer accept mere survival among foreign cults: their gaze now turns toward all Midgard.;;;;;;;;;;;;;x
+db_zeus_faded_p;Fading Paternal Blood of Zeus;;;;;;;;;;;;;x
+db_zeus_faded_p_desc;A hidden trace of the weakened paternal side of Zeus' blood.;;;;;;;;;;;;;x
+db_zeus_faded_m;Fading Maternal Blood of Zeus;;;;;;;;;;;;;x
+db_zeus_faded_m_desc;A hidden trace of the weakened maternal side of Zeus' blood.;;;;;;;;;;;;;x
+db_odin_faded_p;Fading Paternal Blood of Odin;;;;;;;;;;;;;x
+db_odin_faded_p_desc;A hidden trace of the weakened paternal side of Odin's blood.;;;;;;;;;;;;;x
+db_odin_faded_m;Fading Maternal Blood of Odin;;;;;;;;;;;;;x
+db_odin_faded_m_desc;A hidden trace of the weakened maternal side of Odin's blood.;;;;;;;;;;;;;x
+db_zeus_latent_p;Latent Paternal Blood of Zeus;;;;;;;;;;;;;x
+db_zeus_latent_p_desc;The paternal legacy of Zeus is nearly dormant, but may reawaken in descendants.;;;;;;;;;;;;;x
+db_zeus_latent_m;Latent Maternal Blood of Zeus;;;;;;;;;;;;;x
+db_zeus_latent_m_desc;The maternal legacy of Zeus is nearly dormant, but may reawaken in descendants.;;;;;;;;;;;;;x
+db_odin_latent_p;Latent Paternal Blood of Odin;;;;;;;;;;;;;x
+db_odin_latent_p_desc;The paternal legacy of Odin is nearly dormant, but may reawaken in descendants.;;;;;;;;;;;;;x
+db_odin_latent_m;Latent Maternal Blood of Odin;;;;;;;;;;;;;x
+db_odin_latent_m_desc;The maternal legacy of Odin is nearly dormant, but may reawaken in descendants.;;;;;;;;;;;;;x
+db_death_chess_ward;Ward Against Premature Death;;;;;;;;;;;;;x
+db_death_chess_ward_desc;A hidden system ward preventing normal old-age events from bypassing special divine mortality rules.;;;;;;;;;;;;;x
+db_portrait_swan_desc;Hidden marker for the divine swan portrait.;;;;;;;;;;;;;x
+db_portrait_bull_desc;Hidden marker for the divine bull portrait.;;;;;;;;;;;;;x
+db_portrait_eagle_desc;Hidden marker for the divine eagle portrait.;;;;;;;;;;;;;x
+db_portrait_serpent_desc;Hidden marker for the divine serpent portrait.;;;;;;;;;;;;;x
+db_zeus_demigod_16;Zeus Blood in Bloom;;;;;;;;;;;;;x
+db_zeus_demigod_50;Mature Blood of Zeus;;;;;;;;;;;;;x
+db_zeus_demigod_100;Ancient Blood of Zeus;;;;;;;;;;;;;x
+db_odin_demigod_16;Odin Blood in Bloom;;;;;;;;;;;;;x
+db_odin_demigod_50;Mature Blood of Odin;;;;;;;;;;;;;x
+db_odin_demigod_100;Ancient Blood of Odin;;;;;;;;;;;;;x
+db_demigod_refuses_to_fade;Divine Blood Refuses to Fade;;;;;;;;;;;;;x
+db_zeus_aspect_heracles;Aspect of Heracles;;;;;;;;;;;;;x
+db_zeus_aspect_athlete;Divine Athleticism;;;;;;;;;;;;;x
+db_zeus_aspect_ruler;Ruler Aspect of Olympus;;;;;;;;;;;;;x
+db_zeus_aspect_trickster;Trickery of the Thunderer;;;;;;;;;;;;;x
+db_zeus_aspect_sage;Wisdom of Olympus;;;;;;;;;;;;;x
+db_odin_aspect_berserker;Berserker Fury;;;;;;;;;;;;;x
+db_odin_aspect_rune_seer;Rune Seer;;;;;;;;;;;;;x
+db_odin_aspect_raven;Raven Sight;;;;;;;;;;;;;x
+db_odin_aspect_skald;Gift of the Skald;;;;;;;;;;;;;x
+db_odin_aspect_wanderer;Path of the Wanderer;;;;;;;;;;;;;x
+db_lightning_wrath;Wrath of Lightning;;;;;;;;;;;;;x
+db_gungnir_foresight;Gungnir Foresight;;;;;;;;;;;;;x
+db_valhalla_thunder;Thunder of Valhalla;;;;;;;;;;;;;x
+db_shape_cooldown;Recent Transformation;;;;;;;;;;;;;x
+db_runes_cooldown;Runes Recharging;;;;;;;;;;;;;x
+db_ravens_cooldown;Ravens Abroad;;;;;;;;;;;;;x
+db_fury_cooldown;Allfather's Fury Spent;;;;;;;;;;;;;x
+db_wanderer_cooldown;Recent Wandering;;;;;;;;;;;;;x
+db_seidr_cooldown;Seidr Recharging;;;;;;;;;;;;;x
+db_artifact_power_cooldown;Relic Power Exhausted;;;;;;;;;;;;;x
+Zeus;Zeus;;;;;;;;;;;;;x
+Odin;Odin;;;;;;;;;;;;;x
+Hera;Hera;;;;;;;;;;;;;x
+Frigg;Frigg;;;;;;;;;;;;;x
+Cronus;Cronus;;;;;;;;;;;;;x
+Rhea;Rhea;;;;;;;;;;;;;x
+Poseidon;Poseidon;;;;;;;;;;;;;x
+Hades;Hades;;;;;;;;;;;;;x
+DBV2_HOLY_SITE_CLAIMS_TT;You will gain strong claims on all five holy sites of this faith.;;;;;;;;;;;;;x
+db_divine_reform_mission_desc;The sacred goal binds a god to restoring the old faith and grants strong claims on its five holy sites.;;;;;;;;;;;;;x
+Demeter;Demeter;;;;;;;;;;;;;x
+Hestia;Hestia;;;;;;;;;;;;;x
+db_order_sickle;Order of the Sickle;;;;;;;;;;;;;x
+db_order_sickle_desc;A secret mortal brotherhood that studies divine blood, seeks the Sickle of Cronus and prepares traps for immortals. Membership alone never grants the power to kill an intact true god: the Sickle or an active Godslayer Bloodline is still required.;;;;;;;;;;;;;x
+db_order_sickle_leader_desc;[GetSocietyLeaderDesc];;;;;;;;;;;;;x
+db_order_sickle_rank_1_male;Watcher;;;;;;;;;;;;;x
+db_order_sickle_rank_1_female;Watcher;;;;;;;;;;;;;x
+db_order_sickle_rank_2_male;Hunter;;;;;;;;;;;;;x
+db_order_sickle_rank_2_female;Huntress;;;;;;;;;;;;;x
+db_order_sickle_rank_3_male;Executioner;;;;;;;;;;;;;x
+db_order_sickle_rank_3_female;Executioner;;;;;;;;;;;;;x
+db_order_sickle_rank_4_male;Master of the Sickle;;;;;;;;;;;;;x
+db_order_sickle_rank_4_female;Mistress of the Sickle;;;;;;;;;;;;;x
+currency_name_db_order_sickle;Secret Knowledge;;;;;;;;;;;;;x
+DBH_CURRENCY_GODSLAYER_BLOOD;Godslayer blood: $GAIN$;;;;;;;;;;;;;x
+DBH_CURRENCY_PROVEN_TRUTH;Proof that gods can die: $GAIN$;;;;;;;;;;;;;x
+DBH_ORDER_OBEDIENCE_TT;Lower members of the Order tend to obey the Masters of the Sickle.;;;;;;;;;;;;;x
+db_order_observe_divine;Observe Divine Blood;;;;;;;;;;;;;x
+db_order_observe_divine_desc;Spend Secret Knowledge to study a god or demigod. Repeated successful operations improve the Order’s intelligence on the target.;;;;;;;;;;;;;x
+db_order_hunt_demigod;Hunt a Demigod;;;;;;;;;;;;;x
+db_order_hunt_demigod_desc;Organize a hunt against an active demigod. The target may be wounded, captured or killed. True-god immunity does not apply to demigods.;;;;;;;;;;;;;x
+db_order_steal_divine_relic;Steal a Divine Relic;;;;;;;;;;;;;x
+db_order_steal_divine_relic_desc;Attempt to steal a random divine artifact from the target. Stealing the Sickle is much harder and requires Executioner rank.;;;;;;;;;;;;;x
+db_order_prepare_god_trap;Prepare a God Trap;;;;;;;;;;;;;x
+db_order_prepare_god_trap_desc;Build a temporary network of informants, bait and restraints around a studied true god. A prepared trap improves capture chances during a Grand Hunt.;;;;;;;;;;;;;x
+db_order_trace_sickle;Trace the Sickle of Cronus;;;;;;;;;;;;;x
+db_order_trace_sickle_desc;Spend Order resources to search for the Sickle. If it has already been recovered, agents will try to identify its current holder.;;;;;;;;;;;;;x
+db_order_grand_hunt;Declare a Grand Hunt;;;;;;;;;;;;;x
+db_order_grand_hunt_desc;Launch a coordinated operation against a studied true god. Without the Sickle or the Godslayer Bloodline, the Order can only attempt capture.;;;;;;;;;;;;;x
+db_divine_break_order_cell;Crush an Order Cell;;;;;;;;;;;;;x
+db_divine_break_order_cell_desc;Arrest a revealed Order member in your realm and destroy part of the society’s accumulated Secret Knowledge.;;;;;;;;;;;;;x
+db_order_operation_cooldown;Recent Order Operation;;;;;;;;;;;;;x
+db_order_operation_cooldown_desc;The agent network must lie low before another major operation.;;;;;;;;;;;;;x
+db_order_great_hunt_cooldown;After the Grand Hunt;;;;;;;;;;;;;x
+db_order_great_hunt_cooldown_desc;The Order needs time to rebuild its agents, safe houses and contacts.;;;;;;;;;;;;;x
+db_order_hunted_wound;Hunt Wounds;;;;;;;;;;;;;x
+db_order_hunted_wound_desc;Wounds suffered in a clash with the Order of the Sickle.;;;;;;;;;;;;;x
+db_order_exposed_cell;Exposed Cell;;;;;;;;;;;;;x
+db_order_exposed_cell_desc;Traces of the Order’s activity have become known to its enemies.;;;;;;;;;;;;;x
+DBH_31_T;The Blood Awakens;;;;;;;;;;;;;x
+DBH_31_D;Active divine blood has returned. The Order of the Sickle will not keep a renewed demigod or true god among its members.;;;;;;;;;;;;;x
+DBH_OK;Understood.;;;;;;;;;;;;;x
+DBH_CANCEL;Stand down.;;;;;;;;;;;;;x
+DBH_100_T;Begin Surveillance;;;;;;;;;;;;;x
+DBH_100_D;Agents are ready to study the target’s habits, ancestry and entourage.;;;;;;;;;;;;;x
+DBH_100_A;Begin the operation.;;;;;;;;;;;;;x
+DBH_101_T;The Dossier Grows;;;;;;;;;;;;;x
+DBH_101_D;The watchers return with useful intelligence. The Order’s dossier on the target has become much more complete.;;;;;;;;;;;;;x
+DBH_102_T;The Trail Goes Cold;;;;;;;;;;;;;x
+DBH_102_D;The operation failed. Some watchers barely escaped, and traces may have exposed the cell.;;;;;;;;;;;;;x
+DBH_110_T;Hunt the Demigod;;;;;;;;;;;;;x
+DBH_110_D;A demigod is more dangerous than any mortal, but does not possess the inviolability of an intact true god. The hunters are ready.;;;;;;;;;;;;;x
+DBH_110_A;Release the hunters.;;;;;;;;;;;;;x
+DBH_120_T;Steal the Relic;;;;;;;;;;;;;x
+DBH_120_D;Agents will infiltrate the owner’s circle and attempt to carry away one divine artifact.;;;;;;;;;;;;;x
+DBH_120_A;Begin the theft.;;;;;;;;;;;;;x
+DBH_121_T;Relic Stolen;;;;;;;;;;;;;x
+DBH_121_D;The operation succeeded. A divine artifact has fallen into your hands.;;;;;;;;;;;;;x
+DBH_122_T;The Theft Fails;;;;;;;;;;;;;x
+DBH_122_D;The guards were more alert than expected. The agents returned empty-handed, and their traces may lead back to the Order.;;;;;;;;;;;;;x
+DBH_140_T;A Net Around an Immortal;;;;;;;;;;;;;x
+DBH_140_D;Safe houses, bribed servants, false routes and prepared restraints form a temporary trap around the chosen god.;;;;;;;;;;;;;x
+DBH_140_A;Close the net.;;;;;;;;;;;;;x
+DBH_150_T;The Sickle’s Trail;;;;;;;;;;;;;x
+DBH_150_D;The Sickle of Cronus is already in mortal hands. The Order’s network has narrowed the search and marked its known holder.;;;;;;;;;;;;;x
+DBH_200_T;The Grand Hunt;;;;;;;;;;;;;x
+DBH_200_D;The Order’s network moves as one. If you possess a legitimate way to break immortality, this may become a god-killing. Without one, the operation can only end in capture or failure.;;;;;;;;;;;;;x
+DBH_200_A;Begin the Grand Hunt.;;;;;;;;;;;;;x
+DBV2_696_T;The Sickle of Cronus;;;;;;;;;;;;;x
+DBV2_696_D;Something ancient has touched the world. You sense a weapon made against immortals: the legend of the Sickle of Cronus has awakened again. To a true god this is not a mortal tale, but a warning.;;;;;;;;;;;;;x
+DBV2_696_A;Immortality must not become carelessness.;;;;;;;;;;;;;x
+DBV2_697_T;The Sickle Has a Bearer;;;;;;;;;;;;;x
+DBV2_697_D;Divine instinct confirms the worst: the Sickle of Cronus is no longer merely a legend. The weapon has been found and rests in living hands.;;;;;;;;;;;;;x
+DBV2_697_A;Find it before it finds me.;;;;;;;;;;;;;x
+DBV2_698_T;A God Has Fallen;;;;;;;;;;;;;x
+DBV2_698_D;Immortality has proven less than absolute. A true god has died, and every pantheon now knows that mortals have found a path to divine blood.;;;;;;;;;;;;;x
+DBV2_698_A;The heavens will remember this day.;;;;;;;;;;;;;x
+DBV2_983_T;The Thunderer Descends on Epirus;;;;;;;;;;;;;x
+DBV2_983_D;The sky splits beneath a storm no mortal weather could summon. Zeus has entered the world openly and seized a foothold in Epirus. Two thousand warriors gather behind him, the first army of his new divine realm.;;;;;;;;;;;;;x
+DBV2_983_A;Olympus now has a foothold among mortals.;;;;;;;;;;;;;x
+DBV2_984_T;The All-Father Takes Uppland;;;;;;;;;;;;;x
+DBV2_984_D;Ravens gather beneath a darkened sky and old runes seem to stir in stone and wood. Odin has entered the world openly and seized Uppland. Two thousand warriors stand beneath his banners, ready to expand the All-Father’s earthly domain.;;;;;;;;;;;;;x
+DBV2_984_A;Asgard now has a foothold on earth.;;;;;;;;;;;;;x
+db_true_god_allure;Divine Presence;;;;;;;;;;;;;x
+db_true_god_allure_desc;A true god exerts a supernatural social and romantic pull that transcends mortal religions.;;;;;;;;;;;;;x
+db_demigod_allure;Blood of the Gods;;;;;;;;;;;;;x
+db_demigod_allure_desc;Active divine blood makes this demigod unusually magnetic to mortals of every faith.;;;;;;;;;;;;;x
+d_db_olympus_manifestation;Manifestation of Olympus;;;;;;;;;;;;;x
+d_db_asgard_manifestation;Manifestation of Asgard;;;;;;;;;;;;;x
+db_olympian_demigod_blood;Olympian Demigod Blood;;;;;;;;;;;;;x
+db_olympian_demigod_blood_desc;Direct descent from one of the independent Olympian gods. The blood is strong, but fades through repeated mortal unions.;;;;;;;;;;;;;x
+db_olympian_faded_blood;Fading Blood of Olympus;;;;;;;;;;;;;x
+db_olympian_faded_blood_desc;The divine spark in this branch has weakened, but may reawaken generations later.;;;;;;;;;;;;;x
+db_divine_union;Propose Divine Union;;;;;;;;;;;;;x
+db_divine_union_desc;A marriage involving a true god or active demigod can be proposed across faiths without the interfaith block. It works only within normal diplomatic range and is never auto-initiated by AI.;;;;;;;;;;;;;x
+DBV2_1040_T;A Divine Union;;;;;;;;;;;;;x
+DBV2_1040_D;The proposal comes from one whose blood stands above mortal religious prohibitions. Such a union can bind dynasties that ordinary custom would keep apart.;;;;;;;;;;;;;x
+DBV2_1040_A;Accept the union.;;;;;;;;;;;;;x
+DBV2_1040_B;Refuse.;;;;;;;;;;;;;x
+db_order_hates_divine;Enemy of Divine Blood;;;;;;;;;;;;;x
+db_order_hates_divine_desc;Members of the Order of the Sickle deliberately suppress reverence and attraction toward gods and demigods.;;;;;;;;;;;;;x
+
+DBV2_1061_T;Zeus Establishes Himself in Epirus;;;;;;;;;;;;;x
+DBV2_1061_D;Zeus no longer remains an abstract Manifestation of Olympus. He takes a county in Epirus, becomes an independent territorial ruler, and gathers two thousand warriors beneath his banner for the wars to come.;;;;;;;;;;;;;x
+DBV2_1061_A;Let mortals behold the Thunderer’s rule.;;;;;;;;;;;;;x
+DBV2_1062_T;Odin Establishes Himself in Uppland;;;;;;;;;;;;;x
+DBV2_1062_D;Odin no longer remains an abstract Manifestation of Asgard. He takes Uppland, becomes an independent territorial ruler, and leads two thousand warriors prepared for new campaigns.;;;;;;;;;;;;;x
+DBV2_1062_A;The ravens already circle over his new land.;;;;;;;;;;;;;x
+db_cross_pantheon_god;God of Two Pantheons;;;;;;;;;;;;;x
+db_cross_pantheon_god_desc;Born from two full divine traditions. This character is a true god, not a demigod, and carries the divine essences inherited from both parents.;;;;;;;;;;;;;x
+db_divine_judgment_survivor;Survivor of Divine Wrath;;;;;;;;;;;;;x
+db_divine_judgment_survivor_desc;This character survived a direct divine strike, endured the grievous wound it caused, and recovered. Their body and will have become harder to break by later divine intervention.;;;;;;;;;;;;;x
+db_relic_search_active;Relic Expedition Underway;;;;;;;;;;;;;x
+db_relic_search_active_desc;Agents, scholars and adventurers are following a trail toward a lost divine relic.;;;;;;;;;;;;;x
+DEATH_DIVINE_JUDGMENT;Was overtaken by divine wrath.;;;;;;;;;;;;;x
+DEATH_DIVINE_SPEAR;Fell before an inescapable divine judgment.;;;;;;;;;;;;;x
+DBV2_402_T;The Relic Has Been Found;;;;;;;;;;;;;x
+DBV2_402_D;The expedition has returned in triumph. The sought divine relic has been recovered and delivered into your hands.;;;;;;;;;;;;;x
+DBV2_403_T;The Trail Goes Cold;;;;;;;;;;;;;x
+DBV2_403_D;After months of searching, the expedition returns empty-handed. The clues were false, stale or deliberately obscured.;;;;;;;;;;;;;x
+DBV2_404_T;The Relic Already Has a Bearer;;;;;;;;;;;;;x
+DBV2_404_D;The trail was real, but it ends in the hands of another living owner. The relic is already present in the world and cannot be rediscovered as a second copy.;;;;;;;;;;;;;x
+db_order_open_codex;Study the Order of the Sickle Codex;;;;;;;;;;;;;x
+db_order_open_codex_desc;Review how the Order, its ranks, intelligence network, the Sickle and Godslayer blood actually work.;;;;;;;;;;;;;x
+db_order_read_dossier;Read the Order Dossier;;;;;;;;;;;;;x
+db_order_read_dossier_desc;Review the Order’s current shared intelligence on this divine target.;;;;;;;;;;;;;x
+DBH_160_T;Codex of the Order of the Sickle;;;;;;;;;;;;;x
+DBH_160_D;The Order is a small anti-divine network, not a mass religion. Rank I builds dossiers. Rank II hunts demigods and steals relics. Rank III prepares traps and traces the Sickle. Rank IV can launch a Grand Hunt. Intelligence is shared and decays with time. An intact adult true god cannot be killed by ordinary mortals: the Sickle must first sever immortality, while descendants of the first Godslayer can threaten intact gods in real lethal combat.;;;;;;;;;;;;;x
+DBH_161_T;Order Dossier;;;;;;;;;;;;;x
+DBH_161_D0;The Order has no reliable intelligence on this target yet. Observation is required before serious operations become practical.;;;;;;;;;;;;;x
+DBH_161_D1;Dossier Level I: identity, divine status and broad habits are known. Basic surveillance and demigod-hunting operations are possible.;;;;;;;;;;;;;x
+DBH_161_D2;Dossier Level II: routes, household patterns and relic security are understood. Relic theft and preparation of anti-god traps become practical.;;;;;;;;;;;;;x
+DBH_161_D3;Dossier Level III: the target has been studied in depth. A Grand Hunt may be prepared by the highest ranks of the Order.;;;;;;;;;;;;;x
+DBH_161_D4;Dossier Level IV: the Order possesses exceptionally current intelligence on the target, including routines, vulnerabilities and known relic connections.;;;;;;;;;;;;;x
+db_mixed_demigod_blood;Mixed Demigod Blood;Mixed Demigod Blood;Mixed Demigod Blood;;Mixed Demigod Blood;;;;;;;;;x
+db_mixed_demigod_blood_desc;Several divine lineages mingle in this blood. It is no longer fully divine, but the active essences of both pantheons remain.;Several divine lineages mingle in this blood. It is no longer fully divine, but the active essences of both pantheons remain.;Several divine lineages mingle in this blood. It is no longer fully divine, but the active essences of both pantheons remain.;;Several divine lineages mingle in this blood. It is no longer fully divine, but the active essences of both pantheons remain.;;;;;;;;;x
+db_scepter_of_hera;Scepter of Hera;;;;;;;;;;;;;x
+db_scepter_of_hera_desc;The queenly scepter of Hera, a sign of marriage, sovereignty and divine authority on Olympus.;;;;;;;;;;;;;x
+db_diadem_of_hera;Diadem of Hera;;;;;;;;;;;;;x
+db_diadem_of_hera_desc;The royal diadem of Hera, marking the dignity of the queen of the Olympians.;;;;;;;;;;;;;x
+db_chariot_of_poseidon;Chariot of Poseidon;;;;;;;;;;;;;x
+db_chariot_of_poseidon_desc;Poseidon's divine chariot, drawn by the power of the sea and the god's sacred horses.;;;;;;;;;;;;;x
+db_scepter_of_hades;Scepter of Hades;;;;;;;;;;;;;x
+db_scepter_of_hades_desc;The dark royal scepter of Hades, symbol of his unchallenged dominion over the realm below.;;;;;;;;;;;;;x
+db_torches_of_demeter;Twin Torches of Demeter;;;;;;;;;;;;;x
+db_torches_of_demeter_desc;The sacred torches of Demeter, carried in the search for Persephone and associated with the mysteries of grain and rebirth.;;;;;;;;;;;;;x
+db_cornucopia_of_demeter;Cornucopia of Demeter;;;;;;;;;;;;;x
+db_cornucopia_of_demeter_desc;A divine horn of plenty representing Demeter's bounty, harvest and the fruitfulness of the earth.;;;;;;;;;;;;;x
+db_sacred_flame_of_hestia;Sacred Flame of Hestia;;;;;;;;;;;;;x
+db_sacred_flame_of_hestia_desc;The undying flame of the sacred hearth, guarded by Hestia as the center of home, kin and ordered life.;;;;;;;;;;;;;x
+db_veil_of_hestia;Veil of Hestia;;;;;;;;;;;;;x
+db_veil_of_hestia_desc;The solemn veil of Hestia, a regalia of purity, hearth and divine peace.;;;;;;;;;;;;;x
+db_distaff_of_frigg;Distaff of Frigg;;;;;;;;;;;;;x
+db_distaff_of_frigg_desc;Frigg's sacred distaff, recalling her association with spinning, household rule and the hidden pattern of fate.;;;;;;;;;;;;;x
+db_keys_of_fensalir;Keys of Fensalir;;;;;;;;;;;;;x
+db_keys_of_fensalir_desc;The keys of Frigg's hall Fensalir, symbols of household authority, guardianship and the secrets kept by the All-Mother.;;;;;;;;;;;;;x
+db_seidr_curse_divine;Seidr Curse: Divine Resistance;;;;;;;;;;;;;x
+DBV2_1121_T;The Thunderbolt Falls;;;;;;;;;;;;;x
+DBV2_1121_D_DEATH;The sky tears open. The Thunderbolt of Zeus strikes with impossible force, and you know that the divine judgment has found its mark.;;;;;;;;;;;;;x
+DBV2_1121_D_GOD;The Thunderbolt of Zeus crashes into you with enough force to erase a mortal life. Your intact divinity refuses death, but even a god is left grievously wounded.;;;;;;;;;;;;;x
+DBV2_1121_D_SURVIVE;The Thunderbolt of Zeus strikes you. You survive the divine blow, but your body is left grievously wounded.;;;;;;;;;;;;;x
+DBV2_1121_A;Face the judgment.;;;;;;;;;;;;;x
+DBV2_1122_T;Gungnir Finds Its Mark;;;;;;;;;;;;;x
+DBV2_1122_D_DEATH;The spear of the All-Father crosses the distance as though fate itself had thrown it. Gungnir finds you, and the wound is mortal.;;;;;;;;;;;;;x
+DBV2_1122_D_GOD;Gungnir finds its mark. The blow would kill a mortal, yet your intact divinity denies death. The spear still leaves a grievous wound.;;;;;;;;;;;;;x
+DBV2_1122_D_SURVIVE;Gungnir finds its mark. You remain alive, but the divine spear leaves you grievously wounded.;;;;;;;;;;;;;x
+DBV2_1122_A;Endure what fate has sent.;;;;;;;;;;;;;x
+DBV2_1123_T;The Seidr Curse;;;;;;;;;;;;;x
+DBV2_1123_D;An unseen pressure settles over you. Thought grows heavy, strength drains away and the threads of fate seem to knot around your life. A god has laid Seidr upon you.;;;;;;;;;;;;;x
+DBV2_1123_A;The curse takes hold.;;;;;;;;;;;;;x
+DBV2_1124_T;Tempered by Divine Wrath;;;;;;;;;;;;;x
+DBV2_1124_D;The grievous wound is finally gone. You did more than survive a god's direct judgment: you healed from it. Something in body and spirit has hardened against the touch of divine power.;;;;;;;;;;;;;x
+DBV2_1124_A;I endured.;;;;;;;;;;;;;x
+DBV2_1125_T;Divine Power: Result;;;;;;;;;;;;;x
+DBV2_1125_D_THUNDER_DEATH;Your Thunderbolt delivered its judgment. The target did not survive.;;;;;;;;;;;;;x
+DBV2_1125_D_THUNDER_SURVIVE;Your Thunderbolt struck true. The target survived, but only with a grievous wound.;;;;;;;;;;;;;x
+DBV2_1125_D_THUNDER_GOD;Your Thunderbolt struck a true god. Divine nature prevented death, but the target was grievously wounded.;;;;;;;;;;;;;x
+DBV2_1125_D_GUNGNIR_DEATH;Gungnir found its mark, and the target fell to the divine spear.;;;;;;;;;;;;;x
+DBV2_1125_D_GUNGNIR_SURVIVE;Gungnir found its mark. The target survived, grievously wounded.;;;;;;;;;;;;;x
+DBV2_1125_D_GUNGNIR_GOD;Gungnir struck a true god. It could not extinguish intact divinity, but it left a grievous wound.;;;;;;;;;;;;;x
+DBV2_1125_D_SEIDR;Your Seidr has settled over the target. The curse will gnaw at body, mind and fortune for years.;;;;;;;;;;;;;x
+db_lightning_scorched_divine;Divine Lightning Scorch;;;;;;;;;;;;;x
+DBV2_615_A_GODSLAYER;Execute the god with Godslayer blood.;;;;;;;;;;;;;x
+DBV2_615_A_SICKLE_KILL;Finish the severed god with the Sickle.;;;;;;;;;;;;;x
+DBV2_615_A_SICKLE_SEVER;Raise the Sickle and sever immortality.;;;;;;;;;;;;;x
+DBV2_615_A_FAIL;Attempt a mortal execution.;;;;;;;;;;;;;x
+DBV2_666_A;The legend remains.;;;;;;;;;;;;;x
+DBV2_671_A;Olympus has a mortal-born heir.;;;;;;;;;;;;;x
+DBV2_672_A;The Allfather's blood endures.;;;;;;;;;;;;;x
+DBV2_673_A;Another immortal has awakened.;;;;;;;;;;;;;x
+DBV2_674_A;The old blood remembers.;;;;;;;;;;;;;x
+DBV2_683_A;The age of myth is returning.;;;;;;;;;;;;;x
+DBV2_684_A;Myth and history are one world now.;;;;;;;;;;;;;x
+DBV2_693_B;Too late — the Sickle is no longer here.;;;;;;;;;;;;;x
+DBV2_694_A;The age of invulnerable gods is over.;;;;;;;;;;;;;x
+DBV2_695_A;The trail ends here.;;;;;;;;;;;;;x
+DBV2_732_A;Olympus will be heard across the world.;;;;;;;;;;;;;x
+DBV2_733_A;Let Midgard hear the old gods.;;;;;;;;;;;;;x
+DBV2_402_A;At last, the relic is mine.;;;;;;;;;;;;;x
+DBV2_403_A;The search must wait.;;;;;;;;;;;;;x
+DBV2_404_A;Then another bearer already holds it.;;;;;;;;;;;;;x
+DBV2_1042_T;The Divine Union Is Accepted;;;;;;;;;;;;;x
+DBV2_1042_D;Your proposal has been accepted. The divine union is now sealed.;;;;;;;;;;;;;x
+DBV2_1042_A;So the two lines are joined.;;;;;;;;;;;;;x
+DBV2_1043_T;The Divine Union Is Refused;;;;;;;;;;;;;x
+DBV2_1043_D;Your proposal has been refused. Even divine blood cannot compel a willing union.;;;;;;;;;;;;;x
+DBV2_1043_A;Then it will not be.;;;;;;;;;;;;;x
+DBV2_1121_A_DEATH;The judgment is final.;;;;;;;;;;;;;x
+DBV2_1121_A_GOD;Even divine lightning cannot erase me.;;;;;;;;;;;;;x
+DBV2_1121_A_SURVIVE;I am still alive.;;;;;;;;;;;;;x
+DBV2_1122_A_DEATH;Fate has spoken.;;;;;;;;;;;;;x
+DBV2_1122_A_GOD;Even Gungnir cannot extinguish my divinity.;;;;;;;;;;;;;x
+DBV2_1122_A_SURVIVE;I survived the spear.;;;;;;;;;;;;;x
+DBV2_1125_A_DEATH;The judgment is complete.;;;;;;;;;;;;;x
+DBV2_1125_A_SURVIVE;The target survived — barely.;;;;;;;;;;;;;x
+DBV2_1125_A_GOD;Divinity resisted the killing blow.;;;;;;;;;;;;;x
+DBV2_1125_A_SEIDR;Let the curse take root.;;;;;;;;;;;;;x
+DBV2_260_RISK_TT;This rite is dangerous: failure can leave even a god wounded or severely injured.;;;;;;;;;;;;;x
+db_cornucopia_of_amalthea;Cornucopia of Amalthea;;;;;;;;;;;;;x
+db_cornucopia_of_amalthea_desc;Amalthea’s horn of plenty. Grants 4 gold per month and modest stewardship bonuses.;;;;;;;;;;;;;x
+db_bident_of_hades;Bident of Hades;;;;;;;;;;;;;x
+db_bident_of_hades_desc;The ancient two-pronged weapon of the lord of the Underworld.;;;;;;;;;;;;;x
+db_labrys_of_labyrinth;Labrys of the Labyrinth;;;;;;;;;;;;;x
+db_labrys_of_labyrinth_desc;A double-headed axe recovered from the depths of Minos labyrinth.;;;;;;;;;;;;;x
+db_chariot_of_zeus;Eagle Chariot of Zeus;;;;;;;;;;;;;x
+db_chariot_of_zeus_desc;The Thunderer’s divine chariot drawn by sacred eagles.;;;;;;;;;;;;;x
+k_olympus;Olympus;;;;;;;;;;;;;x
+k_asgard;Asgard;;;;;;;;;;;;;x
+db_seek_amalthea_cornucopia;Seek the Cornucopia of Amalthea;;;;;;;;;;;;;x
+db_seek_amalthea_cornucopia_desc;Search for Amalthea’s horn of plenty, granting 4 gold per month.;;;;;;;;;;;;;x
+db_seek_hades_bident;Seek the Bident of Hades;;;;;;;;;;;;;x
+db_seek_hades_bident_desc;Search for the ancient bident of the lord of the Underworld.;;;;;;;;;;;;;x
+db_seek_labrys;Seek the Labrys;;;;;;;;;;;;;x
+db_seek_labrys_desc;Begin a dedicated expedition into the Labyrinth of Minos. Failure can wound you, success yields the unique Labrys.;;;;;;;;;;;;;x
+db_seek_zeus_chariot;Seek Zeus Eagle Chariot;;;;;;;;;;;;;x
+db_seek_zeus_chariot_desc;Seek the divine chariot drawn by Zeus sacred eagles.;;;;;;;;;;;;;x
+db_designate_divine_heir;Designate Divine Heir;;;;;;;;;;;;;x
+db_designate_divine_heir_desc;Designate a close divine relative as your chosen successor. The chosen character receives priority as the next head of your divine line. Ordinary titles still follow the current CK2 succession law: designated heir matters only where that law supports it. This does not create Olympus or Asgard and does not turn the heir into Zeus or Odin.;;;;;;;;;;;;;x
+DBV2_1204_T;The Return of Olympus;;;;;;;;;;;;;x
+DBV2_1204_D;Landless Zeus gathers a new divine host and turns again toward lands worthy of Olympus.;;;;;;;;;;;;;x
+DBV2_1204_A;Olympus shall rise again.;;;;;;;;;;;;;x
+DBV2_1205_T;The Return of Asgard;;;;;;;;;;;;;x
+DBV2_1205_D;Landless Odin summons warriors and prepares the return of Asgard.;;;;;;;;;;;;;x
+DBV2_1205_A;The Allfather returns.;;;;;;;;;;;;;x
+DBV2_1210_T;The Trail of Amalthea;;;;;;;;;;;;;x
+DBV2_1210_D;Rumors point toward an ancient refuge where Amalthea’s horn may remain.;;;;;;;;;;;;;x
+DBV2_1210_A;Begin the search.;;;;;;;;;;;;;x
+DBV2_1211_T;The Trail of Draupnir;;;;;;;;;;;;;x
+DBV2_1211_D;The sagas speak of the golden ring that births eight rings every ninth night.;;;;;;;;;;;;;x
+DBV2_1211_A;Follow the sagas.;;;;;;;;;;;;;x
+DBV2_1212_T;Weapon of the Underworld;;;;;;;;;;;;;x
+DBV2_1212_D;Old tales point toward the Bident of Hades.;;;;;;;;;;;;;x
+DBV2_1212_A;Follow the trail.;;;;;;;;;;;;;x
+DBV2_1220_T;Legend of the Labrys;;;;;;;;;;;;;x
+DBV2_1220_D;Whispers on Crete tell of a double-headed weapon hidden in the Labyrinth of Minos.;;;;;;;;;;;;;x
+DBV2_1220_A;Enter the Labyrinth.;;;;;;;;;;;;;x
+DBV2_1221_T;Heart of the Labyrinth;;;;;;;;;;;;;x
+DBV2_1221_D;Heavy breathing echoes in the dark. One final trial separates you from the Labrys.;;;;;;;;;;;;;x
+DBV2_1221_A;Face the trial.;;;;;;;;;;;;;x
+DBV2_1230_T;Eagles of the Thunderer;;;;;;;;;;;;;x
+DBV2_1230_D;The sacred eagles recognize your blood. Zeus divine chariot appears before you.;;;;;;;;;;;;;x
+DBV2_1230_A;Claim the chariot.;;;;;;;;;;;;;x
+db_divine_reconquest_cooldown;Preparing Divine Return;;;;;;;;;;;;;x
+db_opinion_divine_reverence;Divine Reverence;;;;;;;;;;;;;x
+db_divine_battle_fury;Divine Battle Fury;;;;;;;;;;;;;x
+db_order_intel_fresh;Fresh Order Intelligence;;;;;;;;;;;;;x
+db_true_god_low_fertility_mod;Divine Fertility;;;;;;;;;;;;;x
+db_norse_god;Norse God;;;;;;;;;;;;;x
+db_norse_god_desc;A full god of the Norse pantheon.;;;;;;;;;;;;;x
+DBV2_1222_T;The Cretan Thread;;;;;;;;;;;;;x
+DBV2_1222_D;The first passages split beneath Knossos. Cunning, scholarship, or blind courage may reveal the true road through the Labyrinth.;;;;;;;;;;;;;x
+DBV2_1222_A;Read the signs left by those who came before.;;;;;;;;;;;;;x
+DBV2_1222_B;Reconstruct the design of the Labyrinth.;;;;;;;;;;;;;x
+DBV2_1222_C;Choose a passage and press onward.;;;;;;;;;;;;;x
+DBV2_1223_T;The Living Labyrinth;;;;;;;;;;;;;x
+DBV2_1223_D;False doors and returning corridors try to turn the expedition back. The deeper you go, the louder something ancient breathes in the dark.;;;;;;;;;;;;;x
+DBV2_1223_A;Break through whatever blocks the road.;;;;;;;;;;;;;x
+DBV2_1223_B;Trust reason, not the walls.;;;;;;;;;;;;;x
+DBV2_1223_C;Keep moving, whatever the cost.;;;;;;;;;;;;;x
+DBV2_1224_T;The Echo of the Minotaur;;;;;;;;;;;;;x
+DBV2_1224_D;A monstrous shadow charges from the heart of the maze. Whether beast, spirit, or memory, it guards the chamber of the Labrys.;;;;;;;;;;;;;x
+DBV2_1224_A;A god does not retreat before a beast.;;;;;;;;;;;;;x
+DBV2_1224_B;Meet it in battle.;;;;;;;;;;;;;x
+DBV2_1224_C;Fight for your life.;;;;;;;;;;;;;x
+DBV2_1225_T;The Labrys of the Labyrinth;;;;;;;;;;;;;x
+DBV2_1225_D;Beyond the final chamber rests the ancient double-headed axe. The Labrys is yours, a mighty weapon, but it holds none of the Sickle of Cronus power to permanently slay a protected god.;;;;;;;;;;;;;x
+DBV2_1225_A;Claim the Labrys.;;;;;;;;;;;;;x
+
+DBV2_RELIC_SEARCH_A;Follow the clues and fund the expedition.;;;;;;;;;;;;;x
+db_bow_of_apollo;Bow of Apollo;;;;;;;;;;;;;x
+db_bow_of_apollo_desc;A unique divine relic. It can be inherited or gifted, full supernatural use still requires suitable divine blood.;;;;;;;;;;;;;x
+db_seek_apollo_bow;Seek Bow of Apollo;;;;;;;;;;;;;x
+db_seek_apollo_bow_desc;Begin an expedition for Bow of Apollo. The relic is globally unique.;;;;;;;;;;;;;x
+DBV2_1250_T;Bow of Apollo;;;;;;;;;;;;;x
+DBV2_1250_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+db_bow_of_artemis;Bow of Artemis;;;;;;;;;;;;;x
+db_bow_of_artemis_desc;A unique divine relic. It can be inherited or gifted, full supernatural use still requires suitable divine blood.;;;;;;;;;;;;;x
+db_seek_artemis_bow;Seek Bow of Artemis;;;;;;;;;;;;;x
+db_seek_artemis_bow_desc;Begin an expedition for Bow of Artemis. The relic is globally unique.;;;;;;;;;;;;;x
+DBV2_1251_T;Bow of Artemis;;;;;;;;;;;;;x
+DBV2_1251_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+db_caduceus_of_hermes;Caduceus of Hermes;;;;;;;;;;;;;x
+db_caduceus_of_hermes_desc;A unique divine relic. It can be inherited or gifted, full supernatural use still requires suitable divine blood.;;;;;;;;;;;;;x
+db_seek_hermes_caduceus;Seek Caduceus of Hermes;;;;;;;;;;;;;x
+db_seek_hermes_caduceus_desc;Begin an expedition for Caduceus of Hermes. The relic is globally unique.;;;;;;;;;;;;;x
+DBV2_1252_T;Caduceus of Hermes;;;;;;;;;;;;;x
+DBV2_1252_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+db_girdle_of_aphrodite;Girdle of Aphrodite;;;;;;;;;;;;;x
+db_girdle_of_aphrodite_desc;A unique divine relic. It can be inherited or gifted, full supernatural use still requires suitable divine blood.;;;;;;;;;;;;;x
+db_seek_aphrodite_girdle;Seek Girdle of Aphrodite;;;;;;;;;;;;;x
+db_seek_aphrodite_girdle_desc;Begin an expedition for Girdle of Aphrodite. The relic is globally unique.;;;;;;;;;;;;;x
+DBV2_1253_T;Girdle of Aphrodite;;;;;;;;;;;;;x
+DBV2_1253_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+db_golden_fleece;Golden Fleece;;;;;;;;;;;;;x
+db_golden_fleece_desc;A unique divine relic. It can be inherited or gifted, full supernatural use still requires suitable divine blood.;;;;;;;;;;;;;x
+db_seek_golden_fleece;Seek Golden Fleece;;;;;;;;;;;;;x
+db_seek_golden_fleece_desc;Begin an expedition for Golden Fleece. The relic is globally unique.;;;;;;;;;;;;;x
+DBV2_1254_T;Golden Fleece;;;;;;;;;;;;;x
+DBV2_1254_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+DBV2_1255_T;Draupnir;;;;;;;;;;;;;x
+DBV2_1255_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+db_megingjord;Megingjord;;;;;;;;;;;;;x
+db_megingjord_desc;A unique divine relic. It can be inherited or gifted, full supernatural use still requires suitable divine blood.;;;;;;;;;;;;;x
+db_seek_megingjord;Seek Megingjord;;;;;;;;;;;;;x
+db_seek_megingjord_desc;Begin an expedition for Megingjord. The relic is globally unique.;;;;;;;;;;;;;x
+DBV2_1256_T;Megingjord;;;;;;;;;;;;;x
+DBV2_1256_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+db_jarngreipr;Jarngreipr;;;;;;;;;;;;;x
+db_jarngreipr_desc;A unique divine relic. It can be inherited or gifted, full supernatural use still requires suitable divine blood.;;;;;;;;;;;;;x
+db_seek_jarngreipr;Seek Jarngreipr;;;;;;;;;;;;;x
+db_seek_jarngreipr_desc;Begin an expedition for Jarngreipr. The relic is globally unique.;;;;;;;;;;;;;x
+DBV2_1257_T;Jarngreipr;;;;;;;;;;;;;x
+DBV2_1257_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+db_skidbladnir;Skidbladnir;;;;;;;;;;;;;x
+db_skidbladnir_desc;A unique divine relic. It can be inherited or gifted, full supernatural use still requires suitable divine blood.;;;;;;;;;;;;;x
+db_seek_skidbladnir;Seek Skidbladnir;;;;;;;;;;;;;x
+db_seek_skidbladnir_desc;Begin an expedition for Skidbladnir. The relic is globally unique.;;;;;;;;;;;;;x
+DBV2_1258_T;Skidbladnir;;;;;;;;;;;;;x
+DBV2_1258_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+db_brisingamen;Brisingamen;;;;;;;;;;;;;x
+db_brisingamen_desc;A unique divine relic. It can be inherited or gifted, full supernatural use still requires suitable divine blood.;;;;;;;;;;;;;x
+db_seek_brisingamen;Seek Brisingamen;;;;;;;;;;;;;x
+db_seek_brisingamen_desc;Begin an expedition for Brisingamen. The relic is globally unique.;;;;;;;;;;;;;x
+DBV2_1259_T;Brisingamen;;;;;;;;;;;;;x
+DBV2_1259_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+db_gjallarhorn;Gjallarhorn;;;;;;;;;;;;;x
+db_gjallarhorn_desc;A unique divine relic. It can be inherited or gifted, full supernatural use still requires suitable divine blood.;;;;;;;;;;;;;x
+db_seek_gjallarhorn;Seek Gjallarhorn;;;;;;;;;;;;;x
+db_seek_gjallarhorn_desc;Begin an expedition for Gjallarhorn. The relic is globally unique.;;;;;;;;;;;;;x
+DBV2_1260_T;Gjallarhorn;;;;;;;;;;;;;x
+DBV2_1260_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+db_gram;Gram;;;;;;;;;;;;;x
+db_gram_desc;A unique divine relic. It can be inherited or gifted, full supernatural use still requires suitable divine blood.;;;;;;;;;;;;;x
+db_seek_gram;Seek Gram;;;;;;;;;;;;;x
+db_seek_gram_desc;Begin an expedition for Gram. The relic is globally unique.;;;;;;;;;;;;;x
+DBV2_1261_T;Gram;;;;;;;;;;;;;x
+DBV2_1261_D;The trail has led to the final expedition. Success may reveal the lost relic, failure can cost prestige or blood.;;;;;;;;;;;;;x
+DBV2_621_TT_GOD;Target is an intact true god: Gungnir cannot kill them, the strike causes a severe divine wound. Cooldown: 1 year.;;;;;;;;;;;;;x
+DBV2_621_TT_SURVIVOR;Target has survived divine judgment before: 8% death, 92% severe divine wound. Cooldown: 1 year.;;;;;;;;;;;;;x
+DBV2_621_TT_DEMIGOD;Target is a demigod: 12% death, 88% severe divine wound. Cooldown: 1 year.;;;;;;;;;;;;;x
+DBV2_621_TT_MORTAL;Target is mortal: 30% death, 70% severe divine wound. Cooldown: 1 year.;;;;;;;;;;;;;x
+DBV2_320_TT_GOD;Target is an intact true god: Zeus Thunderbolt cannot kill them, the strike causes a severe divine wound. Cooldown: 1 year.;;;;;;;;;;;;;x
+DBV2_320_TT_SURVIVOR;Target has survived divine judgment before: 10% death, 90% severe divine wound. Cooldown: 1 year.;;;;;;;;;;;;;x
+DBV2_320_TT_DEMIGOD;Target is a demigod: 15% death, 85% severe divine wound. Cooldown: 1 year.;;;;;;;;;;;;;x
+DBV2_320_TT_MORTAL;Target is mortal: 35% death, 65% severe divine wound. Cooldown: 1 year.;;;;;;;;;;;;;x
+db_norse_demigod_blood;Norse Demigod Blood;Norse Demigod Blood;;;;;;;;;;;;;x
+db_norse_demigod_blood_desc;Strong but mortal blood descended from the Norse gods.;Strong but mortal blood descended from the Norse gods.;;;;;;;;;;;;;x
+db_norse_faded_blood;Fading Blood of Asgard;Fading Blood of Asgard;;;;;;;;;;;;;x
+db_norse_faded_blood_desc;The power of the Norse gods has weakened, but still survives in this line.;The power of the Norse gods has weakened, but still survives in this line.;;;;;;;;;;;;;x
+db_mixed_faded_blood;Fading Blood of Two Pantheons;Fading Blood of Two Pantheons;;;;;;;;;;;;;x
+db_mixed_faded_blood_desc;Weakened divine blood still carries ancestry from both Olympus and Asgard.;Weakened divine blood still carries ancestry from both Olympus and Asgard.;;;;;;;;;;;;;x
+DBH_11_T;A Sign in the Night;;;;;;;;;;;;;x
+DBH_11_D;For several nights you have noticed the same stranger at the edge of torchlight. Tonight the masked observer finally approaches. No society is named. You are only told that some mortals watch the blood of gods, and that you have been judged worth a private conversation.;;;;;;;;;;;;;x
+DBH_11_A;I will hear what the stranger has to say.;;;;;;;;;;;;;x
+DBH_11_B;I want no part in this.;;;;;;;;;;;;;x
+db_hera_bloodline;Blood of Hera;;;;;;;;;;;;;x
+db_hera_bloodline_desc;The independent divine genealogy of Hera. It records descent from the Queen of Olympus and does not make its bearers descendants of Zeus. Bloodline membership is genealogical; current divine power is resolved separately.;;;;;;;;;;;;;x
+db_frigg_bloodline;Blood of the Aesir — Frigg’s Line;;;;;;;;;;;;;x
+db_frigg_bloodline_desc;The independent Aesir genealogy descending from Frigg. It is not Odin’s bloodline. Descendants may carry Frigg’s ancestry even when their visible divine power fades.;;;;;;;;;;;;;x
+DBV2_210_B;Circle my enemies. Learn how they fight.;;;;;;;;;;;;;x
+DBV2_210_C;Bring me forgotten knowledge from distant lands.;;;;;;;;;;;;;x
+db_ravens_counterplots;Eyes Above the Hall;;;;;;;;;;;;;x
+db_ravens_counterplots_desc;Huginn and Muninn watch courtiers, messengers and conspirators. Intrigue and plot discovery are greatly improved.;;;;;;;;;;;;;x
+db_ravens_war_scouting;Ravens Over the Battlefield;;;;;;;;;;;;;x
+db_ravens_war_scouting_desc;The ravens map roads, camps and weak points before battle, improving martial awareness and personal combat readiness.;;;;;;;;;;;;;x
+db_ravens_wisdom;Memory of the World;;;;;;;;;;;;;x
+db_ravens_wisdom_desc;Muninn returns with old lore while Huginn brings living news, improving learning, diplomacy and renown.;;;;;;;;;;;;;x
+db_raven_dossier;Raven Dossier;;;;;;;;;;;;;x
+db_raven_dossier_desc;The target’s habits, agents and weaknesses have been mapped by Huginn and Muninn, strengthening schemes directed through the Allfather’s intelligence network.;;;;;;;;;;;;;x
+DBH_14_T;The Veiled Truth;;;;;;;;;;;;;x
+DBH_14_D;In a shuttered room the stranger finally speaks plainly. The Order of the Sickle studies divine blood, preserves the memory of Cronus’ weapon and prepares mortal hands for the day immortals must be opposed. Membership is not offered yet. First, the Order demands proof that you can keep a secret and follow a dangerous trail.;;;;;;;;;;;;;x
+DBH_14_A;Give me the trial.;;;;;;;;;;;;;x
+DBH_14_B;This has gone far enough.;;;;;;;;;;;;;x
+DBH_15_T;Trial of the Watcher;;;;;;;;;;;;;x
+DBH_15_D;You are given a sealed mark and a single task: follow a hidden trail tied to divine blood, learn what can be learned without revealing the Order, and return with proof. Cunning, courage, martial discipline and learning can all see you through.;;;;;;;;;;;;;x
+DBH_15_A;I will follow the trail.;;;;;;;;;;;;;x
+DBH_15_B;I refuse the trial.;;;;;;;;;;;;;x
+DBH_16_T;The Oath of the Sickle;;;;;;;;;;;;;x
+DBH_16_D;Your proof is accepted. Beneath hooded faces and the old sign of the curved blade, the recruiter names the brotherhood at last. You are asked to swear silence, to watch divine blood without worship, and to preserve the knowledge that even immortality has limits. Only after the oath will you become a Watcher of the Order.;;;;;;;;;;;;;x
+DBH_16_A;I swear the oath. Admit me to the Order.;;;;;;;;;;;;;x
+DBH_16_B;No. I will not bind myself to this brotherhood.;;;;;;;;;;;;;x
+DBH_18_T;The Trail Goes Cold;;;;;;;;;;;;;x
+DBH_18_D;The trial ends badly. The trail breaks, your quarry notices too much, and you are forced to withdraw before the Order itself is exposed. The masked watchers vanish without another word. Perhaps they will test you again one day.;;;;;;;;;;;;;x
+DBH_18_A;I survived. That will have to be enough.;;;;;;;;;;;;;x

@@ -1,0 +1,44 @@
+namespace = GBC
+
+character_event = {
+ id = GBC.130
+ border = GFX_event_normal_frame_war
+ picture = GFX_evt_melee
+ desc = EVTDSC_GBC_130
+ is_triggered_only = yes
+ option = {
+  name = EVTOPTA_GBC_130
+  narrative_event = { id = GBC.137 days = 50 }
+  save_event_target_as = db_direct_duel_killer
+  event_target:gbc_rival = {
+   if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes }
+   else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = ROOT } }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+}
+
+character_event = {
+ id = GBC.131
+ border = GFX_event_normal_frame_war
+ picture = GFX_evt_melee
+ desc = EVTDSC_GBC_131
+ is_triggered_only = yes
+ option = {
+  name = EVTOPTA_GBC_131
+  event_target:gbc_lover = { show_scope_change = no remove_lover = ROOT }
+  event_target:gbc_rival = { save_event_target_as = db_direct_duel_killer }
+  random_list = {
+   50 = {
+    if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes }
+    else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = ROOT } }
+   }
+   50 = {
+    if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes }
+    else = { add_maimed_trait_effect = yes }
+    narrative_event = { id = GBC.143 days = 30 }
+   }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+}

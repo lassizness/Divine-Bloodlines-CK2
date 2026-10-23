@@ -1,0 +1,10 @@
+Divine Bloodlines v2.2.7.4 - regression repair
+
+- Rebased founder/family creation on the last known-good v2.1.6.9.2 implementation.
+- Restored Hera/Frigg founder-bloodline behavior from v2.1.6.9.2.
+- Removed experimental 2.2.7.3.1 duplicate can_be_* scripted-trigger override.
+- Canonical divine relatives use CK2 special_* council flags instead of replacing vanilla eligibility triggers.
+- Hera and Frigg now receive all five special council flags immediately when created; recovery reasserts them in old saves.
+- Poseidon, Hades, Demeter and Hestia keep their existing immediate special_* council access.
+- Startup ordering repaired: founder creation DBV2.1 runs before v2.2.7 family recovery DBV2.1240/1241.
+- v2.2.7 feature events remain enabled; unrelated artifact/power/death-protection systems were not rewritten in this repair.

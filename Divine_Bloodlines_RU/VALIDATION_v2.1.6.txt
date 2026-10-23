@@ -1,0 +1,34 @@
+Divine_Bloodlines_RU: PASS
+  brace_balance: PASS
+  new_event_declarations_once: PASS
+  arrival_armies_exact_2000: PASS
+  zeus_county_thessalia: PASS
+  odin_county_uppland: PASS
+  manifestation_destroyed_after_landing: PASS
+  independence_forced: PASS
+  monthly_save_migration: PASS
+  migration_once_flag: PASS
+  social_popup_drain_kept: PASS
+  no_divine_romance_decision: PASS
+  manual_divine_union_ai_off: PASS
+  localisation_complete: PASS
+  army_totals: [2000, 2000]
+  declaration_counts: {'DBV2.1060': 1, 'DBV2.1061': 1, 'DBV2.1062': 1}
+Divine_Bloodlines_EN: PASS
+  brace_balance: PASS
+  new_event_declarations_once: PASS
+  arrival_armies_exact_2000: PASS
+  zeus_county_thessalia: PASS
+  odin_county_uppland: PASS
+  manifestation_destroyed_after_landing: PASS
+  independence_forced: PASS
+  monthly_save_migration: PASS
+  migration_once_flag: PASS
+  social_popup_drain_kept: PASS
+  no_divine_romance_decision: PASS
+  manual_divine_union_ai_off: PASS
+  localisation_complete: PASS
+  army_totals: [2000, 2000]
+  declaration_counts: {'DBV2.1060': 1, 'DBV2.1061': 1, 'DBV2.1062': 1}
+RU/EN changed gameplay scripts synchronized: PASS
+OVERALL: PASS

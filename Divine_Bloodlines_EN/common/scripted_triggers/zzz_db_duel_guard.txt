@@ -1,0 +1,118 @@
+# Divine Bloodlines v2.1.6.8.2 - early-loaded duel trigger override.
+# Ordinary mortals MAY duel intact gods. The lethal guard, not duel entry, enforces immortality.
+
+this_can_duel_with_from_trigger = {
+    trigger_if = {
+        limit = { is_female = yes }
+
+        OR = {
+            is_member_of_roots_warrior_lodge_trigger = yes
+
+            AND = {
+                OR = {
+                    trait = brave
+                    gender_equality_trigger = yes
+                    has_religion_feature = religion_matriarchal
+                    religion_group = pagan_group
+                    is_nomadic = yes
+                    religion = buddhist
+                    religion = bogomilist
+                }
+
+                FROM = {
+                    OR = {
+                        gender_equality_trigger = yes
+                        has_religion_feature = religion_matriarchal
+                        religion_group = pagan_group
+                        is_nomadic = yes
+                        religion = buddhist
+                        religion = bogomilist
+                    }
+                }
+            }
+        }
+    }
+
+    FROM = {
+        is_within_diplo_range = ROOT
+
+        trigger_if = {
+            limit = { is_female = yes }
+
+            OR = {
+                is_member_of_roots_warrior_lodge_trigger = yes
+
+                AND = {
+                    OR = {
+                        trait = brave
+                        gender_equality_trigger = yes
+                        has_religion_feature = religion_matriarchal
+                        religion_group = pagan_group
+                        is_nomadic = yes
+                        religion = buddhist
+                        religion = bogomilist
+                    }
+
+                    ROOT = {
+                        OR = {
+                            gender_equality_trigger = yes
+                            has_religion_feature = religion_matriarchal
+                            religion_group = pagan_group
+                            is_nomadic = yes
+                            religion = buddhist
+                            religion = bogomilist
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    is_incapable = no
+
+    NOR = {
+        has_character_modifier = bedridden_illness
+        has_character_modifier = severe_illness
+    }
+}
+
+is_allowed_deadly_duels_trigger = {
+    NOT = { has_character_flag = mock_duel }
+
+    # Adult intact true gods are not legal lethal victims of ordinary opponents.
+    NOT = {
+        AND = {
+            db_is_death_guarded_true_god_trigger = yes
+            event_target:combatant_2 = { NOT = { db_has_godslayer_blood_trigger = yes } }
+        }
+    }
+    NOT = {
+        AND = {
+            event_target:combatant_2 = { db_is_death_guarded_true_god_trigger = yes }
+            NOT = { db_has_godslayer_blood_trigger = yes }
+        }
+    }
+    NOT = {
+        AND = {
+            event_target:other_combatant = { db_is_death_guarded_true_god_trigger = yes }
+            NOT = { db_has_godslayer_blood_trigger = yes }
+        }
+    }
+
+    OR = {
+        is_member_of_any_warrior_lodge_trigger = yes
+        has_focus = focus_war
+        trait = arbitrary
+        trait = cruel
+        trait = impaler
+
+        event_target:combatant_2 = {
+            OR = {
+                is_rival = PREV
+                is_foe = PREV
+            }
+        }
+
+        has_game_rule = { name = dueling value = unrestricted }
+    }
+}

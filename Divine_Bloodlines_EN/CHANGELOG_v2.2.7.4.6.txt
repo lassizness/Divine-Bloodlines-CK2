@@ -1,0 +1,9 @@
+Divine Bloodlines v2.2.7.4.6
+
+- Added a unified low-harm survival effect for ordinary mortal/environmental attacks: protected adult true gods cannot be killed or maimed; a harmful result has only a 10% chance to add Wounded.
+- Converted guarded duel, feast-duel, hunt, boar, bear, tiger, snake, hunting-dog and execution/capture paths to the shared low-harm rule.
+- Added a hidden divine hostile ward (+defensive plot power/discovery) as a secondary safety layer; it is removed immediately when immortality is severed.
+- Existing player assassination targeting remains blocked by assassination_interaction_trigger; AI/already-running murder plots remain cancelled by DBV2.29/291.
+- Tainted Touch and Demonic Possession now reject intact adult true gods as targets. A queued Tainted Touch from an old save is neutralized.
+- While an intact adult true god is temporarily imprisoned, diplomatic immunity is enabled only for the prisoner state, then cleared outside prison; this avoids the old council regression while blocking prisoner-hostile actions that honor the vanilla immunity check.
+- Sickle/Godslayer-authorized divine killing is unchanged and does not use the low-harm survival effect.

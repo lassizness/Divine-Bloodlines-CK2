@@ -1,0 +1,10 @@
+Divine Bloodlines v2.1.6
+
+- Auto-arrived Zeus now immediately seizes the County of Thessalia and becomes an independent territorial ruler.
+- Auto-arrived Odin now immediately seizes the County of Uppland and becomes an independent territorial ruler.
+- Each auto-arrived founder receives a one-time 2,000-man event host with zero maintenance and no reinforcement.
+- The temporary landless Manifestation of Olympus / Manifestation of Asgard title is destroyed after the county is secured, so the founder remains visible as a normal landed ruler rather than an abstract landless manifestation.
+- Arrival narrative events now explicitly report the new county and the 2,000-man host.
+- Existing v2.1.5 saves are migrated automatically on the next monthly pulse: a landless auto-arrived founder gets the appropriate county, army and territorial status once.
+- The save-repair migration has its own one-time notification and cannot duplicate the army after the migration flag is set.
+- Keeps the v2.1.5 social hotfix: no Divine Attraction event spam or remote romance actions; cross-faith divine marriage remains an explicit narrow bypass for gods/active demigods.

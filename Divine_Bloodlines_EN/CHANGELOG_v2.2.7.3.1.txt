@@ -1,0 +1,6 @@
+Divine Bloodlines v2.2.7.3.1
+- Narrow council eligibility hotfix only.
+- Canonical Zeus family (Hera, Poseidon, Hades, Demeter, Hestia) may serve on Zeus's council.
+- Frigg may serve on Odin's council.
+- Preserves vanilla CK2 3.3.5.1 council eligibility for all other characters.
+- No bloodline, trait, artifact, birth resolver, or power changes in this hotfix.

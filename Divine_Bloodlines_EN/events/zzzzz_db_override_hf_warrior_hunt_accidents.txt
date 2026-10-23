@@ -1,0 +1,114 @@
+namespace = HF
+
+# v2.2.7.4.7 - Warrior Lodge ritual hunts contained a lethal anti-pattern:
+# if can_be_maimed_trigger = no, kill the character. Our divine maiming guard therefore
+# sent protected gods into the death branch. Protected gods now use the 90/10 survival effect.
+character_event = {
+ id = HF.25603 desc = EVTDESCAHF25603 border = GFX_event_normal_frame_war portrait = event_target:scoped_WL_co_hunter
+ picture = { picture = GFX_evt_mysterious_forest trigger = { OR = { has_character_flag = flag_hunting_wolf_norse has_character_flag = flag_hunting_wolf_baltic has_character_flag = flag_hunting_wolf_hellenic } } }
+ picture = { picture = GFX_evt_desert trigger = { OR = { has_character_flag = flag_hunting_eagle_slavic has_character_flag = flag_hunting_eagle_tengri has_character_flag = flag_hunting_eagle_bon } } }
+ picture = { picture = GFX_evt_midwinter_blot_oldgods trigger = { has_character_flag = flag_hunting_bear_finnish } }
+ picture = { picture = GFX_evt_bandits trigger = { OR = { has_character_flag = flag_hunting_lion_west_african has_character_flag = flag_hunting_lion_zun } } }
+ is_triggered_only = yes only_capable = yes fail_trigger_effect = { WL_ritual_hunt_cleanup_effect = yes }
+ option = { name = EVTOPTAHF25603 tooltip_info = combat_rating trigger = { combat_rating >= 50 } custom_tooltip = { text = TT_EVTOPTAHF25603 } tiered_prestige_reward_effect = yes hidden_effect = { change_variable = { which = wl_ritual_hunting value = 3 } } ai_chance = { factor = 80 } }
+ option = {
+  name = EVTOPTBHF25603 trigger = { event_target:scoped_WL_co_hunter = { is_alive = yes } } custom_tooltip = { text = TT_EVTOPTBHF25603 }
+  hidden_effect = { event_target:scoped_WL_co_hunter = { random_list = {
+   70 = { mult_modifier = { factor = 1.5 opinion = { who = ROOT value >= 20 } } mult_modifier = { factor = 1.5 opinion = { who = ROOT value >= 40 } } mult_modifier = { factor = 1.5 opinion = { who = ROOT value >= 60 } } mult_modifier = { factor = 1.75 opinion = { who = ROOT value >= 80 } } mult_modifier = { factor = 1.75 opinion = { who = ROOT value >= 100 } } mult_modifier = { factor = 1.5 trait = kind } mult_modifier = { factor = 1.5 trait = just } mult_modifier = { factor = 1.5 trait = brave } mult_modifier = { factor = 1.75 is_friend = ROOT } mult_modifier = { factor = 1.75 is_lover = ROOT } ROOT = { character_event = { id = HF.25604 } } }
+   30 = { mult_modifier = { factor = 1.5 opinion = { who = ROOT value < -20 } } mult_modifier = { factor = 1.5 opinion = { who = ROOT value < -40 } } mult_modifier = { factor = 1.5 opinion = { who = ROOT value < -60 } } mult_modifier = { factor = 1.75 opinion = { who = ROOT value < -80 } } mult_modifier = { factor = 1.75 opinion = { who = ROOT value < -90 } } mult_modifier = { factor = 1.75 trait = deceitful } mult_modifier = { factor = 1.5 trait = cruel } mult_modifier = { factor = 1.5 trait = envious } mult_modifier = { factor = 1.5 trait = arbitrary } mult_modifier = { factor = 1.5 trait = craven } mult_modifier = { factor = 2 is_rival = ROOT } ROOT = { character_event = { id = HF.25605 } } }
+  } } }
+  ai_chance = { factor = 70 }
+ }
+ option = {
+  name = EVTOPTCHF25603
+  if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes hidden_effect = { change_variable = { which = wl_ritual_hunting value = -3 } } }
+  else = { random_list = {
+   70 = { add_character_modifier = { name = badly_bruised months = 2 } hidden_effect = { change_variable = { which = wl_ritual_hunting value = -3 } } }
+   25 = { trigger = { NOT = { trait = wounded } } add_trait_wounded_effect = yes hidden_effect = { change_variable = { which = wl_ritual_hunting value = -6 } } }
+   5 = { if = { limit = { can_be_maimed_trigger = yes } add_maimed_trait_effect = yes } else = { death = { death_reason = death_accident } } hidden_effect = { change_variable = { which = wl_ritual_hunting value = -9 } } }
+  } }
+  ai_chance = { factor = 20 }
+ }
+ after = { character_event = { id = HF.25616 days = 20 random = 15 } }
+}
+
+character_event = {
+ id = HF.25606 desc = EVTDESCAHF25606 border = GFX_event_normal_frame_war portrait = event_target:scoped_WL_co_hunter
+ picture = { picture = GFX_evt_mysterious_forest trigger = { OR = { has_character_flag = flag_hunting_wolf_norse has_character_flag = flag_hunting_wolf_baltic has_character_flag = flag_hunting_wolf_hellenic } } }
+ picture = { picture = GFX_evt_desert trigger = { OR = { has_character_flag = flag_hunting_eagle_slavic has_character_flag = flag_hunting_eagle_tengri has_character_flag = flag_hunting_eagle_bon } } }
+ picture = { picture = GFX_evt_midwinter_blot_oldgods trigger = { has_character_flag = flag_hunting_bear_finnish } }
+ picture = { picture = GFX_evt_bandits trigger = { OR = { has_character_flag = flag_hunting_lion_west_african has_character_flag = flag_hunting_lion_zun } } }
+ is_triggered_only = yes only_capable = yes fail_trigger_effect = { WL_ritual_hunt_cleanup_effect = yes }
+ option = { name = EVTOPTAHF25606 tooltip_info = combat_rating trigger = { combat_rating >= 50 } custom_tooltip = { text = TT_EVTOPTAHF25606 } tiered_prestige_reward_effect = yes hidden_effect = { change_variable = { which = wl_ritual_hunting value = 3 } } ai_chance = { factor = 80 } }
+ option = {
+  name = EVTOPTBHF25606 trigger = { event_target:scoped_WL_co_hunter = { is_alive = yes } } custom_tooltip = { text = TT_EVTOPTBHF25606 }
+  hidden_effect = { random_list = {
+   70 = { mult_modifier = { factor = 1.5 trait = strong } mult_modifier = { factor = 1.5 trait = brawny } mult_modifier = { factor = 0.5 combat_rating < 10 } mult_modifier = { factor = 1.5 martial >= 10 } mult_modifier = { factor = 1.75 martial >= 15 } mult_modifier = { factor = 1.75 martial >= 20 } mult_modifier = { factor = 1.5 martial >= 25 } mult_modifier = { factor = 1.5 trait = brave } mult_modifier = { factor = 0.5 trait = craven } character_event = { id = HF.25607 } }
+   30 = { character_event = { id = HF.25627 } }
+  } }
+  ai_chance = { factor = 70 }
+ }
+ option = {
+  name = EVTOPTCHF25606
+  if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes hidden_effect = { change_variable = { which = wl_ritual_hunting value = -2 } } }
+  else = { random_list = {
+   70 = { add_character_modifier = { name = badly_bruised months = 2 } hidden_effect = { change_variable = { which = wl_ritual_hunting value = -2 } } }
+   25 = { trigger = { NOT = { trait = wounded } } add_trait_wounded_effect = yes hidden_effect = { change_variable = { which = wl_ritual_hunting value = -3 } } }
+   5 = { if = { limit = { can_be_maimed_trigger = yes } add_maimed_trait_effect = yes } else = { death = { death_reason = death_accident } } hidden_effect = { change_variable = { which = wl_ritual_hunting value = -6 } } }
+  } }
+  ai_chance = { factor = 20 }
+ }
+ after = { character_event = { id = HF.25616 days = 20 random = 15 } }
+}
+
+character_event = {
+ id = HF.25623 border = GFX_event_normal_frame_war portrait = event_target:scoped_WL_co_hunter
+ desc = { text = EVTDESCAHF25623 picture = GFX_evt_mysterious_forest trigger = { OR = { has_character_flag = flag_hunting_wolf_norse has_character_flag = flag_hunting_wolf_baltic has_character_flag = flag_hunting_wolf_hellenic } } }
+ desc = { text = EVTDESCBHF25623 picture = GFX_evt_desert trigger = { OR = { has_character_flag = flag_hunting_eagle_slavic has_character_flag = flag_hunting_eagle_tengri has_character_flag = flag_hunting_eagle_bon } } }
+ desc = { text = EVTDESCCHF25623 picture = GFX_evt_midwinter_blot_oldgods trigger = { has_character_flag = flag_hunting_bear_finnish } }
+ desc = { text = EVTDESCDHF25623 picture = GFX_evt_bandits trigger = { OR = { has_character_flag = flag_hunting_lion_west_african has_character_flag = flag_hunting_lion_zun } } }
+ is_triggered_only = yes only_capable = yes fail_trigger_effect = { WL_ritual_hunt_cleanup_effect = yes }
+ immediate = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { death = { death_reason = death_accident_generic_beast } } }
+ option = {
+  name = EVTOPTAHF25623
+  tooltip = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } } else = { death = { death_reason = death_accident_generic_beast } } }
+  event_target:scoped_WL_co_hunter = { show_scope_change = no if = { limit = { is_alive = yes db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else_if = { limit = { is_alive = yes } death = { death_reason = death_accident_generic_beast } } }
+  WL_ritual_hunt_cleanup_effect = yes
+ }
+}
+
+character_event = {
+ id = HF.25605 desc = EVTDESCAHF25605 border = GFX_event_normal_frame_war portrait = event_target:scoped_WL_co_hunter
+ picture = { picture = GFX_evt_mysterious_forest trigger = { OR = { has_character_flag = flag_hunting_wolf_norse has_character_flag = flag_hunting_wolf_baltic has_character_flag = flag_hunting_wolf_hellenic } } }
+ picture = { picture = GFX_evt_desert trigger = { OR = { has_character_flag = flag_hunting_eagle_slavic has_character_flag = flag_hunting_eagle_tengri has_character_flag = flag_hunting_eagle_bon } } }
+ picture = { picture = GFX_evt_midwinter_blot_oldgods trigger = { has_character_flag = flag_hunting_bear_finnish } }
+ picture = { picture = GFX_evt_bandits trigger = { OR = { has_character_flag = flag_hunting_lion_west_african has_character_flag = flag_hunting_lion_zun } } }
+ is_triggered_only = yes only_capable = yes fail_trigger_effect = { WL_ritual_hunt_cleanup_effect = yes }
+ option = { name = EVTOPTAHF25605 trigger = { NOT = { is_rival = event_target:scoped_WL_co_hunter } } add_rival = event_target:scoped_WL_co_hunter hidden_effect = { change_variable = { which = wl_ritual_hunting value = -3 } } }
+ option = { name = EVTOPTBHF25605 opinion = { name = opinion_left_me_to_die who = event_target:scoped_WL_co_hunter } hidden_effect = { change_variable = { which = wl_ritual_hunting value = -1 } } }
+ option = {
+  name = EVTOPTCHF25605 tooltip_info = envious trigger = { trait = envious NOT = { trait = paranoid } }
+  event_target:scoped_WL_co_hunter = { show_scope_change = no if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { death = { death_reason = death_accident } } }
+  hidden_effect = { change_variable = { which = wl_ritual_hunting value = 3 } }
+ }
+ option = {
+  name = EVTOPTDHF25605 tooltip_info = paranoid trigger = { trait = paranoid }
+  event_target:scoped_WL_co_hunter = { show_scope_change = no if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { death = { death_reason = death_accident } } }
+  hidden_effect = { change_variable = { which = wl_ritual_hunting value = 3 } }
+ }
+ option = { name = EVTOPTEHF25605 tooltip_info = kind trigger = { trait = kind } reverse_opinion = { name = grace_to_forgive who = event_target:scoped_WL_co_hunter years = 5 } hidden_effect = { change_variable = { which = wl_ritual_hunting value = 2 } } }
+}
+
+character_event = {
+ id = HF.25627 desc = EVTDESCAHF25627 border = GFX_event_normal_frame_war portrait = event_target:scoped_WL_co_hunter
+ picture = { picture = GFX_evt_mysterious_forest trigger = { OR = { has_character_flag = flag_hunting_wolf_norse has_character_flag = flag_hunting_wolf_baltic has_character_flag = flag_hunting_wolf_hellenic } } }
+ picture = { picture = GFX_evt_desert trigger = { OR = { has_character_flag = flag_hunting_eagle_slavic has_character_flag = flag_hunting_eagle_tengri has_character_flag = flag_hunting_eagle_bon } } }
+ picture = { picture = GFX_evt_midwinter_blot_oldgods trigger = { has_character_flag = flag_hunting_bear_finnish } }
+ picture = { picture = GFX_evt_bandits trigger = { OR = { has_character_flag = flag_hunting_lion_west_african has_character_flag = flag_hunting_lion_zun } } }
+ is_triggered_only = yes only_capable = yes fail_trigger_effect = { WL_ritual_hunt_cleanup_effect = yes }
+ option = {
+  name = EVTOPTAHF25627
+  event_target:scoped_WL_co_hunter = { show_scope_change = no if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { death = { death_reason = death_accident } } }
+  hidden_effect = { change_variable = { which = wl_ritual_hunting value = -6 } }
+ }
+}

@@ -1,0 +1,13 @@
+Divine Bloodlines v2.2.7.4.5
+
+- Replaced competing birth classifiers with one authoritative resolver (DBV2.1290).
+- Zeus-line true god + same-pantheon full god now produces exactly one pure_divine_blood_zeus state.
+- Odin-line true god + same-pantheon full god now produces exactly one pure_divine_blood_odin state.
+- Hera and Frigg no longer receive fake Zeus/Odin P+M bloodline membership. Old saves are repaired.
+- Added append-only generic Norse demigod/faded states and a mixed faded state; latent state stays in flags.
+- Added cascading old-save genealogy repair so descendants are recalculated only after a parent is authoritative.
+- Preserved the delayed on_birth dispatcher so vanilla child naming gets a clean birth tick.
+- Added late-loaded direct hunting/tiger death guards and a universal scripted-death survival effect for intact adult true gods.
+- Direct event overrides are sorted late; Holy Fury double-lethal branches use one shared two-sided Godslayer gate.
+
+Static validation only: CK2 executable is not available in this environment.

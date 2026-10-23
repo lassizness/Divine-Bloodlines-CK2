@@ -1,0 +1,31 @@
+decisions = {
+ db_seek_amalthea_cornucopia = { diplomacy_icon = GFX_db_seek_amalthea potential = { is_adult = yes db_has_active_olympian_blood_trigger = yes NOT = { has_artifact = db_cornucopia_of_amalthea } } allow = { prestige = 250 wealth = 100 NOT = { has_global_flag = db_amalthea_created } NOT = { has_character_modifier = db_relic_search_cooldown } } effect = { character_event = { id = DBV2.1210 } } ai_will_do = { factor = 0.2 } }
+ db_seek_hades_bident = { diplomacy_icon = GFX_db_seek_hades_bident potential = { is_adult = yes db_has_active_olympian_blood_trigger = yes NOT = { has_artifact = db_bident_of_hades } } allow = { prestige = 250 wealth = 100 NOT = { has_global_flag = db_bident_created } NOT = { has_character_modifier = db_relic_search_cooldown } } effect = { character_event = { id = DBV2.1212 } } ai_will_do = { factor = 0.15 } }
+ db_seek_labrys = { diplomacy_icon = GFX_db_seek_labrys is_high_prio = yes potential = { is_adult = yes db_has_active_olympian_blood_trigger = yes NOT = { has_artifact = db_labrys_of_labyrinth } } allow = { wealth = 150 prestige = 200 NOT = { has_global_flag = db_labrys_created } NOT = { has_character_modifier = db_relic_search_cooldown } } effect = { character_event = { id = DBV2.1220 } } ai_will_do = { factor = 0.05 } }
+ db_seek_zeus_chariot = { diplomacy_icon = GFX_db_decision_eagle potential = { is_adult = yes db_has_active_zeus_blood_trigger = yes NOT = { has_artifact = db_chariot_of_zeus } } allow = { prestige = 500 NOT = { has_global_flag = db_zeus_chariot_created } NOT = { has_character_modifier = db_relic_search_cooldown } } effect = { prestige = -500 add_character_modifier = { name = db_relic_search_cooldown years = 3 } character_event = { id = DBV2.1230 } } ai_will_do = { factor = 0.1 } }
+}
+
+targeted_decisions = {
+ db_designate_divine_heir = {
+  diplomacy_icon = GFX_db_decision_convergence filter = dynasty ai_target_filter = dynasty
+  from_potential = { always = yes }
+  potential = { FROM = { is_landed = yes is_adult = yes OR = { has_character_flag = db_zeus_line_head has_character_flag = db_odin_line_head } } is_alive = yes is_adult = yes prisoner = no is_incapable = no NOT = { character = FROM } is_close_relative = FROM OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } }
+  allow = {
+   FROM = { is_landed = yes }
+   OR = {
+    AND = { FROM = { has_character_flag = db_zeus_line_head } db_has_active_olympian_blood_trigger = yes }
+    AND = { FROM = { has_character_flag = db_odin_line_head } db_has_active_norse_blood_trigger = yes }
+   }
+  }
+  effect = {
+   FROM = {
+    any_dynasty_member = { limit = { has_character_flag = db_designated_divine_heir } clr_character_flag = db_designated_divine_heir clr_character_flag = db_designated_zeus_heir clr_character_flag = db_designated_odin_heir }
+    set_designated_heir = ROOT
+   }
+   set_character_flag = db_designated_divine_heir
+   if = { limit = { FROM = { has_character_flag = db_zeus_line_head } } set_character_flag = db_designated_zeus_heir }
+   if = { limit = { FROM = { has_character_flag = db_odin_line_head } } set_character_flag = db_designated_odin_heir }
+  }
+  ai_will_do = { factor = 1 modifier = { factor = 4 db_is_true_god_trigger = yes } }
+ }
+}

@@ -1,0 +1,22 @@
+Divine Bloodlines v2.1.6.8.2
+
+DEATH GUARD LOAD-ORDER FIX
+- Renamed vanilla helper overrides from zz_db_* to 00_db_* so CK2 loads Divine Bloodlines definitions before conflicting vanilla 00_/01_ helpers.
+- The central send_duel_result_event_effect guard is now actually eligible to become the active definition.
+- Ordinary mortals may duel gods; only illegal lethal outcomes are blocked.
+- Removed the old battlefield entry override that prevented god-vs-mortal battlefield duels entirely.
+
+DIRECT DUEL DEATH GUARDS
+- Added a common last-line resolver for legacy scripted duel deaths.
+- Godslayer blood can still kill an intact adult true god.
+- The Sickle severs immortality instead of bypassing the first-hit severing stage.
+- Added direct protection for Holmgang, regency duel, WoL lover duels, Grand Bloodline Chronicle duel, Kowtow bridge duel, Monastic duel, Child of Destiny attacker death, battlefield surrender execution, Legendary double-death, Reaper suicide duel, seclusion intruder duel and old feast brawls.
+
+SAVE SAFETY
+- The one-day divine scrubber now clears additional stale delayed lethal duel events after installing the patch into an existing save.
+- age >= 16 remains the adult protection threshold. Severed gods and full-god children remain mortal by design.
+
+Additional final-line hardening:
+- HF.10104 claim-duel self-death is unavailable to an adult intact god unless the opponent has active Godslayer blood.
+- HFP.10111 direct mercy-kill finalizer now resolves through the divine lethal guard.
+- A Sickle finishing blow on an already-severed true god in a legacy direct-duel chain now creates the first Godslayer bloodline if necessary.

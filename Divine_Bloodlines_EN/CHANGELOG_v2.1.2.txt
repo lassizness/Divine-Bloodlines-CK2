@@ -1,0 +1,44 @@
+- HOTFIX4 update: divine family education package; Demeter/Hestia added; restoration vows grant strong claims on all five holy sites.
+- HOTFIX4: active gods/demigods are religion-locked to their pantheon; faded/latent descendants remain free to convert; restored blood forces pantheon faith and respects reformation.
+Divine Bloodlines v2.1.2
+
+- Rebuilt Zeus animal portraits as one-frame static CK2 portraits; no graphical-culture/DNA swapping.
+- Normalized all decision/targeted-action menu icons to 28x28 DDS to prevent oversized UI graphics.
+- Cleaned transformation choice tooltips with hidden technical effects.
+- Added multiple form-specific actions for Swan, Bull, Eagle and Serpent.
+- Restricted Zeus' Thunderbolt to active Zeus blood and added blood-tier power scaling.
+- Expanded Odin with targeted ravens, Gungnir strike, sacred oaths, rune blessings, Valkyrie favor, Draupnir bounty, Mead inspiration and Sleipnir escape support.
+- Unified true-god status across Zeus/Odin FULL descendants, converged blood and Olympian gods.
+- Added divine captivity: God-Captor trait, periodic god/demigod escape, special captive-god judgment.
+- Added First Godslayer trait and inheritable Godslayer bloodline founded by the first true-god kill completed with Cronus' Sickle. Descendants receive a Sickle-free God Hunt action.
+- Replaced random Sickle spawn with a unique lost-relic search chain.
+- Added demigod heroic destinies, recurring trials and hero cults.
+- Added world events for first demigods, first born true god, reawakened blood, 20/50 divine-population milestones and first Godslayer.
+- Added Hellenic/Norse divine restoration missions and AI support for reformation/dominion goals.
+- Added save migration/repair for true-god immortality and animal portrait state.
+- Expanded Russian localisation and removed technical P/M/FULL terminology from mod-owned Russian descriptions.
+HOTFIX 1:
+- Restored native CK2 bloodline inheritance display. Zeus/Odin paternal components are patrilineal; maternal components are matrilineal. matrilineal_override remains disabled and the on_birth sanitation/rebuild remains authoritative for biological inheritance.
+
+HOTFIX 2:
+- Zeus now switches to the dedicated Olympidai/Olympids dynasty when the founder is initialized.
+- Odin now switches to the dedicated Aesir dynasty when the founder is initialized.
+- Zeus-created canonical parents and siblings inherit the new Olympian dynasty because the switch happens before their creation.
+
+HOTFIX3:
+- RU character names are now Cyrillic at creation: Зевс, Один, Гера, Фригг, Кронос, Рея, Посейдон, Аид.
+- Added one-time migration DBV2.960 for already-started saves.
+- Added stable Hera/Frigg character flags and exact name-localisation aliases.
+
+HOTFIX4 (murder/fertility):
+- True gods now receive one hidden non-stacking -120% fertility penalty; the old +35% FULL-trait fertility was removed.
+- FULL gods no longer receive late-fertility boosts and are excluded from automatic DBV2.80 conception; Zeus' active Divine Visitation remains an intentional power.
+- Vanilla plot_kill_character/plot_kill_spouse against an intact true god is forcibly cancelled unless the plotter carries the Godslayer Bloodline. The Sickle must first sever immortality through its dedicated interaction.
+
+HOTFIX4 duel/plot guard v2:
+- True-god fertility relaxed from -120% to -40%; FULL gods remain low-fertility but are no longer nearly sterile.
+- Added a 1-day autonomous murder-plot abort in addition to the monthly fallback.
+- Overrode standard duel eligibility/deadly-duel triggers so intact true gods cannot be killed through ordinary targeted duels by non-Godslayers.
+- Sickle users must still sever immortality first; Godslayer bloodline descendants remain exempt.
+
+HOTFIX4 battle immunity: intact true gods are now treated as indomitable in Holy Fury battle tombola, mortal warrior-lodge decapitation and battlefield-duel paths are blocked, and vanilla Berserker is stripped during combat to avoid TOG.3003 direct battle death.

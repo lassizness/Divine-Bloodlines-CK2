@@ -1,0 +1,6 @@
+Divine Bloodlines CK2 v2.2.7.1
+
+Hotfix:
+- Russian localisation converted from UTF-8 BOM to Windows-1251 (CP1251) for CK2 3.3.5.1.
+- Verified all localisation rows retain 14 semicolon delimiters.
+- No gameplay changes from v2.2.7.

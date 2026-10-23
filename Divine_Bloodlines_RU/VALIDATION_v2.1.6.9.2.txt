@@ -1,0 +1,42 @@
+Divine Bloodlines v2.1.6.9.2 - static validation
+
+RESULT: PASS
+
+Packages
+- EN custom DBV2/DBH top-level events: 178 definitions / 178 unique IDs.
+- RU custom DBV2/DBH top-level events: 178 definitions / 178 unique IDs.
+- Duplicate custom event IDs: 0.
+- Unresolved internal DBV2/DBH event references: 0.
+- Missing custom event localization keys: 0.
+- Duplicate DBV2/DBH localization keys: 0.
+- Brace-balance errors: 0.
+- UTF-8 BOMs in gameplay/config files: 0.
+- Placeholder/encoding remnants checked: 0 occurrences of ???, A New Tale, generic new-chapter placeholder, or So it shall be.
+
+EN / RU parity
+- common/, decisions/ and events/ are semantically synchronized.
+- Intentional difference: RU founder/canonicalizer character names are Cyrillic (Зевс, Один, Гера, Фригг, Кронос, Рея, Посейдон, Аид, Деметра, Гестия); normalized gameplay comparison reports 0 differences.
+
+Founder/start assertions
+- Zeus player origin: set_name Zeus/Зевс, culture=greek, set_graphical_culture=greek, religion=hellenic_pagan. PASS.
+- Odin player origin: set_name Odin/Один, culture=norse, set_graphical_culture=norse, religion=norse_pagan. PASS.
+- Delayed/old-save canonical repair DBV2.1145 is defined and called from monthly maintenance. PASS.
+- New auto-arrived Zeus receives random c_arta / c_epeiros / c_naupaktos in Epirus. PASS.
+- Zeus arrival host remains exactly 2,000 troops. PASS.
+- Thessalia remains only an old-save compatibility fallback. PASS.
+
+Event-flow assertions
+- Relic-search decisions no longer pre-charge prestige/piety before confirmation. PASS.
+- Order operation costs/cooldowns are applied in affirmative event options; AI Cancel has factor 0. PASS.
+- Grand Hunt + Sickle starts HFP.10100 real duel; DBV2.450 instant-sever is no longer called anywhere. PASS.
+- DBV2.693 Sickle race outcome is split into recover vs too-late choices. PASS.
+- Marriage acceptance/refusal feedback events DBV2.1042/1043 are defined and called. PASS.
+- Divine Judgment survivor requires is_incapable=no. PASS.
+- Nine Nights has an explicit injury-risk tooltip. PASS.
+- Context-specific Thunderbolt/Gungnir/Seidr result answers and prisoner-god judgment answers are localized. PASS.
+
+Critical invariants
+- Adult true-god death guard still uses age >= 16. PASS.
+- Godslayer exception preserved. PASS.
+- Sickle two-stage semantics preserved. PASS.
+- Existing 2.1.6.9.1 duel/death last-line guards and late zzz_db_* scripted overrides remain present. PASS.

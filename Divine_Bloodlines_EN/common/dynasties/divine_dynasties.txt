@@ -1,0 +1,12 @@
+# Divine Bloodlines v2.1.2 HOTFIX 2
+# Dedicated founder dynasties.
+
+990212001 = {
+	name = "Olympidai"
+	culture = greek
+}
+
+990212002 = {
+	name = "Aesir"
+	culture = norse
+}

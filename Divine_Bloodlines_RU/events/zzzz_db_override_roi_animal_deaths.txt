@@ -1,0 +1,26 @@
+namespace = RoI
+
+# Tiger surprises hunters. Intact adult true gods are not disposable tiger victims.
+character_event = {
+ id = RoI.2113 desc = EVTDESC_RoI_2113 picture = GFX_evt_tiger is_triggered_only = yes
+ option = { name = EVTOPTA_RoI_2112 random_realm_character = { show_scope_change = no limit = { has_character_flag = hunting_tigers ai = yes OR = { is_liege_of = ROOT vassal_of = ROOT same_liege = ROOT } } if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_survive_forbidden_scripted_death_effect = yes } else = { death = { death_reason = death_accident_tiger } } } }
+}
+
+# Diwali snake accident: protected gods are excluded from the victim pool.
+character_event = {
+ id = RoI.1054 desc = EVTDESC_RoI_1054 picture = GFX_evt_feast is_triggered_only = yes
+ option = { name = EVTOPTA_RoI_1054 random_courtier_or_vassal = { show_scope_change = no limit = { has_character_flag = attending_diwali_feast ai = yes } if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_survive_forbidden_scripted_death_effect = yes } else = { death = { death_reason = death_accident_snakes } } } }
+}
+
+# Tiger fight injury: even the non-lethal vanilla outcome is reduced for an intact adult true god.
+character_event = {
+ id = RoI.2123 desc = EVTDESC_RoI_2123 picture = GFX_evt_tiger is_triggered_only = yes
+ option = {
+  name = EVTOPTA_RoI_2123
+  if = {
+   limit = { db_is_death_guarded_true_god_trigger = yes }
+   db_mortal_harm_survival_effect = yes
+  }
+  else = { random_list = { 90 = { add_trait_wounded_effect = yes } 10 = { add_maimed_trait_effect = yes } } }
+ }
+}

@@ -1,0 +1,13 @@
+Divine Bloodlines v2.1.6.8.1 — Player Founder Start Host Hotfix
+
+PLAYER START ARMIES
+- A player-selected Zeus now receives a one-time 2,000-man zero-maintenance, non-reinforcing host in the player's current capital during founder initialization.
+- Zeus composition matches auto-arrival Zeus exactly: 500 light infantry, 700 heavy infantry, 350 archers, 250 pikemen, 150 light cavalry, 50 knights.
+- A player-selected Odin now receives a one-time 2,000-man zero-maintenance, non-reinforcing host in the player's current capital during founder initialization.
+- Odin composition matches auto-arrival Odin exactly: 650 light infantry, 800 heavy infantry, 300 archers, 150 light cavalry, 100 knights.
+- Auto-arrival founders are explicitly excluded, so they continue to receive only their existing Thessalia/Uppland arrival host.
+- db_player_start_host_received prevents duplicate spawning if founder initialization is ever retriggered.
+
+COMPATIBILITY
+- No changes to auto-arrival timing, title grants, divine genetics, Sickle, Legendary Gathering, Order of the Sickle, or death protection.
+- EN/RU gameplay scripts are synchronized.

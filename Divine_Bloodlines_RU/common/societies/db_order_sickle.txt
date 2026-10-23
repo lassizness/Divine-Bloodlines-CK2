@@ -1,0 +1,161 @@
+# Divine Bloodlines v2.1.3 - Order of the Sickle
+# Secret mortal society dedicated to observing, containing and - only with a valid divine-killing method - hunting true gods.
+
+db_order_sickle = {
+    primary_attribute = intrigue
+    society_ranks_gfx = generic_ranks
+    opinion_to_other_members = 10
+    opinion_to_pretenders = -20
+    opinion_to_perceived_members = -25
+    opinion_per_rank_above = 5
+    society_rank_up_decision = request_to_rank_up_within_society
+    sound = assassins_interface
+
+    indestructible = yes
+    is_secret = yes
+    criminal = yes
+    society_influence = no
+
+    active = {
+        has_dlc = "Mystics"
+        has_global_flag = db_order_sickle_awakened
+    }
+
+    show_society = {
+        is_adult = yes
+        NOT = { db_is_true_god_trigger = yes }
+        NOT = { db_is_active_demigod_trigger = yes }
+    }
+
+    can_join_society = {
+        is_adult = yes
+        prisoner = no
+        is_incapable = no
+        NOT = { is_in_society = yes }
+        NOT = { db_is_true_god_trigger = yes }
+        NOT = { db_is_active_demigod_trigger = yes }
+        trigger_if = {
+            limit = { ai = yes }
+            NOT = { is_society_rank_full = { society = db_order_sickle rank = 1 } }
+        }
+    }
+
+    # Faded and latent descendants may remain members. If their active divine blood returns,
+    # society potential fails and DBH.3 also removes them immediately.
+    potential = {
+        NOT = { db_is_true_god_trigger = yes }
+        NOT = { db_is_active_demigod_trigger = yes }
+    }
+
+    # Used by the indestructible-society engine when a replacement leader is needed.
+    startup_populate = {
+        trigger = {
+            ai = yes
+            is_adult = yes
+            is_alive = yes
+            is_in_society = no
+            prisoner = no
+            is_incapable = no
+            NOT = { db_is_true_god_trigger = yes }
+            NOT = { db_is_active_demigod_trigger = yes }
+        }
+    }
+
+    society_rank = {
+        level = 1
+        limit = 45
+        startup_limit = 0
+        modifier = {
+            intrigue = 1
+            plot_discovery_chance = 0.05
+        }
+        powers = {
+            db_order_observe_divine
+        }
+    }
+
+    society_rank = {
+        level = 2
+        limit = 20
+        startup_limit = 0
+        modifier = {
+            intrigue = 2
+            learning = 1
+            plot_power_modifier = 0.05
+        }
+        powers = {
+            db_order_hunt_demigod
+            db_order_steal_divine_relic
+        }
+    }
+
+    society_rank = {
+        level = 3
+        limit = 8
+        startup_limit = 0
+        modifier = {
+            intrigue = 3
+            learning = 2
+            combat_rating = 10
+        }
+        powers = {
+            db_order_prepare_god_trap
+            db_order_trace_sickle
+        }
+    }
+
+    society_rank = {
+        level = 4
+        limit = 3
+        startup_limit = 0
+        modifier = {
+            intrigue = 4
+            learning = 3
+            martial = 2
+            combat_rating = 20
+        }
+        powers = {
+            db_order_grand_hunt
+        }
+        obedient = { }
+        obedience_tooltip = DBH_ORDER_OBEDIENCE_TT
+    }
+
+    plots = { }
+    ambitions = { }
+
+    monthly_currency_gain = {
+        name = currency_name_db_order_sickle
+        per_attribute = { name = intrigue value = 0.35 }
+        has_trait = { trait = ambitious value = 2 }
+        has_trait = { trait = deceitful value = 2 }
+        has_trait = { trait = cynical value = 1 }
+        has_trait = { trait = brave value = 1 }
+        has_trait = { trait = paranoid value = 1 }
+        has_trait = { trait = scholar value = 1 }
+        has_trait = { trait = db_first_godslayer value = 10 }
+        society_rank = { rank = 4 value = 8 }
+        triggered_gain = {
+            desc = DBH_CURRENCY_GODSLAYER_BLOOD
+            value = 5
+            trigger = { db_has_godslayer_blood_trigger = yes }
+        }
+        triggered_gain = {
+            desc = DBH_CURRENCY_PROVEN_TRUTH
+            value = 2
+            trigger = { has_global_flag = db_god_can_die_proven }
+        }
+    }
+
+    member_score_per_attribute = 2
+    member_score_per_rank = 100
+    member_score_per_currency = 0.02
+    member_score = {
+        value = 10
+        mult_modifier = { factor = 2 trait = ambitious }
+        mult_modifier = { factor = 1.5 trait = deceitful }
+        mult_modifier = { factor = 1.5 trait = cynical }
+        mult_modifier = { factor = 1.5 trait = brave }
+        mult_modifier = { factor = 2 db_has_godslayer_blood_trigger = yes }
+    }
+}

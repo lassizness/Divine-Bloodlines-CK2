@@ -1,0 +1,7 @@
+Divine Bloodlines v2.2.7.3
+
+Regression repair release.
+- Restored Hera and Frigg membership in the founder bloodlines exactly as in the pre-2.2.7 working implementation.
+- Did not introduce new hidden technical traits. Legacy hidden trait declarations from v2.1.6.9.1 remain only for old-save migration; active ancestry state continues to use flags/modifiers.
+- Reworked Gungnir and Zeus Thunderbolt confirmation options so CK2 no longer exposes random_list branches as "No effect". The visible tooltip now states the actual target-specific death/injury chances.
+- Preserved v2.2.7.2 relic, family-court, 2000-host and reconquest content.

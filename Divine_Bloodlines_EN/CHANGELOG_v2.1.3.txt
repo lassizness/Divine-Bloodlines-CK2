@@ -1,0 +1,13 @@
+Divine Bloodlines v2.1.3
+
+- Added the secret Order of the Sickle society (Monks and Mystics): 4 ranks, Secret Knowledge currency, AI recruitment and autonomous operations.
+- Society operations: divine surveillance/intel, demigod hunts, relic theft, god-capture traps, Sickle tracing, and Grand Hunts.
+- Order membership never bypasses intact true-god immortality by itself. Only the Sickle (two-stage sever/kill) or active Godslayer blood may kill an intact true god.
+- Faded/latent divine descendants may join the Order; active demigods/true gods cannot, and reawakened members are expelled.
+- Added divine counter-intelligence: Odin/ravens are strongest, Zeus/eagle is second; exposed cells can be arrested by true gods.
+- Every living true god receives a personal warning when the Sickle legend awakens and another when the Sickle is recovered; a monthly maintenance event also covers true gods created later.
+- Added current Sickle-holder tracking and society notification.
+- Hardened divine death authorization: legitimate Sickle/Godslayer kills mark the death as authorized. Unauthorized intact true-god deaths are logged with a DB v2.1.3 diagnostic marker for exact event-chain tracing.
+- Existing HOTFIX4 protections remain: murder-plot cancellation, direct Assassinate guard, Holy Fury duel guards, battle tombola/battlefield-duel guards, religion lock and true-god fertility -40%.
+
+Runtime note: CK2 executable is not available in the build environment. Static validation and archive integrity checks were run; in-game event ordering still requires a real CK2 test.

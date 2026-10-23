@@ -1,0 +1,41 @@
+Divine Bloodlines v2.1.6.7 validation report
+Target: Crusader Kings II 3.3.5.1
+Variants: EN / RU
+
+STATIC PACKAGE CHECKS
+PASS  UTF-8 BOM scan: 0 files with BOM in EN/RU gameplay packages
+PASS  Brace balance: 0 script/GFX/mod errors
+PASS  DBV2/DBH top-level event definitions: 154 per variant
+PASS  Duplicate DBV2/DBH event IDs: 0
+PASS  Unresolved internal DBV2/DBH references: 0
+PASS  Changed EN/RU gameplay files are byte-identical
+PASS  Age threshold remains age >= 16
+PASS  Godslayer exception remains active
+PASS  Severed-immortality gods remain outside the intact-god death guard
+
+DUEL DEATH-GUARD CHECKS
+PASS  send_duel_result_event_effect late override exists exactly once in each package
+PASS  lethal-both branch has two-sided victim/Godslayer guard
+PASS  lethal-attacker branch has attacker-victim/Godslayer guard
+PASS  lethal-defender branch has defender-victim/Godslayer guard
+PASS  battlefield lethal/prison branch has defender-victim/Godslayer guard
+PASS  legendary attacker/defender/double-death branches have victim-aware guards
+PASS  HFP.10105 post-duel kill checks event_target:other_combatant
+PASS  No vanilla HFP/HF/TOG event IDs are newly defined by the v2.1.6.7 guard files
+
+ANIMAL / INJURY CHECKS
+PASS  can_be_maimed_trigger preserves vanilla logic for normal characters
+PASS  can_be_maimed_trigger rejects protected adult intact gods
+PASS  existing hunting-target scrubber remains active for tiger/wolf/eagle/bear/lion flags
+PASS  scrubber now clears injury_kills/elegant_double_KO/clumsy_double_KO
+PASS  scrubber reasserts immortal + diplomatic_immunity
+PASS  delayed HFP.10102 / HF.12205 victim events are cleared when queued directly on a protected god
+
+SOURCE CROSS-CHECK
+The Holy Fury duel-result helper was compared against both CleanSlate and a CK2 Community Patch
+vanilla-derived copy. The helper dependency set matches; no new CleanSlate-only helper dependency was introduced.
+
+RUNTIME NOTE
+Static validation cannot prove every arbitrary direct death={...} event in the CK2/DLC script corpus.
+The patch closes the central Holy Fury lethal duel selector and broad vanilla candidate/helper paths while
+retaining DBV2.998 death diagnostics so any residual direct-script path can be identified from logs.

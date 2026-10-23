@@ -1,0 +1,101 @@
+# v2.1.6.9.1: Horse Lords mercenary personal-combat direct death guard.
+# This chain bypasses Holy Fury's central duel resolver, so protect the selected challenger here.
+character_event = {
+ id = HL.10510
+ is_triggered_only = yes
+ hide_window = yes
+ has_character_flag = is_mercenary_leader
+ only_playable = yes
+ only_capable = yes
+ prisoner = no
+ ai = yes
+ trigger = {
+  mercenary = yes
+  primary_title = { NOT = { has_title_flag = ze_dyn_merc } }
+  NOR = { trait = kind trait = humble }
+  primary_title = {
+   capital_scope = {
+    owner = {
+     any_courtier = { is_child_of = PREV is_adult = yes is_landed = no is_female = no }
+    }
+   }
+  }
+ }
+ weight_multiplier = {
+  factor = 1
+  mult_modifier = { factor = 2 trait = wroth }
+  mult_modifier = { factor = 2 trait = cruel }
+  mult_modifier = { factor = 1.5 primary_title = { has_raised_standing_troops = yes } }
+  mult_modifier = { factor = 0.25 primary_title = { capital_scope = { owner = { any_liege = { is_friend = ROOT } } } } }
+  mult_modifier = { factor = 0.25 primary_title = { mercenary_employer = { is_friend = ROOT } } }
+ }
+ immediate = {
+  primary_title = {
+   capital_scope = {
+    owner = {
+     random_courtier = {
+      limit = { is_child_of = PREV is_adult = yes is_landed = no is_female = no }
+      save_event_target_as = challenger
+     }
+    }
+   }
+  }
+  save_event_target_as = db_direct_duel_killer
+  random_list = {
+   40 = {
+    mult_modifier = { factor = 2 combat_rating < event_target:challenger }
+    event_target:challenger = {
+     add_rival = ROOT
+     father = { character_event = { id = HL.10515 } }
+    }
+    primary_title = { band_creator = { character_event = { id = HL.10516 } } }
+   }
+   75 = {
+    trigger = { NOR = { trait = maimed trait = wounded trait = severely_injured } }
+    mult_modifier = { factor = 2 combat_rating_diff = { who = event_target:challenger value >= 30 } }
+    event_target:challenger = {
+     if = { limit = { db_is_death_guarded_true_god_trigger = yes } add_trait = wounded }
+     else = { add_trait = wounded }
+     add_rival = ROOT
+     father = { random = { chance = 50 add_rival = ROOT } character_event = { id = HL.10517 } }
+    }
+    primary_title = { band_creator = { character_event = { id = HL.10518 } } }
+   }
+   25 = {
+    mult_modifier = { factor = 2 combat_rating_diff = { who = event_target:challenger value >= 30 } }
+    mult_modifier = { factor = 2 combat_rating_diff = { who = event_target:challenger value >= 40 } }
+    event_target:challenger = {
+     if = { limit = { db_is_death_guarded_true_god_trigger = yes } add_trait = wounded }
+     else = { add_maimed_trait_effect = yes }
+     add_rival = ROOT
+     father = { random = { chance = 90 add_rival = ROOT } character_event = { id = HL.10519 } }
+    }
+    primary_title = { band_creator = { character_event = { id = HL.10520 } } }
+   }
+   10 = {
+    mult_modifier = { factor = 2 combat_rating_diff = { who = event_target:challenger value >= 30 } }
+    mult_modifier = { factor = 2 combat_rating_diff = { who = event_target:challenger value >= 40 } }
+    mult_modifier = { factor = 2 combat_rating_diff = { who = event_target:challenger value >= 50 } }
+    event_target:challenger = {
+     if = {
+      limit = { db_direct_duel_death_blocked_trigger = yes }
+      db_survive_forbidden_direct_duel_effect = yes
+      add_rival = ROOT
+      father = { random = { chance = 90 add_rival = ROOT } character_event = { id = HL.10519 } }
+     }
+     else = {
+      db_mark_authorized_direct_duel_death_effect = yes
+      ROOT = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = ROOT } } clear_event_target = db_direct_duel_killer
+      father = { add_rival = ROOT character_event = { id = HL.10521 } }
+     }
+    }
+    if = {
+     limit = { event_target:challenger = { is_alive = yes } }
+     primary_title = { band_creator = { character_event = { id = HL.10520 } } }
+    }
+    else = { primary_title = { band_creator = { character_event = { id = HL.10522 } } } }
+   }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+}

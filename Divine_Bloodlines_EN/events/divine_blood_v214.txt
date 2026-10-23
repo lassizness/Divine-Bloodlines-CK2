@@ -1,0 +1,291 @@
+namespace = DBV2
+
+# ============================================================
+# v2.1.6.3 - reliable one-time divine arrivals
+# ============================================================
+# The old v2.1.6 controller was rooted on the human player and marked an arrival
+# "consumed" before a founder had actually been created. If the delayed character
+# event was lost, or any later step failed, the watchdog could permanently suppress
+# the god. v2.1.6.3 moves scheduling to the holders of the destination counties.
+# Those characters exist independently of who the player controls, so the system
+# survives succession, switching characters and lost delayed events.
+
+# Fresh-campaign marker used only to distinguish a newly started v2.1.6.3 game
+# from a save upgraded from the broken v2.1.6/2.1.6.2 controller.
+character_event = {
+ id = DBV2.977 hide_window = yes is_triggered_only = yes
+ trigger = { ai = no }
+ immediate = { set_global_flag = db_v2163_native_campaign }
+}
+
+# Startup reconciliation only. Arrival timing itself is NOT owned by the player.
+character_event = {
+ id = DBV2.978 hide_window = yes is_triggered_only = yes
+ trigger = { ai = no }
+ immediate = {
+  set_global_flag = db_divine_arrival_watch_started
+  if = {
+   limit = { OR = { has_global_flag = db_zeus_founder_exists any_character = { has_character_flag = zeus_blood_founder } } }
+   set_global_flag = db_zeus_founder_exists
+   set_global_flag = db_zeus_arrival_consumed
+  }
+  if = {
+   limit = { OR = { has_global_flag = db_odin_founder_exists any_character = { has_character_flag = odin_blood_founder } } }
+   set_global_flag = db_odin_founder_exists
+   set_global_flag = db_odin_arrival_consumed
+  }
+ }
+}
+
+# Compatibility entry point retained for old saves/events. It only reconciles stale
+# consumed flags; the county-holder schedulers below are authoritative.
+character_event = {
+ id = DBV2.979 hide_window = yes is_triggered_only = yes
+ trigger = { ai = no }
+ immediate = {
+  if = {
+   limit = { has_global_flag = db_zeus_arrival_consumed NOT = { has_global_flag = db_zeus_founder_exists } NOT = { any_character = { has_character_flag = zeus_blood_founder } } }
+   clr_global_flag = db_zeus_arrival_consumed
+  }
+  if = {
+   limit = { has_global_flag = db_odin_arrival_consumed NOT = { has_global_flag = db_odin_founder_exists } NOT = { any_character = { has_character_flag = odin_blood_founder } } }
+   clr_global_flag = db_odin_arrival_consumed
+  }
+ }
+}
+
+# Manual/legacy dispatcher. It no longer owns the long-running timer.
+character_event = {
+ id = DBV2.980 hide_window = yes is_triggered_only = yes
+ immediate = {
+  if = {
+   limit = { NOT = { has_global_flag = db_zeus_founder_exists } NOT = { any_character = { has_character_flag = zeus_blood_founder } } }
+   c_arta = { holder_scope = { character_event = { id = DBV2.981 } } }
+  }
+  if = {
+   limit = { NOT = { has_global_flag = db_odin_founder_exists } NOT = { any_character = { has_character_flag = odin_blood_founder } } }
+   c_uppland = { holder_scope = { character_event = { id = DBV2.982 } } }
+  }
+ }
+}
+
+# Legacy retry ID: dispatch again. Kept so already queued v2.1.6 events are harmless.
+character_event = {
+ id = DBV2.985 hide_window = yes is_triggered_only = yes
+ immediate = { character_event = { id = DBV2.980 } }
+}
+
+# Zeus scheduler. on_yearly_pulse is character-scoped, but only the current holder
+# of Arta can pass this trigger. The first two annual checks are randomized;
+# the third is forced. Thus Zeus appears during the first few years without relying
+# on the player character at all.
+character_event = {
+ id = DBV2.986 hide_window = yes is_triggered_only = yes
+ trigger = {
+  has_landed_title = c_arta
+  NOT = { has_global_flag = db_zeus_founder_exists }
+  NOT = { any_character = { has_character_flag = zeus_blood_founder } }
+ }
+ immediate = {
+  if = { limit = { has_global_flag = db_zeus_arrival_consumed } clr_global_flag = db_zeus_arrival_consumed }
+  if = {
+   limit = { NOT = { has_global_flag = db_v2163_zeus_year_1 } }
+   set_global_flag = db_v2163_zeus_year_1
+   random_list = { 35 = { character_event = { id = DBV2.981 } } 65 = { } }
+  }
+  else_if = {
+   limit = { NOT = { has_global_flag = db_v2163_zeus_year_2 } }
+   set_global_flag = db_v2163_zeus_year_2
+   random_list = { 60 = { character_event = { id = DBV2.981 } } 40 = { } }
+  }
+  else = { character_event = { id = DBV2.981 } }
+ }
+}
+
+# Odin scheduler, anchored to Uppland in the same way.
+character_event = {
+ id = DBV2.987 hide_window = yes is_triggered_only = yes
+ trigger = {
+  has_landed_title = c_uppland
+  NOT = { has_global_flag = db_odin_founder_exists }
+  NOT = { any_character = { has_character_flag = odin_blood_founder } }
+ }
+ immediate = {
+  if = { limit = { has_global_flag = db_odin_arrival_consumed } clr_global_flag = db_odin_arrival_consumed }
+  if = {
+   limit = { NOT = { has_global_flag = db_v2163_odin_year_1 } }
+   set_global_flag = db_v2163_odin_year_1
+   random_list = { 35 = { character_event = { id = DBV2.982 } } 65 = { } }
+  }
+  else_if = {
+   limit = { NOT = { has_global_flag = db_v2163_odin_year_2 } }
+   set_global_flag = db_v2163_odin_year_2
+   random_list = { 60 = { character_event = { id = DBV2.982 } } 40 = { } }
+  }
+  else = { character_event = { id = DBV2.982 } }
+ }
+}
+
+# Save repair for v2.1.6/2.1.6.2. If those builds already marked an arrival consumed
+# without creating a founder, or reached the old watchdog's final grace stage, the
+# relevant county holder repairs it on the next monthly pulse instead of waiting
+# another three years.
+character_event = {
+ id = DBV2.988 hide_window = yes is_triggered_only = yes
+ trigger = {
+  has_landed_title = c_arta
+  NOT = { has_global_flag = db_zeus_founder_exists }
+  NOT = { any_character = { has_character_flag = zeus_blood_founder } }
+  NOT = { has_global_flag = db_v2163_zeus_repair_scheduled }
+  OR = {
+   has_global_flag = db_zeus_arrival_consumed
+   has_global_flag = db_divine_arrival_watchdog_grace_2
+  }
+ }
+ immediate = {
+  set_global_flag = db_v2163_zeus_repair_scheduled
+  clr_global_flag = db_zeus_arrival_consumed
+  character_event = { id = DBV2.981 days = 1 random = 20 }
+ }
+}
+
+character_event = {
+ id = DBV2.989 hide_window = yes is_triggered_only = yes
+ trigger = {
+  has_landed_title = c_uppland
+  NOT = { has_global_flag = db_odin_founder_exists }
+  NOT = { any_character = { has_character_flag = odin_blood_founder } }
+  NOT = { has_global_flag = db_v2163_odin_repair_scheduled }
+  OR = {
+   has_global_flag = db_odin_arrival_consumed
+   has_global_flag = db_divine_arrival_watchdog_grace_2
+  }
+ }
+ immediate = {
+  set_global_flag = db_v2163_odin_repair_scheduled
+  clr_global_flag = db_odin_arrival_consumed
+  character_event = { id = DBV2.982 days = 1 random = 20 }
+ }
+}
+
+# Zeus: create a clean character. Crucially, do NOT mark the arrival consumed until
+# after the founder initialization has run. If anything before that fails, the next
+# county-holder pulse can retry instead of permanently suppressing Zeus.
+# Zeus creation stage. v2.1.6.6 keeps the current holder of Arta in Epirus untouched
+# while this event is running. Zeus is initialized landless; title transfer happens
+# in DBV2.1060 on the following day.
+character_event = {
+ id = DBV2.981 hide_window = yes is_triggered_only = yes
+ trigger = {
+  NOT = { has_global_flag = db_zeus_founder_exists }
+  NOT = { any_character = { has_character_flag = zeus_blood_founder } }
+ }
+ immediate = {
+  log = "[DB ARRIVAL] ZEUS_CREATE_BEGIN"
+  create_character = {
+   name = "Zeus"
+   dynasty = 990212001
+   religion = hellenic_pagan
+   culture = greek
+   age = 32
+   female = no
+   random_traits = no
+   historical = yes
+  }
+  new_character = { save_event_target_as = db_auto_zeus }
+  event_target:db_auto_zeus = {
+   set_character_flag = db_auto_arrived_zeus
+   add_trait = zeus_origin_marker
+   character_event = { id = DBV2.1 }
+   if = {
+    limit = { has_character_flag = zeus_blood_founder }
+    set_character_flag = db_v216_fresh_arrival
+    log = "[DB ARRIVAL] ZEUS_INITIALIZED"
+    character_event = { id = DBV2.1060 days = 1 }
+   }
+  }
+ }
+}
+
+# Odin follows the same transactional model.
+# Odin creation stage. The county holder remains untouched until this event stack
+# has finished. Odin is initialized first and established one day later.
+character_event = {
+ id = DBV2.982 hide_window = yes is_triggered_only = yes
+ trigger = {
+  NOT = { has_global_flag = db_odin_founder_exists }
+  NOT = { any_character = { has_character_flag = odin_blood_founder } }
+ }
+ immediate = {
+  log = "[DB ARRIVAL] ODIN_CREATE_BEGIN"
+  create_character = {
+   name = "Odin"
+   dynasty = 990212002
+   religion = norse_pagan
+   culture = norse
+   age = 34
+   female = no
+   random_traits = no
+   historical = yes
+  }
+  new_character = { save_event_target_as = db_auto_odin }
+  event_target:db_auto_odin = {
+   set_character_flag = db_auto_arrived_odin
+   add_trait = odin_origin_marker
+   character_event = { id = DBV2.1 }
+   if = {
+    limit = { has_character_flag = odin_blood_founder }
+    set_character_flag = db_v216_fresh_arrival
+    log = "[DB ARRIVAL] ODIN_INITIALIZED"
+    character_event = { id = DBV2.1060 days = 1 }
+   }
+  }
+ }
+}
+
+narrative_event = {
+ id = DBV2.983 title = DBV2_983_T desc = DBV2_983_D picture = GFX_evt_norse_tempest
+ is_triggered_only = yes major = yes
+ option = { name = DBV2_983_A }
+}
+
+narrative_event = {
+ id = DBV2.984 title = DBV2_984_T desc = DBV2_984_D picture = GFX_evt_norse_tempest
+ is_triggered_only = yes major = yes
+ option = { name = DBV2_984_A }
+}
+
+# ============================================================
+# v2.1.6.4 repair: restore the passive divine allure maintenance event
+# accidentally dropped from the 2.1.6.3 arrival rewrite.
+# This is silent: it only maintains opinion/sex-appeal modifiers.
+# ============================================================
+character_event = {
+ id = DBV2.990 hide_window = yes is_triggered_only = yes
+ trigger = {
+  OR = {
+   db_is_true_god_trigger = yes
+   db_is_active_demigod_trigger = yes
+   has_character_modifier = db_true_god_allure
+   has_character_modifier = db_demigod_allure
+  }
+ }
+ immediate = {
+  if = {
+   limit = { db_is_true_god_trigger = yes }
+   remove_character_modifier = db_demigod_allure
+   remove_character_modifier = db_true_god_allure
+   add_character_modifier = { name = db_true_god_allure days = 40 hidden = yes }
+  }
+  else_if = {
+   limit = { db_is_active_demigod_trigger = yes }
+   remove_character_modifier = db_true_god_allure
+   remove_character_modifier = db_demigod_allure
+   add_character_modifier = { name = db_demigod_allure days = 40 hidden = yes }
+  }
+  else = {
+   remove_character_modifier = db_true_god_allure
+   remove_character_modifier = db_demigod_allure
+  }
+ }
+}

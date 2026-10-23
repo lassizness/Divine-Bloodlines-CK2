@@ -1,0 +1,19 @@
+# v2.2.7.4.6 - unified survival for ordinary mortal/environmental harm.
+# Intact adult true gods do not die or get maimed from ordinary sources.
+# A harmful outcome has only a 10% chance to leave the simple Wounded trait; otherwise it glances off.
+# This effect is NEVER used for Sickle/Godslayer-authorized divine killing.
+db_mortal_harm_survival_effect = {
+    if = { limit = { NOT = { trait = immortal } } add_trait = immortal }
+    random = {
+        chance = 10
+        if = {
+            limit = { NOR = { trait = wounded trait = severely_injured } }
+            add_trait = wounded
+        }
+    }
+}
+
+# Alias retained for all v2.2.7.4.5 direct scripted-death overrides.
+db_survive_forbidden_scripted_death_effect = {
+    db_mortal_harm_survival_effect = yes
+}

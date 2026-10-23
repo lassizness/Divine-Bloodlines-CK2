@@ -1,0 +1,16 @@
+Divine Bloodlines v2.1.5 static validation (social hotfix)
+==========================================================
+Target: Crusader Kings II 3.3.5.1
+
+Checks performed on both EN and RU packages:
+- Brace balance across all .txt/.gfx script files: OK.
+- Custom event registry: 137 DBV2/DBH event IDs, no duplicate IDs, no unresolved custom event references.
+- Localisation: 615 keys, no duplicate keys.
+- DBV2.1041 Divine Attraction is now a hidden no-op compatibility drain only; no visible popup remains.
+- db_divine_romance targeted interaction is removed.
+- Divine Union is player-initiated only (ai = no), interfaith-only, requires one true god/active demigod, and requires normal diplomatic range.
+- Passive divine allure opinion/sex-appeal modifiers remain; they do not force romance or create lovers.
+- Ordinary mortal/mortal and same-faith marriage rules are untouched.
+- Zeus/Odin arrival, Order of the Sickle, divine blood inheritance, relic, fertility and protection systems from 2.1.5 remain unchanged.
+
+Important: CK2 itself is not installed in this build environment, so this is static validation, not an in-client gameplay test. Check error.log/game.log after first launch.

@@ -1,0 +1,65 @@
+Divine Bloodlines v2.1.6.8 — Divine Systems / Legendary / Sickle / Genetics
+
+LEGENDARY GATHERING / WARRIOR LODGES
+- Fixed the apparent Legendary Gathering deadlock for a true god at Hero rank IV.
+- A rank-IV true god now repairs the vanilla Holy Fury requirement for two accessible Heroes by promoting an available AI lodge veteran; the repair runs monthly while legend progress is active.
+- Existing saves with a stuck full progress bar can recover through the same maintenance path.
+- Restored is_member_of_any_warrior_lodge_trigger to vanilla ownership; Divine Bloodlines no longer globally overrides this membership helper.
+- Intact adult gods cannot be maimed by the generic duel injury resolver; duel damage is capped at wounded.
+- During a Legendary Journey, an intact true god entering top bracket is raised to at least progress 10 so the vanilla AI-only 10% imprisonment/failure branch cannot remove the god from the journey.
+
+CRONUS' SICKLE / GODSLAYER
+- Sickle challenge target scope is now worldwide (filter = all) and launches a real Holy Fury duel.
+- A non-Godslayer Sickle wielder uses a two-stage duel rule against a true god:
+  1) a strong winning lethal-quality result against an intact adult god severs immortality instead of killing;
+  2) a later strong winning result against the severed god calls the canonical Sickle finishing blow and can create the first Godslayer bloodline.
+- Existing Godslayer descendants keep their separate right to kill intact gods directly, even if they also carry the Sickle.
+- The inherited Godslayer Challenge is now a real duel instead of the old 55/80% instant-kill roll.
+- Prisoner judgment remains a special captive execution path for Sickle/Godslayer holders.
+
+ORDER OF THE SICKLE
+- Added an Order Codex decision explaining the Order, the Sickle, intelligence, ranks and the Grand Hunt.
+- Added a target dossier decision for divine characters with descriptions for intelligence levels 0–4.
+- Grand Hunt Godslayer resolution now uses the real Godslayer duel rather than an instant random kill.
+- Existing v2.1.6.6 population controller remains: normal recruitment stops around 45, emergency ceiling 60.
+
+DIVINE ARTIFACT SEARCH
+- Normal relic searches are now delayed expeditions (60–180 days) rather than immediate silent random rolls.
+- Added explicit FOUND / FAILED / ALREADY EXISTS result events.
+- Successful search: 5-year cooldown; failure: 3-year cooldown; relic already in the world: 1-year cooldown.
+- Existing unique-relic registry remains authoritative and prevents duplicates.
+
+DIVINE JUDGMENT
+- Zeus Thunderbolt mortal death chance reduced to 20%.
+- Gungnir mortal death chance reduced to 18%.
+- Active demigod death chance reduced to 8%.
+- Intact true gods cannot be killed by these direct divine-strike powers.
+- Added Divine Judgment Survivor trait: +1 health, +1 martial, +10 personal combat, +0.15 monthly prestige.
+- A previous survivor has only a 5% death chance from a later Thunderbolt/Gungnir strike.
+- Added anonymous death reasons death_divine_judgment / death_divine_spear. These deaths do not set killer = ROOT, so the victim history does not identify/click-link the divine attacker as an ordinary murderer.
+
+DIVINE GENETICS 2.0
+- Added hidden ancestry essences for Zeus, Odin, Poseidon, Hades, Demeter and Hestia. Ancestry is now distinct from current blood strength.
+- Added Cross-Pantheon God as a true-god state. Two full gods no longer automatically produce a demigod.
+- Full Norse + full Olympian unions produce a cross-pantheon true god while preserving both ancestry essences.
+- Full Olympian + full Olympian unions remain true gods and preserve all relevant Olympian essences.
+- Added Mixed Demigod Blood for diluted descendants of cross-pantheon gods; exact ancestry remains in hidden essence traits.
+- Zeus/Odin active-blood helpers recognize their essence in cross-pantheon and mixed descendants.
+- Blood of Two Thrones remains a separate high convergence state and is not granted merely by being born to two gods.
+- Added old-save migration for essence markers and old full-god children incorrectly represented as Stormrune/Fate-Thunder/Two-Pantheons demigods.
+
+HEROES / AGE OF HEROES
+- Heroic Path no longer fires automatically at age 16.
+- A demigod becomes eligible from age 20 with meaningful prestige or attributes; yearly offer chance is 25%.
+- Heroic Path choices now have distinct descriptions/bonuses and start with a 2-year trial cooldown.
+- Restored the yearly Heroic Trial controller: 12% before the Age of Heroes, 18% after it.
+- Heroic Trials are counted. Hero Cult now requires age 30, 3000 prestige and at least two completed trials.
+- Age of Heroes cannot begin before 15 years after the first divine arrival and requires at least 10 adult active demigods plus 3 established heroic demigods.
+- The Age of Heroes modifier is applied to the adult demigod generation rather than only the event ROOT.
+- World-state check can run from divine founders in observer games as well as human player roots.
+
+COMPATIBILITY
+- age >= 16 remains the exact start of adult intact true-god death protection.
+- No static manifestation landed titles were reintroduced.
+- New traits were appended; old trait order was not rearranged.
+- EN/RU gameplay logic is synchronized; language-specific founder names/localisation remain separate.

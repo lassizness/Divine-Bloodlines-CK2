@@ -1,0 +1,34 @@
+namespace = RIP
+
+# v2.2.7.4.7 - Reaper's Due direct accident branches.
+narrative_event = {
+ id = RIP.21316 title = EVTNAME_RIP_21316 desc = EVTDSC_RIP_21316 picture = GFX_evt_performing_experiments border = GFX_event_narrative_frame_intrigue
+ is_triggered_only = yes hide_from = yes hide_new = yes prisoner = no
+ trigger = { event_target:eternal_life_mystic = { is_alive = yes prisoner = no vassal_of = ROOT } }
+ fail_trigger_effect = {
+  if = { limit = { prisoner = yes } repeat_event = { id = RIP.21316 days = 35 } }
+  else_if = { limit = { event_target:eternal_life_mystic = { is_alive = no } } narrative_event = { id = RIP.21099 } }
+ }
+ option = {
+  name = EVTOPTA_RIP_21316
+  custom_tooltip = {
+   text = EVTOPTA_RIP_21316_TOOLTIP
+   hidden_effect = { event_target:eternal_life_mystic = { leave_court_effect = yes clr_character_flag = no_court_invites } }
+   if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes }
+   else = { death = { death_reason = death_accident } }
+  }
+ }
+}
+
+character_event = {
+ id = RIP.30313 desc = RIP.30313.d border = GFX_event_normal_frame_religion picture = GFX_evt_suspicious_noble is_triggered_only = yes hide_new = yes
+ option = { name = RIP.30313.a character_event = { id = RIP.30314 } }
+ option = {
+  name = RIP.30313.b
+  event_target:immortal_rival = {
+   show_scope_change = no
+   if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes }
+   else = { death = { death_reason = death_accident killer = ROOT } }
+  }
+ }
+}

@@ -1,0 +1,277 @@
+namespace = DBV2
+
+# Zeus: animal forms use hidden portrait traits. Human DNA/culture is never touched.
+character_event = {
+ id = DBV2.100
+ title = DBV2_100_T
+ desc = DBV2_100_D
+ picture = GFX_evt_melee
+ is_triggered_only = yes
+ option = { name = DBV2_100_A custom_tooltip = { text = DBV2_100_A_TT } hidden_tooltip = { remove_trait = db_portrait_bull remove_trait = db_portrait_eagle remove_trait = db_portrait_serpent remove_character_modifier = db_form_bull remove_character_modifier = db_form_eagle remove_character_modifier = db_form_serpent add_trait = db_portrait_swan add_character_modifier = { name = db_form_swan years = 1000 } add_character_modifier = { name = db_shape_cooldown days = 30 } character_event = { id = DBV2.124 } } }
+ option = { name = DBV2_100_B custom_tooltip = { text = DBV2_100_B_TT } hidden_tooltip = { remove_trait = db_portrait_swan remove_trait = db_portrait_eagle remove_trait = db_portrait_serpent remove_character_modifier = db_form_swan remove_character_modifier = db_form_eagle remove_character_modifier = db_form_serpent add_trait = db_portrait_bull add_character_modifier = { name = db_form_bull years = 1000 } add_character_modifier = { name = db_shape_cooldown days = 30 } character_event = { id = DBV2.125 } } }
+ option = { name = DBV2_100_C custom_tooltip = { text = DBV2_100_C_TT } hidden_tooltip = { remove_trait = db_portrait_swan remove_trait = db_portrait_bull remove_trait = db_portrait_serpent remove_character_modifier = db_form_swan remove_character_modifier = db_form_bull remove_character_modifier = db_form_serpent add_trait = db_portrait_eagle add_character_modifier = { name = db_form_eagle years = 1000 } add_character_modifier = { name = db_shape_cooldown days = 30 } character_event = { id = DBV2.126 } } }
+ option = { name = DBV2_100_E custom_tooltip = { text = DBV2_100_E_TT } hidden_tooltip = { remove_trait = db_portrait_swan remove_trait = db_portrait_bull remove_trait = db_portrait_eagle remove_character_modifier = db_form_swan remove_character_modifier = db_form_bull remove_character_modifier = db_form_eagle add_trait = db_portrait_serpent add_character_modifier = { name = db_form_serpent years = 1000 } add_character_modifier = { name = db_shape_cooldown days = 30 } character_event = { id = DBV2.127 } } }
+ option = { name = DBV2_CANCEL }
+}
+
+
+# Unique form action events.
+character_event = {
+ id = DBV2.121 title = DBV2_121_T desc = DBV2_121_D picture = GFX_evt_melee is_triggered_only = yes
+ option = { name = DBV2_121_A event_target:db_power_target = { add_character_modifier = { name = db_bull_terrorized days = 365 } prestige = -100 opinion = { who = ROOT modifier = db_bull_fear years = 2 } } prestige = 75 }
+ option = { name = DBV2_CANCEL }
+}
+character_event = {
+ id = DBV2.122 title = DBV2_122_T desc = DBV2_122_D picture = GFX_evt_spymaster is_triggered_only = yes
+ option = { name = DBV2_122_A add_character_modifier = { name = db_eagle_vision days = 180 } event_target:db_power_target = { opinion = { who = ROOT modifier = db_eagle_watched years = 1 } } prestige = 50 }
+ option = { name = DBV2_CANCEL }
+}
+character_event = {
+ id = DBV2.123 title = DBV2_123_T desc = DBV2_123_D picture = GFX_evt_spymaster is_triggered_only = yes
+ option = { name = DBV2_123_A add_character_modifier = { name = db_serpent_shadow days = 180 } event_target:db_power_target = { add_character_modifier = { name = db_serpent_mark days = 180 } } prestige = 25 }
+ option = { name = DBV2_CANCEL }
+}
+
+# Form-entry flavour events.
+character_event = { id = DBV2.124 title = DBV2_124_T desc = DBV2_124_D picture = GFX_evt_lovers is_triggered_only = yes option = { name = DBV2_OK } }
+character_event = { id = DBV2.125 title = DBV2_125_T desc = DBV2_125_D picture = GFX_evt_melee is_triggered_only = yes option = { name = DBV2_OK } }
+character_event = { id = DBV2.126 title = DBV2_126_T desc = DBV2_126_D picture = GFX_evt_spymaster is_triggered_only = yes option = { name = DBV2_OK } }
+character_event = { id = DBV2.127 title = DBV2_127_T desc = DBV2_127_D picture = GFX_evt_spymaster is_triggered_only = yes option = { name = DBV2_OK } }
+
+# Divine visitation confirmation; target saved by targeted decision.
+character_event = {
+ id = DBV2.110 title = DBV2_110_T desc = DBV2_110_D picture = GFX_evt_lovers is_triggered_only = yes
+ option = { name = DBV2_110_A event_target:db_power_target = { unsafe_impregnate = ROOT add_trait = pregnant } prestige = 25 }
+ option = { name = DBV2_CANCEL }
+}
+
+# Zeus' Thunderbolt: targeted divine strike. The old self-buff is kept as a separate storm-channel ability.
+character_event = {
+ id = DBV2.320 title = DBV2_320_T desc = DBV2_320_D picture = GFX_evt_norse_tempest is_triggered_only = yes
+ option = {
+  name = DBV2_320_A trigger = { event_target:db_power_target = { db_is_intact_true_god_trigger = yes } } custom_tooltip = { text = DBV2_320_TT_GOD }
+
+  add_character_modifier = { name = db_artifact_power_cooldown days = 365 }
+  save_event_target_as = db_divine_attacker
+  clr_character_flag = db_divine_attacker_thunderbolt clr_character_flag = db_divine_attacker_gungnir clr_character_flag = db_divine_attacker_seidr
+  clr_character_flag = db_divine_attacker_killed clr_character_flag = db_divine_attacker_survived clr_character_flag = db_divine_attacker_god_resisted
+  event_target:db_power_target = { save_event_target_as = db_divine_victim clr_character_flag = db_divine_outcome_kill clr_character_flag = db_divine_outcome_severe clr_character_flag = db_divine_outcome_god clr_character_flag = db_struck_by_thunderbolt set_character_flag = db_struck_by_thunderbolt }
+
+  set_character_flag = db_divine_attacker_thunderbolt set_character_flag = db_divine_attacker_god_resisted
+  hidden_tooltip = { event_target:db_power_target = { set_character_flag = db_divine_outcome_god character_event = { id = DBV2.1121 } } }
+ }
+ option = {
+  name = DBV2_320_A trigger = { event_target:db_power_target = { NOT = { db_is_intact_true_god_trigger = yes } trait = db_divine_judgment_survivor } } custom_tooltip = { text = DBV2_320_TT_SURVIVOR }
+
+  add_character_modifier = { name = db_artifact_power_cooldown days = 365 }
+  save_event_target_as = db_divine_attacker
+  clr_character_flag = db_divine_attacker_thunderbolt clr_character_flag = db_divine_attacker_gungnir clr_character_flag = db_divine_attacker_seidr
+  clr_character_flag = db_divine_attacker_killed clr_character_flag = db_divine_attacker_survived clr_character_flag = db_divine_attacker_god_resisted
+  event_target:db_power_target = { save_event_target_as = db_divine_victim clr_character_flag = db_divine_outcome_kill clr_character_flag = db_divine_outcome_severe clr_character_flag = db_divine_outcome_god clr_character_flag = db_struck_by_thunderbolt set_character_flag = db_struck_by_thunderbolt }
+
+  hidden_tooltip = { random_list = { 10 = { set_character_flag = db_divine_attacker_thunderbolt set_character_flag = db_divine_attacker_killed event_target:db_power_target = { set_character_flag = db_divine_outcome_kill character_event = { id = DBV2.1121 } } } 90 = { set_character_flag = db_divine_attacker_thunderbolt set_character_flag = db_divine_attacker_survived event_target:db_power_target = { set_character_flag = db_divine_outcome_severe character_event = { id = DBV2.1121 } } } } }
+ }
+ option = {
+  name = DBV2_320_A trigger = { event_target:db_power_target = { NOT = { db_is_intact_true_god_trigger = yes } NOT = { trait = db_divine_judgment_survivor } db_is_active_demigod_trigger = yes } } custom_tooltip = { text = DBV2_320_TT_DEMIGOD }
+
+  add_character_modifier = { name = db_artifact_power_cooldown days = 365 }
+  save_event_target_as = db_divine_attacker
+  clr_character_flag = db_divine_attacker_thunderbolt clr_character_flag = db_divine_attacker_gungnir clr_character_flag = db_divine_attacker_seidr
+  clr_character_flag = db_divine_attacker_killed clr_character_flag = db_divine_attacker_survived clr_character_flag = db_divine_attacker_god_resisted
+  event_target:db_power_target = { save_event_target_as = db_divine_victim clr_character_flag = db_divine_outcome_kill clr_character_flag = db_divine_outcome_severe clr_character_flag = db_divine_outcome_god clr_character_flag = db_struck_by_thunderbolt set_character_flag = db_struck_by_thunderbolt }
+
+  hidden_tooltip = { random_list = { 15 = { set_character_flag = db_divine_attacker_thunderbolt set_character_flag = db_divine_attacker_killed event_target:db_power_target = { set_character_flag = db_divine_outcome_kill character_event = { id = DBV2.1121 } } } 85 = { set_character_flag = db_divine_attacker_thunderbolt set_character_flag = db_divine_attacker_survived event_target:db_power_target = { set_character_flag = db_divine_outcome_severe character_event = { id = DBV2.1121 } } } } }
+ }
+ option = {
+  name = DBV2_320_A trigger = { event_target:db_power_target = { NOT = { db_is_intact_true_god_trigger = yes } NOT = { trait = db_divine_judgment_survivor } NOT = { db_is_active_demigod_trigger = yes } } } custom_tooltip = { text = DBV2_320_TT_MORTAL }
+
+  add_character_modifier = { name = db_artifact_power_cooldown days = 365 }
+  save_event_target_as = db_divine_attacker
+  clr_character_flag = db_divine_attacker_thunderbolt clr_character_flag = db_divine_attacker_gungnir clr_character_flag = db_divine_attacker_seidr
+  clr_character_flag = db_divine_attacker_killed clr_character_flag = db_divine_attacker_survived clr_character_flag = db_divine_attacker_god_resisted
+  event_target:db_power_target = { save_event_target_as = db_divine_victim clr_character_flag = db_divine_outcome_kill clr_character_flag = db_divine_outcome_severe clr_character_flag = db_divine_outcome_god clr_character_flag = db_struck_by_thunderbolt set_character_flag = db_struck_by_thunderbolt }
+
+  hidden_tooltip = { random_list = { 35 = { set_character_flag = db_divine_attacker_thunderbolt set_character_flag = db_divine_attacker_killed event_target:db_power_target = { set_character_flag = db_divine_outcome_kill character_event = { id = DBV2.1121 } } } 65 = { set_character_flag = db_divine_attacker_thunderbolt set_character_flag = db_divine_attacker_survived event_target:db_power_target = { set_character_flag = db_divine_outcome_severe character_event = { id = DBV2.1121 } } } } }
+ }
+ option = { name = DBV2_CANCEL }
+}
+
+
+
+
+
+# Odin runic insight.
+character_event = {
+ id = DBV2.200 title = DBV2_200_T desc = DBV2_200_D picture = GFX_evt_throne_room is_triggered_only = yes
+ option = { name = DBV2_200_A add_character_modifier = { name = db_rune_war years = 2 } add_character_modifier = { name = db_runes_cooldown years = 2 } piety = -100 }
+ option = { name = DBV2_200_B add_character_modifier = { name = db_rune_plots years = 2 } add_character_modifier = { name = db_runes_cooldown years = 2 } piety = -100 }
+ option = { name = DBV2_200_C add_character_modifier = { name = db_rune_governance years = 2 } add_character_modifier = { name = db_runes_cooldown years = 2 } piety = -100 }
+ option = { name = DBV2_200_E add_character_modifier = { name = db_rune_fate years = 2 } add_character_modifier = { name = db_runes_cooldown years = 2 } piety = -100 }
+ option = { name = DBV2_CANCEL }
+}
+
+character_event = {
+ id = DBV2.210 title = DBV2_210_T desc = DBV2_210_D picture = GFX_evt_spymaster is_triggered_only = yes
+ option = {
+  name = DBV2_210_A
+  piety = -75
+  add_character_modifier = { name = db_huginn_muninn years = 1 }
+  add_character_modifier = { name = db_ravens_counterplots years = 1 }
+  add_character_modifier = { name = db_ravens_cooldown years = 1 }
+ }
+ option = {
+  name = DBV2_210_B
+  piety = -75
+  add_character_modifier = { name = db_huginn_muninn years = 1 }
+  add_character_modifier = { name = db_ravens_war_scouting years = 1 }
+  add_character_modifier = { name = db_ravens_cooldown years = 1 }
+ }
+ option = {
+  name = DBV2_210_C
+  piety = -75
+  add_character_modifier = { name = db_huginn_muninn years = 1 }
+  add_character_modifier = { name = db_ravens_wisdom years = 1 }
+  add_character_modifier = { name = db_ravens_cooldown years = 1 }
+ }
+ option = { name = DBV2_CANCEL }
+}
+
+character_event = {
+ id = DBV2.220 title = DBV2_220_T desc = DBV2_220_D picture = GFX_evt_melee is_triggered_only = yes
+ option = { name = DBV2_220_A piety = -100 add_character_modifier = { name = db_odins_fury days = 180 } add_character_modifier = { name = db_fury_cooldown days = 365 } random = { chance = 20 add_trait = wounded } }
+ option = { name = DBV2_CANCEL }
+}
+
+character_event = {
+ id = DBV2.230 title = DBV2_230_T desc = DBV2_230_D picture = GFX_evt_market is_triggered_only = yes
+ option = { name = DBV2_230_A prestige = -100 add_character_modifier = { name = db_grey_wanderer years = 1 } add_character_modifier = { name = db_wanderer_cooldown years = 2 } random_list = { 40 = { wealth = 150 } 30 = { prestige = 200 } 30 = { piety = 75 } } }
+ option = { name = DBV2_CANCEL }
+}
+
+character_event = {
+ id = DBV2.240 title = DBV2_240_T desc = DBV2_240_D picture = GFX_evt_sacrifice is_triggered_only = yes
+ option = {
+  name = DBV2_240_A
+  piety = -150
+  add_character_modifier = { name = db_seidr_cooldown days = 180 }
+  save_event_target_as = db_divine_attacker
+  clr_character_flag = db_divine_attacker_thunderbolt clr_character_flag = db_divine_attacker_gungnir clr_character_flag = db_divine_attacker_seidr
+  clr_character_flag = db_divine_attacker_killed clr_character_flag = db_divine_attacker_survived clr_character_flag = db_divine_attacker_god_resisted
+  set_character_flag = db_divine_attacker_seidr
+  event_target:db_power_target = { save_event_target_as = db_divine_victim character_event = { id = DBV2.1123 } }
+ }
+ option = { name = DBV2_CANCEL }
+}
+
+
+
+character_event = {
+ id = DBV2.250 title = DBV2_250_T desc = DBV2_250_D picture = GFX_evt_throne_room is_triggered_only = yes
+ option = { name = DBV2_250_A piety = -500 add_trait = one_eyed add_character_modifier = { name = db_price_of_wisdom years = 1000 } }
+ option = { name = DBV2_CANCEL }
+}
+
+character_event = {
+ id = DBV2.260 title = DBV2_260_T desc = DBV2_260_D picture = GFX_evt_throne_room is_triggered_only = yes
+ option = {
+  name = DBV2_260_A
+  custom_tooltip = { text = DBV2_260_RISK_TT }
+  piety = -2500 prestige = -2000
+  random_list = {
+   70 = { add_character_modifier = { name = db_yggdrasil_rune_master years = 1000 } }
+   20 = { add_trait = wounded piety = 100 }
+   10 = { add_trait = severely_injured }
+  }
+ }
+ option = { name = DBV2_CANCEL }
+}
+
+# Guard summons are click-to-event actions.
+character_event = {
+ id = DBV2.300 title = DBV2_300_T desc = DBV2_300_D picture = GFX_evt_melee is_triggered_only = yes
+ option = {
+  name = DBV2_300_A piety = -300 add_character_modifier = { name = db_guard_cooldown years = 5 }
+  if = { limit = { age >= 500 } spawn_unit = { owner = ROOT province = capital_scope home = capital_scope troops = { kouretes = { 20000 20000 } } attrition = 0.05 reinforces = no disband_on_peace = yes maintenance_multiplier = 0.05 cannot_inherit = yes merge = yes earmark = db_kouretes_guard } }
+  else_if = { limit = { age >= 250 } spawn_unit = { owner = ROOT province = capital_scope home = capital_scope troops = { kouretes = { 12000 12000 } } attrition = 0.05 reinforces = no disband_on_peace = yes maintenance_multiplier = 0.05 cannot_inherit = yes merge = yes earmark = db_kouretes_guard } }
+  else_if = { limit = { age >= 100 } spawn_unit = { owner = ROOT province = capital_scope home = capital_scope troops = { kouretes = { 7000 7000 } } attrition = 0.05 reinforces = no disband_on_peace = yes maintenance_multiplier = 0.05 cannot_inherit = yes merge = yes earmark = db_kouretes_guard } }
+  else_if = { limit = { age >= 50 } spawn_unit = { owner = ROOT province = capital_scope home = capital_scope troops = { kouretes = { 4000 4000 } } attrition = 0.05 reinforces = no disband_on_peace = yes maintenance_multiplier = 0.05 cannot_inherit = yes merge = yes earmark = db_kouretes_guard } }
+  else = { spawn_unit = { owner = ROOT province = capital_scope home = capital_scope troops = { kouretes = { 2000 2000 } } attrition = 0.05 reinforces = no disband_on_peace = yes maintenance_multiplier = 0.05 cannot_inherit = yes merge = yes earmark = db_kouretes_guard } }
+ }
+ option = { name = DBV2_CANCEL }
+}
+
+character_event = {
+ id = DBV2.301 title = DBV2_301_T desc = DBV2_301_D picture = GFX_evt_melee is_triggered_only = yes
+ option = {
+  name = DBV2_301_A piety = -300 add_character_modifier = { name = db_guard_cooldown years = 5 }
+  if = { limit = { age >= 500 } spawn_unit = { owner = ROOT province = capital_scope home = capital_scope troops = { einherjar = { 20000 20000 } } attrition = 0.05 reinforces = no disband_on_peace = yes maintenance_multiplier = 0.05 cannot_inherit = yes merge = yes earmark = db_einherjar_guard } }
+  else_if = { limit = { age >= 250 } spawn_unit = { owner = ROOT province = capital_scope home = capital_scope troops = { einherjar = { 12000 12000 } } attrition = 0.05 reinforces = no disband_on_peace = yes maintenance_multiplier = 0.05 cannot_inherit = yes merge = yes earmark = db_einherjar_guard } }
+  else_if = { limit = { age >= 100 } spawn_unit = { owner = ROOT province = capital_scope home = capital_scope troops = { einherjar = { 7000 7000 } } attrition = 0.05 reinforces = no disband_on_peace = yes maintenance_multiplier = 0.05 cannot_inherit = yes merge = yes earmark = db_einherjar_guard } }
+  else_if = { limit = { age >= 50 } spawn_unit = { owner = ROOT province = capital_scope home = capital_scope troops = { einherjar = { 4000 4000 } } attrition = 0.05 reinforces = no disband_on_peace = yes maintenance_multiplier = 0.05 cannot_inherit = yes merge = yes earmark = db_einherjar_guard } }
+  else = { spawn_unit = { owner = ROOT province = capital_scope home = capital_scope troops = { einherjar = { 2000 2000 } } attrition = 0.05 reinforces = no disband_on_peace = yes maintenance_multiplier = 0.05 cannot_inherit = yes merge = yes earmark = db_einherjar_guard } }
+ }
+ option = { name = DBV2_CANCEL }
+}
+
+# Artifact quest event reused by decisions via flags.
+character_event = {
+ id = DBV2.400 title = DBV2_400_T desc = DBV2_400_D picture = GFX_evt_throne_room is_triggered_only = yes
+ option = {
+  name = DBV2_400_A
+  if = {
+   limit = { OR = { has_character_flag = db_seek_ambrosia has_character_flag = db_seek_runes has_character_flag = db_seek_apple } }
+   prestige = -750
+   piety = -500
+  }
+  else = {
+   prestige = -500
+   piety = -250
+  }
+  add_character_modifier = { name = db_relic_search_active days = 210 }
+  character_event = { id = DBV2.401 days = 60 random = 120 }
+  ai_chance = { factor = 100 }
+ }
+ option = {
+  name = DBV2_CANCEL
+  ai_chance = { factor = 0 }
+  clr_character_flag = db_seek_aegis clr_character_flag = db_seek_scepter clr_character_flag = db_seek_ambrosia
+  clr_character_flag = db_seek_draupnir clr_character_flag = db_seek_runes clr_character_flag = db_seek_mead clr_character_flag = db_seek_apple
+ }
+}
+
+
+# Sickle use confirmation; target saved by targeted decision.
+# First successful use on an intact god severs immortality but never kills.
+# A later use on an already-severed god can kill.
+character_event = {
+ id = DBV2.450 title = DBV2_450_T desc = DBV2_450_D picture = GFX_evt_throne_room is_triggered_only = yes
+ option = {
+  name = DBV2_450_A
+  if = {
+   limit = { event_target:db_power_target = { trait = db_severed_immortality } }
+   character_event = { id = DBV2.640 }
+  }
+  else = {
+   event_target:db_power_target = { remove_trait = immortal add_trait = db_severed_immortality add_trait = db_death_chess_ward diplomatic_immunity = no add_trait = wounded add_character_modifier = { name = db_fading_divine_spark years = 1 } }
+   prestige = 250
+  }
+ }
+ option = { name = DBV2_CANCEL }
+}
+
+
+# Fourfold convergence ritual.
+character_event = {
+ id = DBV2.470 title = DBV2_470_T desc = DBV2_470_D picture = GFX_evt_norse_tempest is_triggered_only = yes
+ option = {
+  name = DBV2_470_A prestige = -5000 piety = -5000 add_trait = db_blood_two_thrones set_global_flag = db_divine_convergence_exists character_event = { id = DBV2.70 }
+  random_list = {
+   25 = { set_global_flag = db_convergence_ragnarok }
+   25 = { set_global_flag = db_convergence_olympus }
+   25 = { set_global_flag = db_convergence_war }
+   25 = { set_global_flag = db_convergence_new_pantheon }
+  }
+  narrative_event = { id = DBV2.530 }
+ }
+ option = { name = DBV2_CANCEL }
+}

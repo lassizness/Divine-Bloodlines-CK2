@@ -1,0 +1,47 @@
+Divine Bloodlines v2.1.6.6 — stability / crash-fix
+
+AUTOMATIC DIVINE ARRIVALS
+- Reworked Zeus/Odin automatic arrival into three safe stages:
+  1) create and fully initialize the founder while landless;
+  2) one day later grant Thessalia/Uppland only;
+  3) one more day later make the founder independent, set the primary title, spawn the one-time host and notify the world.
+- The old county holder is no longer stripped of land inside the same event stack that creates and initializes the god.
+- Removed DBV2.1060 from on_monthly_pulse. Arrival establishment is now explicitly scheduled and no longer has a permanent monthly entry point.
+- Founder sanitation/old-save repair schedules establishment with a delay instead of invoking it synchronously.
+- Added diagnostic game.log markers:
+  [DB ARRIVAL] ZEUS_CREATE_BEGIN / ZEUS_INITIALIZED / ZEUS_TITLE_GRANTED / ZEUS_ESTABLISHED
+  [DB ARRIVAL] ODIN_CREATE_BEGIN / ODIN_INITIALIZED / ODIN_TITLE_GRANTED / ODIN_ESTABLISHED
+- Observer/new-campaign repair no longer treats the absence of the old player-only native-campaign marker as evidence of a broken save.
+
+SCRIPT / COMPATIBILITY FIXES
+- Removed UTF-8 BOM from all packaged text/script assets. This fixes the CK2
+  "Corrupt Event Table Entry - ﻿namespace" errors in divine_blood_v212.txt and divine_blood_v214.txt.
+- Removed the CleanSlate-only religion_is_matriarchal_trigger dependency from the duel override.
+  The vanilla engine religion feature check is used directly instead.
+- No manifestation landed titles were reintroduced.
+
+ORDER OF THE SICKLE
+- Removed the old per-character yearly recruitment lottery that could create thousands of members.
+- Recruitment is now controlled by the current grandmaster:
+  below 15 members: up to 4 recruits/year;
+  15-29: up to 2 recruits/year;
+  30-44: up to 1 recruit/year;
+  45+: normal recruitment stops.
+- Society rank capacities changed to 45 / 20 / 8 / 3.
+- Emergency population ceiling is 60.
+- Existing bloated saves are migrated: excess rank-I AI members leave over yearly pulses until the Order returns below the emergency ceiling.
+- DBH.7 remains only as an extinction watchdog for societies with fewer than five members.
+- Godslayer-blood descendants are preferred by the centralized recruiter.
+
+SICKLE SAFETY
+- The Sickle of Cronus is now indestructible during normal artifact processing.
+- Explicit mod destruction still uses unsafe_destroy_artifact and remains supported.
+- Added registry reconciliation for old/corrupt saves where the Sickle vanished without the explicit destruction path.
+
+VALIDATION
+- EN and RU gameplay scripts are synchronized.
+- 0 UTF-8 BOM files in gameplay package.
+- 0 unbalanced-brace script files.
+- 0 duplicate DBV2/DBH top-level event IDs.
+- 0 unresolved internal DBV2/DBH event references.
+- 0 references to religion_is_matriarchal_trigger.

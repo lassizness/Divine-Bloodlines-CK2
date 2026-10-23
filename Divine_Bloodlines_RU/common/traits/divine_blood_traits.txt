@@ -1,0 +1,127 @@
+# Divine Bloodlines v2.1. Requested vanilla traits are granted directly.
+
+zeus_origin_marker = { ruler_designer_cost = 0 random = no opposites = { odin_origin_marker } }
+odin_origin_marker = { ruler_designer_cost = 0 random = no opposites = { zeus_origin_marker } }
+
+pure_divine_blood_zeus = {
+    random = no customizer = no
+    diplomacy = 6 martial = 6 stewardship = 3 intrigue = 3 learning = 3
+    combat_rating = 45 health = 7
+    monthly_character_prestige = 2.0 monthly_character_piety = 1.0
+    sex_appeal_opinion = 20 same_opinion = 15 vassal_opinion = 5
+}
+
+pure_divine_blood_odin = {
+    random = no customizer = no
+    martial = 8 diplomacy = 3 stewardship = 3 intrigue = 6 learning = 6
+    combat_rating = 50 health = 7
+    monthly_character_prestige = 1.5 monthly_character_piety = 1.5
+    plot_discovery_chance = 0.20 plot_power_modifier = 0.10
+}
+
+zeus_demigod_blood = {
+    random = no customizer = no health = 8 fertility = 0.15 martial = 1 diplomacy = 1 combat_rating = 10
+    monthly_character_prestige = 0.10 sex_appeal_opinion = 5 same_opinion = 5
+}
+
+odin_demigod_blood = {
+    random = no customizer = no health = 8 fertility = 0.15 martial = 2 learning = 2 intrigue = 1 combat_rating = 15
+    plot_discovery_chance = 0.10 monthly_character_prestige = 0.10
+}
+
+# Visible weakened descendants: the strong P/M component has faded out, but the branch still remembers divine ancestry.
+zeus_faded_blood = { random = no customizer = no health = 2 fertility = 0.05 diplomacy = 1 monthly_character_prestige = 0.03 }
+odin_faded_blood = { random = no customizer = no health = 2 fertility = 0.05 learning = 1 monthly_character_prestige = 0.03 }
+
+# Directional technical ancestry markers. They are hidden because the visible state above is enough for the UI.
+db_zeus_faded_p = { random = no customizer = no hidden = yes }
+db_zeus_faded_m = { random = no customizer = no hidden = yes }
+db_odin_faded_p = { random = no customizer = no hidden = yes }
+db_odin_faded_m = { random = no customizer = no hidden = yes }
+db_zeus_latent_p = { random = no customizer = no hidden = yes }
+db_zeus_latent_m = { random = no customizer = no hidden = yes }
+db_odin_latent_p = { random = no customizer = no hidden = yes }
+db_odin_latent_m = { random = no customizer = no hidden = yes }
+
+# Zeus P + Odin M
+db_stormrune_blood = {
+    random = no customizer = no martial = 4 learning = 3 diplomacy = 2 intrigue = 2
+    combat_rating = 30 health = 5 monthly_character_prestige = 0.50 monthly_character_piety = 0.25
+}
+# Odin P + Zeus M
+db_fate_thunder_blood = {
+    random = no customizer = no diplomacy = 4 intrigue = 4 learning = 4 martial = 2
+    combat_rating = 20 health = 5 monthly_character_prestige = 0.50 monthly_character_piety = 0.50
+}
+
+db_child_two_pantheons = { random = no customizer = no diplomacy = 2 martial = 2 stewardship = 2 intrigue = 2 learning = 2 combat_rating = 10 health = 1 }
+
+db_blood_two_thrones = {
+    random = no customizer = no
+    diplomacy = 5 martial = 5 stewardship = 5 intrigue = 5 learning = 5 health = 5 combat_rating = 50
+    monthly_character_prestige = 1 monthly_character_piety = 1
+}
+
+# Poseidon/Hades: independent Olympian gods. No separate hereditary bloodlines yet.
+db_olympian_god = { random = no customizer = no health = 5 martial = 4 diplomacy = 3 stewardship = 3 intrigue = 3 learning = 3 combat_rating = 35 }
+# v2.2.7: full Norse god state, independent from Odin descendant bloodline.
+db_norse_god = { random = no customizer = no health = 5 martial = 4 diplomacy = 3 stewardship = 3 intrigue = 3 learning = 3 combat_rating = 35 }
+
+# Visible state caused by the Sickle.
+db_severed_immortality = { random = no customizer = no health = -2 }
+# Technical immortality blocks vanilla old-age/disease/Death-chess after severing; DBV2.27 simulates mortality instead.
+db_death_chess_ward = { random = no customizer = no hidden = yes immortal = yes }
+
+
+# Hidden portrait overrides for Zeus' animal forms. These do NOT alter culture, DNA or graphical culture.
+db_portrait_swan = { random = no customizer = no hidden = yes opposites = { db_portrait_bull db_portrait_eagle db_portrait_serpent } }
+db_portrait_bull = { random = no customizer = no hidden = yes opposites = { db_portrait_swan db_portrait_eagle db_portrait_serpent } }
+db_portrait_eagle = { random = no customizer = no hidden = yes opposites = { db_portrait_swan db_portrait_bull db_portrait_serpent } }
+db_portrait_serpent = { random = no customizer = no hidden = yes opposites = { db_portrait_swan db_portrait_bull db_portrait_eagle } }
+# v2.1.2 - append-only traits (do not reorder older traits; save-game trait IDs depend on order).
+db_godcaptor = {
+    random = no customizer = no diplomacy = 2 martial = 2 intrigue = 1
+    monthly_character_prestige = 0.50 general_opinion = 5
+}
+
+db_first_godslayer = {
+    random = no customizer = no martial = 4 intrigue = 3 combat_rating = 25
+    monthly_character_prestige = 1.00 monthly_character_piety = 0.25
+}
+
+
+# HOTFIX4: one non-stacking low-fertility modifier for every true god (-40%).
+db_true_god_low_fertility = { random = no customizer = no hidden = yes fertility = -0.40 }
+
+
+# v2.1.5 append-only Olympian descendant states. Do not reorder earlier traits.
+db_olympian_demigod_blood = {
+    random = no customizer = no health = 8 fertility = 0.15 martial = 2 diplomacy = 2 learning = 1 combat_rating = 12
+    monthly_character_prestige = 0.10 sex_appeal_opinion = 5 same_opinion = 5
+}
+db_olympian_faded_blood = { random = no customizer = no health = 2 fertility = 0.05 diplomacy = 1 martial = 1 monthly_character_prestige = 0.03 }
+db_olympian_latent = { random = no customizer = no hidden = yes }
+
+
+# v2.1.6.8 append-only divine genetics and divine-judgment traits.
+db_cross_pantheon_god = { random = no customizer = no health = 6 diplomacy = 4 martial = 5 stewardship = 3 intrigue = 4 learning = 4 combat_rating = 40 monthly_character_prestige = 1 monthly_character_piety = 1 }
+db_essence_zeus = { random = no customizer = no hidden = yes }
+db_essence_odin = { random = no customizer = no hidden = yes }
+db_essence_poseidon = { random = no customizer = no hidden = yes }
+db_essence_hades = { random = no customizer = no hidden = yes }
+db_essence_demeter = { random = no customizer = no hidden = yes }
+db_essence_hestia = { random = no customizer = no hidden = yes }
+db_divine_judgment_survivor = { random = no customizer = no health = 1 martial = 1 combat_rating = 15 monthly_character_prestige = 0.20 }
+
+# v2.1.6.8: active diluted child of a cross-pantheon god. Hidden essence traits retain exact ancestry.
+db_mixed_demigod_blood = { random = no customizer = no health = 6 fertility = 0.12 diplomacy = 2 martial = 3 stewardship = 1 intrigue = 2 learning = 2 combat_rating = 20 monthly_character_prestige = 0.20 }
+
+# v2.2.7.4.5 append-only generic Norse and mixed diluted blood states.
+# Never reorder earlier traits: CK2 save files store trait indexes.
+db_norse_demigod_blood = {
+    random = no customizer = no health = 8 fertility = 0.15 martial = 2 learning = 2 intrigue = 1 combat_rating = 14
+    monthly_character_prestige = 0.10 same_opinion = 5
+}
+db_norse_faded_blood = { random = no customizer = no health = 2 fertility = 0.05 martial = 1 learning = 1 monthly_character_prestige = 0.03 }
+db_mixed_faded_blood = { random = no customizer = no health = 2 fertility = 0.05 diplomacy = 1 martial = 1 learning = 1 monthly_character_prestige = 0.04 }
+

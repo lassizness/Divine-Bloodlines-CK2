@@ -1,0 +1,65 @@
+namespace = JD
+
+character_event = {
+ id = JD.15002
+ title = EVTTITLE_JD_KOWTOW
+ desc = EVTDESC_JD_15002
+ picture = GFX_evt_china_diplomatic_success
+ border = GFX_event_normal_frame_diplomacy
+ portrait = event_target:other_ruler
+ is_triggered_only = yes
+ has_dlc = "Jade Dragon"
+ trigger = { trait = kow_tow_travels }
+ option = {
+  name = EVTOPTA_JD_15002
+  transfer_scaled_wealth = { to = event_target:other_ruler value = 0.25 min = 50 }
+  prestige = -100
+  custom_tooltip = { text = EVTOPTA_JD_15002_tt }
+ }
+ option = {
+  name = EVTOPTC_JD_15002
+  tooltip_info = impaler
+  trigger = { trait = impaler }
+  custom_tooltip = { text = EVTOPTC_JD_15002_tt }
+  save_event_target_as = db_direct_duel_killer
+  event_target:other_ruler = {
+   if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes }
+   else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_murder_butchered killer = ROOT } }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+ option = {
+  name = EVTOPTB_JD_15002
+  random_list = {
+   50 = {
+    mult_modifier = { factor = 2 is_strong_trigger = yes }
+    mult_modifier = { factor = 2 event_target:other_ruler = { is_weak_trigger = yes } }
+    mult_modifier = { factor = 2 combat_rating_diff = { who = event_target:other_ruler value >= 10 } }
+    mult_modifier = { factor = 2 attribute_diff = { character = event_target:other_ruler attribute = martial value >= 3 } }
+    custom_tooltip = { text = you_get_away_tt }
+   }
+   10 = {
+    mult_modifier = { factor = 1.5 is_weak_trigger = yes }
+    custom_tooltip = { text = you_dont_get_away_tt }
+    if = { limit = { db_is_death_guarded_true_god_trigger = yes } if = { limit = { NOR = { trait = wounded trait = severely_injured } } add_trait = wounded } }
+    else = { hidden_effect = { add_maimed_trait_effect = yes } }
+   }
+   5 = {
+    mult_modifier = { factor = 2 is_weak_trigger = yes }
+    event_target:other_ruler = { save_event_target_as = db_direct_duel_killer }
+    if = {
+     limit = { db_direct_duel_death_blocked_trigger = yes }
+     custom_tooltip = { text = you_dont_get_away_tt }
+     db_survive_forbidden_direct_duel_effect = yes
+    }
+    else = {
+     db_mark_authorized_direct_duel_death_effect = yes
+     custom_tooltip = { text = you_will_be_killed_in_a_duel_tt }
+     event_target:other_ruler = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = event_target:other_ruler } } clear_event_target = db_direct_duel_killer
+    }
+    clear_event_target = db_direct_duel_killer
+   }
+  }
+ }
+ after = { return_to_travel_tombola_effect = yes }
+}

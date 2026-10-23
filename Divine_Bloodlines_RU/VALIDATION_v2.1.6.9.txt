@@ -1,0 +1,54 @@
+Divine Bloodlines v2.1.6.9 validation
+
+Static package checks (EN and RU)
+- UTF-8 BOM files: 0
+- Brace-balance errors: 0
+- DBV2/DBH custom events: 174 unique per package
+- Duplicate DBV2/DBH event IDs: 0
+- Unresolved internal DBV2/DBH event references: 0
+- Duplicate localisation keys: 0
+- Duplicate artifact definition keys: 0
+- Duplicate trait definition keys: 0
+- Changed EN/RU gameplay files are byte-identical; founder files are semantically identical except localized fixed canonical names.
+- Mod descriptors report v2.1.6.9.
+
+Divine strike checks
+- Thunderbolt ordinary-mortal death chance: 35%.
+- Thunderbolt active-demigod death chance: 15%.
+- Thunderbolt existing-survivor death chance: 10%.
+- Gungnir ordinary-mortal death chance: 30%.
+- Gungnir active-demigod death chance: 12%.
+- Gungnir existing-survivor death chance: 8%.
+- Intact true-god direct death chance from either strike: 0%.
+- No direct Wounded result remains in DBV2.320 or DBV2.621.
+- Every non-lethal direct strike resolves through Severely Injured.
+- Divine-strike death effects use death_divine_judgment/death_divine_spear with no killer field.
+- db_divine_judgment_survivor is granted in only one place: DBV2.1120 after Severely Injured and Wounded are both absent.
+- v2.1.6.8 survivor-state migration is present for still-wounded old-save characters.
+- Visible victim events exist for Thunderbolt, Gungnir and Seidr, plus visible recovery and attacker-result events.
+
+Seidr checks
+- Normal curse: 3 years, health -2, fertility -50%, martial -3, diplomacy/stewardship/intrigue/learning -2, combat rating -20, general opinion -10, prestige drain.
+- Intact-god Seidr variant omits raw health loss so it cannot bypass intact immortality through health attrition.
+
+Council checks
+- db_grant_divine_council_access_effect grants special_chancellor/special_marshal/special_treasurer/special_spymaster/special_spiritual.
+- Adult true gods receive the helper through DBV2.20/DBV2.25.
+- Canonical generated Olympians receive immediate access on creation where needed.
+- Existing saves are repaired by monthly divine maintenance.
+
+Canonical regalia checks
+- Zeus: Thunderbolt + Aegis.
+- Hera: Scepter + Diadem.
+- Poseidon: Trident + Chariot.
+- Hades: Helm + Scepter.
+- Demeter: Twin Torches + Cornucopia.
+- Hestia: Sacred Flame + Veil.
+- Frigg: Distaff + Keys of Fensalir.
+- All 10 new artifact IDs are defined and localized in EN/RU.
+- Existing-save repair avoids creating a duplicate if the artifact already exists elsewhere.
+
+Child-name checks
+- DBV2.670 removed from the exact on_birth hook.
+- DBV2.1000 schedules DBV2.670 one day later.
+- No generic newborn set_name logic was introduced; CK2's standard player newborn naming dialog remains authoritative.

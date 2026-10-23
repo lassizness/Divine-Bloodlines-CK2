@@ -1,0 +1,13 @@
+VALIDATION v2.2.7.4.6
+
+Static checks performed before packaging:
+- brace balance for all .txt gameplay files
+- EN/RU parity for every gameplay file changed in 4.6
+- shared ordinary-harm effect is exactly 10% Wounded and never maims/kills
+- Sickle branch in direct duel guard remains separate from ordinary survival
+- hostile ward is hidden and removed from severed gods
+- Tainted Touch and Demonic Possession target potential contains divine immunity gate
+- no new hidden technical traits added
+- ZIP integrity test
+
+Not an in-game CK2 runtime test.

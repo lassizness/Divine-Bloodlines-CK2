@@ -1,0 +1,33 @@
+Divine Bloodlines v2.1.6.9.2
+
+EVENT FLOW / ANSWERS
+- Relic searches no longer charge prestige/piety before the confirmation event. Cancel is now genuinely free.
+- Order of the Sickle operations no longer spend society currency or start cooldowns before confirmation.
+- AI confirmation choices are deterministic: perform the chosen operation instead of randomly selecting Cancel.
+- Grand Hunt with the Sickle now launches the real Holy Fury duel path; it no longer calls the legacy instant-sever event.
+- Sickle search race fixed: if the Sickle was recovered/destroyed before the expedition resolves, the player receives a proper "too late" result instead of a false "take the Sickle" choice.
+- Divine marriage proposals now notify the proposer whether the offer was accepted or refused. Human targets may decide regardless of character opinion; opinion gating remains for AI.
+- Thunderbolt/Gungnir victim and attacker result buttons now match the actual outcome (death, survival, divine resistance, Seidr).
+- God-prisoner judgment now shows a context-sensitive action for Godslayer, Sickle sever, Sickle kill, or futile mortal execution.
+- Generic one-button acknowledgements were made neutral where still shared; artifact/search result events use contextual responses.
+- Nine Nights now explicitly warns that failure can wound or severely injure even a god.
+- Divine Judgment survivor trait requires complete recovery and no Incapable state.
+- English event placeholders/encoding garbage in the reviewed DBV2.600+ block were replaced with specific text.
+
+FOUNDER START / CANONICAL IDENTITY
+- Fixed RU gameplay scripts where Zeus/Odin and several family names had become blank set_name values.
+- Starting with zeus_origin_marker now canonically sets name Zeus, culture Greek, portrait culture Greek, and Hellenic faith.
+- Starting with odin_origin_marker now canonically sets name Odin, culture Norse, portrait culture Norse, and Norse faith.
+- Added DBV2.1145 delayed/monthly canonical identity repair so Ruler Designer/startup ordering cannot overwrite the divine name/portrait immediately after initialization. Old saves are repaired once.
+- Reformed Hellenic/Norse faith is preserved by the old-save repair; fresh founders still start in the canonical unreformed faith.
+
+ZEUS AUTO-ARRIVAL
+- New automatic Zeus arrivals are anchored to Epirus instead of Thessalia.
+- Zeus receives one random de-jure Epirus county: Arta (34%), Epeiros (33%), or Naupaktos (33%).
+- The existing 2,000-man non-reinforcing arrival host is preserved and spawns in Zeus's new capital.
+- Thessalia remains accepted only as a compatibility fallback for already-queued old-save arrivals.
+- Player-created Zeus is not forcibly teleported; a player keeps the ruler/start location they deliberately selected.
+
+COMPATIBILITY
+- EN/RU gameplay logic is synchronized; RU intentionally keeps Cyrillic canonical character names in the founder/canonicalizer scripts.
+- Existing death protection, age >= 16 rule, Sickle two-stage kill, Godslayer exception, hidden-trait UI migration, and 2,000-man player-start hosts are preserved.

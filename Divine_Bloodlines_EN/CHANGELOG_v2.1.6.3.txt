@@ -1,0 +1,6 @@
+Divine Bloodlines v2.1.6.3
+- Automatic Zeus/Odin arrivals are now anchored to the holders of Thessalia and Uppland, not the human player.
+- Fresh campaigns get independent 1-3 year arrival checks for each missing founder; the third annual check is forced.
+- Upgraded v2.1.6/v2.1.6.2 saves repair missing founders on the next monthly pulse (about 1-20 days after the pulse).
+- Stale arrival_consumed flags no longer permanently suppress a god.
+- An arrival is considered consumed only after founder initialization succeeds.

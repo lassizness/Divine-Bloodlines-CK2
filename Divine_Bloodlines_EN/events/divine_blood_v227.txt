@@ -1,0 +1,252 @@
+namespace = DBV2
+
+# Birth dispatcher. Genetics is intentionally delayed one day so CK2's native newborn-name dialog is never pre-empted.
+character_event = {
+ id = DBV2.1199 hide_window = yes is_triggered_only = yes
+ immediate = { character_event = { id = DBV2.11 days = 1 } }
+}
+
+
+# AI line-head maintenance. Player choices are never overwritten.
+character_event = {
+ id = DBV2.1280 hide_window = yes is_triggered_only = yes
+ trigger = {
+  ai = yes is_alive = yes is_adult = yes
+  OR = { has_character_flag = db_zeus_line_head has_character_flag = db_odin_line_head }
+  NOT = { any_dynasty_member = { is_alive = yes has_character_flag = db_designated_divine_heir } }
+ }
+ immediate = {
+  if = {
+   limit = { has_character_flag = db_zeus_line_head }
+   if = {
+    limit = { any_dynasty_member = { is_alive = yes is_adult = yes is_close_relative = ROOT db_is_true_god_trigger = yes db_has_active_olympian_blood_trigger = yes } }
+    random_dynasty_member = { limit = { is_alive = yes is_adult = yes is_close_relative = ROOT db_is_true_god_trigger = yes db_has_active_olympian_blood_trigger = yes } set_character_flag = db_designated_divine_heir set_character_flag = db_designated_zeus_heir save_event_target_as = db_auto_divine_heir }
+   }
+   else_if = {
+    limit = { any_dynasty_member = { is_alive = yes is_adult = yes is_close_relative = ROOT db_is_active_demigod_trigger = yes db_has_active_olympian_blood_trigger = yes } }
+    random_dynasty_member = { limit = { is_alive = yes is_adult = yes is_close_relative = ROOT db_is_active_demigod_trigger = yes db_has_active_olympian_blood_trigger = yes } set_character_flag = db_designated_divine_heir set_character_flag = db_designated_zeus_heir save_event_target_as = db_auto_divine_heir }
+   }
+  }
+  else_if = {
+   limit = { has_character_flag = db_odin_line_head }
+   if = {
+    limit = { any_dynasty_member = { is_alive = yes is_adult = yes is_close_relative = ROOT db_is_true_god_trigger = yes db_has_active_norse_blood_trigger = yes } }
+    random_dynasty_member = { limit = { is_alive = yes is_adult = yes is_close_relative = ROOT db_is_true_god_trigger = yes db_has_active_norse_blood_trigger = yes } set_character_flag = db_designated_divine_heir set_character_flag = db_designated_odin_heir save_event_target_as = db_auto_divine_heir }
+   }
+   else_if = {
+    limit = { any_dynasty_member = { is_alive = yes is_adult = yes is_close_relative = ROOT db_is_active_demigod_trigger = yes db_has_active_norse_blood_trigger = yes } }
+    random_dynasty_member = { limit = { is_alive = yes is_adult = yes is_close_relative = ROOT db_is_active_demigod_trigger = yes db_has_active_norse_blood_trigger = yes } set_character_flag = db_designated_divine_heir set_character_flag = db_designated_odin_heir save_event_target_as = db_auto_divine_heir }
+   }
+  }
+  if = { limit = { event_target:db_auto_divine_heir = { always = yes } } set_designated_heir = event_target:db_auto_divine_heir clear_event_target = db_auto_divine_heir }
+ }
+}
+
+# v2.2.7 family/court eligibility repair. Runs once per character, including old saves.
+character_event = {
+ id = DBV2.1200 hide_window = yes is_triggered_only = yes
+ trigger = { is_alive = yes OR = { has_character_flag = db_hera has_character_flag = db_poseidon has_character_flag = db_hades has_character_flag = db_demeter has_character_flag = db_hestia has_character_flag = db_frigg } NOT = { has_character_flag = db_v227_family_access_fixed } }
+ immediate = { db_grant_divine_council_access_effect = yes set_character_flag = db_v227_family_access_fixed }
+}
+
+# Host recovery: if a founder start/arrival missed its 2,000 troops, grant them once after land exists.
+character_event = {
+ id = DBV2.1201 hide_window = yes is_triggered_only = yes
+ trigger = { is_alive = yes is_landed = yes OR = { has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder } NOT = { has_character_flag = db_start_host_received } }
+ immediate = {
+  if = { limit = { has_character_flag = zeus_blood_founder } spawn_unit = { owner = ROOT province = capital_scope home = capital_scope earmark = db_zeus_start_host attrition = 1 maintenance_multiplier = 0 reinforces = no troops = { light_infantry = { 500 500 } heavy_infantry = { 700 700 } archers = { 350 350 } pikemen = { 250 250 } light_cavalry = { 150 150 } knights = { 50 50 } } } }
+  else_if = { limit = { has_character_flag = odin_blood_founder } spawn_unit = { owner = ROOT province = capital_scope home = capital_scope earmark = db_odin_start_host attrition = 1 maintenance_multiplier = 0 reinforces = no troops = { light_infantry = { 650 650 } heavy_infantry = { 800 800 } archers = { 300 300 } light_cavalry = { 150 150 } knights = { 100 100 } } } }
+  set_character_flag = db_start_host_received
+ }
+}
+
+# v2.2.7.4.7 old-save start-host reconciliation.
+# 4.6 could leave both the original player host and the recovery host. Keep the recovery host and remove only the obsolete player earmark.
+character_event = {
+ id = DBV2.1242 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes
+  OR = { has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder }
+  NOT = { has_character_flag = db_v22747_start_host_reconciled }
+ }
+ immediate = {
+  if = {
+   limit = { has_character_flag = db_start_host_received has_character_flag = db_player_start_host_received }
+   if = { limit = { has_character_flag = zeus_blood_founder } disband_event_forces = db_zeus_player_start_host }
+   else_if = { limit = { has_character_flag = odin_blood_founder } disband_event_forces = db_odin_player_start_host }
+  }
+  else_if = {
+   limit = { has_character_flag = db_player_start_host_received NOT = { has_character_flag = db_start_host_received } }
+   set_character_flag = db_start_host_received
+  }
+  set_character_flag = db_v22747_start_host_reconciled
+ }
+}
+
+# AI-only divine realm identity. Never creates Olympus/Asgard for a player-selected founder.
+character_event = {
+ id = DBV2.1202 hide_window = yes is_triggered_only = yes
+ trigger = { ai = yes is_alive = yes is_landed = yes OR = { AND = { has_character_flag = db_auto_arrived_zeus has_character_flag = zeus_blood_founder NOT = { has_landed_title = k_olympus } } AND = { has_character_flag = db_auto_arrived_odin has_character_flag = odin_blood_founder NOT = { has_landed_title = k_asgard } } } }
+ immediate = {
+  if = { limit = { has_character_flag = db_auto_arrived_zeus } k_olympus = { grant_title = ROOT make_primary_title = yes } }
+  else_if = { limit = { has_character_flag = db_auto_arrived_odin } k_asgard = { grant_title = ROOT make_primary_title = yes } }
+ }
+}
+
+# Landless AI founder recovery: preparation -> host -> real claim war -> realm restoration.
+character_event = {
+ id = DBV2.1203 hide_window = yes is_triggered_only = yes
+ trigger = { ai = yes is_alive = yes is_landed = no OR = { AND = { has_character_flag = db_auto_arrived_zeus has_character_flag = zeus_blood_founder } AND = { has_character_flag = db_auto_arrived_odin has_character_flag = odin_blood_founder } } NOT = { has_character_modifier = db_divine_reconquest_cooldown } NOT = { has_character_flag = db_divine_reconquest_active } }
+ immediate = {
+  set_character_flag = db_divine_reconquest_active
+  add_character_modifier = { name = db_divine_reconquest_cooldown years = 5 }
+  character_event = { id = DBV2.1265 days = 90 }
+  character_event = { id = DBV2.1267 days = 1825 }
+ }
+}
+
+# After the preparation period the SAME god raises a host and starts a real war for the canonical county.
+character_event = {
+ id = DBV2.1265 hide_window = yes is_triggered_only = yes
+ trigger = { ai = yes is_alive = yes is_landed = no has_character_flag = db_divine_reconquest_active }
+ immediate = {
+  if = {
+   limit = { has_character_flag = zeus_blood_founder }
+   narrative_event = { id = DBV2.1204 }
+   spawn_unit = { owner = ROOT province = 470 home = 470 earmark = db_olympus_adventure attrition = 0.5 maintenance_multiplier = 0 reinforces = no troops = { light_infantry = { 1000 1000 } heavy_infantry = { 1500 1500 } archers = { 600 600 } pikemen = { 500 500 } light_cavalry = { 300 300 } knights = { 100 100 } } }
+   if = { limit = { year = 1100 } spawn_unit = { owner = ROOT province = 470 home = 470 earmark = db_olympus_adventure attrition = 0.5 maintenance_multiplier = 0 reinforces = no troops = { light_infantry = { 1000 1000 } heavy_infantry = { 1500 1500 } archers = { 600 600 } pikemen = { 500 500 } light_cavalry = { 300 300 } knights = { 100 100 } } } }
+   if = { limit = { year = 1250 } spawn_unit = { owner = ROOT province = 470 home = 470 earmark = db_olympus_adventure attrition = 0.5 maintenance_multiplier = 0 reinforces = no troops = { light_infantry = { 1000 1000 } heavy_infantry = { 1500 1500 } archers = { 600 600 } pikemen = { 500 500 } light_cavalry = { 300 300 } knights = { 100 100 } } } }
+   if = { limit = { year = 1400 } spawn_unit = { owner = ROOT province = 470 home = 470 earmark = db_olympus_adventure attrition = 0.5 maintenance_multiplier = 0 reinforces = no troops = { light_infantry = { 1000 1000 } heavy_infantry = { 1500 1500 } archers = { 600 600 } pikemen = { 500 500 } light_cavalry = { 300 300 } knights = { 100 100 } } } }
+   add_claim = c_arta
+   c_arta = { holder_scope = { top_liege = { save_event_target_as = db_reconquest_defender } } }
+   if = { limit = { event_target:db_reconquest_defender = { always = yes } } war = { target = event_target:db_reconquest_defender casus_belli = claim thirdparty_title = c_arta } }
+  }
+  else_if = {
+   limit = { has_character_flag = odin_blood_founder }
+   narrative_event = { id = DBV2.1205 }
+   spawn_unit = { owner = ROOT province = 290 home = 290 earmark = db_asgard_adventure attrition = 0.5 maintenance_multiplier = 0 reinforces = no troops = { light_infantry = { 1200 1200 } heavy_infantry = { 1600 1600 } archers = { 500 500 } light_cavalry = { 500 500 } knights = { 200 200 } } }
+   if = { limit = { year = 1100 } spawn_unit = { owner = ROOT province = 290 home = 290 earmark = db_asgard_adventure attrition = 0.5 maintenance_multiplier = 0 reinforces = no troops = { light_infantry = { 1200 1200 } heavy_infantry = { 1600 1600 } archers = { 500 500 } light_cavalry = { 500 500 } knights = { 200 200 } } } }
+   if = { limit = { year = 1250 } spawn_unit = { owner = ROOT province = 290 home = 290 earmark = db_asgard_adventure attrition = 0.5 maintenance_multiplier = 0 reinforces = no troops = { light_infantry = { 1200 1200 } heavy_infantry = { 1600 1600 } archers = { 500 500 } light_cavalry = { 500 500 } knights = { 200 200 } } } }
+   if = { limit = { year = 1400 } spawn_unit = { owner = ROOT province = 290 home = 290 earmark = db_asgard_adventure attrition = 0.5 maintenance_multiplier = 0 reinforces = no troops = { light_infantry = { 1200 1200 } heavy_infantry = { 1600 1600 } archers = { 500 500 } light_cavalry = { 500 500 } knights = { 200 200 } } } }
+   add_claim = c_uppland
+   c_uppland = { holder_scope = { top_liege = { save_event_target_as = db_reconquest_defender } } }
+   if = { limit = { event_target:db_reconquest_defender = { always = yes } } war = { target = event_target:db_reconquest_defender casus_belli = claim thirdparty_title = c_uppland } }
+  }
+ }
+}
+
+# Failsafe: after the long cooldown another return may be attempted if the god is still landless.
+character_event = { id = DBV2.1267 hide_window = yes is_triggered_only = yes immediate = { clr_character_flag = db_divine_reconquest_active } }
+
+narrative_event = { id = DBV2.1204 title = DBV2_1204_T desc = DBV2_1204_D picture = GFX_evt_large_army is_triggered_only = yes major = yes option = { name = DBV2_1204_A } }
+narrative_event = { id = DBV2.1205 title = DBV2_1205_T desc = DBV2_1205_D picture = GFX_evt_large_army is_triggered_only = yes major = yes option = { name = DBV2_1205_A } }
+
+# Relic search results used by the new search decisions.
+character_event = { id = DBV2.1210 title = DBV2_1210_T desc = DBV2_1210_D picture = GFX_evt_treasure_chest is_triggered_only = yes option = { name = DBV2_1210_A prestige = -250 wealth = -100 random_list = { 45 = { add_artifact = db_cornucopia_of_amalthea set_global_flag = db_amalthea_created } 55 = { prestige = 100 } } add_character_modifier = { name = db_relic_search_cooldown years = 3 } } }
+character_event = { id = DBV2.1211 title = DBV2_1211_T desc = DBV2_1211_D picture = GFX_evt_treasure_chest is_triggered_only = yes option = { name = DBV2_1211_A prestige = -250 wealth = -100 random_list = { 45 = { add_artifact = db_draupnir set_global_flag = db_draupnir_created } 55 = { prestige = 100 } } add_character_modifier = { name = db_relic_search_cooldown years = 3 } } }
+character_event = { id = DBV2.1212 title = DBV2_1212_T desc = DBV2_1212_D picture = GFX_evt_treasure_chest is_triggered_only = yes option = { name = DBV2_1212_A prestige = -250 wealth = -100 random_list = { 45 = { add_artifact = db_bident_of_hades set_global_flag = db_bident_created } 55 = { prestige = 100 } } add_character_modifier = { name = db_relic_search_cooldown years = 3 } } }
+
+# Labrys: dedicated Labyrinth chain.
+character_event = { id = DBV2.1220 title = DBV2_1220_T desc = DBV2_1220_D picture = GFX_evt_maze is_triggered_only = yes option = { name = DBV2_1220_A wealth = -150 prestige = -200 character_event = { id = DBV2.1221 days = 20 } } option = { name = DBV2_CANCEL } }
+character_event = { id = DBV2.1221 title = DBV2_1221_T desc = DBV2_1221_D picture = GFX_evt_maze is_triggered_only = yes option = { name = DBV2_1221_A character_event = { id = DBV2.1222 days = 10 } } }
+
+# Zeus' eagle chariot: pantheon counterpart to Sleipnir.
+character_event = { id = DBV2.1230 title = DBV2_1230_T desc = DBV2_1230_D picture = GFX_evt_norse_tempest is_triggered_only = yes option = { name = DBV2_1230_A add_artifact = db_chariot_of_zeus set_global_flag = db_zeus_chariot_created prestige = 250 } }
+
+
+# Final v2.2.7 birth resolver: one authoritative full-god state after legacy ancestry events.
+character_event = {
+ id = DBV2.1206 hide_window = yes is_triggered_only = yes
+ immediate = { character_event = { id = DBV2.1290 } }
+}
+
+
+
+# v2.2.7.2 - canonical divine family court/council recovery.
+# Run on the founder rather than on relatives: this also repairs old saves where family drifted to another court.
+character_event = {
+ id = DBV2.1240 hide_window = yes is_triggered_only = yes
+ trigger = { is_alive = yes is_landed = yes OR = { has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder } }
+ immediate = {
+  if = {
+   limit = { has_character_flag = zeus_blood_founder }
+   any_spouse = { limit = { has_character_flag = db_hera is_alive = yes } move_character = ROOT set_character_flag = db_essence_hera remove_trait = pure_divine_blood_zeus remove_trait = pure_divine_blood_odin remove_trait = zeus_demigod_blood remove_trait = odin_demigod_blood remove_trait = db_olympian_demigod_blood remove_trait = db_mixed_demigod_blood remove_trait = db_stormrune_blood remove_trait = db_fate_thunder_blood remove_trait = db_child_two_pantheons remove_trait = db_norse_god remove_trait = db_cross_pantheon_god add_trait = db_olympian_god if = { limit = { NOT = { trait = db_severed_immortality } } add_trait = immortal } db_grant_divine_council_access_effect = yes }
+   any_sibling = { limit = { is_alive = yes OR = { has_character_flag = db_poseidon has_character_flag = db_hades has_character_flag = db_demeter has_character_flag = db_hestia } } move_character = ROOT db_grant_divine_council_access_effect = yes }
+  }
+  if = {
+   limit = { has_character_flag = odin_blood_founder }
+   any_spouse = { limit = { has_character_flag = db_frigg is_alive = yes } move_character = ROOT set_character_flag = db_essence_frigg remove_trait = pure_divine_blood_zeus remove_trait = pure_divine_blood_odin remove_trait = zeus_demigod_blood remove_trait = odin_demigod_blood remove_trait = db_olympian_demigod_blood remove_trait = db_mixed_demigod_blood remove_trait = db_stormrune_blood remove_trait = db_fate_thunder_blood remove_trait = db_child_two_pantheons remove_trait = db_olympian_god remove_trait = db_cross_pantheon_god add_trait = db_norse_god if = { limit = { NOT = { trait = db_severed_immortality } } add_trait = immortal } db_grant_divine_council_access_effect = yes }
+  }
+ }
+}
+
+# One-shot immediate host check used in addition to monthly recovery.
+character_event = {
+ id = DBV2.1241 hide_window = yes is_triggered_only = yes
+ trigger = { is_alive = yes is_landed = yes OR = { has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder } NOT = { has_character_flag = db_start_host_received } }
+ immediate = { character_event = { id = DBV2.1201 } }
+}
+
+# Expanded Labyrinth chain. Labrys remains an ordinary weapon and never substitutes for Cronus' Sickle.
+character_event = {
+ id = DBV2.1222 title = DBV2_1222_T desc = DBV2_1222_D picture = GFX_evt_spymaster is_triggered_only = yes
+ option = { name = DBV2_1222_A trigger = { intrigue >= 12 } character_event = { id = DBV2.1223 days = 12 } }
+ option = { name = DBV2_1222_B trigger = { learning >= 12 } character_event = { id = DBV2.1223 days = 12 } }
+ option = { name = DBV2_1222_C character_event = { id = DBV2.1223 days = 18 } }
+}
+character_event = {
+ id = DBV2.1223 title = DBV2_1223_T desc = DBV2_1223_D picture = GFX_evt_maze is_triggered_only = yes
+ option = { name = DBV2_1223_A trigger = { martial >= 14 } prestige = 75 character_event = { id = DBV2.1224 days = 8 } }
+ option = { name = DBV2_1223_B trigger = { learning >= 14 } piety = 50 character_event = { id = DBV2.1224 days = 8 } }
+ option = { name = DBV2_1223_C random_list = { 70 = { character_event = { id = DBV2.1224 days = 8 } } 30 = { add_trait = wounded character_event = { id = DBV2.1224 days = 16 } } } }
+}
+character_event = {
+ id = DBV2.1224 title = DBV2_1224_T desc = DBV2_1224_D picture = GFX_evt_melee is_triggered_only = yes
+ option = { name = DBV2_1224_A trigger = { db_is_true_god_trigger = yes } prestige = 150 character_event = { id = DBV2.1225 days = 3 } }
+ option = { name = DBV2_1224_B trigger = { martial >= 16 } random_list = { 80 = { prestige = 100 character_event = { id = DBV2.1225 days = 3 } } 20 = { add_trait = wounded character_event = { id = DBV2.1225 days = 7 } } } }
+ option = { name = DBV2_1224_C random_list = { 55 = { character_event = { id = DBV2.1225 days = 3 } } 30 = { add_trait = wounded character_event = { id = DBV2.1225 days = 7 } } 15 = { add_trait = severely_injured character_event = { id = DBV2.1225 days = 12 } } } }
+}
+character_event = {
+ id = DBV2.1225 title = DBV2_1225_T desc = DBV2_1225_D picture = GFX_evt_treasure_chest is_triggered_only = yes
+ immediate = { if = { limit = { NOT = { has_global_flag = db_labrys_created } } add_artifact = db_labrys_of_labyrinth set_global_flag = db_labrys_created } add_character_modifier = { name = db_relic_search_cooldown years = 5 } }
+ option = { name = DBV2_1225_A prestige = 500 }
+}
+
+
+# Unique-relic state repair for old saves and transfers. Vanilla artifact inheritance/gifting handles ownership;
+# these global flags only prevent a second canonical copy being generated by our searches.
+character_event = {
+ id = DBV2.1268 hide_window = yes is_triggered_only = yes
+ trigger = { is_alive = yes }
+ immediate = {
+  if = { limit = { has_artifact = db_thunderbolt_of_zeus } set_global_flag = db_thunderbolt_created }
+  if = { limit = { has_artifact = db_gungnir } set_global_flag = db_gungnir_created }
+  if = { limit = { has_artifact = db_draupnir } set_global_flag = db_relic_draupnir_created }
+  if = { limit = { has_artifact = db_cornucopia_of_amalthea } set_global_flag = db_amalthea_created }
+  if = { limit = { has_artifact = db_bident_of_hades } set_global_flag = db_bident_created }
+  if = { limit = { has_artifact = db_labrys_of_labyrinth } set_global_flag = db_labrys_created }
+  if = { limit = { has_artifact = db_chariot_of_zeus } set_global_flag = db_zeus_chariot_created }
+  if = { limit = { has_artifact = db_bow_of_apollo } set_global_flag = db_relic_apollo_bow_created }
+  if = { limit = { has_artifact = db_bow_of_artemis } set_global_flag = db_relic_artemis_bow_created }
+  if = { limit = { has_artifact = db_caduceus_of_hermes } set_global_flag = db_relic_hermes_caduceus_created }
+  if = { limit = { has_artifact = db_girdle_of_aphrodite } set_global_flag = db_relic_aphrodite_girdle_created }
+  if = { limit = { has_artifact = db_golden_fleece } set_global_flag = db_relic_golden_fleece_created }
+  if = { limit = { has_artifact = db_megingjord } set_global_flag = db_relic_megingjord_created }
+  if = { limit = { has_artifact = db_jarngreipr } set_global_flag = db_relic_jarngreipr_created }
+  if = { limit = { has_artifact = db_skidbladnir } set_global_flag = db_relic_skidbladnir_created }
+  if = { limit = { has_artifact = db_brisingamen } set_global_flag = db_relic_brisingamen_created }
+  if = { limit = { has_artifact = db_gjallarhorn } set_global_flag = db_relic_gjallarhorn_created }
+  if = { limit = { has_artifact = db_gram } set_global_flag = db_relic_gram_created }
+ }
+}
+
+# Successful AI restoration: clear reconquest state and reunite the canonical divine court.
+character_event = {
+ id = DBV2.1270 hide_window = yes is_triggered_only = yes
+ trigger = { ai = yes is_alive = yes is_landed = yes has_character_flag = db_divine_reconquest_active OR = { has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder } }
+ immediate = {
+  clr_character_flag = db_divine_reconquest_active
+  if = { limit = { has_character_flag = zeus_blood_founder } any_spouse = { limit = { has_character_flag = db_hera is_alive = yes is_landed = no } move_character = ROOT db_grant_divine_council_access_effect = yes } any_sibling = { limit = { is_alive = yes is_landed = no OR = { has_character_flag = db_poseidon has_character_flag = db_hades has_character_flag = db_demeter has_character_flag = db_hestia } } move_character = ROOT db_grant_divine_council_access_effect = yes } }
+  if = { limit = { has_character_flag = odin_blood_founder } any_spouse = { limit = { has_character_flag = db_frigg is_alive = yes is_landed = no } move_character = ROOT db_grant_divine_council_access_effect = yes } }
+ }
+}

@@ -1,0 +1,113 @@
+namespace = DBV2
+
+# ============================================================
+# v2.1.5 - descendants of Poseidon/Hades/Demeter/Hestia
+# ============================================================
+character_event = {
+ id = DBV2.1000 hide_window = yes is_triggered_only = yes
+ immediate = { character_event = { id = DBV2.1290 } }
+}
+
+
+
+# ============================================================
+# v2.1.5 - founder sanitation / old-save repair
+# ============================================================
+character_event = {
+ id = DBV2.1010 hide_window = yes is_triggered_only = yes
+ trigger = { is_alive = yes OR = { has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder } }
+ immediate = {
+  # Arrival must never make a god sterile/celibate by inheriting mortal state.
+  remove_trait = celibate
+  remove_trait = eunuch
+  remove_trait = monk
+  remove_trait = nun
+  remove_trait = weak
+  remove_trait = frail
+  remove_trait = infirm
+  remove_trait = incapable
+  cure_illness = yes
+  if = { limit = { NOT = { trait = db_severed_immortality } age >= 16 } add_trait = immortal diplomatic_immunity = no  }
+  if = {
+   limit = { has_character_flag = zeus_blood_founder }
+   set_character_flag = db_pantheon_hellenic
+   # v2.1.6: auto-arrived Zeus is a territorial ruler, not a landless manifestation.
+   if = { limit = { has_character_flag = db_auto_arrived_zeus NOT = { has_character_flag = db_v216_arrival_established } } character_event = { id = DBV2.1060 days = 1 } }
+  }
+  if = {
+   limit = { has_character_flag = odin_blood_founder }
+   set_character_flag = db_pantheon_norse
+   # v2.1.6: auto-arrived Odin gets a real county and is made independent.
+   if = { limit = { has_character_flag = db_auto_arrived_odin NOT = { has_character_flag = db_v216_arrival_established } } character_event = { id = DBV2.1060 days = 1 } }
+  }
+  # DBV2.70 enforces the correct unreformed/reformed pantheon faith without temporary conversion loops.
+  character_event = { id = DBV2.70 }
+  character_event = { id = DBV2.990 }
+ }
+}
+
+# ============================================================
+# v2.1.5 - unique relic registry
+# ============================================================
+character_event = {
+ id = DBV2.1030 hide_window = yes is_triggered_only = yes
+ trigger = { ai = no NOT = { has_character_flag = db_v215_relic_registry_checked } }
+ immediate = {
+  set_character_flag = db_v215_relic_registry_checked
+  if = { limit = { any_character = { has_artifact = db_aegis_of_zeus } } set_global_flag = db_aegis_created }
+  if = { limit = { any_character = { has_artifact = db_scepter_of_olympus } } set_global_flag = db_scepter_created }
+  if = { limit = { any_character = { has_artifact = db_ambrosia } } set_global_flag = db_ambrosia_created }
+  if = { limit = { any_character = { has_artifact = db_draupnir } } set_global_flag = db_draupnir_created }
+  if = { limit = { any_character = { has_artifact = db_runes_of_yggdrasil } } set_global_flag = db_runes_created }
+  if = { limit = { any_character = { has_artifact = db_mead_of_poetry } } set_global_flag = db_mead_created }
+  if = { limit = { any_character = { has_artifact = db_apple_of_idunn } } set_global_flag = db_apple_created }
+ }
+}
+
+# Yearly reconciliation lets a genuinely lost/destroyed relic become searchable again,
+# while still preventing duplicates whenever a living character owns the artifact.
+character_event = {
+ id = DBV2.1031 hide_window = yes is_triggered_only = yes
+ trigger = { ai = no }
+ immediate = {
+  if = { limit = { any_character = { has_artifact = db_aegis_of_zeus } } set_global_flag = db_aegis_created } else = { clr_global_flag = db_aegis_created }
+  if = { limit = { any_character = { has_artifact = db_scepter_of_olympus } } set_global_flag = db_scepter_created } else = { clr_global_flag = db_scepter_created }
+  if = { limit = { any_character = { has_artifact = db_ambrosia } } set_global_flag = db_ambrosia_created } else = { clr_global_flag = db_ambrosia_created }
+  if = { limit = { any_character = { has_artifact = db_draupnir } } set_global_flag = db_draupnir_created } else = { clr_global_flag = db_draupnir_created }
+  if = { limit = { any_character = { has_artifact = db_runes_of_yggdrasil } } set_global_flag = db_runes_created } else = { clr_global_flag = db_runes_created }
+  if = { limit = { any_character = { has_artifact = db_mead_of_poetry } } set_global_flag = db_mead_created } else = { clr_global_flag = db_mead_created }
+  if = { limit = { any_character = { has_artifact = db_apple_of_idunn } } set_global_flag = db_apple_created } else = { clr_global_flag = db_apple_created }
+ }
+}
+
+# ============================================================
+# v2.1.5 - religion-independent divine marriage
+# ============================================================
+character_event = {
+ id = DBV2.1040 title = DBV2_1040_T desc = DBV2_1040_D picture = GFX_evt_lovers is_triggered_only = yes
+ option = {
+  name = DBV2_1040_A
+  trigger = { OR = { ai = no opinion = { who = event_target:db_social_actor value = 0 } } }
+  save_event_target_as = db_social_target
+  add_spouse = event_target:db_social_actor
+  opinion = { who = event_target:db_social_actor modifier = db_opinion_divine_reverence years = 3 }
+  event_target:db_social_actor = { prestige = 50 character_event = { id = DBV2.1042 } }
+  ai_chance = { factor = 90 }
+ }
+ option = {
+  name = DBV2_1040_B
+  save_event_target_as = db_social_target
+  event_target:db_social_actor = { character_event = { id = DBV2.1043 } }
+  ai_chance = { factor = 10 }
+ }
+}
+
+# Compatibility drain for saves made with the first 2.1.5 build.
+# Old AI-generated DBV2.1041 events, if already queued in a save, resolve silently.
+character_event = {
+ id = DBV2.1041
+ hide_window = yes
+ is_triggered_only = yes
+ immediate = { }
+}
+

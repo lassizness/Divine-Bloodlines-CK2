@@ -1,0 +1,22 @@
+Divine Bloodlines v2.1.6.9.1
+
+TRAIT UI / SAVE MIGRATION
+- Fixed large blank gaps between visible trait icons. The cause was technical hidden traits consuming entries in CK2's 26px trait list.
+- Zeus/Odin faded and latent directional states now use character flags instead of hidden traits.
+- Divine essence markers (Zeus/Odin/Poseidon/Hades/Demeter/Hestia) now use character flags instead of hidden traits.
+- Olympian latent ancestry now uses a character flag.
+- The universal true-god fertility penalty moved from a hidden trait to an invisible permanent event modifier.
+- Old hidden trait definitions remain in their original order for save-game trait-ID compatibility.
+- DBV2.1140 migrates existing saves: copies old technical traits into flags/modifiers and removes the old traits from living characters.
+- Portrait-form traits and db_death_chess_ward are intentionally retained because CK2 portrait selection / severed-god death simulation depend on trait semantics.
+
+DUEL DEATH GUARD
+- Corrected the override load order for vanilla scripted triggers/effects. Entity-level scripted definitions use later-loaded definitions, while event IDs use first-loaded definitions.
+- Vanilla override scripted definitions are therefore now zzz_db_* (late), while direct event-ID guards remain 00_db_* (early).
+- This makes send_duel_result_event_effect, is_allowed_deadly_duels_trigger, is_indomitable_trigger, can_be_maimed_trigger, apply_selected_duel_injury_effect, random_accident_death_effect and assassination_interaction_trigger actually take precedence over vanilla.
+- Expanded DBV2.295 queued-death scrubber to HFP.10101/10102/10103/10104/10111, HFP.11042/11045/11047, HF.10104/HF.12200/HF.12201/HF.12204/HF.12205 and Holmgang lethal events.
+- DBV2.295 now also runs from combat-start/combat-pulse as a secondary safety net.
+- Added a direct Horse Lords mercenary personal-combat guard for HL.10510.
+- Adult intact true gods still require an active Godslayer killer; a Sickle first severs immortality; age < 16 remains intentionally unprotected.
+- Added last-line direct event guards for HFP.10101/HFP.10102 double-death, HFP.10104 loser death, HFP.11042 battlefield voluntary death, and HF.12201 legendary loser death.
+- These guards resolve the actual killer before death: ordinary mortals cannot kill an intact adult true god, Sickle owners sever first, active Godslayers may kill, and already-severed gods remain mortal.

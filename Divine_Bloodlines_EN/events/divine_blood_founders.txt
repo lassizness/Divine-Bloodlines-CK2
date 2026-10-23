@@ -1,0 +1,446 @@
+namespace = DBV2
+
+character_event = {
+ id = DBV2.1 hide_window = yes is_triggered_only = yes
+ trigger = { OR = { trait = zeus_origin_marker trait = odin_origin_marker } NOT = { has_character_flag = db_v2_initialized } }
+ immediate = {
+  if = {
+   limit = { trait = zeus_origin_marker NOT = { has_global_flag = db_zeus_founder_exists } }
+   set_name = "Zeus"
+   culture = greek
+   set_graphical_culture = greek
+   religion = hellenic_pagan
+   set_character_flag = db_started_as_zeus
+   dynasty = 990212001
+   create_bloodline = { type = db_zeus_paternal_bloodline }
+   create_bloodline = { type = db_zeus_maternal_bloodline }
+   add_trait = pure_divine_blood_zeus
+   diplomatic_immunity = no 
+   set_character_flag = db_essence_zeus
+  set_character_flag = zeus_blood_founder
+   set_character_flag = db_pantheon_hellenic
+   set_character_flag = db_zeus_line_head
+   set_character_flag = db_first_wife_blood_granted
+   set_global_flag = db_zeus_founder_exists
+   set_global_flag = db_zeus_arrival_consumed
+   save_global_event_target_as = db_zeus_founder
+   save_global_event_target_as = db_zeus_line_head_target
+
+   # Requested VANILLA founder traits, issued directly. CK2 itself resolves any hardcoded opposites.
+   add_trait = mastermind_theologian
+   add_trait = elusive_shadow
+   add_trait = midas_touched
+   add_trait = brilliant_strategist
+   add_trait = grey_eminence
+   add_trait = falconer
+   add_trait = hellenic_leader
+   add_trait = quick
+   add_trait = genius
+   add_trait = fair
+   add_trait = strong
+   add_trait = robust
+   add_trait = seducer
+   add_trait = mystic
+   add_trait = patient
+   add_trait = wroth
+   add_trait = lustful
+   add_trait = ambitious
+   add_trait = brave
+   add_trait = cruel
+   add_trait = cynical
+   add_trait = deceitful
+   add_trait = erudite
+   add_trait = just
+   add_trait = zealous
+   add_trait = valhalla_bound
+   add_trait = varangian
+   add_trait = gladiator
+   add_trait = holy_warrior
+   add_trait = siege_leader
+   add_trait = master_of_flame
+   add_trait = sapper
+   add_trait = zun_leader
+   add_trait = ares_own
+
+   add_artifact = db_thunderbolt_of_zeus
+   add_artifact = db_aegis_of_zeus
+   set_global_flag = db_aegis_created
+   set_character_flag = db_v2169_canonical_relics_granted
+
+   # v2.2.7.4.7: player Zeus uses the shared db_start_host_received guard; no duplicate recovery host.
+   if = {
+    limit = { ai = no is_landed = yes NOT = { has_character_flag = db_auto_arrived_zeus } NOT = { has_character_flag = db_start_host_received } }
+    spawn_unit = {
+     owner = ROOT
+     province = capital_scope
+     home = capital_scope
+     earmark = db_zeus_player_start_host
+     attrition = 1
+     maintenance_multiplier = 0
+     reinforces = no
+     troops = {
+      light_infantry = { 500 500 }
+      heavy_infantry = { 700 700 }
+      archers = { 350 350 }
+      pikemen = { 250 250 }
+      light_cavalry = { 150 150 }
+      knights = { 50 50 }
+     }
+    }
+    set_character_flag = db_start_host_received
+    log = "[DB START] ZEUS_PLAYER_START_HOST_2000"
+   }
+
+   # Canonical parents used only to make Hera/Poseidon/Hades true siblings in the genealogy.
+   create_character = { name = "Cronus" dynasty = ROOT religion = hellenic_pagan culture = greek age = 70 female = no random_traits = no }
+   new_character = { save_event_target_as = db_cronus }
+   create_character = { name = "Rhea" dynasty = ROOT religion = hellenic_pagan culture = greek age = 65 female = yes random_traits = no }
+   new_character = { save_event_target_as = db_rhea }
+   set_father = event_target:db_cronus
+   set_mother = event_target:db_rhea
+
+   create_character = { name = "Hera" dynasty = ROOT religion = hellenic_pagan culture = greek age = 18 female = yes random_traits = no }
+   new_character = {
+     save_event_target_as = db_hera
+     set_character_flag = db_hera
+     set_character_flag = db_essence_hera
+     create_bloodline = { type = db_hera_bloodline }
+     add_trait = db_olympian_god
+     add_trait = immortal
+     diplomatic_immunity = no 
+     db_grant_divine_council_access_effect = yes
+     set_father = event_target:db_cronus
+     set_mother = event_target:db_rhea
+     add_trait = mastermind_theologian
+     add_trait = elusive_shadow
+     add_trait = midas_touched
+     add_trait = brilliant_strategist
+     add_trait = grey_eminence
+     add_trait = genius add_trait = fair add_trait = strong add_trait = robust add_trait = mystic add_trait = ambitious add_trait = zealous
+     add_artifact = db_scepter_of_hera
+     add_artifact = db_diadem_of_hera
+     set_character_flag = db_v2169_canonical_relics_granted
+     add_spouse = ROOT
+   }
+   event_target:db_hera = { set_character_flag = db_v22745_inheritance_repaired character_event = { id = DBV2.20 } }
+
+   create_character = { name = "Poseidon" dynasty = ROOT religion = hellenic_pagan culture = greek age = 22 female = no random_traits = no }
+   new_character = {
+     set_father = event_target:db_cronus set_mother = event_target:db_rhea
+     diplomatic_immunity = no 
+     add_trait = db_olympian_god add_trait = immortal
+     add_trait = mastermind_theologian
+     add_trait = elusive_shadow
+     add_trait = midas_touched
+     add_trait = brilliant_strategist
+     add_trait = grey_eminence
+     add_trait = genius add_trait = strong add_trait = robust add_trait = brave add_trait = mystic
+     add_artifact = db_trident_of_poseidon
+     add_artifact = db_chariot_of_poseidon
+     db_grant_divine_council_access_effect = yes
+     set_character_flag = db_v2169_canonical_relics_granted
+     set_character_flag = db_essence_poseidon
+     set_character_flag = db_poseidon
+   }
+   create_character = { name = "Hades" dynasty = ROOT religion = hellenic_pagan culture = greek age = 24 female = no random_traits = no }
+   new_character = {
+     set_father = event_target:db_cronus set_mother = event_target:db_rhea
+     diplomatic_immunity = no 
+     add_trait = db_olympian_god add_trait = immortal
+     add_trait = mastermind_theologian
+     add_trait = elusive_shadow
+     add_trait = midas_touched
+     add_trait = brilliant_strategist
+     add_trait = grey_eminence
+     add_trait = genius add_trait = strong add_trait = robust add_trait = ambitious add_trait = mystic
+     add_artifact = db_helm_of_hades
+     add_artifact = db_scepter_of_hades
+     db_grant_divine_council_access_effect = yes
+     set_character_flag = db_v2169_canonical_relics_granted
+     set_character_flag = db_essence_hades
+     set_character_flag = db_hades
+   }
+   create_character = { name = "Demeter" dynasty = ROOT religion = hellenic_pagan culture = greek age = 21 female = yes random_traits = no }
+   new_character = {
+     set_father = event_target:db_cronus set_mother = event_target:db_rhea
+     diplomatic_immunity = no 
+     add_trait = db_olympian_god add_trait = immortal
+     add_trait = mastermind_theologian
+     add_trait = elusive_shadow
+     add_trait = midas_touched
+     add_trait = brilliant_strategist
+     add_trait = grey_eminence
+     add_trait = genius add_trait = fair add_trait = strong add_trait = robust add_trait = mystic add_trait = diligent
+     add_artifact = db_torches_of_demeter
+     add_artifact = db_cornucopia_of_demeter
+     db_grant_divine_council_access_effect = yes
+     set_character_flag = db_v2169_canonical_relics_granted
+     set_character_flag = db_essence_demeter
+     set_character_flag = db_demeter
+   }
+   create_character = { name = "Hestia" dynasty = ROOT religion = hellenic_pagan culture = greek age = 26 female = yes random_traits = no }
+   new_character = {
+     set_father = event_target:db_cronus set_mother = event_target:db_rhea
+     diplomatic_immunity = no 
+     add_trait = db_olympian_god add_trait = immortal
+     add_trait = mastermind_theologian
+     add_trait = elusive_shadow
+     add_trait = midas_touched
+     add_trait = brilliant_strategist
+     add_trait = grey_eminence
+     add_trait = genius add_trait = fair add_trait = strong add_trait = robust add_trait = mystic add_trait = patient add_trait = chaste
+     add_artifact = db_sacred_flame_of_hestia
+     add_artifact = db_veil_of_hestia
+     db_grant_divine_council_access_effect = yes
+     set_character_flag = db_v2169_canonical_relics_granted
+     set_character_flag = db_essence_hestia
+     set_character_flag = db_hestia
+   }
+
+   event_target:db_cronus = { death = { death_reason = death_natural } }
+   event_target:db_rhea = { death = { death_reason = death_natural } }
+  }
+
+  if = {
+   limit = { trait = odin_origin_marker NOT = { has_global_flag = db_odin_founder_exists } }
+   set_name = "Odin"
+   culture = norse
+   set_graphical_culture = norse
+   religion = norse_pagan
+   set_character_flag = db_started_as_odin
+   dynasty = 990212002
+   create_bloodline = { type = db_odin_paternal_bloodline }
+   create_bloodline = { type = db_odin_maternal_bloodline }
+   add_trait = pure_divine_blood_odin
+   diplomatic_immunity = no 
+   set_character_flag = db_essence_odin
+  set_character_flag = odin_blood_founder
+   set_character_flag = db_pantheon_norse
+   set_character_flag = db_odin_line_head
+   set_character_flag = db_first_wife_blood_granted
+   set_global_flag = db_odin_founder_exists
+   set_global_flag = db_odin_arrival_consumed
+   save_global_event_target_as = db_odin_founder
+   save_global_event_target_as = db_odin_line_head_target
+
+   add_trait = mastermind_theologian
+   add_trait = elusive_shadow
+   add_trait = midas_touched
+   add_trait = brilliant_strategist
+   add_trait = grey_eminence
+   add_trait = one_eyed
+   add_trait = poet
+   add_trait = falconer
+   add_trait = quick
+   add_trait = genius
+   add_trait = fair
+   add_trait = strong
+   add_trait = robust
+   add_trait = seducer
+   add_trait = mystic
+   add_trait = patient
+   add_trait = wroth
+   add_trait = lustful
+   add_trait = ambitious
+   add_trait = brave
+   add_trait = cruel
+   add_trait = cynical
+   add_trait = deceitful
+   add_trait = erudite
+   add_trait = just
+   add_trait = zealous
+   add_trait = valhalla_bound
+   add_trait = varangian
+   add_trait = gladiator
+   add_trait = holy_warrior
+   add_trait = siege_leader
+   add_trait = master_of_flame
+   add_trait = sapper
+   add_trait = zun_leader
+   add_artifact = db_gungnir
+
+   # v2.2.7.4.7: player Odin uses the shared db_start_host_received guard; no duplicate recovery host.
+   if = {
+    limit = { ai = no is_landed = yes NOT = { has_character_flag = db_auto_arrived_odin } NOT = { has_character_flag = db_start_host_received } }
+    spawn_unit = {
+     owner = ROOT
+     province = capital_scope
+     home = capital_scope
+     earmark = db_odin_player_start_host
+     attrition = 1
+     maintenance_multiplier = 0
+     reinforces = no
+     troops = {
+      light_infantry = { 650 650 }
+      heavy_infantry = { 800 800 }
+      archers = { 300 300 }
+      light_cavalry = { 150 150 }
+      knights = { 100 100 }
+     }
+    }
+    set_character_flag = db_start_host_received
+    log = "[DB START] ODIN_PLAYER_START_HOST_2000"
+   }
+
+   create_character = { name = "Frigg" dynasty = none religion = norse_pagan culture = norse age = 18 female = yes random_traits = no }
+   new_character = {
+     save_event_target_as = db_frigg
+     set_character_flag = db_frigg
+     set_character_flag = db_essence_frigg
+     create_bloodline = { type = db_frigg_bloodline }
+     add_trait = db_norse_god
+     add_trait = immortal
+     diplomatic_immunity = no 
+     db_grant_divine_council_access_effect = yes
+     add_trait = mastermind_theologian
+     add_trait = elusive_shadow
+     add_trait = midas_touched
+     add_trait = brilliant_strategist
+     add_trait = grey_eminence
+     add_trait = genius add_trait = fair add_trait = strong add_trait = robust add_trait = mystic add_trait = patient add_trait = zealous
+     add_artifact = db_distaff_of_frigg
+     add_artifact = db_keys_of_fensalir
+     set_character_flag = db_v2169_canonical_relics_granted
+     add_spouse = ROOT
+   }
+   event_target:db_frigg = { set_character_flag = db_v22745_inheritance_repaired character_event = { id = DBV2.20 } }
+  }
+
+  remove_trait = zeus_origin_marker
+  remove_trait = odin_origin_marker
+  set_character_flag = db_v2_initialized
+  character_event = { id = DBV2.10 }
+  character_event = { id = DBV2.20 }
+  character_event = { id = DBV2.30 }
+  character_event = { id = DBV2.1145 days = 1 }
+  character_event = { id = DBV2.1241 days = 1 } # v2.2.7.4.7: fast shared start-host check; monthly recovery remains the fallback
+  character_event = { id = DBV2.900 days = 3650 } # v2.1.6.5: awaken ten years after the first god
+  character_event = { id = DBV2.511 days = 5475 } # v2.1.6.8: Age of Heroes may begin no earlier than 15 years after first divine arrival
+ }
+}
+
+# Put the Sickle in mortal hands once per campaign rather than in a god's inventory.
+character_event = {
+ id = DBV2.900 hide_window = yes is_triggered_only = yes
+ trigger = { NOT = { has_global_flag = db_sickle_legend_awakened } }
+ immediate = {
+  set_global_flag = db_sickle_legend_awakened
+  set_global_flag = db_order_sickle_awakened
+  narrative_event = { id = DBV2.690 }
+  # Bootstrap the Order immediately when it becomes active.
+  character_event = { id = DBH.1 days = 1 }
+  any_character = {
+   limit = { is_alive = yes db_is_true_god_trigger = yes NOT = { has_character_flag = db_sickle_legend_personally_warned } }
+   set_character_flag = db_sickle_legend_personally_warned
+   character_event = { id = DBV2.696 days = 1 }
+  }
+ }
+}
+
+
+# v2.1.2 HOTFIX3 - one-time name normalization for existing saves.
+character_event = {
+ id = DBV2.960 hide_window = yes is_triggered_only = yes
+ trigger = {
+  OR = { has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder }
+  NOT = { has_character_flag = db_ru_divine_names_migrated }
+ }
+ immediate = {
+  if = {
+   limit = { has_character_flag = zeus_blood_founder }
+   set_name = "Zeus"
+   father_even_if_dead = { set_name = "Cronus" }
+   mother_even_if_dead = { set_name = "Rhea" }
+   any_spouse = {
+    limit = { trait = pure_divine_blood_zeus is_female = yes }
+    set_name = "Hera"
+    set_character_flag = db_hera
+   }
+   any_sibling_even_if_dead = {
+    if = { limit = { has_character_flag = db_poseidon } set_name = "Poseidon" }
+    if = { limit = { has_character_flag = db_hades } set_name = "Hades" }
+   }
+  }
+  if = {
+   limit = { has_character_flag = odin_blood_founder }
+   set_name = "Odin"
+   any_spouse = {
+    limit = { trait = pure_divine_blood_odin is_female = yes }
+    set_name = "Frigg"
+    set_character_flag = db_frigg
+   }
+  }
+  set_character_flag = db_ru_divine_names_migrated
+ }
+}
+
+
+# v2.1.2 HOTFIX4 family expansion/education migration for existing saves.
+character_event = {
+ id = DBV2.970 hide_window = yes is_triggered_only = yes
+ trigger = {
+  OR = { has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder }
+  NOT = { has_character_flag = db_hf4_family_upgrade_done }
+ }
+ immediate = {
+  if = {
+   limit = { has_character_flag = zeus_blood_founder }
+   father_even_if_dead = { save_event_target_as = db_hf4_cronus }
+   mother_even_if_dead = { save_event_target_as = db_hf4_rhea }
+   any_spouse = {
+    limit = { has_character_flag = db_hera }
+    db_grant_divine_council_access_effect = yes
+    add_trait = mastermind_theologian add_trait = elusive_shadow add_trait = midas_touched add_trait = brilliant_strategist add_trait = grey_eminence
+   }
+   any_sibling_even_if_dead = {
+    if = { limit = { has_character_flag = db_poseidon } add_trait = mastermind_theologian add_trait = elusive_shadow add_trait = midas_touched add_trait = brilliant_strategist add_trait = grey_eminence }
+    if = { limit = { has_character_flag = db_hades } add_trait = mastermind_theologian add_trait = elusive_shadow add_trait = midas_touched add_trait = brilliant_strategist add_trait = grey_eminence }
+    if = { limit = { has_character_flag = db_demeter } add_trait = mastermind_theologian add_trait = elusive_shadow add_trait = midas_touched add_trait = brilliant_strategist add_trait = grey_eminence }
+    if = { limit = { has_character_flag = db_hestia } add_trait = mastermind_theologian add_trait = elusive_shadow add_trait = midas_touched add_trait = brilliant_strategist add_trait = grey_eminence }
+   }
+   if = {
+    limit = { NOT = { any_sibling_even_if_dead = { has_character_flag = db_demeter } } }
+    create_character = { name = "Demeter" dynasty = ROOT religion = hellenic_pagan culture = greek age = 21 female = yes random_traits = no }
+    new_character = {
+     set_father = event_target:db_hf4_cronus set_mother = event_target:db_hf4_rhea
+     diplomatic_immunity = no 
+     add_trait = db_olympian_god add_trait = immortal
+     add_trait = mastermind_theologian add_trait = elusive_shadow add_trait = midas_touched add_trait = brilliant_strategist add_trait = grey_eminence
+     add_trait = genius add_trait = fair add_trait = strong add_trait = robust add_trait = mystic add_trait = diligent
+     add_artifact = db_torches_of_demeter
+     add_artifact = db_cornucopia_of_demeter
+     db_grant_divine_council_access_effect = yes
+     set_character_flag = db_v2169_canonical_relics_granted
+     set_character_flag = db_essence_demeter
+     set_character_flag = db_demeter
+    }
+   }
+   if = {
+    limit = { NOT = { any_sibling_even_if_dead = { has_character_flag = db_hestia } } }
+    create_character = { name = "Hestia" dynasty = ROOT religion = hellenic_pagan culture = greek age = 26 female = yes random_traits = no }
+    new_character = {
+     set_father = event_target:db_hf4_cronus set_mother = event_target:db_hf4_rhea
+     diplomatic_immunity = no 
+     add_trait = db_olympian_god add_trait = immortal
+     add_trait = mastermind_theologian add_trait = elusive_shadow add_trait = midas_touched add_trait = brilliant_strategist add_trait = grey_eminence
+     add_trait = genius add_trait = fair add_trait = strong add_trait = robust add_trait = mystic add_trait = patient add_trait = chaste
+     add_artifact = db_sacred_flame_of_hestia
+     add_artifact = db_veil_of_hestia
+     db_grant_divine_council_access_effect = yes
+     set_character_flag = db_v2169_canonical_relics_granted
+     set_character_flag = db_essence_hestia
+     set_character_flag = db_hestia
+    }
+   }
+  }
+  if = {
+   limit = { has_character_flag = odin_blood_founder }
+   any_spouse = {
+    limit = { has_character_flag = db_frigg }
+    db_grant_divine_council_access_effect = yes
+    add_trait = mastermind_theologian add_trait = elusive_shadow add_trait = midas_touched add_trait = brilliant_strategist add_trait = grey_eminence
+   }
+  }
+  set_character_flag = db_hf4_family_upgrade_done
+ }
+}

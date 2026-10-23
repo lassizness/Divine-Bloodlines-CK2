@@ -1,0 +1,63 @@
+# Divine Bloodlines v2.1 - P/M components are transferred manually on birth.
+# This intentionally avoids CK2 marriage/concubine bloodline overrides: P is copied only from the biological father; M only from the biological mother.
+# Bastardy and marriage type do not alter the genetic rule.
+
+db_zeus_paternal_bloodline = {
+    inheritance = patrilineal
+    matrilineal_override = no
+    allow_bastards = yes
+    flags = { db_zeus_paternal db_divine_bloodline }
+    picture = GFX_db_blood_zeus_p
+}
+
+db_zeus_maternal_bloodline = {
+    inheritance = matrilineal
+    matrilineal_override = no
+    allow_bastards = yes
+    flags = { db_zeus_maternal db_divine_bloodline }
+    picture = GFX_db_blood_zeus_m
+}
+
+db_odin_paternal_bloodline = {
+    inheritance = patrilineal
+    matrilineal_override = no
+    allow_bastards = yes
+    flags = { db_odin_paternal db_divine_bloodline }
+    picture = GFX_db_blood_odin_p
+}
+
+db_odin_maternal_bloodline = {
+    inheritance = matrilineal
+    matrilineal_override = no
+    allow_bastards = yes
+    flags = { db_odin_maternal db_divine_bloodline }
+    picture = GFX_db_blood_odin_m
+}
+
+
+# v2.2.7.4.8: independent canonical spouse genealogies.
+# These are genealogical facts only; visible blood strength is still resolved by DBV2.1290.
+db_hera_bloodline = {
+    inheritance = all_descendants
+    matrilineal_override = yes
+    allow_bastards = yes
+    flags = { db_hera_bloodline db_divine_bloodline }
+    picture = GFX_db_blood_zeus_m
+}
+
+db_frigg_bloodline = {
+    inheritance = all_descendants
+    matrilineal_override = yes
+    allow_bastards = yes
+    flags = { db_frigg_bloodline db_divine_bloodline }
+    picture = GFX_db_blood_odin_m
+}
+
+# Founded only by the first character who actually kills a true god with Cronus' Sickle.
+db_godslayer_bloodline = {
+    inheritance = all_descendants
+    matrilineal_override = yes
+    allow_bastards = yes
+    flags = { db_godslayer_bloodline db_anti_divine_bloodline }
+    picture = GFX_db_blood_godslayer
+}

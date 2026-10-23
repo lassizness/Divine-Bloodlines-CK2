@@ -1,0 +1,257 @@
+# Divine Bloodlines v2.1.6.8 - lethal duel result guard + Sickle two-stage resolution.
+# Vanilla Holy Fury effect with victim-aware guards on every lethal branch.
+# Godslayer blood may still kill an intact adult full god; severed gods remain mortal.
+
+send_duel_result_event_effect = {
+	random_list = {
+        18 = {
+            trigger = {
+                has_artifact = db_sickle_of_cronus
+                NOT = { db_has_godslayer_blood_trigger = yes }
+                event_target:combatant_2 = { db_is_death_guarded_true_god_trigger = yes }
+                NOT = { has_character_flag = mock_duel }
+                duel_result_score_high_group_trigger = yes
+            }
+            additive_modifier = { value = 35 duel_result_score_high_group_trigger = yes }
+            additive_modifier = { value = 55 duel_result_score_the_best_trigger = yes }
+            additive_modifier = { value = -15 duel_result_score_low_group_trigger = yes }
+            character_event = { id = DBV2.1111 }
+        }
+
+        18 = {
+            trigger = {
+                has_artifact = db_sickle_of_cronus
+                event_target:combatant_2 = { db_is_true_god_trigger = yes trait = db_severed_immortality }
+                NOT = { has_character_flag = mock_duel }
+                duel_result_score_high_group_trigger = yes
+            }
+            additive_modifier = { value = 35 duel_result_score_high_group_trigger = yes }
+            additive_modifier = { value = 55 duel_result_score_the_best_trigger = yes }
+            set_winner_flags_and_save_opponent_effect = yes
+            event_target:combatant_2 = { save_event_target_as = db_power_target }
+            character_event = { id = DBV2.640 } # Sickle finishing blow
+            apply_generic_duel_victory_effect = yes
+            clean_up_after_duel_effect = yes
+        }
+
+		5 = {
+			trigger = {
+				NAND = { has_artifact = db_sickle_of_cronus NOT = { db_has_godslayer_blood_trigger = yes } event_target:combatant_2 = { db_is_true_god_trigger = yes } }
+				db_duel_lethal_outcome_allowed_trigger = yes
+				NOR = {
+					has_character_flag = mock_duel
+					has_character_flag = is_legendary_duel
+					has_character_flag = claim_duel@event_target:combatant_2
+				}
+				OR = {
+					has_character_flag = is_battlefield_duel
+					is_member_of_any_warrior_lodge_trigger = yes
+					has_focus = focus_war
+					has_character_flag = flag_duel_no_draws
+					event_target:combatant_2 = { has_character_flag = flag_duel_no_draws }
+				}
+			}
+			additive_modifier = { value = 1 duel_result_score_decent_trigger = yes }
+			additive_modifier = { value = 1 is_the_best_duelist_trigger = yes event_target:combatant_2 = { is_the_best_duelist_trigger = yes } }
+			additive_modifier = { value = 5 is_the_worst_duelist_trigger = yes event_target:combatant_2 = { is_the_worst_duelist_trigger = yes } }
+			if = { limit = { is_the_best_duelist_trigger = yes event_target:combatant_2 = { is_the_best_duelist_trigger = yes } } set_character_flag = elegant_double_KO event_target:combatant_2 = { set_character_flag = elegant_double_KO } }
+			if = { limit = { is_the_worst_duelist_trigger = yes event_target:combatant_2 = { is_the_worst_duelist_trigger = yes } } set_character_flag = clumsy_double_KO event_target:combatant_2 = { set_character_flag = clumsy_double_KO } }
+			set_character_flag = someone_died
+			event_target:combatant_2 = { set_character_flag = someone_died }
+			set_character_flag = actually_injured
+			set_character_flag = injury_kills
+			event_target:combatant_2 = { set_character_flag = actually_injured set_character_flag = injury_kills }
+			character_event = { id = HFP.10101 }
+			event_target:combatant_2 = { character_event = { id = HFP.10102 days = 1 } }
+		}
+		5 = {
+			trigger = {
+				OR = { NOT = { db_is_death_guarded_true_god_trigger = yes } event_target:combatant_2 = { db_has_godslayer_blood_trigger = yes } }
+				NOR = { has_character_flag = mock_duel has_character_flag = is_legendary_duel }
+				OR = {
+					has_character_flag = claim_duel@event_target:combatant_2
+					has_character_flag = is_battlefield_duel
+					is_member_of_any_warrior_lodge_trigger = yes
+					has_focus = focus_war
+					has_character_flag = deadly_duel@event_target:combatant_2
+					has_character_flag = flag_duel_no_draws
+					event_target:combatant_2 = { has_character_flag = flag_duel_no_draws }
+				}
+			}
+			additive_modifier = { value = 5 duel_result_score_low_group_trigger = yes }
+			additive_modifier = { value = 10 duel_result_score_the_worst_trigger = yes }
+			additive_modifier = { value = 20 is_bad_duelist_trigger = yes }
+			additive_modifier = { value = 30 is_terrible_duelist_trigger = yes }
+			additive_modifier = { value = 40 is_the_worst_duelist_trigger = yes }
+			additive_modifier = { value = 30 has_character_flag = defender_using_poison@event_target:combatant_1 }
+			additive_modifier = { value = -25 has_character_flag = poison_can_fail_against@event_target:combatant_1 }
+			additive_modifier = { value = 30 event_target:dueling_weapon_2 = { has_artifact_flag = gun } event_target:dueling_weapon_1 = { NOT = { has_artifact_flag = gun } } }
+			if = { limit = { has_character_flag = is_battlefield_duel } log = "BATTLE EVENTS: [combatant_1.GetBestName] should have died, but gets to offer [combatant_1.GetHerHim]self up as prisoner, to [combatant_2.GetBestName] instead." character_event = { id = HFP.11042 } }
+			else = { set_character_flag = someone_died set_character_flag = actually_injured set_character_flag = injury_kills event_target:combatant_2 = { set_character_flag = someone_died character_event = { id = HFP.10103 days = 1 } } }
+		}
+		5 = {
+			trigger = {
+				NAND = { has_artifact = db_sickle_of_cronus NOT = { db_has_godslayer_blood_trigger = yes } event_target:combatant_2 = { db_is_true_god_trigger = yes } }
+				OR = { event_target:combatant_2 = { NOT = { db_is_death_guarded_true_god_trigger = yes } } db_has_godslayer_blood_trigger = yes }
+				NOR = { has_character_flag = mock_duel has_character_flag = is_legendary_duel }
+				OR = {
+					has_character_flag = claim_duel@event_target:combatant_2
+					has_character_flag = is_battlefield_duel
+					is_member_of_any_warrior_lodge_trigger = yes
+					has_focus = focus_war
+					has_character_flag = deadly_duel@event_target:combatant_2
+					has_character_flag = flag_duel_no_draws
+					event_target:combatant_2 = { has_character_flag = flag_duel_no_draws }
+				}
+			}
+			additive_modifier = { value = 5 duel_result_score_high_group_trigger = yes }
+			additive_modifier = { value = 10 duel_result_score_the_best_trigger = yes }
+			additive_modifier = { value = 20 event_target:combatant_2 = { is_bad_duelist_trigger = yes } }
+			additive_modifier = { value = 30 event_target:combatant_2 = { is_terrible_duelist_trigger = yes } }
+			additive_modifier = { value = 40 event_target:combatant_2 = { is_the_worst_duelist_trigger = yes } }
+			additive_modifier = { value = 30 has_character_flag = attacker_using_poison@event_target:combatant_2 }
+			additive_modifier = { value = -25 has_character_flag = poison_can_fail_against@event_target:combatant_2 }
+			additive_modifier = { value = 30 event_target:dueling_weapon_1 = { has_artifact_flag = gun } event_target:dueling_weapon_2 = { NOT = { has_artifact_flag = gun } } }
+			set_character_flag = someone_died
+			event_target:combatant_2 = { set_character_flag = someone_died set_character_flag = actually_injured set_character_flag = injury_kills }
+			character_event = { id = HFP.10103 }
+		}
+		10 = {
+			trigger = { NOR = { has_character_flag = is_legendary_duel has_character_flag = claim_duel@event_target:combatant_2 has_character_flag = flag_duel_no_draws event_target:combatant_2 = { has_character_flag = flag_duel_no_draws } } }
+			additive_modifier = { value = 40 duel_result_score_good_trigger = yes }
+			additive_modifier = { value = 60 duel_result_score_great_trigger = yes }
+			additive_modifier = { value = 80 duel_result_score_fantastic_trigger = yes }
+			additive_modifier = { value = 100 duel_result_score_the_best_trigger = yes }
+			additive_modifier = { value = 60 duel_result_score_high_group_trigger = yes }
+			additive_modifier = { value = 20 duelist_skill_is_high_group_trigger = yes }
+			additive_modifier = { value = 20 has_character_flag = mock_duel any_owned_bloodline = { has_bloodline_flag = bloodline_legendary_warrior bloodline_is_active_for = PREV } }
+			event_target:combatant_2 = {
+				random_list = {
+					10 = { set_character_flag = actually_injured random = { chance = 65 set_character_flag = severely_injured additive_modifier = { value = 25 has_character_flag = mock_duel } } additive_modifier = { value = 90 event_target:combatant_1 = { duel_result_score_high_group_trigger = yes } } additive_modifier = { value = 10 event_target:combatant_1 = { is_great_duelist_trigger = yes } } additive_modifier = { value = 20 event_target:combatant_1 = { is_fantastic_duelist_trigger = yes } } additive_modifier = { value = 30 event_target:combatant_1 = { is_the_best_duelist_trigger = yes } } mult_modifier = { factor = 10 is_rival = ROOT } mult_modifier = { factor = 0.01 has_character_flag = mock_duel } }
+					40 = { set_character_flag = mildly_injured additive_modifier = { event_target:combatant_1 = { duel_result_score_low_group_trigger = yes } value = 360 } additive_modifier = { event_target:combatant_1 = { is_the_worst_duelist_trigger = yes } value = 120 } additive_modifier = { event_target:combatant_1 = { is_terrible_duelist_trigger = yes } value = 80 } additive_modifier = { event_target:combatant_1 = { is_bad_duelist_trigger = yes } value = 40 } }
+				}
+			}
+			if = { limit = { has_character_flag = notify_instigating_hero } clr_character_flag = notify_instigating_hero if = { limit = { has_character_flag = mildly_injured } set_character_flag = notify_mild_injury } else_if = { limit = { has_character_flag = severely_injured } set_character_flag = notify_severely_injured } event_target:hero_instigating_duel = { character_event = { id = HFP.501 days = 7 } } }
+			if = { limit = { has_character_flag = mock_duel } character_event = { id = HFP.10105 } }
+			else = { character_event = { id = HFP.10105 } }
+		}
+		10 = {
+			trigger = { NOR = { has_character_flag = is_legendary_duel has_character_flag = claim_duel@event_target:combatant_2 has_character_flag = flag_duel_no_draws event_target:combatant_2 = { has_character_flag = flag_duel_no_draws } } }
+			additive_modifier = { value = 40 duel_result_score_ok_trigger = yes }
+			additive_modifier = { value = 60 duel_result_score_bad_trigger = yes }
+			additive_modifier = { value = 80 duel_result_score_terrible_trigger = yes }
+			additive_modifier = { value = 100 duel_result_score_the_worst_trigger = yes }
+			additive_modifier = { value = 60 duel_result_score_low_group_trigger = yes }
+			additive_modifier = { value = 20 event_target:combatant_2 = { duelist_skill_is_high_group_trigger = yes } }
+			random_list = {
+				10 = { set_character_flag = actually_injured random = { chance = 65 set_character_flag = severely_injured additive_modifier = { value = 25 has_character_flag = mock_duel } } additive_modifier = { value = 90 duel_result_score_low_group_trigger = yes } additive_modifier = { value = 10 event_target:combatant_2 = { is_great_duelist_trigger = yes } } additive_modifier = { value = 20 event_target:combatant_2 = { is_fantastic_duelist_trigger = yes } } additive_modifier = { value = 30 event_target:combatant_2 = { is_the_best_duelist_trigger = yes } } mult_modifier = { factor = 10 is_rival = event_target:combatant_2 } mult_modifier = { factor = 0.01 has_character_flag = mock_duel } }
+				40 = { set_character_flag = mildly_injured additive_modifier = { value = 360 duel_result_score_high_group_trigger = yes } additive_modifier = { value = 120 event_target:combatant_2 = { is_the_worst_duelist_trigger = yes } } additive_modifier = { value = 80 event_target:combatant_2 = { is_terrible_duelist_trigger = yes } } additive_modifier = { value = 40 event_target:combatant_2 = { is_bad_duelist_trigger = yes } } }
+			}
+			if = { limit = { has_character_flag = notify_instigating_hero } clr_character_flag = notify_instigating_hero if = { limit = { has_character_flag = mildly_injured } set_character_flag = notify_mild_injury } else_if = { limit = { has_character_flag = severely_injured } set_character_flag = notify_severely_injured } event_target:hero_instigating_duel = { character_event = { id = HFP.502 days = 7 } } }
+			event_target:combatant_2 = { character_event = { id = HFP.10105 } }
+		}
+		10 = {
+			trigger = { OR = { event_target:combatant_2 = { OR = { trait = craven trait = weak } } any_owned_bloodline = { has_bloodline_flag = bloodline_legendary_warrior bloodline_is_active_for = PREV } } }
+			additive_modifier = { value = 10 is_the_best_duelist_trigger = yes }
+			additive_modifier = { value = 10 duelist_skill_is_high_group_trigger = yes event_target:combatant_2 = { duelist_skill_is_low_group_trigger = yes } }
+			additive_modifier = { value = 10 duel_result_score_high_group_trigger = yes }
+			additive_modifier = { value = 10 duel_result_score_the_best_trigger = yes }
+			if = { limit = { has_character_flag = notify_instigating_hero } clr_character_flag = notify_instigating_hero if = { limit = { has_character_flag = mildly_injured } set_character_flag = notify_mild_injury } else_if = { limit = { has_character_flag = severely_injured } set_character_flag = notify_severely_injured } event_target:hero_instigating_duel = { character_event = { id = HFP.503 days = 7 } } }
+			if = { limit = { has_dlc = "Holy Fury" has_character_flag = is_legendary_duel } character_event = { id = HF.12202 } event_target:combatant_2 = { character_event = { id = HF.12203 days = 1 } } }
+			else = { if = { limit = { has_character_flag = claim_duel@event_target:combatant_2 } set_character_flag = use_tribal_victory_pic } character_event = { id = HFP.10107 } event_target:combatant_2 = { character_event = { id = HFP.10108 days = 1 } } }
+		}
+		10 = {
+			trigger = { OR = { trait = craven trait = weak } NOT = { has_character_flag = is_legendary_duel } }
+			additive_modifier = { value = 10 is_the_worst_duelist_trigger = yes }
+			additive_modifier = { value = 10 duelist_skill_is_low_group_trigger = yes event_target:combatant_2 = { duelist_skill_is_high_group_trigger = yes } }
+			additive_modifier = { value = 10 duel_result_score_low_group_trigger = yes }
+			additive_modifier = { value = 10 duel_result_score_the_worst_trigger = yes }
+			if = { limit = { has_character_flag = notify_instigating_hero } clr_character_flag = notify_instigating_hero if = { limit = { has_character_flag = mildly_injured } set_character_flag = notify_mild_injury } else_if = { limit = { has_character_flag = severely_injured } set_character_flag = notify_severely_injured } event_target:hero_instigating_duel = { character_event = { id = HFP.504 days = 7 } } }
+			event_target:combatant_2 = { if = { limit = { event_target:combatant_1 = { has_character_flag = claim_duel@event_target:combatant_2 } } set_character_flag = use_tribal_victory_pic } character_event = { id = HFP.10107 days = 1 } }
+			character_event = { id = HFP.10108 }
+		}
+		5 = {
+			trigger = { NOR = { has_character_flag = is_legendary_duel has_character_flag = claim_duel@event_target:combatant_2 has_character_flag = flag_duel_no_draws event_target:combatant_2 = { has_character_flag = flag_duel_no_draws } } }
+			additive_modifier = { value = 5 duel_result_score_high_group_trigger = yes }
+			additive_modifier = { value = 5 duel_result_score_decent_trigger = yes }
+			additive_modifier = { value = 5 is_the_best_duelist_trigger = yes event_target:combatant_2 = { is_the_best_duelist_trigger = yes } }
+			additive_modifier = { value = 5 is_the_worst_duelist_trigger = yes event_target:combatant_2 = { is_the_worst_duelist_trigger = yes } }
+			random_list = { 5 = { additive_modifier = { value = 90 duel_result_score_low_group_trigger = yes } mult_modifier = { factor = 10 is_rival = event_target:combatant_2 } mult_modifier = { factor = 0.01 has_character_flag = mock_duel } set_character_flag = actually_injured random = { chance = 65 set_character_flag = severely_injured additive_modifier = { value = 25 has_character_flag = mock_duel } } } 50 = { additive_modifier = { value = 90 duel_result_score_high_group_trigger = yes } set_character_flag = mildly_injured } }
+			event_target:combatant_2 = { random_list = { 20 = { additive_modifier = { value = 90 event_target:combatant_1 = { duel_result_score_high_group_trigger = yes } } mult_modifier = { factor = 10 is_rival = ROOT } mult_modifier = { factor = 0.01 has_character_flag = mock_duel } set_character_flag = actually_injured random = { chance = 65 set_character_flag = severely_injured additive_modifier = { value = 25 has_character_flag = mock_duel } } } 10 = { set_character_flag = mildly_injured additive_modifier = { value = 90 event_target:combatant_1 = { duel_result_score_low_group_trigger = yes } } } } }
+			if = { limit = { has_character_flag = notify_instigating_hero } clr_character_flag = notify_instigating_hero if = { limit = { has_character_flag = mildly_injured } set_character_flag = notify_mild_injury } else_if = { limit = { has_character_flag = severely_injured } set_character_flag = notify_severely_injured } event_target:hero_instigating_duel = { character_event = { id = HFP.505 days = 7 } } }
+			character_event = { id = HFP.10109 }
+		}
+		5 = {
+			trigger = { NOR = { has_character_flag = is_legendary_duel has_character_flag = claim_duel@event_target:combatant_2 has_character_flag = flag_duel_no_draws event_target:combatant_2 = { has_character_flag = flag_duel_no_draws } } }
+			additive_modifier = { value = 5 duel_result_score_low_group_trigger = yes }
+			additive_modifier = { value = 5 duel_result_score_decent_trigger = yes }
+			additive_modifier = { value = 5 is_the_best_duelist_trigger = yes event_target:combatant_2 = { is_the_best_duelist_trigger = yes } }
+			additive_modifier = { value = 5 is_the_worst_duelist_trigger = yes event_target:combatant_2 = { is_the_worst_duelist_trigger = yes } }
+			random_list = { 10 = { additive_modifier = { value = 90 OR = { has_character_flag = is_rival_fight has_character_flag = fight_could_spark_rivalry } } mult_modifier = { factor = 10 is_rival = event_target:combatant_2 } mult_modifier = { factor = 0.01 has_character_flag = mock_duel } set_character_flag = actually_injured event_target:combatant_2 = { set_character_flag = actually_injured } random = { chance = 65 set_character_flag = severely_injured event_target:combatant_2 = { set_character_flag = severely_injured } additive_modifier = { value = 25 has_character_flag = mock_duel } } } 40 = { set_character_flag = mildly_injured event_target:combatant_2 = { set_character_flag = mildly_injured } additive_modifier = { value = 90 OR = { has_character_flag = is_friendly_fight has_character_flag = fight_could_spark_romance } } } }
+			if = { limit = { has_character_flag = notify_instigating_hero } clr_character_flag = notify_instigating_hero if = { limit = { has_character_flag = mildly_injured } set_character_flag = notify_mild_injury } if = { limit = { has_character_flag = severely_injured } set_character_flag = notify_severely_injured } event_target:hero_instigating_duel = { character_event = { id = HFP.506 days = 7 } } }
+			event_target:combatant_2 = { character_event = { id = HFP.10109 days = 1 } }
+		}
+		5 = {
+			trigger = { OR = { event_target:combatant_2 = { NOT = { db_is_death_guarded_true_god_trigger = yes } } db_has_godslayer_blood_trigger = yes } has_character_flag = is_battlefield_duel is_landed = yes event_target:combatant_2 = { ai = yes } NOR = { has_character_flag = mock_duel has_character_flag = is_legendary_duel has_character_flag = claim_duel@event_target:combatant_2 } OR = { is_member_of_any_warrior_lodge_trigger = yes has_focus = focus_war has_character_flag = flag_duel_no_draws event_target:combatant_2 = { has_character_flag = flag_duel_no_draws } } }
+			additive_modifier = { value = 5 duel_result_score_high_group_trigger = yes }
+			additive_modifier = { value = 10 duel_result_score_the_best_trigger = yes }
+			additive_modifier = { value = 20 event_target:combatant_2 = { is_bad_duelist_trigger = yes } }
+			additive_modifier = { value = 30 event_target:combatant_2 = { is_terrible_duelist_trigger = yes } }
+			additive_modifier = { value = 40 event_target:combatant_2 = { is_the_worst_duelist_trigger = yes } }
+			event_target:combatant_2 = { character_event = { id = HFP.11045 } }
+		}
+		10 = {
+			trigger = { OR = { NOT = { db_is_death_guarded_true_god_trigger = yes } event_target:combatant_2 = { db_has_godslayer_blood_trigger = yes } } has_dlc = "Holy Fury" is_member_of_any_warrior_lodge_trigger = yes has_character_flag = is_legendary_duel NOR = { has_character_flag = claim_duel@event_target:combatant_2 has_character_flag = mock_duel has_character_flag = is_battlefield_duel has_character_flag = flag_duel_no_draws event_target:combatant_2 = { has_character_flag = flag_duel_no_draws } } }
+			additive_modifier = { value = 50 duel_result_score_low_group_trigger = yes }
+			additive_modifier = { value = 60 duel_result_score_the_worst_trigger = yes }
+			additive_modifier = { value = 40 is_bad_duelist_trigger = yes }
+			additive_modifier = { value = 60 is_terrible_duelist_trigger = yes }
+			additive_modifier = { value = 80 is_the_worst_duelist_trigger = yes }
+			additive_modifier = { value = 20 event_target:combatant_2 = { duelist_skill_compared_to_prev_high_group_trigger = yes } }
+			additive_modifier = { value = 40 event_target:combatant_2 = { is_the_best_dueler_compared_to_prev_trigger = yes } }
+			additive_modifier = { value = 30 event_target:combatant_2 = { is_fantastic_dueler_compared_to_prev_trigger = yes } }
+			additive_modifier = { value = 20 event_target:combatant_2 = { is_great_dueler_compared_to_prev_trigger = yes } }
+			additive_modifier = { value = 10 event_target:combatant_2 = { is_good_dueler_compared_to_prev_trigger = yes } }
+			set_character_flag = someone_died set_character_flag = actually_injured set_character_flag = injury_kills
+			if = { limit = { event_target:combatant_2 = { is_alive = no } } clean_up_after_duel_effect = yes clr_XYZ_desc_flag_effect = yes }
+			else = { event_target:combatant_2 = { set_character_flag = someone_died character_event = { id = HF.12200 days = 1 } } }
+		}
+		10 = {
+			trigger = { NAND = { has_artifact = db_sickle_of_cronus NOT = { db_has_godslayer_blood_trigger = yes } event_target:combatant_2 = { db_is_true_god_trigger = yes } }
+				OR = { event_target:combatant_2 = { NOT = { db_is_death_guarded_true_god_trigger = yes } } db_has_godslayer_blood_trigger = yes } has_dlc = "Holy Fury" is_member_of_any_warrior_lodge_trigger = yes has_character_flag = is_legendary_duel NOR = { has_character_flag = claim_duel@event_target:combatant_2 has_character_flag = mock_duel has_character_flag = is_battlefield_duel has_character_flag = flag_duel_no_draws event_target:combatant_2 = { has_character_flag = flag_duel_no_draws } } }
+			additive_modifier = { value = 50 duel_result_score_high_group_trigger = yes }
+			additive_modifier = { value = 60 duel_result_score_the_best_trigger = yes }
+			additive_modifier = { value = 40 event_target:combatant_2 = { is_bad_duelist_trigger = yes } }
+			additive_modifier = { value = 60 event_target:combatant_2 = { is_terrible_duelist_trigger = yes } }
+			additive_modifier = { value = 80 event_target:combatant_2 = { is_the_worst_duelist_trigger = yes } }
+			additive_modifier = { value = 20 event_target:combatant_2 = { duelist_skill_compared_to_prev_low_group_trigger = yes } }
+			additive_modifier = { value = 40 event_target:combatant_2 = { is_the_worst_dueler_compared_to_prev_trigger = yes } }
+			additive_modifier = { value = 30 event_target:combatant_2 = { is_terrible_dueler_compared_to_prev_trigger = yes } }
+			additive_modifier = { value = 20 event_target:combatant_2 = { is_bad_dueler_compared_to_prev_trigger = yes } }
+			additive_modifier = { value = 10 event_target:combatant_2 = { is_ok_dueler_compared_to_prev_trigger = yes } }
+			event_target:combatant_2 = { set_character_flag = someone_died set_character_flag = actually_injured set_character_flag = injury_kills }
+			if = { limit = { event_target:combatant_2 = { is_alive = no } } clean_up_after_duel_effect = yes clr_XYZ_desc_flag_effect = yes }
+			else = { set_character_flag = someone_died character_event = { id = HF.12200 } }
+		}
+		1 = {
+			trigger = {
+				NAND = { has_artifact = db_sickle_of_cronus NOT = { db_has_godslayer_blood_trigger = yes } event_target:combatant_2 = { db_is_true_god_trigger = yes } }
+				db_duel_lethal_outcome_allowed_trigger = yes
+				has_dlc = "Holy Fury"
+				is_member_of_any_warrior_lodge_trigger = yes
+				has_character_flag = is_legendary_duel
+				NOR = { has_character_flag = WL_desc_X has_character_flag = WL_desc_Y has_character_flag = WL_desc_Z has_character_flag = claim_duel@event_target:combatant_2 has_character_flag = mock_duel has_character_flag = is_battlefield_duel has_character_flag = flag_duel_no_draws event_target:combatant_2 = { has_character_flag = flag_duel_no_draws } }
+			}
+			additive_modifier = { value = 1 duel_result_score_decent_trigger = yes }
+			additive_modifier = { value = 1 is_the_best_duelist_trigger = yes event_target:combatant_2 = { is_the_best_duelist_trigger = yes } }
+			additive_modifier = { value = 5 is_the_worst_duelist_trigger = yes event_target:combatant_2 = { is_the_worst_duelist_trigger = yes } }
+			if = { limit = { is_the_best_duelist_trigger = yes event_target:combatant_2 = { is_the_best_duelist_trigger = yes } } set_character_flag = elegant_double_KO event_target:combatant_2 = { set_character_flag = elegant_double_KO } }
+			if = { limit = { is_the_worst_duelist_trigger = yes event_target:combatant_2 = { is_the_worst_duelist_trigger = yes } } set_character_flag = clumsy_double_KO event_target:combatant_2 = { set_character_flag = clumsy_double_KO } }
+			set_character_flag = someone_died event_target:combatant_2 = { set_character_flag = someone_died }
+			set_character_flag = actually_injured set_character_flag = injury_kills
+			event_target:combatant_2 = { set_character_flag = actually_injured set_character_flag = injury_kills }
+			character_event = { id = HF.12204 }
+			event_target:combatant_2 = { character_event = { id = HF.12205 days = 1 } }
+		}
+	}
+}

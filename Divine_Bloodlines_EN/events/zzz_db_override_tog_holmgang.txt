@@ -1,0 +1,60 @@
+namespace = TOG
+
+# Holmgang: protected god is converted from a fatal loss to a wounded loss (or severed by the Sickle).
+character_event = {
+ id = TOG.5014
+ desc = EVTDESC_TOG_5014
+ picture = GFX_evt_bloody_man
+ border = GFX_event_normal_frame_war
+ is_triggered_only = yes
+ hide_from = yes
+ option = {
+  name = EVTOPTA_TOG_5014
+  clr_character_flag = holmgang_challenger
+  clr_character_flag = do_not_disturb
+  FROMFROM = { save_event_target_as = db_direct_duel_killer }
+  if = {
+   limit = { db_direct_duel_death_blocked_trigger = yes }
+   db_survive_forbidden_direct_duel_effect = yes
+   FROMFROM = {
+    clr_character_flag = holmgang_target
+    clr_character_flag = do_not_disturb
+    random_list = { 50 = { character_event = { id = TOG.5020 } } 50 = { character_event = { id = TOG.5022 } } }
+   }
+  }
+  else = {
+   db_mark_authorized_direct_duel_death_effect = yes
+   FROMFROM = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = FROMFROM } } clear_event_target = db_direct_duel_killer
+   FROMFROM = {
+    clr_character_flag = holmgang_target
+    clr_character_flag = do_not_disturb
+    hidden_effect = { random_list = { 50 = { character_event = { id = TOG.5021 } } 50 = { character_event = { id = TOG.5023 } } } }
+   }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+}
+
+character_event = {
+ id = TOG.5029
+ desc = EVTDESC_TOG_5029
+ picture = GFX_evt_bloody_man
+ border = GFX_event_normal_frame_war
+ is_triggered_only = yes
+ option = {
+  name = EVTOPTA_TOG_5014
+  FROM = { save_event_target_as = db_direct_duel_killer }
+  clr_character_flag = holmgang_target
+  clr_character_flag = do_not_disturb
+  if = {
+   limit = { db_direct_duel_death_blocked_trigger = yes }
+   prestige = -200
+   db_survive_forbidden_direct_duel_effect = yes
+  }
+  else = {
+   db_mark_authorized_direct_duel_death_effect = yes
+   FROM = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = FROM } } clear_event_target = db_direct_duel_killer
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+}

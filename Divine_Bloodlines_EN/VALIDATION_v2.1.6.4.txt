@@ -1,0 +1,17 @@
+Divine Bloodlines v2.1.6.4 - static validation
+
+Checks performed on EN and RU builds:
+- Balanced braces in all mod .txt files: PASS
+- DBV2/DBH top-level event IDs: 149 definitions, 149 unique: PASS
+- Duplicate custom event IDs: none
+- Missing DBV2/DBH event references: none
+- DBV2.293 execution guard: present once
+- DBV2.294 prisoner safety net: present once
+- DBV2.295 animal-hunt target scrubber: present once
+- DBV2.296 execution debounce cleanup: present once
+- DBV2.990 passive allure maintenance: restored, present once
+- Adult lethal protection trigger explicitly retains age >= 16
+- EN/RU files changed by v2.1.6.4 are synchronized
+
+Scope note:
+This is static script validation. CK2 itself is not installed in the build environment, so runtime engine behavior still needs an in-game smoke test.

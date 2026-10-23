@@ -1,0 +1,660 @@
+﻿namespace = DBV2
+
+# Exact biological inheritance. CK2 automatic bloodline inheritance is disabled for our four components.
+# P is taken ONLY from father_even_if_dead. M is taken ONLY from mother_even_if_dead.
+# Marriage, concubinage, lover status and bastardy never change this rule.
+character_event = {
+ id = DBV2.11 hide_window = yes is_triggered_only = yes
+ immediate = {
+  # v2.2.7.4.5: blood strength is no longer reconstructed from four competing P/M state machines.
+  # The single resolver derives strength from the biological parents; bloodline objects are genealogy only.
+  character_event = { id = DBV2.1290 }
+  character_event = { id = DBV2.670 days = 1 }
+ }
+}
+
+
+# Recalculate visible blood state. FULL depends ONLY on the child actually owning both required components.
+# A bastard can therefore be FULL if father supplied P and mother supplied M.
+character_event = {
+ id = DBV2.10 hide_window = yes is_triggered_only = yes
+ immediate = {
+  # Founder traits describe inherited blood lines; founder identity itself is stored in character flags.
+  # Descendants are classified only by DBV2.1290 and are never downgraded here.
+  if = {
+   limit = { has_character_flag = zeus_blood_founder }
+   add_trait = pure_divine_blood_zeus
+   remove_trait = pure_divine_blood_odin remove_trait = db_olympian_god remove_trait = db_norse_god remove_trait = db_cross_pantheon_god
+   remove_trait = zeus_demigod_blood remove_trait = odin_demigod_blood remove_trait = db_olympian_demigod_blood remove_trait = db_norse_demigod_blood remove_trait = db_mixed_demigod_blood
+   remove_trait = zeus_faded_blood remove_trait = odin_faded_blood remove_trait = db_olympian_faded_blood remove_trait = db_norse_faded_blood remove_trait = db_mixed_faded_blood
+  }
+  if = {
+   limit = { has_character_flag = odin_blood_founder }
+   add_trait = pure_divine_blood_odin
+   remove_trait = pure_divine_blood_zeus remove_trait = db_olympian_god remove_trait = db_norse_god remove_trait = db_cross_pantheon_god
+   remove_trait = zeus_demigod_blood remove_trait = odin_demigod_blood remove_trait = db_olympian_demigod_blood remove_trait = db_norse_demigod_blood remove_trait = db_mixed_demigod_blood
+   remove_trait = zeus_faded_blood remove_trait = odin_faded_blood remove_trait = db_olympian_faded_blood remove_trait = db_norse_faded_blood remove_trait = db_mixed_faded_blood
+  }
+
+  if = {
+   limit = { db_is_true_god_trigger = yes }
+   if = { limit = { NOT = { has_character_modifier = db_true_god_low_fertility_mod } } add_character_modifier = { name = db_true_god_low_fertility_mod duration = -1 } }
+   remove_character_modifier = db_divine_late_fertility
+   if = { limit = { NOT = { trait = db_severed_immortality } age >= 16 NOT = { trait = immortal } } add_trait = immortal }
+   if = { limit = { NOT = { trait = db_severed_immortality } age >= 16 NOT = { has_character_modifier = db_divine_hostile_ward } } add_character_modifier = { name = db_divine_hostile_ward duration = -1 } }
+   if = { limit = { OR = { trait = db_severed_immortality age < 16 } } remove_character_modifier = db_divine_hostile_ward }
+  }
+  else = { remove_character_modifier = db_true_god_low_fertility_mod remove_character_modifier = db_divine_hostile_ward }
+
+  character_event = { id = DBV2.70 }
+  character_event = { id = DBV2.990 }
+ }
+}
+
+
+# Age stages, divine body and demigod development.
+character_event = {
+ id = DBV2.20 hide_window = yes is_triggered_only = yes
+ trigger = { OR = { trait = pure_divine_blood_zeus trait = pure_divine_blood_odin trait = zeus_demigod_blood trait = odin_demigod_blood trait = db_olympian_god trait = db_norse_god trait = db_cross_pantheon_god trait = db_olympian_demigod_blood trait = db_norse_demigod_blood trait = db_stormrune_blood trait = db_fate_thunder_blood } }
+ immediate = {
+  character_event = { id = DBV2.10 }
+  if = { limit = { db_is_true_god_trigger = yes age >= 16 } db_grant_divine_council_access_effect = yes }
+
+  # FULL gods are deliberately low-fertility (-40%). The late-fertility bonus is reserved for mortal demigods/hybrids.
+  if = {
+   limit = { db_is_true_god_trigger = yes }
+   if = { limit = { NOT = { has_character_modifier = db_true_god_low_fertility_mod } } add_character_modifier = { name = db_true_god_low_fertility_mod duration = -1 } }
+   remove_character_modifier = db_divine_late_fertility
+  }
+  else = {
+   remove_character_modifier = db_true_god_low_fertility_mod
+   if = {
+    limit = { age >= 40 db_is_active_demigod_trigger = yes }
+    if = { limit = { NOT = { has_character_modifier = db_divine_late_fertility } } add_character_modifier = { name = db_divine_late_fertility years = 1000 } }
+   }
+  }
+
+  if = {
+   limit = { OR = { trait = pure_divine_blood_zeus trait = pure_divine_blood_odin trait = db_olympian_god trait = db_norse_god trait = db_cross_pantheon_god } NOT = { trait = db_severed_immortality } }
+   remove_trait = weak remove_trait = frail remove_trait = infirm remove_trait = incapable
+   cure_illness = yes
+   if = { limit = { age >= 16 } add_trait = immortal }
+  }
+
+  remove_character_modifier = db_zeus_age_16 remove_character_modifier = db_zeus_age_50 remove_character_modifier = db_zeus_age_100 remove_character_modifier = db_zeus_age_250 remove_character_modifier = db_zeus_age_500
+  if = {
+   limit = { trait = pure_divine_blood_zeus age >= 16 }
+   if = { limit = { age >= 500 } add_character_modifier = { name = db_zeus_age_500 years = 1000 } }
+   else_if = { limit = { age >= 250 } add_character_modifier = { name = db_zeus_age_250 years = 1000 } }
+   else_if = { limit = { age >= 100 } add_character_modifier = { name = db_zeus_age_100 years = 1000 } }
+   else_if = { limit = { age >= 50 } add_character_modifier = { name = db_zeus_age_50 years = 1000 } }
+   else = { add_character_modifier = { name = db_zeus_age_16 years = 1000 } }
+  }
+
+  remove_character_modifier = db_odin_age_16 remove_character_modifier = db_odin_age_50 remove_character_modifier = db_odin_age_100 remove_character_modifier = db_odin_age_250 remove_character_modifier = db_odin_age_500
+  if = {
+   limit = { trait = pure_divine_blood_odin age >= 16 }
+   if = { limit = { age >= 500 } add_character_modifier = { name = db_odin_age_500 years = 1000 } }
+   else_if = { limit = { age >= 250 } add_character_modifier = { name = db_odin_age_250 years = 1000 } }
+   else_if = { limit = { age >= 100 } add_character_modifier = { name = db_odin_age_100 years = 1000 } }
+   else_if = { limit = { age >= 50 } add_character_modifier = { name = db_odin_age_50 years = 1000 } }
+   else = { add_character_modifier = { name = db_odin_age_16 years = 1000 } }
+  }
+
+  if = {
+   limit = { trait = zeus_demigod_blood age >= 16 NOT = { has_character_flag = db_zeus_aspect_chosen } }
+   add_character_modifier = { name = db_zeus_demigod_16 years = 1000 }
+   random_list = {
+    30 = { add_character_modifier = { name = db_zeus_aspect_heracles years = 1000 } }
+    20 = { add_character_modifier = { name = db_zeus_aspect_athlete years = 1000 } }
+    20 = { add_character_modifier = { name = db_zeus_aspect_ruler years = 1000 } }
+    15 = { add_character_modifier = { name = db_zeus_aspect_trickster years = 1000 } }
+    15 = { add_character_modifier = { name = db_zeus_aspect_sage years = 1000 } }
+   }
+   set_character_flag = db_zeus_aspect_chosen
+  }
+  if = { limit = { trait = zeus_demigod_blood age >= 50 NOT = { has_character_modifier = db_zeus_demigod_50 } } add_character_modifier = { name = db_zeus_demigod_50 years = 1000 } }
+  if = {
+   limit = { trait = zeus_demigod_blood age >= 100 NOT = { has_character_modifier = db_zeus_demigod_100 } }
+   add_character_modifier = { name = db_zeus_demigod_100 years = 1000 }
+   random = { chance = 12 add_character_modifier = { name = db_demigod_refuses_to_fade years = 1000 } }
+  }
+
+  if = {
+   limit = { trait = odin_demigod_blood age >= 16 NOT = { has_character_flag = db_odin_aspect_chosen } }
+   add_character_modifier = { name = db_odin_demigod_16 years = 1000 }
+   random_list = {
+    20 = { add_character_modifier = { name = db_odin_aspect_berserker years = 1000 } }
+    20 = { add_character_modifier = { name = db_odin_aspect_rune_seer years = 1000 } }
+    20 = { add_character_modifier = { name = db_odin_aspect_raven years = 1000 } }
+    20 = { add_character_modifier = { name = db_odin_aspect_skald years = 1000 } }
+    20 = { add_character_modifier = { name = db_odin_aspect_wanderer years = 1000 } }
+   }
+   set_character_flag = db_odin_aspect_chosen
+  }
+  if = { limit = { trait = odin_demigod_blood age >= 50 NOT = { has_character_modifier = db_odin_demigod_50 } } add_character_modifier = { name = db_odin_demigod_50 years = 1000 } }
+  if = {
+   limit = { trait = odin_demigod_blood age >= 100 NOT = { has_character_modifier = db_odin_demigod_100 } }
+   add_character_modifier = { name = db_odin_demigod_100 years = 1000 }
+   random = { chance = 12 add_character_modifier = { name = db_demigod_refuses_to_fade years = 1000 } }
+  }
+ }
+}
+
+# Divine-body maintenance + hostile-action immunity. A mortal without the Sickle must not be able to murder a true god.
+character_event = {
+ id = DBV2.25 hide_window = yes is_triggered_only = yes
+ trigger = { db_is_true_god_trigger = yes }
+ immediate = {
+  if = { limit = { age >= 16 } db_grant_divine_council_access_effect = yes }
+  if = {
+   limit = { NOT = { trait = db_severed_immortality } }
+   if = {
+    limit = { age >= 16 }
+    if = { limit = { NOT = { has_character_modifier = db_divine_hostile_ward } } add_character_modifier = { name = db_divine_hostile_ward duration = -1 } }
+    if = { limit = { prisoner = yes } diplomatic_immunity = yes } else = { diplomatic_immunity = no }
+   }
+   else = { diplomatic_immunity = no }
+   remove_trait = weak remove_trait = frail remove_trait = infirm remove_trait = incapable
+   cure_illness = yes
+   if = { limit = { trait = berserker } remove_trait = berserker }
+   if = { limit = { age >= 16 } add_trait = immortal }
+  }
+  else = { remove_character_modifier = db_divine_hostile_ward diplomatic_immunity = no }
+
+  # v2.1.6.5: landless auto-arrival repair is handled by DBV2.1010 -> DBV2.1060.
+  # No temporary landed titles are created here.
+ }
+}
+
+# Once immortality is severed, the god is mortal again and ordinary hostile actions may target them.
+character_event = {
+ id = DBV2.27 hide_window = yes is_triggered_only = yes
+ trigger = { trait = db_severed_immortality NOT = { has_character_modifier = db_fading_divine_spark } }
+ immediate = {
+  remove_character_modifier = db_divine_hostile_ward
+  diplomatic_immunity = no
+  if = { limit = { is_ill = yes } random = { chance = 20 death = { death_reason = death_natural } } }
+  if = { limit = { age >= 500 } random = { chance = 25 death = { death_reason = death_natural } } }
+  else_if = { limit = { age >= 250 } random = { chance = 15 death = { death_reason = death_natural } } }
+  else_if = { limit = { age >= 100 } random = { chance = 8 death = { death_reason = death_natural } } }
+  else = { random = { chance = 3 death = { death_reason = death_natural } } }
+ }
+}
+
+# Animal portrait synchronization. Never touches culture/graphical culture/DNA.
+# v2.1.5: full Zeus-blood descendants inherit the transformation suite, matching Odin's inherited full-blood powers.
+character_event = {
+ id = DBV2.28 hide_window = yes is_triggered_only = yes
+ trigger = { trait = pure_divine_blood_zeus }
+ immediate = {
+  if = { limit = { has_character_modifier = db_form_swan } add_trait = db_portrait_swan }
+  else_if = { limit = { has_character_modifier = db_form_bull } add_trait = db_portrait_bull }
+  else_if = { limit = { has_character_modifier = db_form_eagle } add_trait = db_portrait_eagle }
+  else_if = { limit = { has_character_modifier = db_form_serpent } add_trait = db_portrait_serpent }
+  else = { remove_trait = db_portrait_swan remove_trait = db_portrait_bull remove_trait = db_portrait_eagle remove_trait = db_portrait_serpent }
+ }
+}
+
+# Divine/demigod women remain capable of conception beyond vanilla mortal age limits.
+# v2.1.5 runs this yearly (not monthly) to avoid explosive immortal population growth.
+# True goddesses are included; faded/latent blood is not.
+character_event = {
+ id = DBV2.80 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_female = yes is_adult = yes age >= 40 is_alive = yes
+  NOT = { is_pregnant = yes } NOT = { trait = celibate } NOT = { trait = eunuch }
+  OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes }
+  OR = {
+   spouse = { is_alive = yes is_adult = yes is_female = no NOT = { trait = celibate } NOT = { trait = eunuch } }
+   any_lover = { is_alive = yes is_adult = yes is_female = no NOT = { trait = celibate } NOT = { trait = eunuch } }
+  }
+ }
+ immediate = {
+  if = {
+   limit = { age < 60 }
+   random = {
+    chance = 15
+    if = {
+     limit = { spouse = { is_alive = yes is_adult = yes is_female = no NOT = { trait = celibate } NOT = { trait = eunuch } } }
+     spouse = { save_event_target_as = db_divine_father }
+    }
+    else = { random_lover = { limit = { is_alive = yes is_adult = yes is_female = no NOT = { trait = celibate } NOT = { trait = eunuch } } save_event_target_as = db_divine_father } }
+    unsafe_impregnate = event_target:db_divine_father
+    add_trait = pregnant
+   }
+  }
+  else_if = {
+   limit = { age < 100 }
+   random = {
+    chance = 8
+    if = { limit = { spouse = { is_alive = yes is_adult = yes is_female = no NOT = { trait = celibate } NOT = { trait = eunuch } } } spouse = { save_event_target_as = db_divine_father } }
+    else = { random_lover = { limit = { is_alive = yes is_adult = yes is_female = no NOT = { trait = celibate } NOT = { trait = eunuch } } save_event_target_as = db_divine_father } }
+    unsafe_impregnate = event_target:db_divine_father
+    add_trait = pregnant
+   }
+  }
+  else = {
+   random = {
+    chance = 4
+    if = { limit = { spouse = { is_alive = yes is_adult = yes is_female = no NOT = { trait = celibate } NOT = { trait = eunuch } } } spouse = { save_event_target_as = db_divine_father } }
+    else = { random_lover = { limit = { is_alive = yes is_adult = yes is_female = no NOT = { trait = celibate } NOT = { trait = eunuch } } save_event_target_as = db_divine_father } }
+    unsafe_impregnate = event_target:db_divine_father
+    add_trait = pregnant
+   }
+  }
+ }
+}
+
+
+# HOTFIX4: vanilla murder plots bypass the direct Assassinate interaction trigger for AI/already-active plots.
+# Plotters without the Godslayer bloodline cannot keep a murder plot against an intact true god.
+# A Sickle holder must use the Sickle interaction: a vanilla plot would otherwise skip the required severing stage.
+character_event = {
+ id = DBV2.29 hide_window = yes is_triggered_only = yes
+ trigger = {
+  OR = { has_plot = plot_kill_character has_plot = plot_kill_spouse }
+  plot_target_char = { db_is_death_guarded_true_god_trigger = yes }
+  NOT = { db_has_godslayer_blood_trigger = yes }
+ }
+ immediate = {
+  cancel_plot = yes
+ }
+}
+
+# HOTFIX4: fast murder-plot guard. Monthly cancellation was too slow because vanilla murder events can fire before the next pulse.
+# This autonomous MTTH event aborts an active murder plot against an intact true god in about one day.
+# Godslayer-blood descendants are intentionally exempt; a Sickle holder must sever immortality first.
+character_event = {
+ id = DBV2.291
+ hide_window = yes
+ trigger = {
+  OR = { has_plot = plot_kill_character has_plot = plot_kill_spouse }
+  plot_target_char = { db_is_death_guarded_true_god_trigger = yes }
+  NOT = { db_has_godslayer_blood_trigger = yes }
+ }
+ mean_time_to_happen = { days = 1 }
+ immediate = { cancel_plot = yes }
+}
+
+
+# HOTFIX4: pre-combat immortality guard.
+# Holy Fury battle events can execute explicit death_battle effects; this runs from on_combat_pulse before the random battle tombola.
+# The vanilla berserker death event TOG.3003 has no immortality check, so intact gods cannot keep the berserker trait while in battle.
+character_event = {
+ id = DBV2.292 hide_window = yes is_triggered_only = yes
+ trigger = { db_is_death_guarded_true_god_trigger = yes }
+ immediate = {
+  diplomatic_immunity = no 
+  if = { limit = { trait = berserker } remove_trait = berserker }
+  if = { limit = { age >= 16 NOT = { trait = immortal } } add_trait = immortal }
+  remove_trait = weak
+  remove_trait = frail
+  remove_trait = infirm
+  remove_trait = incapable
+  cure_illness = yes
+  add_character_modifier = { name = db_divine_battle_fury days = 30 hidden = yes }
+ }
+}
+
+# Religion lock. FULL gods and active demigods are permanently bound to one pantheon.
+# Faded/latent descendants are deliberately NOT included and may freely change religion.
+# If active divine blood reawakens, DBV2.10 calls this event immediately and restores the pantheon faith.
+# Reformed faith always replaces its unreformed predecessor once the reformation has happened.
+character_event = {
+ id = DBV2.70 hide_window = yes is_triggered_only = yes
+ trigger = { OR = { db_has_active_divine_blood_trigger = yes db_is_active_demigod_trigger = yes } }
+ immediate = {
+  # Seeing a reformed faith also records the world-level milestone, including reforms made outside our own mission chain.
+  if = { limit = { religion = hellenic_pagan_reformed } set_global_flag = db_hellenic_reformed_announced set_character_flag = db_pref_hellenic_reformed }
+  if = { limit = { religion = norse_pagan_reformed } set_global_flag = db_norse_reformed_announced set_character_flag = db_pref_norse_reformed }
+
+  # Characters with only one active pantheon are unambiguous. Independent Olympian
+  # blood is Hellenic but is deliberately NOT classified as Zeus blood.
+  if = {
+   limit = { db_has_active_olympian_blood_trigger = yes NOT = { db_has_active_odin_blood_trigger = yes } NOT = { db_has_active_zeus_blood_trigger = yes } }
+   set_character_flag = db_pantheon_hellenic
+   clr_character_flag = db_pantheon_norse
+  }
+  else_if = {
+   limit = { db_has_active_zeus_blood_trigger = yes NOT = { db_has_active_odin_blood_trigger = yes } }
+   set_character_flag = db_pantheon_hellenic
+   clr_character_flag = db_pantheon_norse
+  }
+  else_if = {
+   limit = { db_has_active_odin_blood_trigger = yes NOT = { db_has_active_zeus_blood_trigger = yes } }
+   set_character_flag = db_pantheon_norse
+   clr_character_flag = db_pantheon_hellenic
+  }
+  else = {
+   # Cross-pantheon blood follows the paternal divine line and then keeps that allegiance permanently.
+   if = {
+    limit = { trait = db_stormrune_blood }
+    set_character_flag = db_pantheon_hellenic
+    clr_character_flag = db_pantheon_norse
+   }
+   else_if = {
+    limit = { trait = db_fate_thunder_blood }
+    set_character_flag = db_pantheon_norse
+    clr_character_flag = db_pantheon_hellenic
+   }
+   else_if = {
+    limit = { NOR = { has_character_flag = db_pantheon_hellenic has_character_flag = db_pantheon_norse } OR = { religion = hellenic_pagan religion = hellenic_pagan_reformed } }
+    set_character_flag = db_pantheon_hellenic
+   }
+   else_if = {
+    limit = { NOR = { has_character_flag = db_pantheon_hellenic has_character_flag = db_pantheon_norse } OR = { religion = norse_pagan religion = norse_pagan_reformed } }
+    set_character_flag = db_pantheon_norse
+   }
+   else_if = {
+    limit = { NOR = { has_character_flag = db_pantheon_hellenic has_character_flag = db_pantheon_norse } father_even_if_dead = { db_has_active_zeus_blood_trigger = yes NOT = { db_has_active_odin_blood_trigger = yes } } }
+    set_character_flag = db_pantheon_hellenic
+   }
+   else_if = {
+    limit = { NOR = { has_character_flag = db_pantheon_hellenic has_character_flag = db_pantheon_norse } father_even_if_dead = { db_has_active_odin_blood_trigger = yes NOT = { db_has_active_zeus_blood_trigger = yes } } }
+    set_character_flag = db_pantheon_norse
+   }
+   else_if = {
+    limit = { NOR = { has_character_flag = db_pantheon_hellenic has_character_flag = db_pantheon_norse } has_character_flag = db_odin_line_head }
+    set_character_flag = db_pantheon_norse
+   }
+   else_if = {
+    limit = { NOR = { has_character_flag = db_pantheon_hellenic has_character_flag = db_pantheon_norse } }
+    set_character_flag = db_pantheon_hellenic
+   }
+  }
+
+  # Enforce the actual faith. The on-conversion hook makes voluntary/forced conversion bounce back immediately;
+  # the monthly pulse is a safety net for scripted conversions from other mods/events.
+  if = {
+   limit = { has_character_flag = db_pantheon_hellenic }
+   clr_character_flag = db_pantheon_norse
+   if = {
+    limit = { OR = { has_global_flag = db_hellenic_reformed_announced has_character_flag = db_pref_hellenic_reformed religion = hellenic_pagan_reformed } }
+    set_character_flag = db_pref_hellenic_reformed
+    if = { limit = { NOT = { religion = hellenic_pagan_reformed } } religion = hellenic_pagan_reformed }
+   }
+   else = {
+    if = { limit = { NOT = { religion = hellenic_pagan } } religion = hellenic_pagan }
+   }
+  }
+  else_if = {
+   limit = { has_character_flag = db_pantheon_norse }
+   clr_character_flag = db_pantheon_hellenic
+   if = {
+    limit = { OR = { has_global_flag = db_norse_reformed_announced has_character_flag = db_pref_norse_reformed religion = norse_pagan_reformed } }
+    set_character_flag = db_pref_norse_reformed
+    if = { limit = { NOT = { religion = norse_pagan_reformed } } religion = norse_pagan_reformed }
+   }
+   else = {
+    if = { limit = { NOT = { religion = norse_pagan } } religion = norse_pagan }
+   }
+  }
+ }
+}
+
+# Reverence: carriers revere the living founder and FULL elders. No persistent event-target is dereferenced here.
+character_event = {
+ id = DBV2.30 hide_window = yes is_triggered_only = yes
+ trigger = { OR = {
+  any_owned_bloodline = { has_bloodline_flag = db_zeus_paternal }
+  any_owned_bloodline = { has_bloodline_flag = db_zeus_maternal }
+  any_owned_bloodline = { has_bloodline_flag = db_odin_paternal }
+  any_owned_bloodline = { has_bloodline_flag = db_odin_maternal }
+ } }
+ immediate = {
+  if = {
+   limit = { OR = { any_owned_bloodline = { has_bloodline_flag = db_zeus_paternal } any_owned_bloodline = { has_bloodline_flag = db_zeus_maternal } } }
+   any_character = {
+    limit = { is_alive = yes has_character_flag = zeus_blood_founder NOT = { character = ROOT } }
+    ROOT = { opinion = { who = PREV name = db_revere_founder years = 1000 } }
+   }
+   any_character = {
+    limit = { is_alive = yes trait = pure_divine_blood_zeus NOT = { character = ROOT } }
+    ROOT = {
+     remove_opinion = { who = PREV name = db_revere_divine_16 }
+     remove_opinion = { who = PREV name = db_revere_divine_50 }
+     remove_opinion = { who = PREV name = db_revere_divine_100 }
+     remove_opinion = { who = PREV name = db_revere_divine_250 }
+     remove_opinion = { who = PREV name = db_revere_divine_500 }
+     if = { limit = { PREV = { age >= 500 } } opinion = { who = PREV name = db_revere_divine_500 years = 1000 } }
+     else_if = { limit = { PREV = { age >= 250 } } opinion = { who = PREV name = db_revere_divine_250 years = 1000 } }
+     else_if = { limit = { PREV = { age >= 100 } } opinion = { who = PREV name = db_revere_divine_100 years = 1000 } }
+     else_if = { limit = { PREV = { age >= 50 } } opinion = { who = PREV name = db_revere_divine_50 years = 1000 } }
+     else = { opinion = { who = PREV name = db_revere_divine_16 years = 1000 } }
+    }
+   }
+  }
+  if = {
+   limit = { OR = { any_owned_bloodline = { has_bloodline_flag = db_odin_paternal } any_owned_bloodline = { has_bloodline_flag = db_odin_maternal } } }
+   any_character = {
+    limit = { is_alive = yes has_character_flag = odin_blood_founder NOT = { character = ROOT } }
+    ROOT = { opinion = { who = PREV name = db_revere_founder years = 1000 } }
+   }
+   any_character = {
+    limit = { is_alive = yes trait = pure_divine_blood_odin NOT = { character = ROOT } }
+    ROOT = {
+     remove_opinion = { who = PREV name = db_revere_divine_16 }
+     remove_opinion = { who = PREV name = db_revere_divine_50 }
+     remove_opinion = { who = PREV name = db_revere_divine_100 }
+     remove_opinion = { who = PREV name = db_revere_divine_250 }
+     remove_opinion = { who = PREV name = db_revere_divine_500 }
+     if = { limit = { PREV = { age >= 500 } } opinion = { who = PREV name = db_revere_divine_500 years = 1000 } }
+     else_if = { limit = { PREV = { age >= 250 } } opinion = { who = PREV name = db_revere_divine_250 years = 1000 } }
+     else_if = { limit = { PREV = { age >= 100 } } opinion = { who = PREV name = db_revere_divine_100 years = 1000 } }
+     else_if = { limit = { PREV = { age >= 50 } } opinion = { who = PREV name = db_revere_divine_50 years = 1000 } }
+     else = { opinion = { who = PREV name = db_revere_divine_16 years = 1000 } }
+    }
+   }
+  }
+ }
+}
+
+# Succession + founder death world events.
+character_event = {
+ id = DBV2.40 hide_window = yes is_triggered_only = yes
+ immediate = {
+  if = {
+   limit = { has_character_flag = zeus_blood_founder NOT = { has_global_flag = db_zeus_death_announced } }
+   set_global_flag = db_zeus_death_announced
+   any_character = {
+    limit = { is_alive = yes OR = { any_owned_bloodline = { has_bloodline_flag = db_zeus_paternal } any_owned_bloodline = { has_bloodline_flag = db_zeus_maternal } trait = zeus_faded_blood } }
+    add_character_modifier = { name = db_mourning_zeus years = 5 }
+   }
+   narrative_event = { id = DBV2.540 }
+  }
+  if = {
+   limit = { has_character_flag = odin_blood_founder NOT = { has_global_flag = db_odin_death_announced } }
+   set_global_flag = db_odin_death_announced
+   any_character = {
+    limit = { is_alive = yes OR = { any_owned_bloodline = { has_bloodline_flag = db_odin_paternal } any_owned_bloodline = { has_bloodline_flag = db_odin_maternal } trait = odin_faded_blood } }
+    add_character_modifier = { name = db_mourning_odin years = 5 }
+   }
+   narrative_event = { id = DBV2.541 }
+  }
+
+  if = {
+   limit = { has_character_flag = db_zeus_line_head }
+   clr_character_flag = db_zeus_line_head
+   # Explicitly designated heir wins if still valid.
+   if = {
+    limit = { any_dynasty_member = { is_alive = yes is_adult = yes prisoner = no is_incapable = no has_character_flag = db_designated_zeus_heir db_has_active_olympian_blood_trigger = yes OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } } }
+    random_dynasty_member = { limit = { is_alive = yes is_adult = yes prisoner = no is_incapable = no has_character_flag = db_designated_zeus_heir db_has_active_olympian_blood_trigger = yes OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } } set_character_flag = db_zeus_line_head clr_character_flag = db_designated_zeus_heir clr_character_flag = db_designated_divine_heir save_global_event_target_as = db_zeus_line_head_target }
+   }
+   else_if = {
+    limit = { any_child = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_true_god_trigger = yes db_has_active_olympian_blood_trigger = yes } }
+    random_child = { limit = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_true_god_trigger = yes db_has_active_olympian_blood_trigger = yes } set_character_flag = db_zeus_line_head save_global_event_target_as = db_zeus_line_head_target }
+   }
+   else_if = {
+    limit = { any_child = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_active_demigod_trigger = yes db_has_active_olympian_blood_trigger = yes } }
+    random_child = { limit = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_active_demigod_trigger = yes db_has_active_olympian_blood_trigger = yes } set_character_flag = db_zeus_line_head save_global_event_target_as = db_zeus_line_head_target }
+   }
+   else_if = {
+    limit = { any_dynasty_member = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_true_god_trigger = yes db_has_active_olympian_blood_trigger = yes } }
+    random_dynasty_member = { limit = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_true_god_trigger = yes db_has_active_olympian_blood_trigger = yes } set_character_flag = db_zeus_line_head save_global_event_target_as = db_zeus_line_head_target }
+   }
+   else_if = {
+    limit = { any_dynasty_member = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_active_demigod_trigger = yes db_has_active_olympian_blood_trigger = yes } }
+    random_dynasty_member = { limit = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_active_demigod_trigger = yes db_has_active_olympian_blood_trigger = yes } set_character_flag = db_zeus_line_head save_global_event_target_as = db_zeus_line_head_target }
+   }
+  }
+  if = {
+   limit = { has_character_flag = db_odin_line_head }
+   clr_character_flag = db_odin_line_head
+   if = {
+    limit = { any_dynasty_member = { is_alive = yes is_adult = yes prisoner = no is_incapable = no has_character_flag = db_designated_odin_heir db_has_active_norse_blood_trigger = yes OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } } }
+    random_dynasty_member = { limit = { is_alive = yes is_adult = yes prisoner = no is_incapable = no has_character_flag = db_designated_odin_heir db_has_active_norse_blood_trigger = yes OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } } set_character_flag = db_odin_line_head clr_character_flag = db_designated_odin_heir clr_character_flag = db_designated_divine_heir save_global_event_target_as = db_odin_line_head_target }
+   }
+   else_if = {
+    limit = { any_child = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_true_god_trigger = yes db_has_active_norse_blood_trigger = yes } }
+    random_child = { limit = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_true_god_trigger = yes db_has_active_norse_blood_trigger = yes } set_character_flag = db_odin_line_head save_global_event_target_as = db_odin_line_head_target }
+   }
+   else_if = {
+    limit = { any_child = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_active_demigod_trigger = yes db_has_active_norse_blood_trigger = yes } }
+    random_child = { limit = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_active_demigod_trigger = yes db_has_active_norse_blood_trigger = yes } set_character_flag = db_odin_line_head save_global_event_target_as = db_odin_line_head_target }
+   }
+   else_if = {
+    limit = { any_dynasty_member = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_true_god_trigger = yes db_has_active_norse_blood_trigger = yes } }
+    random_dynasty_member = { limit = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_true_god_trigger = yes db_has_active_norse_blood_trigger = yes } set_character_flag = db_odin_line_head save_global_event_target_as = db_odin_line_head_target }
+   }
+   else_if = {
+    limit = { any_dynasty_member = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_active_demigod_trigger = yes db_has_active_norse_blood_trigger = yes } }
+    random_dynasty_member = { limit = { is_alive = yes is_adult = yes prisoner = no is_incapable = no db_is_active_demigod_trigger = yes db_has_active_norse_blood_trigger = yes } set_character_flag = db_odin_line_head save_global_event_target_as = db_odin_line_head_target }
+   }
+  }
+ }
+}
+
+# World state checks. Line heads are rediscovered each run; stale global character targets are never dereferenced.
+character_event = {
+ id = DBV2.60 hide_window = yes is_triggered_only = yes
+ trigger = { OR = { ai = no has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder } }
+ immediate = {
+  clr_character_flag = db_tmp_has_zeus_head
+  clr_character_flag = db_tmp_has_odin_head
+  any_character = {
+   limit = { is_alive = yes has_character_flag = db_zeus_line_head }
+   save_event_target_as = db_tmp_zeus_head
+   ROOT = { set_character_flag = db_tmp_has_zeus_head }
+  }
+  any_character = {
+   limit = { is_alive = yes has_character_flag = db_odin_line_head }
+   save_event_target_as = db_tmp_odin_head
+   ROOT = { set_character_flag = db_tmp_has_odin_head }
+  }
+
+  if = {
+   limit = { has_global_flag = db_age_of_heroes_eligible NOT = { has_global_flag = db_age_of_heroes } any_character = { count = 10 is_alive = yes is_adult = yes db_is_active_demigod_trigger = yes } any_character = { count = 3 is_alive = yes db_is_heroic_demigod_trigger = yes } }
+   set_global_flag = db_age_of_heroes
+   any_character = { limit = { is_alive = yes is_adult = yes db_is_active_demigod_trigger = yes } add_character_modifier = { name = db_age_of_heroes years = 1000 } }
+   narrative_event = { id = DBV2.510 }
+  }
+  if = {
+   limit = {
+    has_character_flag = db_tmp_has_zeus_head
+    has_character_flag = db_tmp_has_odin_head
+    NOT = { has_global_flag = db_pantheon_war_announced }
+    event_target:db_tmp_odin_head = { war_with = event_target:db_tmp_zeus_head }
+   }
+   set_global_flag = db_pantheon_war_announced
+   event_target:db_tmp_zeus_head = { add_character_modifier = { name = db_pantheon_war years = 10 } }
+   event_target:db_tmp_odin_head = { add_character_modifier = { name = db_pantheon_war years = 10 } }
+   narrative_event = { id = DBV2.520 }
+  }
+  if = {
+   limit = {
+    has_character_flag = db_tmp_has_zeus_head
+    has_character_flag = db_tmp_has_odin_head
+    NOT = { has_global_flag = db_pantheon_alliance_announced }
+    event_target:db_tmp_zeus_head = { opinion = { who = event_target:db_tmp_odin_head value = 75 } }
+   }
+   set_global_flag = db_pantheon_alliance_announced
+   event_target:db_tmp_zeus_head = { add_character_modifier = { name = db_pantheon_alliance years = 10 } }
+   event_target:db_tmp_odin_head = { add_character_modifier = { name = db_pantheon_alliance years = 10 } }
+   narrative_event = { id = DBV2.521 }
+  }
+  if = {
+   limit = {
+    has_character_flag = db_tmp_has_zeus_head
+    has_character_flag = db_tmp_has_odin_head
+    NOT = { has_global_flag = db_guards_clash_announced }
+    event_target:db_tmp_zeus_head = { has_earmarked_regiments = db_kouretes_guard }
+    event_target:db_tmp_odin_head = { has_earmarked_regiments = db_einherjar_guard war_with = event_target:db_tmp_zeus_head }
+   }
+   set_global_flag = db_guards_clash_announced
+   narrative_event = { id = DBV2.522 }
+  }
+  clr_character_flag = db_tmp_has_zeus_head
+  clr_character_flag = db_tmp_has_odin_head
+ }
+}
+
+narrative_event = { id = DBV2.500 title = DBV2_500_T desc = DBV2_500_D picture = GFX_evt_norse_tempest is_triggered_only = yes major = yes option = { name = DBV2_OK } }
+narrative_event = { id = DBV2.502 title = DBV2_502_T desc = DBV2_502_D picture = GFX_evt_birth is_triggered_only = yes major = yes option = { name = DBV2_OK } }
+narrative_event = { id = DBV2.510 title = DBV2_510_T desc = DBV2_510_D picture = GFX_evt_feast is_triggered_only = yes major = yes option = { name = DBV2_OK } }
+narrative_event = { id = DBV2.520 title = DBV2_520_T desc = DBV2_520_D picture = GFX_evt_melee is_triggered_only = yes major = yes option = { name = DBV2_OK } }
+narrative_event = { id = DBV2.521 title = DBV2_521_T desc = DBV2_521_D picture = GFX_evt_throne_room is_triggered_only = yes major = yes option = { name = DBV2_OK } }
+narrative_event = { id = DBV2.522 title = DBV2_522_T desc = DBV2_522_D picture = GFX_evt_melee is_triggered_only = yes major = yes option = { name = DBV2_OK } }
+narrative_event = { id = DBV2.530 title = DBV2_530_T desc = DBV2_530_D picture = GFX_evt_norse_tempest is_triggered_only = yes major = yes option = { name = DBV2_OK } }
+narrative_event = { id = DBV2.540 title = DBV2_540_T desc = DBV2_540_D picture = GFX_evt_death is_triggered_only = yes major = yes option = { name = DBV2_540_A } }
+narrative_event = { id = DBV2.541 title = DBV2_541_T desc = DBV2_541_D picture = GFX_evt_death is_triggered_only = yes major = yes option = { name = DBV2_541_A } }
+
+
+# v2.1.6.4: animal-target safety scrubber.
+# DLC hunt chains use these flags to select characters for direct beast deaths.
+# Adult intact gods are removed from those target pools; full-blood children remain vulnerable.
+character_event = {
+ id = DBV2.295 hide_window = yes
+ trigger = {
+  db_is_death_guarded_true_god_trigger = yes
+  OR = {
+   has_character_flag = hunting_tigers
+   has_character_flag = flag_hunting_wolf_norse
+   has_character_flag = flag_hunting_wolf_baltic
+   has_character_flag = flag_hunting_wolf_hellenic
+   has_character_flag = flag_hunting_eagle_slavic
+   has_character_flag = flag_hunting_eagle_tengri
+   has_character_flag = flag_hunting_eagle_bon
+   has_character_flag = flag_hunting_bear_finnish
+   has_character_flag = flag_hunting_lion_west_african
+   has_character_flag = flag_hunting_lion_zun
+   has_character_flag = injury_kills
+   has_character_flag = elegant_double_KO
+   has_character_flag = clumsy_double_KO
+  }
+ }
+ mean_time_to_happen = { days = 1 }
+ immediate = {
+  if = { limit = { NOT = { trait = immortal } } add_trait = immortal }
+  diplomatic_immunity = no 
+  clr_character_flag = hunting_tigers
+  clr_character_flag = flag_hunting_wolf_norse
+  clr_character_flag = flag_hunting_wolf_baltic
+  clr_character_flag = flag_hunting_wolf_hellenic
+  clr_character_flag = flag_hunting_eagle_slavic
+  clr_character_flag = flag_hunting_eagle_tengri
+  clr_character_flag = flag_hunting_eagle_bon
+  clr_character_flag = flag_hunting_bear_finnish
+  clr_character_flag = flag_hunting_lion_west_african
+  clr_character_flag = flag_hunting_lion_zun
+  clr_character_flag = injury_kills
+  clr_character_flag = elegant_double_KO
+  clr_character_flag = clumsy_double_KO
+  # Clear delayed loser events when this character itself is the queued victim.
+  clear_delayed_event = { id = HFP.10101 }
+  clear_delayed_event = { id = HFP.10102 }
+  clear_delayed_event = { id = HFP.10103 }
+  clear_delayed_event = { id = HFP.10104 }
+  clear_delayed_event = { id = HFP.10111 }
+  clear_delayed_event = { id = HFP.11042 }
+  clear_delayed_event = { id = HFP.11045 }
+  clear_delayed_event = { id = HFP.11047 }
+  clear_delayed_event = { id = HF.10104 }
+  clear_delayed_event = { id = HF.12200 }
+  clear_delayed_event = { id = HF.12201 }
+  clear_delayed_event = { id = HF.12204 }
+  clear_delayed_event = { id = HF.12205 }
+  clear_delayed_event = { id = TOG.5014 }
+  clear_delayed_event = { id = TOG.5029 }
+ }
+}

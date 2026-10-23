@@ -1,0 +1,230 @@
+decisions = {
+ db_assume_divine_form = {
+  diplomacy_icon = GFX_db_decision_form
+  is_high_prio = yes
+  potential = { db_has_active_zeus_blood_trigger = yes db_is_true_god_trigger = yes is_adult = yes OR = { religion = hellenic_pagan religion = hellenic_pagan_reformed } }
+  allow = { NOT = { has_character_modifier = db_shape_cooldown } }
+  effect = { character_event = { id = DBV2.100 } }
+  ai_will_do = { factor = 0 }
+ }
+
+ db_return_true_form = {
+  diplomacy_icon = GFX_db_decision_form
+  is_high_prio = yes
+  potential = {
+   db_has_active_zeus_blood_trigger = yes
+   db_is_true_god_trigger = yes
+   OR = {
+    has_character_modifier = db_form_swan
+    has_character_modifier = db_form_bull
+    has_character_modifier = db_form_eagle
+    has_character_modifier = db_form_serpent
+   }
+  }
+  allow = { always = yes }
+  effect = {
+   remove_character_modifier = db_form_swan
+   remove_character_modifier = db_form_bull
+   remove_character_modifier = db_form_eagle
+   remove_character_modifier = db_form_serpent
+   remove_trait = db_portrait_swan
+   remove_trait = db_portrait_bull
+   remove_trait = db_portrait_eagle
+   remove_trait = db_portrait_serpent
+  }
+  ai_will_do = { factor = 0 }
+ }
+
+
+ db_rune_insight = {
+  diplomacy_icon = GFX_db_decision_runes
+  is_high_prio = yes
+  potential = { db_has_active_odin_blood_trigger = yes db_is_true_god_trigger = yes is_adult = yes OR = { religion = norse_pagan religion = norse_pagan_reformed } }
+  allow = { piety = 100 NOT = { has_character_modifier = db_runes_cooldown } }
+  effect = { character_event = { id = DBV2.200 } }
+  ai_will_do = { factor = 0 }
+ }
+ db_huginn_muninn = {
+  diplomacy_icon = GFX_db_decision_ravens
+  potential = { db_has_active_odin_blood_trigger = yes db_is_true_god_trigger = yes is_adult = yes }
+  allow = { piety = 75 NOT = { has_character_modifier = db_ravens_cooldown } }
+  effect = { character_event = { id = DBV2.210 } }
+  ai_will_do = { factor = 0 }
+ }
+ db_odins_fury = {
+  diplomacy_icon = GFX_db_decision_odr
+  potential = { trait = pure_divine_blood_odin is_adult = yes }
+  allow = { war = yes piety = 100 NOT = { has_character_modifier = db_fury_cooldown } }
+  effect = { character_event = { id = DBV2.220 } }
+  ai_will_do = { factor = 0 }
+ }
+ db_grey_wanderer = {
+  diplomacy_icon = GFX_db_decision_wanderer
+  potential = { trait = pure_divine_blood_odin is_adult = yes }
+  allow = { prestige = 100 NOT = { has_character_modifier = db_wanderer_cooldown } }
+  effect = { character_event = { id = DBV2.230 } }
+  ai_will_do = { factor = 0 }
+ }
+ db_price_of_wisdom = {
+  diplomacy_icon = GFX_db_decision_wisdom
+  potential = { trait = pure_divine_blood_odin is_adult = yes NOT = { trait = one_eyed } NOT = { has_character_modifier = db_price_of_wisdom } }
+  allow = { piety = 500 }
+  effect = { character_event = { id = DBV2.250 } }
+  ai_will_do = { factor = 0 }
+ }
+ db_yggdrasil_nine_nights = {
+  diplomacy_icon = GFX_db_decision_yggdrasil
+  is_high_prio = yes
+  potential = { trait = pure_divine_blood_odin is_adult = yes NOT = { has_character_modifier = db_yggdrasil_rune_master } }
+  allow = { piety = 2500 prestige = 2000 age >= 100 }
+  effect = { character_event = { id = DBV2.260 } }
+  ai_will_do = { factor = 0 }
+ }
+
+ db_call_kouretes = {
+  diplomacy_icon = GFX_db_decision_kouretes
+  is_high_prio = yes
+  potential = { db_is_zeus_line_authority_trigger = yes is_ruler = yes is_adult = yes }
+  allow = { war = yes piety = 300 NOT = { has_earmarked_regiments = db_kouretes_guard } NOT = { has_character_modifier = db_guard_cooldown } }
+  effect = { character_event = { id = DBV2.300 } }
+  ai_will_do = { factor = 0 }
+ }
+ db_call_einherjar = {
+  diplomacy_icon = GFX_db_decision_einherjar
+  is_high_prio = yes
+  potential = { db_is_odin_line_authority_trigger = yes is_ruler = yes is_adult = yes }
+  allow = { war = yes piety = 300 NOT = { has_earmarked_regiments = db_einherjar_guard } NOT = { has_character_modifier = db_guard_cooldown } }
+  effect = { character_event = { id = DBV2.301 } }
+  ai_will_do = { factor = 0 }
+ }
+
+ # Search quests are click-to-event chains, not silent random effects.
+ db_seek_aegis = {
+  diplomacy_icon = GFX_db_decision_relic potential = { trait = pure_divine_blood_zeus is_adult = yes NOT = { has_artifact = db_aegis_of_zeus } } allow = { prestige = 1000 piety = 500 NOT = { has_character_modifier = db_relic_search_cooldown } NOT = { has_character_modifier = db_relic_search_active } } effect = { set_character_flag = db_seek_aegis character_event = { id = DBV2.400 } } ai_will_do = { factor = 0 } }
+ db_seek_scepter = {
+  diplomacy_icon = GFX_db_decision_relic potential = { trait = pure_divine_blood_zeus is_adult = yes NOT = { has_artifact = db_scepter_of_olympus } } allow = { prestige = 1000 piety = 500 NOT = { has_character_modifier = db_relic_search_cooldown } NOT = { has_character_modifier = db_relic_search_active } } effect = { set_character_flag = db_seek_scepter character_event = { id = DBV2.400 } } ai_will_do = { factor = 0 } }
+ db_seek_ambrosia = {
+  diplomacy_icon = GFX_db_decision_relic potential = { trait = pure_divine_blood_zeus is_adult = yes NOT = { has_artifact = db_ambrosia } } allow = { prestige = 1500 piety = 1000 NOT = { has_character_modifier = db_relic_search_cooldown } NOT = { has_character_modifier = db_relic_search_active } } effect = { set_character_flag = db_seek_ambrosia character_event = { id = DBV2.400 } } ai_will_do = { factor = 0 } }
+ db_seek_runes = {
+  diplomacy_icon = GFX_db_decision_relic potential = { trait = pure_divine_blood_odin is_adult = yes NOT = { has_artifact = db_runes_of_yggdrasil } } allow = { prestige = 1500 piety = 1000 NOT = { has_character_modifier = db_relic_search_cooldown } NOT = { has_character_modifier = db_relic_search_active } } effect = { set_character_flag = db_seek_runes character_event = { id = DBV2.400 } } ai_will_do = { factor = 0 } }
+ db_seek_mead = {
+  diplomacy_icon = GFX_db_decision_relic potential = { OR = { trait = pure_divine_blood_odin trait = odin_demigod_blood } is_adult = yes NOT = { has_artifact = db_mead_of_poetry } } allow = { prestige = 1000 piety = 750 NOT = { has_character_modifier = db_relic_search_cooldown } NOT = { has_character_modifier = db_relic_search_active } } effect = { set_character_flag = db_seek_mead character_event = { id = DBV2.400 } } ai_will_do = { factor = 0 } }
+ db_seek_apple = {
+  diplomacy_icon = GFX_db_decision_relic potential = { trait = pure_divine_blood_odin is_adult = yes NOT = { has_artifact = db_apple_of_idunn } } allow = { prestige = 1500 piety = 1000 NOT = { has_character_modifier = db_relic_search_cooldown } NOT = { has_character_modifier = db_relic_search_active } } effect = { set_character_flag = db_seek_apple character_event = { id = DBV2.400 } } ai_will_do = { factor = 0 } }
+
+ db_thunderbolt_power = {
+  diplomacy_icon = GFX_db_decision_lightning potential = { has_artifact = db_thunderbolt_of_zeus is_adult = yes db_has_active_zeus_blood_trigger = yes } allow = { NOT = { has_character_modifier = db_artifact_power_cooldown } } effect = { add_character_modifier = { name = db_lightning_wrath days = 180 } add_character_modifier = { name = db_artifact_power_cooldown years = 1 } } ai_will_do = { factor = 0 } }
+ db_gungnir_power = {
+  diplomacy_icon = GFX_db_decision_runes potential = { has_artifact = db_gungnir is_adult = yes } allow = { NOT = { has_character_modifier = db_artifact_power_cooldown } } effect = { add_character_modifier = { name = db_gungnir_foresight years = 1 } add_character_modifier = { name = db_artifact_power_cooldown years = 1 } } ai_will_do = { factor = 0 } }
+ db_mjolnir_storm = {
+  diplomacy_icon = GFX_db_decision_lightning potential = { has_artifact = mjolnir is_adult = yes db_has_active_norse_blood_trigger = yes } allow = { piety = 50 NOT = { has_character_modifier = db_artifact_power_cooldown } } effect = { piety = -50 add_character_modifier = { name = db_mjolnir_storm days = 180 } add_character_modifier = { name = db_artifact_power_cooldown years = 1 } if = { limit = { db_is_odin_line_authority_trigger = yes has_earmarked_regiments = db_einherjar_guard } add_character_modifier = { name = db_valhalla_thunder days = 90 } } } ai_will_do = { factor = 0 } }
+
+ db_restore_zeus_immortality = {
+  diplomacy_icon = GFX_db_decision_severed
+  is_high_prio = yes potential = { trait = pure_divine_blood_zeus trait = db_severed_immortality is_adult = yes }
+  allow = { has_artifact = db_thunderbolt_of_zeus has_artifact = db_ambrosia prestige = 5000 piety = 3000 }
+  effect = { prestige = -5000 piety = -3000 destroy_artifact = db_ambrosia clr_global_flag = db_ambrosia_created remove_trait = db_severed_immortality remove_trait = db_death_chess_ward add_trait = immortal }
+  ai_will_do = { factor = 0 }
+ }
+ db_restore_odin_immortality = {
+  diplomacy_icon = GFX_db_decision_severed
+  is_high_prio = yes potential = { trait = pure_divine_blood_odin trait = db_severed_immortality is_adult = yes }
+  allow = { has_artifact = db_gungnir has_artifact = db_runes_of_yggdrasil has_artifact = db_apple_of_idunn prestige = 3000 piety = 5000 }
+  effect = { prestige = -3000 piety = -5000 destroy_artifact = db_apple_of_idunn clr_global_flag = db_apple_created remove_trait = db_severed_immortality remove_trait = db_death_chess_ward add_trait = immortal }
+  ai_will_do = { factor = 0 }
+ }
+ db_destroy_sickle_of_cronus = {
+  diplomacy_icon = GFX_db_decision_sickle
+  is_high_prio = yes potential = { has_artifact = db_sickle_of_cronus is_adult = yes age >= 500 OR = { trait = pure_divine_blood_zeus trait = pure_divine_blood_odin } }
+  allow = { prestige = 5000 piety = 5000 }
+  effect = { prestige = -5000 piety = -5000 unsafe_destroy_artifact = db_sickle_of_cronus set_global_flag = db_sickle_destroyed }
+  ai_will_do = { factor = 0 }
+ }
+
+ db_converge_four_bloods = {
+  diplomacy_icon = GFX_db_decision_convergence
+  is_high_prio = yes
+  potential = {
+   is_adult = yes age >= 250 NOT = { has_global_flag = db_divine_convergence_exists }
+   NOT = { trait = bastard } NOT = { trait = legit_bastard }
+   any_owned_bloodline = { has_bloodline_flag = db_zeus_paternal }
+   any_owned_bloodline = { has_bloodline_flag = db_zeus_maternal }
+   any_owned_bloodline = { has_bloodline_flag = db_odin_paternal }
+   any_owned_bloodline = { has_bloodline_flag = db_odin_maternal }
+  }
+  allow = { prestige = 5000 piety = 5000 has_artifact = db_thunderbolt_of_zeus has_artifact = db_gungnir }
+  effect = { character_event = { id = DBV2.470 } }
+  ai_will_do = { factor = 0 }
+ }
+}
+
+targeted_decisions = {
+ db_divine_visitation = {
+  diplomacy_icon = GFX_db_decision_visitation
+  filter = all ai_target_filter = all
+  from_potential = { trait = pure_divine_blood_zeus trait = db_portrait_swan is_female = no is_adult = yes OR = { religion = hellenic_pagan religion = hellenic_pagan_reformed } }
+  potential = { is_female = yes is_adult = yes is_alive = yes NOT = { trait = celibate } NOT = { is_pregnant = yes } OR = { age < 46 db_has_active_divine_blood_trigger = yes } }
+  allow = { is_alive = yes NOT = { is_pregnant = yes } }
+  effect = { save_event_target_as = db_power_target FROM = { character_event = { id = DBV2.110 } } }
+  ai_will_do = { factor = 0 }
+ }
+ db_bull_intimidate = {
+  diplomacy_icon = GFX_db_decision_bull filter = all ai_target_filter = all
+  from_potential = { trait = pure_divine_blood_zeus trait = db_portrait_bull is_adult = yes }
+  potential = { is_alive = yes is_adult = yes NOT = { character = FROM } }
+  allow = { is_alive = yes }
+  effect = { save_event_target_as = db_power_target FROM = { character_event = { id = DBV2.121 } } }
+  ai_will_do = { factor = 0 }
+ }
+ db_eagle_watch = {
+  diplomacy_icon = GFX_db_decision_eagle filter = all ai_target_filter = all
+  from_potential = { trait = pure_divine_blood_zeus trait = db_portrait_eagle is_adult = yes }
+  potential = { is_alive = yes is_adult = yes NOT = { character = FROM } }
+  allow = { is_alive = yes }
+  effect = { save_event_target_as = db_power_target FROM = { character_event = { id = DBV2.122 } } }
+  ai_will_do = { factor = 0 }
+ }
+ db_serpent_infiltrate = {
+  diplomacy_icon = GFX_db_decision_serpent filter = all ai_target_filter = all
+  from_potential = { trait = pure_divine_blood_zeus trait = db_portrait_serpent is_adult = yes }
+  potential = { is_alive = yes is_adult = yes NOT = { character = FROM } }
+  allow = { is_alive = yes }
+  effect = { save_event_target_as = db_power_target FROM = { character_event = { id = DBV2.123 } } }
+  ai_will_do = { factor = 0 }
+ }
+ db_hurl_thunderbolt = {
+  diplomacy_icon = GFX_db_decision_lightning filter = all ai_target_filter = all
+  from_potential = { has_artifact = db_thunderbolt_of_zeus is_adult = yes db_has_active_zeus_blood_trigger = yes }
+  potential = { is_alive = yes NOT = { character = FROM } }
+  allow = { FROM = { NOT = { has_character_modifier = db_artifact_power_cooldown } } }
+  effect = { save_event_target_as = db_power_target FROM = { character_event = { id = DBV2.320 } } }
+  ai_will_do = { factor = 0 }
+ }
+ db_cast_seidr_curse = {
+  diplomacy_icon = GFX_db_decision_seidr
+  filter = all ai_target_filter = all
+  from_potential = { trait = pure_divine_blood_odin is_adult = yes }
+  potential = { is_alive = yes NOT = { character = FROM } }
+  allow = { FROM = { piety = 150 NOT = { has_character_modifier = db_seidr_cooldown } } }
+  effect = { save_event_target_as = db_power_target FROM = { character_event = { id = DBV2.240 } } }
+  ai_will_do = { factor = 0 }
+ }
+ db_mark_chosen_of_valhalla = {
+  diplomacy_icon = GFX_db_decision_einherjar
+  filter = all ai_target_filter = all
+  from_potential = { trait = pure_divine_blood_odin is_adult = yes }
+  potential = { is_alive = yes is_adult = yes NOT = { character = FROM } NOT = { trait = valhalla_bound } NOT = { trait = ares_own } }
+  allow = { FROM = { piety = 100 } }
+  effect = { add_trait = valhalla_bound prestige = 100 FROM = { piety = -100 prestige = 50 } }
+  ai_will_do = { factor = 0 }
+ }
+ db_sickle_sever_immortality = {
+  diplomacy_icon = GFX_db_decision_sickle
+  filter = all ai_target_filter = all
+  from_potential = { has_artifact = db_sickle_of_cronus is_adult = yes }
+  potential = { is_alive = yes NOT = { character = FROM } db_is_true_god_trigger = yes }
+  allow = { is_alive = yes FROM = { NOT = { has_character_modifier = db_godslayer_hunt_cooldown } } }
+  effect = { save_event_target_as = db_power_target save_event_target_as = combatant_2 FROM = { save_event_target_as = combatant_1 add_character_modifier = { name = db_godslayer_hunt_cooldown days = 180 } set_character_flag = add_duel_xp set_character_flag = deadly_duel@event_target:combatant_2 character_event = { id = HFP.10100 } } }
+  ai_will_do = { factor = 0 }
+ }
+}

@@ -1,0 +1,10 @@
+Divine Bloodlines v2.1.6.5
+
+- Removed temporary landed manifestation titles used by Zeus/Odin arrivals. Founders now receive Thessalia/Uppland directly and are explicitly independent.
+- This avoids changing the landed-title registry just for arrivals, which can desynchronise CK2 cached realm shields/CoA after mod updates.
+- Sickle legend and Order awakening delayed from 3 days to 10 years after the first founder initializes.
+- Order of the Sickle now bootstraps immediately when awakened.
+- Added DBH.7: if the Order has fewer than five actual members, it recruits replacements; if empty, it reseeds its core.
+- The Order remains secret; undiscovered identities may still be hidden by the vanilla society UI.
+
+IMPORTANT: after upgrading from 2.1.6.x, close CK2 and delete Documents/Paradox Interactive/Crusader Kings II/gfx once. CK2 will rebuild the graphics cache. Do not delete saves.

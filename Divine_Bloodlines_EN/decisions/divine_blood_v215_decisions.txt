@@ -1,0 +1,69 @@
+# Divine Bloodlines v2.1.5 hotfix - interfaith divine marriage only.
+# No automatic romance/attraction interaction is generated.
+# CK2's normal interfaith marriage restriction is hardcoded/religion-level, so this narrow
+# player interaction bypasses only that restriction for a true god or active demigod.
+
+targeted_decisions = {
+ db_divine_union = {
+  diplomacy_icon = GFX_db_decision_visitation
+  filter = all
+  ai_target_filter = none
+  hide_in_decisions_list = yes
+  ai = no
+
+  from_potential = {
+   is_alive = yes
+   is_adult = yes
+   prisoner = no
+   is_married = no
+   is_betrothed = no
+   is_incapable = no
+   NOT = { society_member_of = db_order_sickle }
+  }
+
+  potential = {
+   is_alive = yes
+   is_adult = yes
+   prisoner = no
+   is_married = no
+   is_betrothed = no
+   is_incapable = no
+   NOT = { character = FROM }
+   NOT = { society_member_of = db_order_sickle }
+   FROM = { is_within_diplo_range = ROOT }
+
+   # Divine union also handles same-faith and close-kin divine marriages.
+
+   # At least one spouse must have active divine blood.
+   OR = {
+    db_is_true_god_trigger = yes
+    db_is_active_demigod_trigger = yes
+    FROM = { OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } }
+   }
+
+   # Keep ordinary CK2 opposite-sex marriage rules.
+   OR = {
+    AND = { is_female = yes FROM = { is_female = no } }
+    AND = { is_female = no FROM = { is_female = yes } }
+   }
+  }
+
+  allow = {
+   NOT = { trait = celibate }
+   NOT = { trait = eunuch }
+   FROM = {
+    NOT = { trait = celibate }
+    NOT = { trait = eunuch }
+    is_within_diplo_range = ROOT
+   }
+  }
+
+  effect = {
+   FROM = { save_event_target_as = db_social_actor }
+   character_event = { id = DBV2.1040 }
+  }
+
+  # AI never initiates this custom interaction, preventing proposal/event spam.
+  ai_will_do = { factor = 0 }
+ }
+}

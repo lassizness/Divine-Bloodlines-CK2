@@ -1,0 +1,40 @@
+Divine Bloodlines v2.1.6.9
+
+Divine strike rebalance
+- Zeus Thunderbolt death chance: mortal 35%, active demigod 15%, existing Divine-Wrath survivor 10%, intact true god 0%.
+- Gungnir death chance: mortal 30%, active demigod 12%, existing Divine-Wrath survivor 8%, intact true god 0%.
+- Non-lethal Thunderbolt/Gungnir hits no longer use ordinary Wounded. They apply Severely Injured immediately.
+- The Survivor of Divine Wrath trait is no longer granted on impact. A mortal/demigod receives a pending recovery flag and earns the trait only after both Severely Injured and Wounded are gone.
+- One-time migration removes prematurely granted survivor traits from still-wounded v2.1.6.8 save characters and restores them after recovery.
+- Survivor trait combat rating increased from +10 to +15 and monthly prestige from +0.15 to +0.20.
+- Divine-strike deaths remain anonymous death reasons with no killer link.
+
+Visible divine-power results
+- Added victim-facing result events for Zeus Thunderbolt, Gungnir and Seidr.
+- Death from Thunderbolt/Gungnir now occurs from the visible result event, so a player victim sees the divine judgment before death.
+- Added feedback events to the god using the power for kill, survival, true-god resistance and Seidr outcomes.
+
+Seidr
+- Normal Seidr now lasts 3 years and applies health -2, fertility -50%, martial -3, other core attributes -2, combat rating -20, general opinion -10 and prestige drain.
+- Intact true gods receive a separate strong debuff without the raw health penalty, so Seidr cannot bypass divine immortality through health loss.
+
+Canonical divine regalia
+- Zeus: Thunderbolt of Zeus + Aegis of Zeus.
+- Hera: Scepter of Hera + Diadem of Hera.
+- Poseidon: Trident of Poseidon + Chariot of Poseidon.
+- Hades: Helm of Hades + Scepter of Hades.
+- Demeter: Twin Torches of Demeter + Cornucopia of Demeter.
+- Hestia: Sacred Flame of Hestia + Veil of Hestia.
+- Frigg: Distaff of Frigg + Keys of Fensalir.
+- New canonical artifacts are indestructible and use existing shipped artifact artwork to avoid missing-sprite failures.
+- Existing saves receive a one-time repair. The repair will not create a duplicate if the artifact already exists elsewhere in the world.
+
+Council access
+- Adult true gods receive CK2's special_chancellor, special_marshal, special_treasurer, special_spymaster and special_spiritual flags.
+- This bypasses ordinary gender/Status-of-Women eligibility gates without globally changing council rules for mortals.
+- Monthly divine-body maintenance repairs existing saves automatically.
+
+Divine child naming
+- Divine milestone notification DBV2.670 is no longer fired on the exact birth tick.
+- It is delayed by one day, allowing CK2's normal player newborn naming dialog to take priority so player gods can type their children's names normally.
+- Canonical generated gods (Hera, Frigg, Poseidon, Hades, Demeter, Hestia) keep their fixed canonical names.

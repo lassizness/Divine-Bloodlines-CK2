@@ -1,0 +1,16 @@
+Divine Bloodlines v2.2.7
+
+- Divine family council/commander eligibility repair for old and new saves.
+- Zeus/Odin 2,000-man start-host recovery.
+- Hera/Frigg no longer injected into Zeus/Odin descendant bloodlines.
+- Zeus no longer starts with Aegis; Aegis remains searchable.
+- Thunderbolt and Gungnir are carried relics and no longer consume the normal weapon slot.
+- Thunderbolt/Gungnir can target minors; outcome still depends on divine nature.
+- Improved targeted-power descriptions, including Sacred Oath and strike probabilities.
+- Draupnir and Cornucopia of Amalthea: +4 monthly wealth.
+- Added searchable Cornucopia, Bident of Hades, Labrys chain, and Zeus eagle chariot.
+- Added divine designated-heir interaction independent of Olympus/Asgard titles.
+- Added AI-only k_olympus/k_asgard identity and landless return-host preparation. Player-selected founders are not forced into these titles.
+- Added title flags for Olympus and Asgard.
+- Added missing localisation keys and CSV cleanup.
+- Additional vanilla-duel death guards retained and expanded separately in override audit.

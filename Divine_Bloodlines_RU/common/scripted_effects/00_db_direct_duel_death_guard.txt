@@ -1,0 +1,76 @@
+# Divine Bloodlines v2.2.7.4.6 - direct scripted duel death last line.
+# Caller saves the intended killer as event_target:db_direct_duel_killer.
+
+db_survive_forbidden_direct_duel_effect = {
+    # The Sickle cuts immortality on the first otherwise-lethal hit, but cannot skip severing.
+    if = {
+        limit = { event_target:db_direct_duel_killer = { has_artifact = db_sickle_of_cronus } }
+        remove_trait = immortal
+        add_trait = db_severed_immortality
+        add_trait = db_death_chess_ward
+        diplomatic_immunity = no
+        if = {
+            limit = { NOR = { trait = wounded trait = severely_injured } }
+            add_trait = wounded
+        }
+        add_character_modifier = { name = db_fading_divine_spark years = 1 }
+        event_target:db_direct_duel_killer = { prestige = 250 }
+    }
+    else = {
+        db_mortal_harm_survival_effect = yes
+    }
+
+    clr_character_flag = someone_died
+    clr_character_flag = injury_kills
+    clr_character_flag = elegant_double_KO
+    clr_character_flag = clumsy_double_KO
+
+    # If this was a Legendary Journey duel, explicitly resume the tombola after the protected god survives.
+    if = {
+        limit = { has_character_flag = call_to_legend_active is_alive = yes }
+        character_event = { id = HF.12003 days = 5 }
+    }
+}
+
+# Run immediately before a direct scripted duel death. Besides the ordinary Godslayer
+# authorization, a Sickle finishing blow on an already-severed true god founds the
+# first Godslayer bloodline just like DBV2.640. The subsequent caller death = {} remains
+# responsible for the actual death reason used by that vanilla chain.
+db_mark_authorized_direct_duel_death_effect = {
+    if = {
+        limit = {
+            db_is_death_guarded_true_god_trigger = yes
+            event_target:db_direct_duel_killer = { db_has_godslayer_blood_trigger = yes }
+        }
+        set_character_flag = db_divine_death_authorized
+    }
+
+    if = {
+        limit = {
+            db_is_true_god_trigger = yes
+            trait = db_severed_immortality
+            event_target:db_direct_duel_killer = { has_artifact = db_sickle_of_cronus }
+        }
+        set_character_flag = db_divine_death_authorized
+        set_global_flag = db_god_can_die_proven
+
+        event_target:db_direct_duel_killer = {
+            if = {
+                limit = { NOT = { has_global_flag = db_first_godslayer_bloodline_created } }
+                set_global_flag = db_first_godslayer_bloodline_created
+                add_trait = db_first_godslayer
+                create_bloodline = { type = db_godslayer_bloodline }
+                prestige = 2000
+                set_character_flag = db_first_godslayer_founder
+            }
+            if = {
+                limit = {
+                    has_character_flag = db_first_godslayer_founder
+                    NOT = { has_global_flag = db_first_godslayer_announced }
+                }
+                set_global_flag = db_first_godslayer_announced
+                narrative_event = { id = DBV2.642 }
+            }
+        }
+    }
+}

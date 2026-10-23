@@ -1,0 +1,15 @@
+Divine Bloodlines v2.1.4
+
+- Retains and integrates the v2.1.3 Order of the Sickle: four secret-society ranks, Secret Knowledge, surveillance, demigod hunts, relic theft, god-capture traps, Sickle tracing, Grand Hunts, AI operations and divine counter-intelligence.
+- Every true god still receives personal warnings when the Sickle legend awakens and when the Sickle is actually recovered.
+- Added one-time automatic arrivals for missing founders. A player-selected Zeus/Odin consumes that god's unique campaign arrival; only the absent god can then appear by event. If neither was selected, both can arrive, staggered, during the first few years.
+- Auto-arrival prefers suitable childless/unmarried AI rulers in the appropriate cultural sphere, then broadens the search. The transformed ruler reuses the complete founder setup, including dynasty, pantheon, bloodlines, spouse/family and relics.
+- Added major world notifications for the descent of Zeus and the arrival of Odin. The consumed global flags persist after death, so neither founder respawns later in the campaign.
+- Added religion-independent divine allure. True gods receive +60 general opinion and +60 sex appeal; active demigods receive +30 general opinion and +40 sex appeal. This feeds vanilla friendship/romance/seduction behaviour without forcing relationships or religious conversion.
+- Hardened combat timing by running the intact-god battle guard on on_combat_starting as well as on_combat_pulse.
+- Added an extra hardcoded execution-interaction hook that immediately reasserts diplomatic immunity/immortality for intact gods when the executioner lacks active Godslayer blood. God-Captor imprisonment remains allowed.
+- Existing murder-plot, Assassinate, deadly-duel, battlefield-duel, Holy Fury battle-death and berserker-death protections remain in place. The Sickle still uses the required sever-then-kill flow; active Godslayer blood remains the direct bypass.
+- Unauthorized intact true-god deaths now log with the v2.1.4 diagnostic marker.
+- True-god fertility remains at the previously agreed -40%. Religion lock for true gods and active demigods is unchanged.
+
+Runtime note: CK2 executable is not available in the build environment. Static validation and archive integrity checks were run; live event ordering and vanilla edge-case death chains still require an in-game test.

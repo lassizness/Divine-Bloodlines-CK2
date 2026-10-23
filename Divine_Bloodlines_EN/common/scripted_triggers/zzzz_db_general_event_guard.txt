@@ -1,0 +1,14 @@
+# v2.2.7.4.7 - broad vanilla-event eligibility guard.
+# CK2 has no global before_death hook. Most mundane random-event pools already consult
+# block_general_event_trigger; intact adult true gods are excluded here so they are not
+# selected for mortal accident chains in the first place. Divine Bloodlines events do not
+# use this trigger for their own god-specific content.
+block_general_event_trigger = {
+    OR = {
+        db_is_death_guarded_true_god_trigger = yes
+        is_adult = no
+        is_incapable = yes
+        prisoner = yes
+        is_inaccessible_trigger = yes
+    }
+}

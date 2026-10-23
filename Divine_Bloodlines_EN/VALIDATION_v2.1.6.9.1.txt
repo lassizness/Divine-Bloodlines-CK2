@@ -1,0 +1,33 @@
+Divine Bloodlines v2.1.6.9.1 - static validation
+
+PACKAGE INTEGRITY
+- EN DBV2/DBH event definitions: 175
+- RU DBV2/DBH event definitions: 175
+- Unresolved internal DBV2/DBH event references: 0
+- Duplicate internal DBV2/DBH event IDs: 0
+- Brace balance errors: 0
+- UTF-8 BOM files in checked script/localisation formats: 0
+- Changed gameplay logic parity between EN/RU: OK
+
+TRAIT UI MIGRATION
+- Legacy hidden technical trait definitions retained in-place for save ID stability.
+- No runtime trait/add_trait/remove_trait use remains for migrated essence/faded/latent state outside the migration event itself.
+- Essence markers and faded/latent state now use character flags.
+- db_true_god_low_fertility runtime behavior now uses db_true_god_low_fertility_mod with is_visible = always no.
+- DBV2.1140 is wired to startup, chronicle start, and monthly pulse for old-save migration.
+- Portrait-form traits and db_death_chess_ward intentionally remain traits because they depend on CK2 trait semantics.
+
+DUEL DEATH PROTECTION
+- send_duel_result_event_effect override count inside each package: exactly 1.
+- Vanilla-name scripted trigger/effect overrides use zzz_db_* late-loading filenames.
+- Direct duplicate event-ID guards use 00_db_override_* early-loading filenames.
+- Last-line guards present for HFP.10101, HFP.10102, HFP.10104, HFP.10111, HFP.11042, HFP.11047, HF.10104, HF.12201, HF.12204, HF.12205, TOG.5014, TOG.5029 and HL.10510.
+- DBV2.295 clears queued lethal duel events HFP.10101/10102/10103/10104/10111, HFP.11042/11045/11047, HF.10104/HF.12200/HF.12201/HF.12204/HF.12205, TOG.5014/5029.
+- DBV2.295 runs on combat start and combat pulse as a secondary safety net.
+
+SEMANTIC INVARIANTS
+- Adult intact true-god death guard remains age >= 16.
+- Active Godslayer bloodline exception remains enabled.
+- Sickle lethal result against an intact god severs immortality first.
+- Sickle lethal result against an already-severed god can kill and may establish the first Godslayer bloodline.
+- Severed gods remain outside intact-god death protection.

@@ -1,0 +1,46 @@
+namespace = DBV2
+
+# v2.1.6.9.1 - migrate technical hidden traits to flags/modifiers.
+# Trait definitions remain in their original registry positions for save compatibility.
+character_event = {
+ id = DBV2.1140
+ hide_window = yes
+ trigger = {
+  OR = {
+   trait = db_zeus_faded_p trait = db_zeus_faded_m trait = db_odin_faded_p trait = db_odin_faded_m
+   trait = db_zeus_latent_p trait = db_zeus_latent_m trait = db_odin_latent_p trait = db_odin_latent_m
+   trait = db_olympian_latent
+   trait = db_essence_zeus trait = db_essence_odin trait = db_essence_poseidon trait = db_essence_hades trait = db_essence_demeter trait = db_essence_hestia
+   trait = db_true_god_low_fertility
+   AND = { db_is_true_god_trigger = yes NOT = { has_character_modifier = db_true_god_low_fertility_mod } }
+   AND = { NOT = { db_is_true_god_trigger = yes } has_character_modifier = db_true_god_low_fertility_mod }
+  }
+ }
+ mean_time_to_happen = { days = 1 }
+ immediate = {
+  if = { limit = { trait = db_zeus_faded_p } set_character_flag = db_zeus_faded_p remove_trait = db_zeus_faded_p }
+  if = { limit = { trait = db_zeus_faded_m } set_character_flag = db_zeus_faded_m remove_trait = db_zeus_faded_m }
+  if = { limit = { trait = db_odin_faded_p } set_character_flag = db_odin_faded_p remove_trait = db_odin_faded_p }
+  if = { limit = { trait = db_odin_faded_m } set_character_flag = db_odin_faded_m remove_trait = db_odin_faded_m }
+  if = { limit = { trait = db_zeus_latent_p } set_character_flag = db_zeus_latent_p remove_trait = db_zeus_latent_p }
+  if = { limit = { trait = db_zeus_latent_m } set_character_flag = db_zeus_latent_m remove_trait = db_zeus_latent_m }
+  if = { limit = { trait = db_odin_latent_p } set_character_flag = db_odin_latent_p remove_trait = db_odin_latent_p }
+  if = { limit = { trait = db_odin_latent_m } set_character_flag = db_odin_latent_m remove_trait = db_odin_latent_m }
+  if = { limit = { trait = db_olympian_latent } set_character_flag = db_olympian_latent remove_trait = db_olympian_latent }
+  if = { limit = { trait = db_essence_zeus } set_character_flag = db_essence_zeus remove_trait = db_essence_zeus }
+  if = { limit = { trait = db_essence_odin } set_character_flag = db_essence_odin remove_trait = db_essence_odin }
+  if = { limit = { trait = db_essence_poseidon } set_character_flag = db_essence_poseidon remove_trait = db_essence_poseidon }
+  if = { limit = { trait = db_essence_hades } set_character_flag = db_essence_hades remove_trait = db_essence_hades }
+  if = { limit = { trait = db_essence_demeter } set_character_flag = db_essence_demeter remove_trait = db_essence_demeter }
+  if = { limit = { trait = db_essence_hestia } set_character_flag = db_essence_hestia remove_trait = db_essence_hestia }
+  if = { limit = { trait = db_true_god_low_fertility } remove_trait = db_true_god_low_fertility }
+  if = {
+   limit = { db_is_true_god_trigger = yes NOT = { has_character_modifier = db_true_god_low_fertility_mod } }
+   add_character_modifier = { name = db_true_god_low_fertility_mod duration = -1 }
+  }
+  if = {
+   limit = { NOT = { db_is_true_god_trigger = yes } has_character_modifier = db_true_god_low_fertility_mod }
+   remove_character_modifier = db_true_god_low_fertility_mod
+  }
+ }
+}

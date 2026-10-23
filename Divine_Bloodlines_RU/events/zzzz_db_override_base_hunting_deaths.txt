@@ -1,0 +1,84 @@
+# v2.2.7.4.5 - late-loaded direct vanilla hunting/feast deaths that bypass random_accident_death_effect.
+
+character_event = {
+ id = 36000 desc = EVTDESC36000 picture = GFX_evt_hunt is_triggered_only = yes
+ immediate = { set_character_flag = hunt_event_happened }
+ option = { name = EVTOPTA36000 trigger = { NOT = { trait = craven } } prestige = 5 }
+ option = { name = EVTOPTB36000 tooltip_info = craven trigger = { trait = craven } prestige = -10 }
+ option = { name = EVTOPTC36000 trigger = { NOR = { trait = greedy trait = arbitrary trait = envious trait = craven trait = cruel } } add_trait_silently_kind_effect = yes }
+ option = {
+  name = EVTOPTD36000 trigger = { NOR = { trait = craven trait = humble trait = content } }
+  random_list = { 50 = { } 10 = { if = { limit = { trait = diligent } prestige = 10 } else = { add_trait_fully_diligent_effect = yes } } 20 = { change_martial = 1 } 14 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_trait_wounded_effect = yes } } 4 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_maimed_trait_effect = yes } } 1 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_survive_forbidden_scripted_death_effect = yes } else = { death = { death_reason = death_accident } } } }
+  set_character_flag = hunt_killed_something prestige = 20
+ }
+}
+
+character_event = {
+ id = 36001 desc = EVTDESC36001 picture = GFX_evt_hunt is_triggered_only = yes
+ immediate = { set_character_flag = hunt_event_happened set_character_flag = hunt_paranoia }
+ option = {
+  name = EVTOPTA36001
+  random_list = {
+   75 = { }
+   20 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_trait_wounded_effect = yes } random_courtier_or_vassal = { limit = { has_plot = plot_kill_character plot_target_char = { character = ROOT } } character_event = { id = 36003 days = 1 } } }
+   4 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_maimed_trait_effect = yes } random_courtier_or_vassal = { limit = { has_plot = plot_kill_character plot_target_char = { character = ROOT } } character_event = { id = 36003 days = 1 } } }
+   1 = {
+    random_courtier_or_vassal = { limit = { has_plot = plot_kill_character plot_target_char = { character = ROOT } } save_event_target_as = killer_target }
+    if = { limit = { db_is_death_guarded_true_god_trigger = yes event_target:killer_target = { NOT = { db_has_godslayer_blood_trigger = yes } } } db_survive_forbidden_scripted_death_effect = yes }
+    else = { death = { death_reason = death_murder_unknown_arrow killer = event_target:killer_target } }
+    any_courtier_or_vassal = { limit = { has_plot = plot_kill_character plot_target_char = { character = ROOT } } character_event = { id = 36002 days = 1 } }
+   }
+  }
+ }
+ option = {
+  name = EVTOPTB36001 trigger = { trait = patient }
+  random_list = {
+   85 = { }
+   5 = { random_courtier_or_vassal = { limit = { ai = yes is_adult = yes trigger_if = { limit = { has_plot = plot_kill_character } plot_target_char = { NOT = { character = ROOT } } } trigger_if = { limit = { is_female = yes } ROOT = { OR = { religion_is_matriarchal_trigger = yes gender_equality_trigger = yes } } } } character_event = { id = 36005 days = 1 tooltip = EVTTOOLTIP36004 } } }
+   5 = { random_courtier_or_vassal = { limit = { has_plot = plot_kill_character plot_target_char = { character = ROOT } } character_event = { id = 36004 days = 1 tooltip = EVTTOOLTIP36004 } } }
+   5 = {
+    random_courtier_or_vassal = { limit = { has_plot = plot_kill_character plot_target_char = { character = ROOT } } save_event_target_as = killer_target }
+    if = { limit = { db_is_death_guarded_true_god_trigger = yes event_target:killer_target = { NOT = { db_has_godslayer_blood_trigger = yes } } } db_survive_forbidden_scripted_death_effect = yes }
+    else = { death = { death_reason = death_murder_unknown_arrow killer = event_target:killer_target } }
+    any_courtier_or_vassal = { limit = { has_plot = plot_kill_character plot_target_char = { character = ROOT } } character_event = { id = 36002 days = 1 } }
+   }
+  }
+ }
+}
+
+character_event = {
+ id = 36004 desc = EVTDESC36004 picture = GFX_evt_hunt is_triggered_only = yes
+ option = { name = EVTOPTA36004 FROM = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_murder_unknown_arrow killer = FROM } } clear_event_target = db_direct_duel_killer }
+}
+character_event = {
+ id = 36005 desc = EVTDESC36005 picture = GFX_evt_hunt is_triggered_only = yes
+ option = { name = EVTOPTA36005 FROM = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_murder_unknown_arrow killer = FROM } } clear_event_target = db_direct_duel_killer }
+}
+
+character_event = {
+ id = 36045 desc = EVTDESC36045 picture = GFX_evt_hunt is_triggered_only = yes immediate = { set_character_flag = hunt_event_happened }
+ option = { name = EVTOPTA36045 random_list = { 50 = { } 10 = { if = { limit = { trait = diligent } prestige = 10 } else = { add_trait_fully_diligent_effect = yes } } 25 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_trait_wounded_effect = yes } } 10 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_maimed_trait_effect = yes } } 5 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_survive_forbidden_scripted_death_effect = yes } else = { death = { death_reason = death_accident } } } } set_character_flag = hunt_killed_something prestige = 20 }
+ option = { name = EVTOPTB36045 add_trait_fully_craven_effect = yes }
+}
+
+character_event = {
+ id = 100511 desc = EVTDESC100511 picture = GFX_evt_hunt is_triggered_only = yes
+ option = { name = EVTOPTA100511 tooltip_info = wounded trigger = { trait = wounded } if = { limit = { intrigue >= 10 } opinion = { name = opinion_revenge_seeker who = FROM years = 10 } custom_tooltip = { text = EVTTOOLTIPA100512 } } FROM = { character_event = { id = 100512 days = 7 random = 7 } } }
+ option = { name = EVTOPTB100511 tooltip_info = maimed trigger = { is_maimed_trigger = yes } if = { limit = { intrigue >= 10 } opinion = { name = opinion_revenge_seeker who = FROM years = 10 } custom_tooltip = { text = EVTTOOLTIPA100512 } } FROM = { character_event = { id = 100512 days = 7 random = 7 } } }
+ option = {
+  name = EVTOPTC100511 trigger = { has_character_flag = rival_killed_me }
+  if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_survive_forbidden_scripted_death_effect = yes } else = { death = { death_reason = death_accident_arrow } }
+  clr_character_flag = rival_killed_me
+  FROM = { show_scope_change = no character_event = { id = 100513 days = 7 random = 7 tooltip = EVTTOOLTIPA100512 } }
+ }
+ option = { name = EVTOPTD100511 trigger = { is_maimed_trigger = no NOR = { trait = wounded has_character_flag = rival_killed_me } } if = { limit = { intrigue >= 10 } opinion = { name = opinion_revenge_seeker who = FROM years = 10 } custom_tooltip = { text = EVTTOOLTIPB100512 } } FROM = { character_event = { id = 100512 days = 7 random = 7 } } }
+}
+
+# Grand hunt boar. Guards ROOT and scoped victims alike.
+character_event = {
+ id = 72008 desc = EVTDESC72008 picture = GFX_evt_hunt is_triggered_only = yes
+ option = { name = EVTOPTA72008 job_marshal = { show_scope_change = no prestige = 10 opinion = { name = opinion_flattered who = ROOT years = 10 } random_list = { 80 = { } 10 = { change_martial = 1 } 7 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_trait_wounded_effect = yes } } 2 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_maimed_trait_effect = yes } } 1 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_survive_forbidden_scripted_death_effect = yes } else = { death = { death_reason = death_accident_boar } } } } } }
+ option = { name = EVTOPTB72008 trigger = { any_child = { practical_age >= 14 trigger_if = { limit = { is_female = yes } OR = { gender_equality_trigger = yes religion_is_matriarchal_trigger = yes } } vassal_of = ROOT is_abroad = no prisoner = no health_traits < 1 is_alive = yes } } any_child = { limit = { practical_age >= 14 trigger_if = { limit = { is_female = yes } OR = { gender_equality_trigger = yes religion_is_matriarchal_trigger = yes } } is_abroad = no prisoner = no vassal_of = ROOT health_traits < 1 is_alive = yes } score_value = { value = 10 interesting_courtier_selection_score = yes } prestige = 10 opinion = { name = opinion_flattered who = ROOT years = 10 } random_list = { 80 = { } 10 = { change_martial = 1 } 7 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_trait_wounded_effect = yes } } 2 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_maimed_trait_effect = yes } } 1 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_survive_forbidden_scripted_death_effect = yes } else = { death = { death_reason = death_accident_boar } } } } } }
+ option = { name = EVTOPTC72008 trigger = { practical_age >= 14 trigger_if = { limit = { is_female = yes } OR = { gender_equality_trigger = yes religion_is_matriarchal_trigger = yes } } health_traits < 1 NOT = { trait = craven } } prestige = 10 random_list = { 80 = { } 10 = { change_martial = 1 } 7 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_trait_wounded_effect = yes } } 2 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_maimed_trait_effect = yes } } 1 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_survive_forbidden_scripted_death_effect = yes } else = { death = { death_reason = death_accident_boar } } } } }
+ option = { name = EVTOPTD72008 }
+}

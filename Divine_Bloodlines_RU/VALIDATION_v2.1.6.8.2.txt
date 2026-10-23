@@ -1,0 +1,20 @@
+Divine Bloodlines v2.1.6.8.2 validation
+
+Expected invariants:
+PASS  All vanilla helper overrides use 00_db_* filenames; no zz_db_* override remains.
+PASS  send_duel_result_event_effect has victim-aware Godslayer guards on lethal branches.
+PASS  Ordinary duel entry no longer bans god-vs-mortal combat.
+PASS  Holmgang TOG.5014 / TOG.5029 have a direct divine death guard.
+PASS  Battlefield HFP.11047 has a direct divine death guard.
+PASS  Legendary HF.12204 / HF.12205 have a direct divine death guard.
+PASS  Legacy direct duel event guards cover 61232, MNM.4622, WoL.1038/1041, GBC.130/131, JD.15002, HF.225, RIP.30205/RIP.12064, 72031/72032.
+PASS  Godslayer descendants retain the explicit lethal exception.
+PASS  Sickle direct legacy duel hit severs an intact god instead of killing immediately.
+PASS  Protection starts at age >= 16 only.
+PASS  HF.10104 claim-duel self-death is blocked for protected gods unless opponent is Godslayer.
+PASS  HFP.10111 final mercy-kill has a direct last-line guard.
+PASS  Legacy Sickle finishing blows preserve first-Godslayer bloodline creation.
+PASS  EN/RU changed gameplay files are byte-identical (21 files checked).
+PASS  166 custom DBV2/DBH event IDs resolve; 0 missing custom event references.
+PASS  0 duplicate scripted effect/trigger definitions inside each mod build.
+PASS  0 brace errors and 0 gameplay references to religion_is_matriarchal_trigger.

@@ -1,0 +1,28 @@
+# v2.1.1: special troops use heavy-infantry combat modifiers because both custom troop types have base_type = heavy_infantry.
+# Custom <troop>_offensive/defensive keys are not valid CK2 tactic modifiers.
+
+db_pyrrhic_dance_of_kouretes = {
+    days = 12
+    sprite = 2
+    group = advance
+    trigger = { phase = melee troops = { who = kouretes value = 0.20 } }
+    mean_time_to_happen = {
+        days = 2
+        modifier = { factor = 1.5 flank_has_leader = yes leader = { martial = 15 } }
+    }
+    heavy_infantry_offensive = 2.50
+    heavy_infantry_defensive = 0.50
+}
+
+db_valhalla_shield_wall = {
+    days = 18
+    sprite = 2
+    group = stand_fast
+    trigger = { phase = melee troops = { who = einherjar value = 0.20 } }
+    mean_time_to_happen = {
+        days = 2
+        modifier = { factor = 1.5 flank_has_leader = yes leader = { martial = 15 } }
+    }
+    heavy_infantry_offensive = 0.75
+    heavy_infantry_defensive = 2.50
+}

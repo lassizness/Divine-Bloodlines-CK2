@@ -1,0 +1,49 @@
+# Old feast brawls use direct death effects and do not pass through Holy Fury duel helpers.
+character_event = {
+ id = 72031
+ desc = EVTDESC72031
+ picture = GFX_evt_melee
+ is_triggered_only = yes
+ option = {
+  name = EVTOPTA72031
+  FROM = { save_event_target_as = db_direct_duel_killer }
+  random_list = {
+   35 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_trait_wounded_effect = yes } FROM = { set_character_flag = wounded_opponent character_event = { id = 72032 } } }
+   35 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_maimed_trait_effect = yes } FROM = { set_character_flag = maimed_opponent character_event = { id = 72032 } } }
+   10 = {
+    if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes FROM = { set_character_flag = wounded_opponent character_event = { id = 72032 } } }
+    else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel } FROM = { set_character_flag = killed_opponent character_event = { id = 72033 } } }
+   }
+   20 = { liege = { show_scope_change = no character_event = { id = 72034 tooltip = EVTTOOLTIP72034 } } }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+ option = { name = EVTOPTB72031 prestige = -10 }
+}
+
+character_event = {
+ id = 72032
+ desc = EVTDESC72032
+ picture = GFX_evt_melee
+ is_triggered_only = yes
+ option = {
+  name = EVTOPTA72032 trigger = { has_character_flag = wounded_opponent } FROM = { save_event_target_as = db_direct_duel_killer }
+  random_list = {
+   10 = { if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes FROM = { set_character_flag = wounded_opponent character_event = { id = 72033 tooltip = EVTTOOLTIP72033 } } } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel } FROM = { show_scope_change = no set_character_flag = killed_opponent character_event = { id = 72033 tooltip = EVTTOOLTIP72033 } } } }
+   20 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_maimed_trait_effect = yes } FROM = { show_scope_change = no set_character_flag = maimed_opponent character_event = { id = 72033 tooltip = EVTTOOLTIP72033 } } }
+   30 = { add_trait_wounded_effect = yes FROM = { show_scope_change = no set_character_flag = wounded_opponent character_event = { id = 72033 tooltip = EVTTOOLTIP72033 } } }
+   40 = { any_liege = { show_scope_change = no limit = { has_character_flag = host_feast_started has_character_modifier = holding_large_feast } character_event = { id = 72034 tooltip = EVTTOOLTIP72034 } } }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+ option = {
+  name = EVTOPTB72032 trigger = { has_character_flag = maimed_opponent } FROM = { save_event_target_as = db_direct_duel_killer }
+  random_list = {
+   1 = { if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes FROM = { set_character_flag = wounded_opponent character_event = { id = 72033 tooltip = EVTTOOLTIP72033 } } } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel } FROM = { show_scope_change = no set_character_flag = killed_opponent character_event = { id = 72033 tooltip = EVTTOOLTIP72033 } } } }
+   10 = { if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes } else = { add_maimed_trait_effect = yes } FROM = { show_scope_change = no set_character_flag = maimed_opponent character_event = { id = 72033 tooltip = EVTTOOLTIP72033 } } }
+   19 = { add_trait_wounded_effect = yes FROM = { show_scope_change = no set_character_flag = wounded_opponent character_event = { id = 72033 tooltip = EVTTOOLTIP72033 } } }
+   70 = { any_liege = { show_scope_change = no limit = { has_character_flag = host_feast_started has_character_modifier = holding_large_feast } character_event = { id = 72034 tooltip = EVTTOOLTIP72034 } } }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+}

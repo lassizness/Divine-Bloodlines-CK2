@@ -1,0 +1,12 @@
+Divine Bloodlines v2.2.7.4.7 static validation
+
+- Source base: v2.2.7.4.6.
+- Start host: founder setup and recovery share db_start_host_received.
+- Old duplicate host cleanup event: DBV2.1242.
+- Order player invitation: DBH.11; leadership recovery: DBH.12; independent player recruitment controller: DBH.13.
+- General mundane-event exclusion: zzzz_db_general_event_guard.txt.
+- Additional direct accident overrides: HLF, ZE, HF tribal/warrior-hunt, MNM Hermetics, RIP.
+- Protected ordinary-harm outcome remains db_mortal_harm_survival_effect: 90% no injury, 10% Wounded.
+- No Godslayer/Sickle lethal permission was changed.
+- Brace/event-id/localization/ZIP checks performed during build.
+- Not runtime-tested in CK2.

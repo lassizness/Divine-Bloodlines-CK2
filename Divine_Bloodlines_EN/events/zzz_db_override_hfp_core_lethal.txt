@@ -1,0 +1,234 @@
+namespace = HFP
+
+# v2.1.6.9.1: final direct-event safety for the core Holy Fury duel result events.
+# These event IDs load before vanilla (events are first-definition wins).
+# ROOT is always the character who would die; db_direct_duel_killer is the actual opponent.
+
+character_event = {
+ id = HFP.10101
+ title = getDuelTitle
+ picture = GFX_evt_duel_scene
+ border = GFX_event_normal_frame_war
+ portrait = event_target:combatant_2
+ desc = { text = EVTDESC_HFP_10101_default trigger = { is_using_intrigue_trigger = no NOR = { has_character_flag = elegant_double_KO has_character_flag = clumsy_double_KO } } }
+ desc = { text = EVTDESC_HFP_10101_clumsy trigger = { has_character_flag = clumsy_double_KO is_using_intrigue_trigger = no } }
+ desc = { text = EVTDESC_HFP_10101_elegant trigger = { has_character_flag = elegant_double_KO is_using_intrigue_trigger = no } }
+ desc = { text = EVTDESC_HFP_double_death_intrigue_poison_killed_me trigger = { is_using_intrigue_trigger = no event_target:other_combatant = { is_using_intrigue_trigger = yes } } }
+ desc = { text = EVTDESC_HFP_double_death_intrigue_poison_killed_them trigger = { is_using_intrigue_trigger = yes event_target:other_combatant = { is_using_intrigue_trigger = no } } }
+ desc = { text = EVTDESC_HFP_double_death_intrigue_both_used_poison trigger = { is_using_intrigue_trigger = yes event_target:other_combatant = { is_using_intrigue_trigger = yes } } }
+ is_triggered_only = yes
+ immediate = {
+  event_target:combatant_2 = { save_event_target_as = db_direct_duel_killer }
+  if = {
+   limit = { db_direct_duel_death_blocked_trigger = yes }
+   db_survive_forbidden_direct_duel_effect = yes
+  }
+  else = {
+   debug_battle_death_counter_effect = yes
+   send_notifications_after_champion_stand_in_effect = yes
+   db_mark_authorized_direct_duel_death_effect = yes
+      if = { limit = { event_target:combatant_1 = { has_character_flag = deadly_duel@event_target:combatant_2 } } event_target:combatant_2 = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_mission_duel killer = event_target:combatant_2 } } clear_event_target = db_direct_duel_killer }
+      else_if = { limit = { has_character_flag = is_battlefield_duel } event_target:combatant_2 = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_battle_duel killer = event_target:combatant_2 } } clear_event_target = db_direct_duel_killer }
+   else = { death = { death_reason = death_duel killer = event_target:combatant_2 } }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+ option = {
+  name = { text = EVTOPTA_HFP_10101_default trigger = { NOR = { has_character_flag = elegant_double_KO has_character_flag = clumsy_double_KO } } }
+  name = { text = EVTOPTA_HFP_10101_clumsy trigger = { has_character_flag = clumsy_double_KO } }
+  name = { text = EVTOPTA_HFP_10101_elegant trigger = { has_character_flag = elegant_double_KO } }
+  custom_tooltip = { text = no_one_wins_the_duel_tt }
+ }
+ after = {
+  if = { limit = { is_using_intrigue_trigger = no event_target:other_combatant = { is_using_intrigue_trigger = yes } } tooltip = { handle_poison_effect = yes } }
+  hidden_effect = { clean_up_after_duel_effect = yes }
+ }
+}
+
+character_event = {
+ id = HFP.10102
+ title = getDuelTitle
+ picture = GFX_evt_duel_scene
+ border = GFX_event_normal_frame_war
+ portrait = event_target:combatant_1
+ desc = { text = EVTDESC_HFP_10102_default trigger = { is_using_intrigue_trigger = no NOR = { has_character_flag = elegant_double_KO has_character_flag = clumsy_double_KO } } }
+ desc = { text = EVTDESC_HFP_10102_clumsy trigger = { has_character_flag = clumsy_double_KO is_using_intrigue_trigger = no } }
+ desc = { text = EVTDESC_HFP_10102_elegant trigger = { has_character_flag = elegant_double_KO is_using_intrigue_trigger = no } }
+ desc = { text = EVTDESC_HFP_double_death_intrigue_poison_killed_me trigger = { is_using_intrigue_trigger = no event_target:other_combatant = { is_using_intrigue_trigger = yes } } }
+ desc = { text = EVTDESC_HFP_double_death_intrigue_poison_killed_them trigger = { is_using_intrigue_trigger = yes event_target:other_combatant = { is_using_intrigue_trigger = no } } }
+ desc = { text = EVTDESC_HFP_double_death_intrigue_both_used_poison trigger = { is_using_intrigue_trigger = yes event_target:other_combatant = { is_using_intrigue_trigger = yes } } }
+ is_triggered_only = yes
+ immediate = {
+  event_target:combatant_1 = { save_event_target_as = db_direct_duel_killer }
+  if = {
+   limit = { db_direct_duel_death_blocked_trigger = yes }
+   db_survive_forbidden_direct_duel_effect = yes
+  }
+  else = {
+   debug_battle_death_counter_effect = yes
+   send_notifications_after_champion_stand_in_effect = yes
+   db_mark_authorized_direct_duel_death_effect = yes
+      if = { limit = { event_target:combatant_1 = { has_character_flag = deadly_duel@event_target:combatant_2 } } event_target:combatant_1 = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_mission_duel killer = event_target:combatant_1 } } clear_event_target = db_direct_duel_killer }
+      else_if = { limit = { has_character_flag = is_battlefield_duel } event_target:combatant_1 = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_battle_duel killer = event_target:combatant_1 } } clear_event_target = db_direct_duel_killer }
+   else = { death = { death_reason = death_duel killer = event_target:combatant_1 } }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+ option = {
+  name = { text = EVTOPTA_HFP_10102_default trigger = { NOR = { has_character_flag = elegant_double_KO has_character_flag = clumsy_double_KO } } }
+  name = { text = EVTOPTA_HFP_10102_clumsy trigger = { has_character_flag = clumsy_double_KO } }
+  name = { text = EVTOPTA_HFP_10102_elegant trigger = { has_character_flag = elegant_double_KO } }
+  custom_tooltip = { text = no_one_wins_the_duel_tt }
+ }
+ after = {
+  if = { limit = { is_using_intrigue_trigger = no event_target:other_combatant = { is_using_intrigue_trigger = yes } } tooltip = { handle_poison_effect = yes } }
+  hidden_effect = { clean_up_after_duel_effect = yes }
+ }
+}
+
+# Direct loser/death event. Central result selection should already reject an illegal kill,
+# but this catches delayed/external calls and claim-duel continuations as a final barrier.
+character_event = {
+ id = HFP.10104
+ title = getDuelTitle
+ picture = GFX_evt_duel_scene
+ border = GFX_event_normal_frame_war
+ sound = duel_lose
+ desc = { text = EVTDESC_HFP_10104_A trigger = { has_character_flag = desc_A is_using_intrigue_trigger = no NOT = { event_target:combatant_1 = { has_character_flag = claim_duel@event_target:combatant_2 } } } }
+ desc = { text = EVTDESC_HFP_10104_B trigger = { has_character_flag = desc_B is_using_intrigue_trigger = no NOT = { event_target:combatant_1 = { has_character_flag = claim_duel@event_target:combatant_2 } } } }
+ desc = { text = EVTDESC_HFP_10104_C trigger = { has_character_flag = desc_C is_using_intrigue_trigger = no NOT = { event_target:combatant_1 = { has_character_flag = claim_duel@event_target:combatant_2 } } } }
+ desc = { text = EVTDESC_HF_10104_intrigue_default trigger = { event_target:other_combatant = { is_using_intrigue_trigger = yes } event_target:combatant_1 = { NOT = { has_character_flag = claim_duel@event_target:combatant_2 } } } }
+ desc = { text = EVTDESC_HFP_10104_D trigger = { has_character_flag = desc_A event_target:combatant_1 = { has_character_flag = claim_duel@event_target:combatant_2 NOT = { has_character_flag = attacker_using_poison@event_target:combatant_2 } } } }
+ desc = { text = EVTDESC_HFP_10104_E trigger = { has_character_flag = desc_B event_target:combatant_1 = { has_character_flag = claim_duel@event_target:combatant_2 NOT = { has_character_flag = attacker_using_poison@event_target:combatant_2 } } } }
+ desc = { text = EVTDESC_HFP_10104_F trigger = { has_character_flag = desc_C event_target:combatant_1 = { has_character_flag = claim_duel@event_target:combatant_2 NOT = { has_character_flag = attacker_using_poison@event_target:combatant_2 } } } }
+ desc = { text = EVTDESC_HF_10104_intrigue_A_attacker trigger = { is_using_intrigue_trigger = yes } }
+ desc = { text = EVTDESC_HF_10104_intrigue_A_defender trigger = { is_using_intrigue_trigger = no event_target:other_combatant = { is_using_intrigue_trigger = yes } } }
+ picture = { picture = GFX_evt_duel_team trigger = { capital_scope = { is_winter = yes } } }
+ is_triggered_only = yes
+ immediate = {
+  set_loser_flags_and_save_opponent_effect = yes
+  if = {
+   limit = { NOT = { event_target:combatant_1 = { has_character_flag = claim_duel@event_target:combatant_2 } } }
+   event_target:other_combatant = { save_event_target_as = db_direct_duel_killer }
+   if = {
+    limit = { db_direct_duel_death_blocked_trigger = yes }
+    db_survive_forbidden_direct_duel_effect = yes
+   }
+   else = {
+    debug_battle_death_counter_effect = yes
+    send_notifications_after_champion_stand_in_effect = yes
+    if = { limit = { can_apply_average_nickname_trigger = yes has_character_flag = injury_face has_character_flag = desc_A } give_nickname = nick_the_headless }
+    db_mark_authorized_direct_duel_death_effect = yes
+        if = { limit = { event_target:combatant_1 = { has_character_flag = deadly_duel@event_target:combatant_2 } } event_target:other_combatant = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_mission_duel killer = event_target:other_combatant } } clear_event_target = db_direct_duel_killer }
+        else_if = { limit = { has_character_flag = is_battlefield_duel } event_target:other_combatant = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_battle_duel killer = event_target:other_combatant } } clear_event_target = db_direct_duel_killer }
+    else = { death = { death_reason = death_duel killer = event_target:other_combatant } }
+   }
+   clear_event_target = db_direct_duel_killer
+  }
+ }
+ option = {
+  name = EVTOPTA_HFP_10104
+  custom_tooltip = { text = you_lose_the_duel_tt }
+  hidden_effect = { event_target:other_combatant = { handle_claim_duel_result_effect = yes } }
+  handle_claim_duel_result_effect = yes
+  if = {
+   limit = { event_target:combatant_1 = { has_character_flag = claim_duel@event_target:combatant_2 } }
+   event_target:other_combatant = { save_event_target_as = db_direct_duel_killer }
+   if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes }
+   else = {
+    debug_battle_death_counter_effect = yes
+    send_notifications_after_champion_stand_in_effect = yes
+    db_mark_authorized_direct_duel_death_effect = yes
+        if = { limit = { character = event_target:combatant_1 } event_target:other_combatant = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_claim_duel_attacker killer = event_target:other_combatant } } clear_event_target = db_direct_duel_killer }
+    else = { death = { death_reason = death_claim_duel_defender killer = event_target:other_combatant } }
+   }
+   clear_event_target = db_direct_duel_killer
+  }
+ }
+ option = {
+  name = EVTOPTB_HFP_10104
+  tooltip_info_custom = available_because_dynasty_member_tt
+  trigger = { ai = no dynasty = event_target:other_combatant event_target:combatant_1 = { has_character_flag = claim_duel@event_target:combatant_2 } event_target:other_combatant = { ai = yes } }
+  hidden_effect = { event_target:other_combatant = { handle_claim_duel_result_effect = yes } }
+  handle_claim_duel_result_effect = yes
+  event_target:other_combatant = { save_event_target_as = db_direct_duel_killer }
+  if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes }
+  else = {
+   db_mark_authorized_direct_duel_death_effect = yes
+      if = { limit = { character = event_target:combatant_1 } event_target:other_combatant = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_claim_duel_attacker killer = event_target:other_combatant } } clear_event_target = db_direct_duel_killer }
+   else = { death = { death_reason = death_claim_duel_defender killer = event_target:other_combatant } }
+  }
+  clear_event_target = db_direct_duel_killer
+  set_player_character = event_target:other_combatant
+ }
+ after = {
+  if = { limit = { event_target:other_combatant = { is_using_intrigue_trigger = yes } is_using_intrigue_trigger = no } tooltip = { handle_poison_effect = yes } }
+  hidden_effect = { clean_up_after_duel_effect = yes event_target:other_combatant = { clean_up_after_duel_effect = yes } }
+ }
+}
+
+# Battlefield loser can choose death rather than capture. Ordinary mortals are not allowed
+# to turn that choice into the death of an intact adult true god.
+character_event = {
+ id = HFP.11042
+ title = getDuelTitle
+ picture = GFX_evt_battle
+ border = GFX_event_normal_frame_war
+ portrait = event_target:other_combatant
+ is_triggered_only = yes
+ immediate = { disallow_new_battle_events_effect = yes battle_commander_counter_negative_effect = yes set_loser_flags_and_save_opponent_effect = yes find_cannon_fodder_commander_effect = yes }
+ desc = { text = EVTDESC_HFP_11042_A trigger = { event_target:other_combatant = { trait = deceitful } } }
+ desc = { text = EVTDESC_HFP_11042_B trigger = { event_target:other_combatant = { duelist_skill_compared_to_prev_low_group_trigger = no } } }
+ desc = { text = EVTDESC_HFP_11042_C trigger = { event_target:other_combatant = { duelist_skill_compared_to_prev_low_group_trigger = yes } } }
+ option = {
+  name = EVTOPTA_HFP_11042
+  trigger = { event_target:other_combatant = { is_alive = yes } }
+  show_portrait = event_target:other_combatant
+  prestige = -50
+  save_event_target_as = captured_commander
+  imprison = event_target:enemy_liege
+  event_target:enemy_liege = { character_event = { id = 50020 } }
+  hidden_effect = { event_target:other_combatant = { clr_character_flag = add_duel_xp clr_character_flag = is_battlefield_duel allow_new_battle_events_effect = yes clean_up_after_duel_effect = yes } }
+  ai_chance = { factor = 50 mult_modifier = { factor = 0.5 trait = brave } }
+ }
+ option = {
+  name = EVTOPTB_HFP_11042
+  trigger = { event_target:commander_cannon_fodder = { is_alive = yes } }
+  prestige = -50
+  if = { limit = { can_apply_average_nickname_trigger = yes } random = { chance = 50 give_nickname = nick_the_traitor } }
+  add_character_modifier = { name = battlefield_betrayal years = 10 }
+  reverse_opinion = { name = opinion_betrayed_me_in_battle who = event_target:commander_cannon_fodder years = 25 }
+  event_target:commander_cannon_fodder = { allow_new_battle_events_effect = yes save_event_target_as = captured_commander imprison = event_target:enemy_liege }
+  event_target:enemy_liege = { character_event = { id = 50020 } }
+  hidden_effect = { event_target:other_combatant = { clr_character_flag = add_duel_xp clr_character_flag = is_battlefield_duel allow_new_battle_events_effect = yes clean_up_after_duel_effect = yes } }
+  ai_chance = { factor = 50 mult_modifier = { factor = 1.5 trait = deceitful } mult_modifier = { factor = 1.5 is_devil_worshiper_trigger = yes } mult_modifier = { factor = 0.1 OR = { is_lover = event_target:commander_cannon_fodder is_friend = event_target:commander_cannon_fodder } } }
+ }
+ option = {
+  name = EVTOPTC_HFP_11042
+  trigger = {
+   OR = {
+    NOT = { db_is_death_guarded_true_god_trigger = yes }
+    event_target:other_combatant = { db_has_godslayer_blood_trigger = yes }
+    event_target:other_combatant = { has_artifact = db_sickle_of_cronus }
+   }
+  }
+  custom_tooltip = { text = you_lose_the_duel_tt }
+  event_target:other_combatant = { save_event_target_as = db_direct_duel_killer }
+  if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes }
+  else = {
+   set_character_flag = someone_died
+   set_character_flag = actually_injured
+   set_character_flag = injury_kills
+   event_target:combatant_2 = { set_character_flag = someone_died }
+   event_target:other_combatant = { character_event = { id = HFP.11043 } }
+   if = { limit = { NOT = { character = event_target:home_liege } } event_target:home_liege = { character_event = { id = HFP.11002 } } }
+   if = { limit = { enemy_commander_and_liege_are_different_characters = yes } event_target:enemy_liege = { character_event = { id = HFP.11005 } } }
+   debug_battle_death_counter_effect = yes
+   db_mark_authorized_direct_duel_death_effect = yes
+   event_target:other_combatant = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = event_target:other_combatant } } clear_event_target = db_direct_duel_killer
+  }
+  clear_event_target = db_direct_duel_killer
+  ai_chance = { factor = 50 mult_modifier = { factor = 1.5 trait = brave } }
+ }
+ after = { clr_character_flag = add_duel_xp clr_character_flag = is_battlefield_duel allow_new_battle_events_effect = yes event_target:commander_cannon_fodder = { allow_new_battle_events_effect = yes } hidden_effect = { clean_up_after_duel_effect = yes } }
+}

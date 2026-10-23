@@ -1,0 +1,945 @@
+namespace = DBH
+
+# ============================================================
+# Order of the Sickle: bootstrap, maintenance and AI activity
+# ============================================================
+
+# Seed a leader and a small core after the Sickle legend awakens.
+character_event = {
+    id = DBH.1
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_global_flag = db_order_sickle_awakened
+        has_dlc = "Mystics"
+        OR = {
+            NOT = { has_global_flag = db_order_sickle_initialized }
+            db_order_sickle = { society_has_members = no }
+        }
+    }
+    immediate = {
+        if = { limit = { db_order_sickle = { society_has_members = no } } clr_global_flag = db_order_sickle_initialized }
+        random_character = {
+            limit = {
+                ai = yes
+                is_adult = yes
+                is_alive = yes
+                is_in_society = no
+                prisoner = no
+                is_incapable = no
+                NOT = { db_is_true_god_trigger = yes }
+                NOT = { db_is_active_demigod_trigger = yes }
+                OR = {
+                    intrigue >= 12
+                    learning >= 12
+                    trait = ambitious
+                    trait = cynical
+                    trait = deceitful
+                }
+            }
+            join_society = db_order_sickle
+            society_rank_up = 3
+            set_society_grandmaster = yes
+            change_society_currency = 1200
+            set_character_flag = db_order_first_master
+            set_global_flag = db_order_sickle_initialized
+        }
+
+        if = {
+            limit = { has_global_flag = db_order_sickle_initialized }
+            random_character = {
+                limit = { ai = yes is_adult = yes is_alive = yes is_in_society = no prisoner = no NOT = { db_is_true_god_trigger = yes } NOT = { db_is_active_demigod_trigger = yes } }
+                join_society = db_order_sickle
+                society_rank_up = 1
+                change_society_currency = 400
+            }
+            random_character = {
+                limit = { ai = yes is_adult = yes is_alive = yes is_in_society = no prisoner = no NOT = { db_is_true_god_trigger = yes } NOT = { db_is_active_demigod_trigger = yes } }
+                join_society = db_order_sickle
+                society_rank_up = 1
+                change_society_currency = 400
+            }
+            random_character = {
+                limit = { ai = yes is_adult = yes is_alive = yes is_in_society = no prisoner = no NOT = { db_is_true_god_trigger = yes } NOT = { db_is_active_demigod_trigger = yes } }
+                join_society = db_order_sickle
+                change_society_currency = 250
+            }
+            random_character = {
+                limit = { ai = yes is_adult = yes is_alive = yes is_in_society = no prisoner = no NOT = { db_is_true_god_trigger = yes } NOT = { db_is_active_demigod_trigger = yes } }
+                join_society = db_order_sickle
+                change_society_currency = 250
+            }
+        }
+    }
+}
+
+# AI recruitment. Active blood excludes the candidate; faded/latent descendants are intentionally eligible.
+# v2.1.6.6 centralized recruitment controller.
+# Only the current grandmaster recruits. This replaces the old per-character yearly
+# lottery that could absorb thousands of AI characters into a secret society.
+character_event = {
+    id = DBH.2
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_global_flag = db_order_sickle_awakened
+        has_dlc = "Mystics"
+        society_member_of = db_order_sickle
+        is_society_grandmaster = yes
+        is_alive = yes
+        db_order_sickle = { num_of_society_members < 45 }
+    }
+    immediate = {
+        if = {
+            limit = { db_order_sickle = { num_of_society_members < 15 } }
+            character_event = { id = DBH.8 }
+            character_event = { id = DBH.8 }
+            character_event = { id = DBH.8 }
+            character_event = { id = DBH.8 }
+        }
+        else_if = {
+            limit = { db_order_sickle = { num_of_society_members < 30 } }
+            character_event = { id = DBH.8 }
+            character_event = { id = DBH.8 }
+        }
+        else = {
+            character_event = { id = DBH.8 }
+        }
+    }
+}
+
+# v2.2.7.4.7 - player-facing recruitment. The recruiter is the real current grandmaster.
+character_event = {
+    id = DBH.11
+    title = DBH_11_T
+    desc = DBH_11_D
+    picture = GFX_evt_spymaster
+    portrait = event_target:dbh_recruiter
+    is_triggered_only = yes
+    trigger = {
+        is_alive = yes
+        is_adult = yes
+        prisoner = no
+        is_incapable = no
+        can_join_society = db_order_sickle
+        NOT = { db_is_true_god_trigger = yes }
+        NOT = { db_is_active_demigod_trigger = yes }
+        NOT = { has_character_modifier = db_order_initiation_pending }
+        event_target:dbh_recruiter = { is_alive = yes society_member_of = db_order_sickle }
+    }
+    option = {
+        name = DBH_11_A
+        add_character_modifier = { name = db_order_initiation_pending days = 180 hidden = yes }
+        set_character_flag = db_order_initiation_contact
+        character_event = { id = DBH.14 days = 3 random = 4 }
+    }
+    option = {
+        name = DBH_11_B
+        add_character_modifier = { name = db_order_recruitment_cooldown years = 5 hidden = yes }
+    }
+}
+
+# Emergency leadership recovery. Secret societies must not stop recruiting forever because the first master died.
+character_event = {
+    id = DBH.12
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_global_flag = db_order_sickle_awakened
+        has_dlc = "Mystics"
+        society_member_of = db_order_sickle
+        is_alive = yes
+        NOT = { any_character = { society_member_of = db_order_sickle is_alive = yes is_society_grandmaster = yes } }
+    }
+    immediate = {
+        if = { limit = { society_rank == 1 } society_rank_up = 3 }
+        else_if = { limit = { society_rank == 2 } society_rank_up = 2 }
+        else_if = { limit = { society_rank == 3 } society_rank_up = 1 }
+        set_society_grandmaster = yes
+        change_society_currency = 300
+    }
+}
+
+# v2.2.7.4.7 - player recruitment controller, independent of the AI population ceiling.
+character_event = {
+    id = DBH.13
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_global_flag = db_order_sickle_awakened
+        has_dlc = "Mystics"
+        society_member_of = db_order_sickle
+        is_society_grandmaster = yes
+        is_alive = yes
+        any_character = {
+            ai = no
+            is_alive = yes
+            is_adult = yes
+            prisoner = no
+            is_incapable = no
+            can_join_society = db_order_sickle
+            NOT = { has_character_modifier = db_order_recruitment_cooldown }
+            NOT = { has_character_modifier = db_order_initiation_pending }
+            NOT = { db_is_true_god_trigger = yes }
+            NOT = { db_is_active_demigod_trigger = yes }
+        }
+    }
+    immediate = {
+        save_event_target_as = dbh_recruiter
+        random_character = {
+            limit = {
+                ai = no
+                is_alive = yes
+                is_adult = yes
+                prisoner = no
+                is_incapable = no
+                can_join_society = db_order_sickle
+                NOT = { has_character_modifier = db_order_recruitment_cooldown }
+                NOT = { has_character_modifier = db_order_initiation_pending }
+                NOT = { db_is_true_god_trigger = yes }
+                NOT = { db_is_active_demigod_trigger = yes }
+            }
+            if = {
+                limit = { db_has_godslayer_blood_trigger = yes }
+                character_event = { id = DBH.11 }
+            }
+            else_if = {
+                limit = { OR = { any_friend = { db_is_true_god_trigger = yes } any_lover = { db_is_true_god_trigger = yes } } }
+                random = { chance = 10 character_event = { id = DBH.11 } }
+            }
+            else_if = {
+                limit = { OR = { intrigue >= 14 martial >= 14 learning >= 14 trait = brave trait = hunter trait = ambitious trait = deceitful } }
+                random = { chance = 65 character_event = { id = DBH.11 } }
+            }
+            else = { random = { chance = 30 character_event = { id = DBH.11 } } }
+        }
+    }
+}
+
+
+# v2.2.7.4.8 - player initiation inspired by vanilla secret-cult recruitment.
+# Contact -> revelation -> field trial -> oath. The player is NOT a society member before the final oath.
+character_event = {
+    id = DBH.14
+    title = DBH_14_T
+    desc = DBH_14_D
+    picture = GFX_evt_secret_ceremony
+    portrait = event_target:dbh_recruiter
+    is_triggered_only = yes
+    trigger = { is_alive = yes has_character_flag = db_order_initiation_contact NOT = { is_in_society = yes } }
+    option = {
+        name = DBH_14_A
+        clr_character_flag = db_order_initiation_contact
+        set_character_flag = db_order_initiation_trial
+        character_event = { id = DBH.15 days = 10 random = 10 }
+    }
+    option = {
+        name = DBH_14_B
+        clr_character_flag = db_order_initiation_contact
+        remove_character_modifier = db_order_initiation_pending
+        add_character_modifier = { name = db_order_recruitment_cooldown years = 5 hidden = yes }
+    }
+}
+
+character_event = {
+    id = DBH.15
+    title = DBH_15_T
+    desc = DBH_15_D
+    picture = GFX_evt_spymaster
+    portrait = event_target:dbh_recruiter
+    is_triggered_only = yes
+    trigger = { is_alive = yes has_character_flag = db_order_initiation_trial NOT = { is_in_society = yes } }
+    option = {
+        name = DBH_15_A
+        random_list = {
+            70 = {
+                mult_modifier = { factor = 2 db_has_godslayer_blood_trigger = yes }
+                mult_modifier = { factor = 1.35 intrigue >= 12 }
+                mult_modifier = { factor = 1.25 martial >= 12 }
+                mult_modifier = { factor = 1.25 learning >= 12 }
+                mult_modifier = { factor = 1.20 trait = brave }
+                mult_modifier = { factor = 1.20 trait = hunter }
+                mult_modifier = { factor = 1.20 trait = deceitful }
+                character_event = { id = DBH.16 days = 2 }
+            }
+            30 = {
+                mult_modifier = { factor = 1.50 trait = craven }
+                mult_modifier = { factor = 1.25 trait = content }
+                character_event = { id = DBH.18 days = 2 }
+            }
+        }
+    }
+    option = {
+        name = DBH_15_B
+        clr_character_flag = db_order_initiation_trial
+        remove_character_modifier = db_order_initiation_pending
+        add_character_modifier = { name = db_order_recruitment_cooldown years = 5 hidden = yes }
+    }
+}
+
+character_event = {
+    id = DBH.16
+    title = DBH_16_T
+    desc = DBH_16_D
+    picture = GFX_evt_secret_ceremony
+    portrait = event_target:dbh_recruiter
+    is_triggered_only = yes
+    trigger = {
+        is_alive = yes
+        has_character_flag = db_order_initiation_trial
+        can_join_society = db_order_sickle
+        NOT = { db_is_true_god_trigger = yes }
+        NOT = { db_is_active_demigod_trigger = yes }
+    }
+    option = {
+        name = DBH_16_A
+        clr_character_flag = db_order_initiation_trial
+        remove_character_modifier = db_order_initiation_pending
+        join_society = db_order_sickle
+        change_society_currency = 150
+        set_character_flag = db_order_recruited_by_master
+    }
+    option = {
+        name = DBH_16_B
+        clr_character_flag = db_order_initiation_trial
+        remove_character_modifier = db_order_initiation_pending
+        add_character_modifier = { name = db_order_recruitment_cooldown years = 10 hidden = yes }
+    }
+}
+
+character_event = {
+    id = DBH.18
+    title = DBH_18_T
+    desc = DBH_18_D
+    picture = GFX_evt_mysterious_forest
+    is_triggered_only = yes
+    trigger = { is_alive = yes has_character_flag = db_order_initiation_trial NOT = { is_in_society = yes } }
+    immediate = {
+        clr_character_flag = db_order_initiation_trial
+        remove_character_modifier = db_order_initiation_pending
+        add_character_modifier = { name = db_order_recruitment_cooldown years = 2 hidden = yes }
+        prestige = -25
+        random = { chance = 15 add_trait_wounded_effect = yes }
+    }
+    option = { name = DBH_18_A }
+}
+
+# Reawakened active blood immediately ejects a member from the anti-divine society.
+character_event = {
+    id = DBH.3
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        society_member_of = db_order_sickle
+        OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes }
+    }
+    immediate = {
+        if = { limit = { ai = no } character_event = { id = DBH.31 } }
+        leave_society = yes
+    }
+}
+character_event = {
+    id = DBH.31
+    title = DBH_31_T
+    desc = DBH_31_D
+    picture = GFX_evt_throne_room
+    is_triggered_only = yes
+    option = { name = DBH_OK }
+}
+
+# Keep a global pointer to the current Sickle holder when possible.
+character_event = {
+    id = DBH.4
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = { has_artifact = db_sickle_of_cronus is_alive = yes }
+    immediate = { save_global_event_target_as = db_sickle_holder }
+}
+
+# v2.1.6.5: population watchdog. The Order remains a secret society, so the
+# vanilla UI can hide undiscovered identities even in observer-style inspection.
+# This event guarantees that the hidden society itself is actually populated.
+# Population watchdog. It only prevents extinction; normal growth is owned by DBH.2.
+character_event = {
+    id = DBH.7
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_global_flag = db_order_sickle_awakened
+        has_dlc = "Mystics"
+        db_order_sickle = { num_of_society_members < 5 }
+    }
+    immediate = {
+        if = {
+            limit = { db_order_sickle = { society_has_members = no } }
+            clr_global_flag = db_order_sickle_initialized
+            character_event = { id = DBH.1 }
+        }
+        else = {
+            random_character = {
+                limit = {
+                    can_join_society = db_order_sickle
+                    ai = yes
+                    is_adult = yes
+                    is_alive = yes
+                    prisoner = no
+                    is_incapable = no
+                    NOT = { db_is_true_god_trigger = yes }
+                    NOT = { db_is_active_demigod_trigger = yes }
+                }
+                join_society = db_order_sickle
+                change_society_currency = 150
+            }
+        }
+    }
+}
+
+# Recruit exactly one candidate. Godslayer descendants are preferred.
+character_event = {
+    id = DBH.8
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = {
+                any_character = {
+                    can_join_society = db_order_sickle
+                    ai = yes
+                    is_alive = yes
+                    is_adult = yes
+                    prisoner = no
+                    is_incapable = no
+                    db_has_godslayer_blood_trigger = yes
+                    NOT = { db_is_true_god_trigger = yes }
+                    NOT = { db_is_active_demigod_trigger = yes }
+                }
+            }
+            random_character = {
+                limit = {
+                    can_join_society = db_order_sickle
+                    ai = yes
+                    is_alive = yes
+                    is_adult = yes
+                    prisoner = no
+                    is_incapable = no
+                    db_has_godslayer_blood_trigger = yes
+                    NOT = { db_is_true_god_trigger = yes }
+                    NOT = { db_is_active_demigod_trigger = yes }
+                }
+                join_society = db_order_sickle
+                change_society_currency = 200
+            }
+        }
+        else = {
+            random_character = {
+                limit = {
+                    can_join_society = db_order_sickle
+                    ai = yes
+                    is_alive = yes
+                    is_adult = yes
+                    prisoner = no
+                    is_incapable = no
+                    NOT = { db_is_true_god_trigger = yes }
+                    NOT = { db_is_active_demigod_trigger = yes }
+                    OR = {
+                        intrigue >= 10
+                        learning >= 10
+                        trait = ambitious
+                        trait = cynical
+                        trait = deceitful
+                        trait = paranoid
+                        trait = brave
+                    }
+                }
+                join_society = db_order_sickle
+                change_society_currency = 100
+            }
+        }
+    }
+}
+
+# Migration guard for bloated 2.1.3-2.1.6.5 saves. Excess rank-I AI members
+# gradually leave until the society falls below the emergency ceiling.
+character_event = {
+    id = DBH.9
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        society_member_of = db_order_sickle
+        ai = yes
+        is_alive = yes
+        society_rank == 1
+        db_order_sickle = { num_of_society_members > 60 }
+    }
+    immediate = {
+        random = { chance = 75 leave_society = yes }
+    }
+}
+
+# Sickle registry reconciliation. The artifact is indestructible in normal play,
+# but an old/corrupt save that lost it outside the explicit destruction path may recover.
+character_event = {
+    id = DBH.10
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        has_global_flag = db_sickle_recovered
+        NOT = { has_global_flag = db_sickle_destroyed }
+        NOT = { any_character = { has_artifact = db_sickle_of_cronus } }
+    }
+    immediate = {
+        clr_global_flag = db_sickle_recovered
+    }
+}
+
+# ==================================
+# Rank I: observe divine blood
+# ==================================
+character_event = {
+    id = DBH.100
+    title = DBH_100_T
+    desc = DBH_100_D
+    picture = GFX_evt_spymaster
+    is_triggered_only = yes
+    option = {
+        name = DBH_100_A
+        change_society_currency = -50
+        add_character_modifier = { name = db_order_operation_cooldown days = 90 }
+        ai_chance = { factor = 100 }
+        if = {
+            limit = { OR = { intrigue >= 14 learning >= 14 } }
+            random_list = {
+                75 = { character_event = { id = DBH.101 } }
+                25 = { character_event = { id = DBH.102 } }
+            }
+        }
+        else = {
+            random_list = {
+                55 = { character_event = { id = DBH.101 } }
+                45 = { character_event = { id = DBH.102 } }
+            }
+        }
+    }
+    option = { name = DBH_CANCEL ai_chance = { factor = 0 } }
+}
+character_event = {
+    id = DBH.101
+    title = DBH_101_T
+    desc = DBH_101_D
+    picture = GFX_evt_spymaster
+    is_triggered_only = yes
+    immediate = {
+        event_target:dbh_target = {
+            if = { limit = { NOT = { has_character_flag = db_order_intel_1 } } set_character_flag = db_order_intel_1 }
+            else_if = { limit = { NOT = { has_character_flag = db_order_intel_2 } } set_character_flag = db_order_intel_2 }
+            else_if = { limit = { NOT = { has_character_flag = db_order_intel_3 } } set_character_flag = db_order_intel_3 }
+            else = { set_character_flag = db_order_intel_4 }
+            remove_character_modifier = db_order_intel_fresh
+            add_character_modifier = { name = db_order_intel_fresh years = 8 hidden = yes }
+        }
+        change_society_currency = 100
+        prestige = 25
+    }
+    option = { name = DBH_OK }
+}
+character_event = {
+    id = DBH.102
+    title = DBH_102_T
+    desc = DBH_102_D
+    picture = GFX_evt_spymaster
+    is_triggered_only = yes
+    immediate = {
+        prestige = -25
+        random = { chance = 15 set_discovered_society = yes add_character_modifier = { name = db_order_exposed_cell days = 365 } }
+    }
+    option = { name = DBH_OK }
+}
+
+# ==================================
+# Rank II: hunt active demigods
+# ==================================
+character_event = {
+    id = DBH.110
+    title = DBH_110_T
+    desc = DBH_110_D
+    picture = GFX_evt_melee
+    is_triggered_only = yes
+    option = {
+        name = DBH_110_A
+        change_society_currency = -200
+        add_character_modifier = { name = db_order_operation_cooldown days = 180 }
+        ai_chance = { factor = 100 }
+        if = {
+            limit = { db_has_godslayer_blood_trigger = yes }
+            random_list = {
+                45 = {
+                    event_target:dbh_target = { death = { death_reason = death_murder killer = ROOT } }
+                    change_society_currency = 500
+                    prestige = 250
+                }
+                35 = {
+                    event_target:dbh_target = { imprison = ROOT }
+                    change_society_currency = 350
+                    prestige = 150
+                }
+                20 = { add_trait = wounded prestige = -75 }
+            }
+        }
+        else = {
+            random_list = {
+                20 = {
+                    event_target:dbh_target = { death = { death_reason = death_murder killer = ROOT } }
+                    change_society_currency = 450
+                    prestige = 200
+                }
+                30 = {
+                    event_target:dbh_target = { imprison = ROOT }
+                    change_society_currency = 300
+                    prestige = 125
+                }
+                30 = {
+                    event_target:dbh_target = { add_trait = severely_injured add_character_modifier = { name = db_order_hunted_wound years = 1 } }
+                    change_society_currency = 150
+                }
+                20 = { add_trait = wounded prestige = -100 }
+            }
+        }
+    }
+    option = { name = DBH_CANCEL ai_chance = { factor = 0 } }
+}
+
+# ==================================
+# Rank II+: steal divine relics
+# ==================================
+character_event = {
+    id = DBH.120
+    title = DBH_120_T
+    desc = DBH_120_D
+    picture = GFX_evt_spymaster
+    is_triggered_only = yes
+    option = {
+        name = DBH_120_A
+        change_society_currency = -250
+        add_character_modifier = { name = db_order_operation_cooldown days = 180 }
+        ai_chance = { factor = 100 }
+        if = {
+            limit = { event_target:dbh_target = { has_artifact = db_sickle_of_cronus } }
+            random_list = {
+                15 = { character_event = { id = DBH.121 } }
+                85 = { character_event = { id = DBH.122 } }
+            }
+        }
+        else = {
+            random_list = {
+                40 = { character_event = { id = DBH.121 } }
+                60 = { character_event = { id = DBH.122 } }
+            }
+        }
+    }
+    option = { name = DBH_CANCEL ai_chance = { factor = 0 } }
+}
+character_event = {
+    id = DBH.121
+    title = DBH_121_T
+    desc = DBH_121_D
+    picture = GFX_evt_throne_room
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = { event_target:dbh_target = { has_artifact = db_sickle_of_cronus } }
+            event_target:dbh_target = {
+                random_artifact = {
+                    limit = { has_artifact_flag = anti_divine }
+                    transfer_artifact = { from = PREV to = ROOT }
+                }
+            }
+        }
+        else = {
+            event_target:dbh_target = {
+                random_artifact = {
+                    limit = { has_artifact_flag = divine_bloodlines }
+                    transfer_artifact = { from = PREV to = ROOT }
+                }
+            }
+        }
+        if = { limit = { has_artifact = db_sickle_of_cronus } save_global_event_target_as = db_sickle_holder set_global_flag = db_sickle_recovered }
+        change_society_currency = 350
+        prestige = 150
+    }
+    option = { name = DBH_OK }
+}
+character_event = {
+    id = DBH.122
+    title = DBH_122_T
+    desc = DBH_122_D
+    picture = GFX_evt_spymaster
+    is_triggered_only = yes
+    immediate = {
+        prestige = -50
+        random = { chance = 25 set_discovered_society = yes add_character_modifier = { name = db_order_exposed_cell days = 365 } }
+    }
+    option = { name = DBH_OK }
+}
+
+# ==================================
+# Rank III: prepare a god-capture trap
+# ==================================
+character_event = {
+    id = DBH.140
+    title = DBH_140_T
+    desc = DBH_140_D
+    picture = GFX_evt_spymaster
+    is_triggered_only = yes
+    option = {
+        name = DBH_140_A
+        change_society_currency = -350
+        add_character_modifier = { name = db_order_operation_cooldown days = 365 }
+        ai_chance = { factor = 100 }
+        event_target:dbh_target = {
+            set_character_flag = db_order_trap_prepared
+            character_event = { id = DBH.141 days = 730 }
+        }
+        change_society_currency = 150
+        prestige = 50
+    }
+    option = { name = DBH_CANCEL ai_chance = { factor = 0 } }
+}
+character_event = {
+    id = DBH.141
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = { clr_character_flag = db_order_trap_prepared }
+}
+
+# Rank III: the Sickle is already in mortal hands; identify the known holder.
+character_event = {
+    id = DBH.150
+    title = DBH_150_T
+    desc = DBH_150_D
+    picture = GFX_evt_throne_room
+    is_triggered_only = yes
+    immediate = {
+        if = {
+            limit = { event_target:db_sickle_holder = { is_alive = yes } }
+            event_target:db_sickle_holder = { set_character_flag = db_order_sickle_holder_known }
+            change_society_currency = 150
+        }
+    }
+    option = { name = DBH_OK }
+}
+
+# ==================================
+# Rank IV: Grand Hunt
+# ==================================
+character_event = {
+    id = DBH.200
+    title = DBH_200_T
+    desc = DBH_200_D
+    picture = GFX_evt_melee
+    is_triggered_only = yes
+    option = {
+        name = DBH_200_A
+        change_society_currency = -1000
+        add_character_modifier = { name = db_order_great_hunt_cooldown years = 5 }
+        ai_chance = { factor = 100 }
+        # Godslayer blood grants access to a real lethal duel instead of an instant percentage kill.
+        if = {
+            limit = { db_has_godslayer_blood_trigger = yes }
+            character_event = { id = DBV2.645 }
+            change_society_currency = 500
+        }
+        # The Sickle must obey its normal two-stage rule: sever first, kill only after severing.
+        else_if = {
+            limit = { has_artifact = db_sickle_of_cronus }
+            save_event_target_as = combatant_1
+            event_target:dbh_target = {
+                save_event_target_as = combatant_2
+                save_event_target_as = db_power_target
+            }
+            set_character_flag = add_duel_xp
+            set_character_flag = deadly_duel@event_target:combatant_2
+            character_event = { id = HFP.10100 }
+            change_society_currency = 500
+        }
+        # Without a valid god-killing method the Order can only try to capture the target.
+        else_if = {
+            limit = { event_target:dbh_target = { has_character_flag = db_order_trap_prepared } }
+            random_list = {
+                35 = {
+                    event_target:dbh_target = { imprison = ROOT clr_character_flag = db_order_trap_prepared }
+                    change_society_currency = 900
+                    prestige = 500
+                }
+                65 = { add_trait = wounded prestige = -150 }
+            }
+        }
+        else = {
+            random_list = {
+                10 = { event_target:dbh_target = { imprison = ROOT } change_society_currency = 700 prestige = 350 }
+                90 = { add_trait = wounded prestige = -200 }
+            }
+        }
+    }
+    option = { name = DBH_CANCEL ai_chance = { factor = 0 } }
+}
+
+# ============================================================
+# Autonomous AI operations: same costs, cooldowns and success rolls as the player.
+# Intel is no longer fabricated for AI; it must be accumulated by observation.
+# ============================================================
+character_event = {
+    id = DBH.400
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        ai = yes
+        society_member_of = db_order_sickle
+        is_alive = yes
+        is_adult = yes
+        prisoner = no
+    }
+    immediate = {
+        # Grand Hunt. Uses the same 1000 currency / 5 year cooldown as the player.
+        if = {
+            limit = { society_rank >= 4 society_currency >= 1000 NOT = { has_character_modifier = db_order_great_hunt_cooldown } }
+            random = {
+                chance = 12
+                random_character = {
+                    limit = { is_alive = yes db_is_true_god_trigger = yes has_character_flag = db_order_intel_3 NOT = { character = ROOT } }
+                    save_event_target_as = dbh_target
+                    save_event_target_as = db_power_target
+                    ROOT = { character_event = { id = DBH.200 } }
+                }
+            }
+        }
+
+        # A normal operation cooldown prevents stacking several operations in one yearly tick.
+        if = {
+            limit = { society_rank >= 3 society_currency >= 350 NOT = { has_character_modifier = db_order_operation_cooldown } }
+            random = {
+                chance = 10
+                random_character = {
+                    limit = { is_alive = yes db_is_true_god_trigger = yes has_character_flag = db_order_intel_2 NOT = { character = ROOT } NOT = { has_character_flag = db_order_trap_prepared } }
+                    save_event_target_as = dbh_target
+                    ROOT = { character_event = { id = DBH.140 } }
+                }
+            }
+        }
+
+        if = {
+            limit = { society_rank >= 2 society_currency >= 200 NOT = { has_character_modifier = db_order_operation_cooldown } }
+            random = {
+                chance = 12
+                random_character = {
+                    limit = { is_alive = yes db_is_active_demigod_trigger = yes NOT = { db_is_true_god_trigger = yes } has_character_flag = db_order_intel_1 NOT = { character = ROOT } }
+                    save_event_target_as = dbh_target
+                    ROOT = { character_event = { id = DBH.110 } }
+                }
+            }
+        }
+
+        # Every rank may spend a cheap operation to improve the shared dossier.
+        if = {
+            limit = { society_currency >= 50 NOT = { has_character_modifier = db_order_operation_cooldown } }
+            random = {
+                chance = 15
+                random_character = {
+                    limit = { is_alive = yes OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } NOT = { character = ROOT } }
+                    save_event_target_as = dbh_target
+                    ROOT = { character_event = { id = DBH.100 } }
+                }
+            }
+        }
+    }
+}
+
+# Intel ages out. Successful observation refreshes the dossier for eight years; afterwards
+# one level is lost at a time instead of knowledge remaining perfect for centuries.
+character_event = {
+    id = DBH.5 hide_window = yes is_triggered_only = yes
+    trigger = {
+        is_alive = yes
+        NOT = { has_character_modifier = db_order_intel_fresh }
+        OR = { has_character_flag = db_order_intel_1 has_character_flag = db_order_intel_2 has_character_flag = db_order_intel_3 has_character_flag = db_order_intel_4 }
+    }
+    immediate = {
+        if = { limit = { has_character_flag = db_order_intel_4 } clr_character_flag = db_order_intel_4 add_character_modifier = { name = db_order_intel_fresh years = 8 hidden = yes } }
+        else_if = { limit = { has_character_flag = db_order_intel_3 } clr_character_flag = db_order_intel_3 add_character_modifier = { name = db_order_intel_fresh years = 8 hidden = yes } }
+        else_if = { limit = { has_character_flag = db_order_intel_2 } clr_character_flag = db_order_intel_2 add_character_modifier = { name = db_order_intel_fresh years = 8 hidden = yes } }
+        else = { clr_character_flag = db_order_intel_1 }
+    }
+}
+
+# Members of the Order are the deliberate social exception: divine allure does not turn
+# a secret anti-divine hunter into an admirer.
+character_event = {
+    id = DBH.6 hide_window = yes is_triggered_only = yes
+    trigger = { society_member_of = db_order_sickle is_alive = yes }
+    immediate = {
+        any_character = {
+            limit = { is_alive = yes OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } NOT = { character = ROOT } }
+            ROOT = { remove_opinion = { who = PREV name = db_order_hates_divine } opinion = { who = PREV name = db_order_hates_divine years = 2 } }
+        }
+    }
+}
+
+# ============================================================
+# Divine counter-intelligence. Odin is strongest, Zeus is second.
+# ============================================================
+character_event = {
+    id = DBH.300
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        is_alive = yes
+        db_is_true_god_trigger = yes
+        has_global_flag = db_order_sickle_initialized
+    }
+    immediate = {
+        if = {
+            limit = { OR = { has_character_flag = odin_blood_founder has_character_modifier = db_huginn_muninn } }
+            random = {
+                chance = 20
+                random_character = {
+                    limit = { society_member_of = db_order_sickle is_alive = yes NOT = { is_society_discovered = yes } }
+                    set_discovered_society = yes
+                    add_character_modifier = { name = db_order_exposed_cell years = 2 }
+                }
+            }
+        }
+        else_if = {
+            limit = { OR = { has_character_flag = zeus_blood_founder has_character_modifier = db_eagle_sky_guard } }
+            random = {
+                chance = 12
+                random_character = {
+                    limit = { society_member_of = db_order_sickle is_alive = yes NOT = { is_society_discovered = yes } }
+                    set_discovered_society = yes
+                    add_character_modifier = { name = db_order_exposed_cell years = 2 }
+                }
+            }
+        }
+        else = {
+            random = {
+                chance = 4
+                random_character = {
+                    limit = { society_member_of = db_order_sickle is_alive = yes NOT = { is_society_discovered = yes } }
+                    set_discovered_society = yes
+                    add_character_modifier = { name = db_order_exposed_cell years = 1 }
+                }
+            }
+        }
+    }
+}
+
+
+# v2.1.6.8 - player-facing explanation of the Order and its shared dossiers.
+character_event = { id = DBH.160 title = DBH_160_T desc = DBH_160_D picture = GFX_evt_spymaster is_triggered_only = yes option = { name = DBH_OK } }
+character_event = {
+ id = DBH.161 title = DBH_161_T picture = GFX_evt_spymaster is_triggered_only = yes
+ desc = { text = DBH_161_D4 trigger = { event_target:dbh_target = { has_character_flag = db_order_intel_4 } } }
+ desc = { text = DBH_161_D3 trigger = { event_target:dbh_target = { has_character_flag = db_order_intel_3 NOT = { has_character_flag = db_order_intel_4 } } } }
+ desc = { text = DBH_161_D2 trigger = { event_target:dbh_target = { has_character_flag = db_order_intel_2 NOT = { has_character_flag = db_order_intel_3 } } } }
+ desc = { text = DBH_161_D1 trigger = { event_target:dbh_target = { has_character_flag = db_order_intel_1 NOT = { has_character_flag = db_order_intel_2 } } } }
+ desc = { text = DBH_161_D0 trigger = { event_target:dbh_target = { NOT = { has_character_flag = db_order_intel_1 } } } }
+ option = { name = DBH_OK }
+}

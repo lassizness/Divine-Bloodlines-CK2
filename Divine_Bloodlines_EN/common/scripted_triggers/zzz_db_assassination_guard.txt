@@ -1,0 +1,31 @@
+# v2.1.2: direct vanilla Assassinate guard.
+# ROOT = victim, FROM = attacker. Intact true gods are invalid targets for ordinary characters.
+# Descendants of the first Godslayer are explicitly exempt. Sickle owners must use the Sickle interaction first.
+assassination_interaction_trigger = {
+    NOT = {
+        AND = {
+            db_is_death_guarded_true_god_trigger = yes
+            FROM = { NOT = { db_has_godslayer_blood_trigger = yes } }
+        }
+    }
+
+    trigger_if = {
+        limit = { multiplayer = yes }
+        custom_tooltip = {
+            text = MP_GAME_RULE_ALLOWED
+            trigger_if = {
+                limit = { has_game_rule = { name = multiplayer_assassinations value = no_players } }
+                ai = yes
+            }
+            trigger_else_if = {
+                limit = { has_game_rule = { name = multiplayer_assassinations value = no_players_or_relatives } }
+                ai = yes
+                NOR = {
+                    any_close_relative = { ai = no NOT = { character = FROM } }
+                    any_spouse = { ai = no NOT = { character = FROM } }
+                    AND = { is_heir = yes liege = { ai = no dynasty = ROOT NOT = { character = FROM } } }
+                }
+            }
+        }
+    }
+}

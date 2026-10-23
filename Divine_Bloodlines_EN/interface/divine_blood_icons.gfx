@@ -1,0 +1,176 @@
+spriteTypes = {
+ spriteType = { name = "GFX_db_blood_zeus_p" textureFile = "gfx/interface/divine/blood_zeus_p.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_blood_zeus_m" textureFile = "gfx/interface/divine/blood_zeus_m.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_blood_odin_p" textureFile = "gfx/interface/divine/blood_odin_p.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_blood_odin_m" textureFile = "gfx/interface/divine/blood_odin_m.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+
+ spriteType = { name = "GFX_trait_zeus_origin_marker" textureFile = "gfx/traits/divine/trait_zeus_full.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_odin_origin_marker" textureFile = "gfx/traits/divine/trait_odin_full.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_pure_divine_blood_zeus" textureFile = "gfx/traits/divine/trait_zeus_full.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_pure_divine_blood_odin" textureFile = "gfx/traits/divine/trait_odin_full.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_zeus_demigod_blood" textureFile = "gfx/traits/divine/trait_zeus_demigod.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_odin_demigod_blood" textureFile = "gfx/traits/divine/trait_odin_demigod.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_db_stormrune_blood" textureFile = "gfx/traits/divine/trait_stormrune.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_db_fate_thunder_blood" textureFile = "gfx/traits/divine/trait_fatethunder.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_db_child_two_pantheons" textureFile = "gfx/traits/divine/trait_stormrune.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_db_blood_two_thrones" textureFile = "gfx/traits/divine/trait_fatethunder.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_db_olympian_god" textureFile = "gfx/traits/divine/trait_zeus_full.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_db_severed_immortality" textureFile = "gfx/traits/divine/trait_severed.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+
+ spriteType = { name = "GFX_db_art_thunderbolt" textureFile = "gfx/interface/divine/art_thunderbolt.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_aegis" textureFile = "gfx/interface/divine/art_aegis.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_scepter" textureFile = "gfx/interface/divine/art_scepter.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_ambrosia" textureFile = "gfx/interface/divine/art_ambrosia.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_gungnir" textureFile = "gfx/interface/divine/art_gungnir.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_draupnir" textureFile = "gfx/interface/divine/art_draupnir.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_runes" textureFile = "gfx/interface/divine/art_runes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_mead" textureFile = "gfx/interface/divine/art_mead.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_apple" textureFile = "gfx/interface/divine/art_apple.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_sickle" textureFile = "gfx/interface/divine/art_sickle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_mjolnir_reference" textureFile = "gfx/interface/divine/art_mjolnir_reference.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_eagle" textureFile = "gfx/interface/divine/ability_eagle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_bull" textureFile = "gfx/interface/divine/ability_bull.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_swan" textureFile = "gfx/interface/divine/ability_swan.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_serpent" textureFile = "gfx/interface/divine/ability_serpent.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_visitation" textureFile = "gfx/interface/divine/ability_visitation.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_kouretes" textureFile = "gfx/interface/divine/ability_kouretes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_runes" textureFile = "gfx/interface/divine/ability_runes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_ravens" textureFile = "gfx/interface/divine/ability_ravens.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_odr" textureFile = "gfx/interface/divine/ability_odr.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_wanderer" textureFile = "gfx/interface/divine/ability_wanderer.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_seidr" textureFile = "gfx/interface/divine/ability_seidr.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_lightning" textureFile = "gfx/interface/divine/ability_lightning.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_einherjar" textureFile = "gfx/interface/divine/ability_einherjar.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_yggdrasil" textureFile = "gfx/interface/divine/ability_yggdrasil.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ability_nochess" textureFile = "gfx/interface/divine/ability_nochess.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+
+ spriteType = { name = "GFX_trait_zeus_faded_blood" textureFile = "gfx/traits/divine/trait_zeus_faded.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_odin_faded_blood" textureFile = "gfx/traits/divine/trait_odin_faded.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_poseidon_trident" textureFile = "gfx/interface/divine/art_poseidon_trident.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_hades_helm" textureFile = "gfx/interface/divine/art_hades_helm.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_form" textureFile = "gfx/interface/divine/decision_form.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_swan" textureFile = "gfx/interface/divine/decision_swan.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_bull" textureFile = "gfx/interface/divine/decision_bull.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_eagle" textureFile = "gfx/interface/divine/decision_eagle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_serpent" textureFile = "gfx/interface/divine/decision_serpent.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_runes" textureFile = "gfx/interface/divine/decision_runes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_ravens" textureFile = "gfx/interface/divine/decision_ravens.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_odr" textureFile = "gfx/interface/divine/decision_odr.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_wanderer" textureFile = "gfx/interface/divine/decision_wanderer.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_wisdom" textureFile = "gfx/interface/divine/decision_wisdom.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_yggdrasil" textureFile = "gfx/interface/divine/decision_yggdrasil.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_kouretes" textureFile = "gfx/interface/divine/decision_kouretes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_einherjar" textureFile = "gfx/interface/divine/decision_einherjar.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_relic" textureFile = "gfx/interface/divine/decision_relic.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_severed" textureFile = "gfx/interface/divine/decision_severed.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_sickle" textureFile = "gfx/interface/divine/decision_sickle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_lightning" textureFile = "gfx/interface/divine/decision_lightning.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_convergence" textureFile = "gfx/interface/divine/decision_convergence.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_visitation" textureFile = "gfx/interface/divine/decision_visitation.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_decision_seidr" textureFile = "gfx/interface/divine/decision_seidr.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+
+ # v2.1.1 exact decision-key aliases + treasury small icons
+ spriteType = { name = "GFX_db_assume_divine_form" textureFile = "gfx/interface/divine/decision_form.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_return_true_form" textureFile = "gfx/interface/divine/decision_form.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_rune_insight" textureFile = "gfx/interface/divine/decision_runes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_huginn_muninn" textureFile = "gfx/interface/divine/decision_ravens.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_odins_fury" textureFile = "gfx/interface/divine/decision_odr.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_grey_wanderer" textureFile = "gfx/interface/divine/decision_wanderer.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_price_of_wisdom" textureFile = "gfx/interface/divine/decision_wisdom.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_yggdrasil_nine_nights" textureFile = "gfx/interface/divine/decision_yggdrasil.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_call_kouretes" textureFile = "gfx/interface/divine/decision_kouretes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_call_einherjar" textureFile = "gfx/interface/divine/decision_einherjar.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_aegis" textureFile = "gfx/interface/divine/decision_relic.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_scepter" textureFile = "gfx/interface/divine/decision_relic.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_ambrosia" textureFile = "gfx/interface/divine/decision_relic.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_draupnir" textureFile = "gfx/interface/divine/decision_relic_draupnir.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_runes" textureFile = "gfx/interface/divine/decision_relic.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_mead" textureFile = "gfx/interface/divine/decision_relic.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_apple" textureFile = "gfx/interface/divine/decision_relic.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_thunderbolt_power" textureFile = "gfx/interface/divine/decision_lightning.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_gungnir_power" textureFile = "gfx/interface/divine/decision_runes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_mjolnir_storm" textureFile = "gfx/interface/divine/decision_lightning.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_restore_zeus_immortality" textureFile = "gfx/interface/divine/decision_severed.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_restore_odin_immortality" textureFile = "gfx/interface/divine/decision_severed.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_destroy_sickle_of_cronus" textureFile = "gfx/interface/divine/decision_sickle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_converge_four_bloods" textureFile = "gfx/interface/divine/decision_convergence.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_thunderbolt_small" textureFile = "gfx/interface/divine/art_thunderbolt_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_aegis_small" textureFile = "gfx/interface/divine/art_aegis_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_scepter_small" textureFile = "gfx/interface/divine/art_scepter_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_ambrosia_small" textureFile = "gfx/interface/divine/art_ambrosia_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_gungnir_small" textureFile = "gfx/interface/divine/art_gungnir_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_draupnir_small" textureFile = "gfx/interface/divine/art_draupnir_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_runes_small" textureFile = "gfx/interface/divine/art_runes_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_mead_small" textureFile = "gfx/interface/divine/art_mead_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_apple_small" textureFile = "gfx/interface/divine/art_apple_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_sickle_small" textureFile = "gfx/interface/divine/art_sickle_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_poseidon_trident_small" textureFile = "gfx/interface/divine/art_poseidon_trident_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_art_hades_helm_small" textureFile = "gfx/interface/divine/art_hades_helm_small.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+
+ # v2.1.1 targeted decision aliases
+ spriteType = { name = "GFX_db_divine_visitation" textureFile = "gfx/interface/divine/decision_visitation.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_cast_seidr_curse" textureFile = "gfx/interface/divine/decision_seidr.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_mark_chosen_of_valhalla" textureFile = "gfx/interface/divine/decision_einherjar.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_sickle_sever_immortality" textureFile = "gfx/interface/divine/decision_sickle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+
+ # FIX2 aliases for new targeted actions
+ spriteType = { name = "GFX_db_bull_intimidate" textureFile = "gfx/interface/divine/decision_bull.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_eagle_watch" textureFile = "gfx/interface/divine/decision_eagle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_serpent_infiltrate" textureFile = "gfx/interface/divine/decision_serpent.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_hurl_thunderbolt" textureFile = "gfx/interface/divine/decision_lightning.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+
+ # v2.1.2 traits, bloodline and decision-key aliases
+ spriteType = { name = "GFX_trait_db_godcaptor" textureFile = "gfx/traits/divine/trait_godcaptor.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_db_first_godslayer" textureFile = "gfx/traits/divine/trait_first_godslayer.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_blood_godslayer" textureFile = "gfx/interface/divine/blood_godslayer.dds" noOfFrames = 1 noRefCount = yes }
+ spriteType = { name = "GFX_db_swan_hide_among_mortals" textureFile = "gfx/interface/divine/decision_swan.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_bull_war_roar" textureFile = "gfx/interface/divine/decision_bull.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_eagle_hunt_plotters" textureFile = "gfx/interface/divine/decision_eagle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_serpent_listen_in_shadows" textureFile = "gfx/interface/divine/decision_serpent.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_valkyrie_blessing" textureFile = "gfx/interface/divine/decision_einherjar.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_draupnir_bounty" textureFile = "gfx/interface/divine/decision_runes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_call_sleipnir" textureFile = "gfx/interface/divine/decision_wanderer.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_sickle_of_cronus" textureFile = "gfx/interface/divine/decision_sickle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_vow_restore_olympus" textureFile = "gfx/interface/divine/decision_convergence.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_vow_restore_asgard" textureFile = "gfx/interface/divine/decision_convergence.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_swan_charm" textureFile = "gfx/interface/divine/decision_swan.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_bull_divine_charge" textureFile = "gfx/interface/divine/decision_bull.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_eagle_divine_omen" textureFile = "gfx/interface/divine/decision_eagle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_serpent_whisper_secrets" textureFile = "gfx/interface/divine/decision_serpent.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_serpent_venom" textureFile = "gfx/interface/divine/decision_serpent.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_ravens_scout_target" textureFile = "gfx/interface/divine/decision_ravens.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_gungnir_strike" textureFile = "gfx/interface/divine/decision_runes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_bind_sacred_oath" textureFile = "gfx/interface/divine/decision_runes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_rune_bless_target" textureFile = "gfx/interface/divine/decision_runes.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_mead_inspire_target" textureFile = "gfx/interface/divine/decision_wisdom.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_godslayer_challenge" textureFile = "gfx/interface/divine/decision_sickle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_judge_divine_prisoner" textureFile = "gfx/interface/divine/decision_sickle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+
+ spriteType = { name = "GFX_trait_db_olympian_demigod_blood" textureFile = "gfx/traits/divine/trait_zeus_demigod.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_db_olympian_faded_blood" textureFile = "gfx/traits/divine/trait_zeus_faded.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+
+ spriteType = { name = "GFX_trait_db_cross_pantheon_god" textureFile = "gfx/traits/divine/trait_stormrune.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_trait_db_divine_judgment_survivor" textureFile = "gfx/traits/divine/trait_first_godslayer.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+
+    spriteType = {
+        name = "GFX_trait_db_mixed_demigod_blood"
+        textureFile = "gfx/traits/divine/trait_stormrune.dds"
+        noOfFrames = 1
+    }
+
+ # v2.2.7.4.4 relic-search decision icons (all normalized to 28x28).
+ spriteType = { name = "GFX_db_seek_amalthea" textureFile = "gfx/interface/divine/decision_relic_amalthea.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_hades_bident" textureFile = "gfx/interface/divine/decision_relic_hades_bident.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_labrys" textureFile = "gfx/interface/divine/decision_relic_labrys.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_apollo_bow" textureFile = "gfx/interface/divine/decision_relic_apollo.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_artemis_bow" textureFile = "gfx/interface/divine/decision_relic_artemis.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_caduceus" textureFile = "gfx/interface/divine/decision_relic_caduceus.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_girdle" textureFile = "gfx/interface/divine/decision_relic_girdle.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_fleece" textureFile = "gfx/interface/divine/decision_relic_fleece.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_megingjord" textureFile = "gfx/interface/divine/decision_relic_megingjord.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_jarngreipr" textureFile = "gfx/interface/divine/decision_relic_jarngreipr.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_skidbladnir" textureFile = "gfx/interface/divine/decision_relic_skidbladnir.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_brisingamen" textureFile = "gfx/interface/divine/decision_relic_brisingamen.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_gjallarhorn" textureFile = "gfx/interface/divine/decision_relic_gjallarhorn.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+ spriteType = { name = "GFX_db_seek_gram" textureFile = "gfx/interface/divine/decision_relic_gram.dds" noOfFrames = 1 noRefCount = yes effectFile = "gfx/FX/buttonstate_linear.lua" }
+}

@@ -1,0 +1,10 @@
+Divine Bloodlines v2.2.7.4.8
+
+- Added independent canonical genealogical bloodlines for Hera and Frigg. Hera no longer needs Zeus genealogy; Frigg no longer needs Odin genealogy.
+- Old saves repair Hera/Frigg as founders of their own bloodlines and propagate those genealogies through the existing ancestry resolver.
+- Odin + Frigg and Zeus + Hera still resolve to one visible true-god strength trait while retaining both real genealogical ancestries.
+- Reworked Huginn and Muninn: the old prestige/piety lottery is gone. The untargeted power now chooses counter-plot intelligence, war scouting, or world-wisdom for one year.
+- Targeted raven scouting now creates a useful dossier, exposes the target and reveals the target's active plot when one exists.
+- Replaced one-click player recruitment to the Order of the Sickle with a four-stage secret initiation: first contact, revelation, field trial and final oath. Society membership is granted only after the oath.
+- Recruitment chance now strongly favors Godslayer blood and capable/brave/hunter/ambitious candidates, while friendship or romance with a true god makes recruitment much rarer.
+- Failed initiation never kills the candidate; it may cause a minor wound and allows a later retry.

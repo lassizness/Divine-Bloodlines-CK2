@@ -1,0 +1,537 @@
+namespace = DBV2
+
+# ===== Zeus form actions =====
+character_event = { id = DBV2.600 title = DBV2_600_T desc = DBV2_600_D picture = GFX_evt_lovers is_triggered_only = yes option = { name = DBV2_600_A ai_chance = { factor = 100 } event_target:db_power_target = { add_character_modifier = { name = db_swan_charmed days = 180 } opinion = { who = ROOT modifier = db_opinion_divine_reverence years = 1 } } add_character_modifier = { name = db_form_power_cooldown days = 180 } prestige = 50 } option = { name = DBV2_CANCEL ai_chance = { factor = 0 } } }
+character_event = { id = DBV2.602 title = DBV2_602_T desc = DBV2_602_D picture = GFX_evt_melee is_triggered_only = yes option = { name = DBV2_602_A ai_chance = { factor = 100 } event_target:db_power_target = { if = { limit = { db_is_intact_true_god_trigger = yes } add_trait = wounded } else = { random_list = { 20 = { add_trait = severely_injured } 80 = { add_trait = wounded add_character_modifier = { name = db_bull_broken days = 180 } } } } } add_character_modifier = { name = db_form_power_cooldown days = 180 } prestige = 100 } option = { name = DBV2_CANCEL ai_chance = { factor = 0 } } }
+character_event = { id = DBV2.604 title = DBV2_604_T desc = DBV2_604_D picture = GFX_evt_throne_room is_triggered_only = yes option = { name = DBV2_604_A ai_chance = { factor = 100 } event_target:db_power_target = { add_character_modifier = { name = db_eagle_omen days = 365 } prestige = 100 } add_character_modifier = { name = db_form_power_cooldown days = 180 } piety = 50 } option = { name = DBV2_CANCEL ai_chance = { factor = 0 } } }
+character_event = { id = DBV2.606 title = DBV2_606_T desc = DBV2_606_D picture = GFX_evt_spymaster is_triggered_only = yes option = { name = DBV2_606_A ai_chance = { factor = 100 } add_character_modifier = { name = db_serpent_whispers days = 180 } add_character_modifier = { name = db_form_power_cooldown days = 180 } event_target:db_power_target = { add_character_modifier = { name = db_serpent_mark days = 180 } } prestige = 50 } option = { name = DBV2_CANCEL ai_chance = { factor = 0 } } }
+character_event = { id = DBV2.607 title = DBV2_607_T desc = DBV2_607_D picture = GFX_evt_sacrifice is_triggered_only = yes option = { name = DBV2_607_A ai_chance = { factor = 100 } event_target:db_power_target = { add_character_modifier = { name = db_serpent_venom days = 365 } random = { chance = 20 add_trait = ill } } add_character_modifier = { name = db_form_power_cooldown days = 365 } } option = { name = DBV2_CANCEL ai_chance = { factor = 0 } } }
+
+# ===== Divine captivity =====
+character_event = {
+ id = DBV2.610 hide_window = yes is_triggered_only = yes
+ trigger = { OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } }
+ immediate = {
+  if = {
+   limit = { db_is_true_god_trigger = yes }
+   save_event_target_as = db_captured_god
+   if = { limit = { db_is_death_guarded_true_god_trigger = yes } add_trait = immortal if = { limit = { prisoner = yes } diplomatic_immunity = yes } }
+   add_character_modifier = { name = db_divine_captive_fury days = 365 }
+
+   # Ordinary mortals cannot retain an adult intact god for execution/torture/sacrifice.
+   # Sickle owners and active Godslayers remain valid captors.
+   if = {
+    limit = {
+     db_is_death_guarded_true_god_trigger = yes
+     FROM = {
+      NOT = { db_has_godslayer_blood_trigger = yes }
+      NOT = { has_artifact = db_sickle_of_cronus }
+     }
+    }
+    db_mortal_harm_survival_effect = yes
+    diplomatic_immunity = yes
+    imprison = no
+    add_character_modifier = { name = db_divine_escape_cooldown days = 30 }
+   }
+
+   FROM = { if = { limit = { NOT = { trait = db_godcaptor } } add_trait = db_godcaptor } prestige = 500 character_event = { id = DBV2.611 } }
+  }
+ }
+}
+
+character_event = { id = DBV2.611 title = DBV2_611_T desc = DBV2_611_D picture = GFX_evt_throne_room is_triggered_only = yes option = { name = DBV2_611_A prestige = 100 } }
+character_event = {
+ id = DBV2.613 hide_window = yes is_triggered_only = yes
+ trigger = { prisoner = yes is_alive = yes NOT = { has_character_modifier = db_divine_escape_cooldown } OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } }
+ immediate = {
+  if = {
+   limit = { db_is_true_god_trigger = yes NOT = { trait = db_severed_immortality } }
+   if = { limit = { OR = { trait = db_portrait_eagle trait = db_portrait_serpent has_character_modifier = db_yggdrasil_rune_master has_character_modifier = db_sleipnir_favor } } random = { chance = 18 character_event = { id = DBV2.614 } } }
+   else = { random = { chance = 10 character_event = { id = DBV2.614 } } }
+  }
+  else_if = { limit = { db_is_active_demigod_trigger = yes } random = { chance = 3 character_event = { id = DBV2.614 } } }
+ }
+}
+character_event = { id = DBV2.614 title = DBV2_614_T desc = DBV2_614_D picture = GFX_evt_spymaster is_triggered_only = yes option = { name = DBV2_614_A imprison = no prestige = 150 add_character_modifier = { name = db_divine_escape_cooldown days = 180 } } }
+character_event = {
+ id = DBV2.615 title = DBV2_615_T desc = DBV2_615_D picture = GFX_evt_throne_room is_triggered_only = yes
+ option = {
+  name = { text = DBV2_615_A_GODSLAYER trigger = { db_has_godslayer_blood_trigger = yes } }
+  name = { text = DBV2_615_A_SICKLE_KILL trigger = { NOT = { db_has_godslayer_blood_trigger = yes } has_artifact = db_sickle_of_cronus event_target:db_power_target = { trait = db_severed_immortality } } }
+  name = { text = DBV2_615_A_SICKLE_SEVER trigger = { NOT = { db_has_godslayer_blood_trigger = yes } has_artifact = db_sickle_of_cronus event_target:db_power_target = { NOT = { trait = db_severed_immortality } } } }
+  name = { text = DBV2_615_A_FAIL trigger = { NOT = { db_has_godslayer_blood_trigger = yes } NOT = { has_artifact = db_sickle_of_cronus } } }
+  ai_chance = { factor = 100 }
+  if = { limit = { db_has_godslayer_blood_trigger = yes } character_event = { id = DBV2.641 } }
+  else_if = {
+   limit = { has_artifact = db_sickle_of_cronus }
+   if = { limit = { event_target:db_power_target = { trait = db_severed_immortality } } character_event = { id = DBV2.640 } }
+   else = { event_target:db_power_target = { remove_trait = immortal add_trait = db_severed_immortality add_trait = db_death_chess_ward diplomatic_immunity = no add_trait = wounded } prestige = 250 }
+  }
+  else = { prestige = -100 event_target:db_power_target = { add_character_modifier = { name = db_divine_captive_fury days = 365 } } }
+ }
+ option = { name = DBV2_CANCEL ai_chance = { factor = 0 } }
+}
+
+
+# v2.1.6.4: execution guard. Called from the hardcoded execution interaction and on_executed.
+# Ordinary mortals cannot execute an intact adult true god.
+character_event = {
+ id = DBV2.293 hide_window = yes is_triggered_only = yes
+ trigger = {
+  db_is_death_guarded_true_god_trigger = yes
+  NOT = { has_character_flag = db_execution_guard_fired }
+  FROM = { NOT = { db_has_godslayer_blood_trigger = yes } }
+ }
+ immediate = {
+  set_character_flag = db_execution_guard_fired
+  character_event = { id = DBV2.296 days = 1 }
+  db_mortal_harm_survival_effect = yes
+  diplomatic_immunity = yes
+  if = { limit = { prisoner = yes } imprison = no }
+  add_character_modifier = { name = db_divine_captive_fury days = 365 }
+  FROM = { prestige = -250 }
+ }
+}
+
+# Clears the same-tick duplicate guard used by both EXECUTE interaction and on_executed.
+character_event = {
+ id = DBV2.296 hide_window = yes is_triggered_only = yes
+ immediate = { clr_character_flag = db_execution_guard_fired }
+}
+
+# Fast safety net for scripted captures that miss the normal imprisonment on_action.
+# Sickle/Godslayer captors are intentionally exempt.
+character_event = {
+ id = DBV2.294 hide_window = yes
+ trigger = {
+  prisoner = yes
+  db_is_death_guarded_true_god_trigger = yes
+  host = {
+   NOT = { db_has_godslayer_blood_trigger = yes }
+   NOT = { has_artifact = db_sickle_of_cronus }
+  }
+ }
+ mean_time_to_happen = { days = 1 }
+ immediate = {
+  db_mortal_harm_survival_effect = yes
+  diplomatic_immunity = yes
+  imprison = no
+  add_character_modifier = { name = db_divine_escape_cooldown days = 30 }
+ }
+}
+
+# ===== Odin: targeted active powers =====
+character_event = {
+ id = DBV2.620 title = DBV2_620_T desc = DBV2_620_D picture = GFX_evt_spymaster is_triggered_only = yes
+ option = {
+  name = DBV2_620_A
+  ai_chance = { factor = 100 }
+  piety = -75
+  add_character_modifier = { name = db_huginn_muninn days = 365 }
+  add_character_modifier = { name = db_raven_dossier days = 365 }
+  add_character_modifier = { name = db_ravens_cooldown days = 365 }
+  event_target:db_power_target = {
+   add_character_modifier = { name = db_raven_exposed days = 365 }
+   if = { limit = { is_plot_active = yes } reveal_plot = ROOT }
+  }
+  prestige = 50
+ }
+ option = { name = DBV2_CANCEL ai_chance = { factor = 0 } }
+}
+character_event = {
+ id = DBV2.621 title = DBV2_621_T desc = DBV2_621_D picture = GFX_evt_melee is_triggered_only = yes
+ option = {
+  name = DBV2_621_A
+  trigger = { event_target:db_power_target = { db_is_intact_true_god_trigger = yes } }
+  custom_tooltip = { text = DBV2_621_TT_GOD }
+  ai_chance = { factor = 100 }
+
+  add_character_modifier = { name = db_artifact_power_cooldown days = 365 }
+  save_event_target_as = db_divine_attacker
+  clr_character_flag = db_divine_attacker_thunderbolt clr_character_flag = db_divine_attacker_gungnir clr_character_flag = db_divine_attacker_seidr
+  clr_character_flag = db_divine_attacker_killed clr_character_flag = db_divine_attacker_survived clr_character_flag = db_divine_attacker_god_resisted
+  event_target:db_power_target = { save_event_target_as = db_divine_victim clr_character_flag = db_divine_outcome_kill clr_character_flag = db_divine_outcome_severe clr_character_flag = db_divine_outcome_god clr_character_flag = db_struck_by_gungnir set_character_flag = db_struck_by_gungnir }
+
+  set_character_flag = db_divine_attacker_gungnir
+  set_character_flag = db_divine_attacker_god_resisted
+  hidden_tooltip = { event_target:db_power_target = { set_character_flag = db_divine_outcome_god character_event = { id = DBV2.1122 } } }
+ }
+ option = {
+  name = DBV2_621_A
+  trigger = { event_target:db_power_target = { NOT = { db_is_intact_true_god_trigger = yes } trait = db_divine_judgment_survivor } }
+  custom_tooltip = { text = DBV2_621_TT_SURVIVOR }
+  ai_chance = { factor = 100 }
+
+  add_character_modifier = { name = db_artifact_power_cooldown days = 365 }
+  save_event_target_as = db_divine_attacker
+  clr_character_flag = db_divine_attacker_thunderbolt clr_character_flag = db_divine_attacker_gungnir clr_character_flag = db_divine_attacker_seidr
+  clr_character_flag = db_divine_attacker_killed clr_character_flag = db_divine_attacker_survived clr_character_flag = db_divine_attacker_god_resisted
+  event_target:db_power_target = { save_event_target_as = db_divine_victim clr_character_flag = db_divine_outcome_kill clr_character_flag = db_divine_outcome_severe clr_character_flag = db_divine_outcome_god clr_character_flag = db_struck_by_gungnir set_character_flag = db_struck_by_gungnir }
+
+  hidden_tooltip = { random_list = {
+   8 = { set_character_flag = db_divine_attacker_gungnir set_character_flag = db_divine_attacker_killed event_target:db_power_target = { set_character_flag = db_divine_outcome_kill character_event = { id = DBV2.1122 } } }
+   92 = { set_character_flag = db_divine_attacker_gungnir set_character_flag = db_divine_attacker_survived event_target:db_power_target = { set_character_flag = db_divine_outcome_severe character_event = { id = DBV2.1122 } } }
+  } }
+ }
+ option = {
+  name = DBV2_621_A
+  trigger = { event_target:db_power_target = { NOT = { db_is_intact_true_god_trigger = yes } NOT = { trait = db_divine_judgment_survivor } db_is_active_demigod_trigger = yes } }
+  custom_tooltip = { text = DBV2_621_TT_DEMIGOD }
+  ai_chance = { factor = 100 }
+
+  add_character_modifier = { name = db_artifact_power_cooldown days = 365 }
+  save_event_target_as = db_divine_attacker
+  clr_character_flag = db_divine_attacker_thunderbolt clr_character_flag = db_divine_attacker_gungnir clr_character_flag = db_divine_attacker_seidr
+  clr_character_flag = db_divine_attacker_killed clr_character_flag = db_divine_attacker_survived clr_character_flag = db_divine_attacker_god_resisted
+  event_target:db_power_target = { save_event_target_as = db_divine_victim clr_character_flag = db_divine_outcome_kill clr_character_flag = db_divine_outcome_severe clr_character_flag = db_divine_outcome_god clr_character_flag = db_struck_by_gungnir set_character_flag = db_struck_by_gungnir }
+
+  hidden_tooltip = { random_list = {
+   12 = { set_character_flag = db_divine_attacker_gungnir set_character_flag = db_divine_attacker_killed event_target:db_power_target = { set_character_flag = db_divine_outcome_kill character_event = { id = DBV2.1122 } } }
+   88 = { set_character_flag = db_divine_attacker_gungnir set_character_flag = db_divine_attacker_survived event_target:db_power_target = { set_character_flag = db_divine_outcome_severe character_event = { id = DBV2.1122 } } }
+  } }
+ }
+ option = {
+  name = DBV2_621_A
+  trigger = { event_target:db_power_target = { NOT = { db_is_intact_true_god_trigger = yes } NOT = { trait = db_divine_judgment_survivor } NOT = { db_is_active_demigod_trigger = yes } } }
+  custom_tooltip = { text = DBV2_621_TT_MORTAL }
+  ai_chance = { factor = 100 }
+
+  add_character_modifier = { name = db_artifact_power_cooldown days = 365 }
+  save_event_target_as = db_divine_attacker
+  clr_character_flag = db_divine_attacker_thunderbolt clr_character_flag = db_divine_attacker_gungnir clr_character_flag = db_divine_attacker_seidr
+  clr_character_flag = db_divine_attacker_killed clr_character_flag = db_divine_attacker_survived clr_character_flag = db_divine_attacker_god_resisted
+  event_target:db_power_target = { save_event_target_as = db_divine_victim clr_character_flag = db_divine_outcome_kill clr_character_flag = db_divine_outcome_severe clr_character_flag = db_divine_outcome_god clr_character_flag = db_struck_by_gungnir set_character_flag = db_struck_by_gungnir }
+
+  hidden_tooltip = { random_list = {
+   30 = { set_character_flag = db_divine_attacker_gungnir set_character_flag = db_divine_attacker_killed event_target:db_power_target = { set_character_flag = db_divine_outcome_kill character_event = { id = DBV2.1122 } } }
+   70 = { set_character_flag = db_divine_attacker_gungnir set_character_flag = db_divine_attacker_survived event_target:db_power_target = { set_character_flag = db_divine_outcome_severe character_event = { id = DBV2.1122 } } }
+  } }
+ }
+ option = { name = DBV2_CANCEL ai_chance = { factor = 0 } }
+}
+
+
+
+character_event = { id = DBV2.622 title = DBV2_622_T desc = DBV2_622_D picture = GFX_evt_throne_room is_triggered_only = yes option = { name = DBV2_622_A ai_chance = { factor = 100 } piety = -100 add_character_modifier = { name = db_odin_power_cooldown days = 180 } event_target:db_power_target = { add_character_modifier = { name = db_runic_oath years = 3 } opinion = { who = ROOT modifier = db_opinion_divine_reverence years = 3 } } prestige = 50 } option = { name = DBV2_CANCEL ai_chance = { factor = 0 } } }
+character_event = { id = DBV2.623 title = DBV2_623_T desc = DBV2_623_D picture = GFX_evt_throne_room is_triggered_only = yes option = { name = DBV2_623_A ai_chance = { factor = 100 } piety = -100 add_character_modifier = { name = db_odin_power_cooldown days = 180 } event_target:db_power_target = { add_character_modifier = { name = db_runic_blessing years = 2 } } } option = { name = DBV2_CANCEL ai_chance = { factor = 0 } } }
+character_event = { id = DBV2.626 title = DBV2_626_T desc = DBV2_626_D picture = GFX_evt_feast is_triggered_only = yes option = { name = DBV2_626_A ai_chance = { factor = 100 } add_character_modifier = { name = db_odin_power_cooldown days = 365 } event_target:db_power_target = { add_character_modifier = { name = db_poetic_inspiration years = 2 } prestige = 150 } piety = 50 } option = { name = DBV2_CANCEL ai_chance = { factor = 0 } } }
+character_event = { id = DBV2.627 title = DBV2_627_T desc = DBV2_627_D picture = GFX_evt_melee is_triggered_only = yes option = { name = DBV2_627_A ai_chance = { factor = 100 } add_character_modifier = { name = db_sleipnir_favor days = 365 } add_character_modifier = { name = db_odin_power_cooldown days = 365 } if = { limit = { prisoner = yes } random = { chance = 65 imprison = no prestige = 100 } } } option = { name = DBV2_CANCEL ai_chance = { factor = 0 } } }
+
+# ===== First Godslayer and inherited anti-divine blood =====
+# ROOT = killer, db_power_target = the god. Called only for a Sickle finishing blow.
+character_event = {
+ id = DBV2.640 hide_window = yes is_triggered_only = yes
+ immediate = {
+  if = {
+   limit = { NOT = { has_global_flag = db_first_godslayer_bloodline_created } }
+   set_global_flag = db_first_godslayer_bloodline_created
+   add_trait = db_first_godslayer
+   create_bloodline = { type = db_godslayer_bloodline }
+   prestige = 2000
+   set_character_flag = db_first_godslayer_founder
+  }
+  event_target:db_power_target = { set_character_flag = db_divine_death_authorized remove_trait = immortal remove_trait = db_death_chess_ward diplomatic_immunity = no death = { death_reason = death_murder killer = ROOT } }
+  if = { limit = { has_character_flag = db_first_godslayer_founder NOT = { has_global_flag = db_first_godslayer_announced } } set_global_flag = db_first_godslayer_announced narrative_event = { id = DBV2.642 } }
+  set_global_flag = db_god_can_die_proven
+  any_character = { limit = { is_alive = yes db_is_true_god_trigger = yes NOT = { character = event_target:db_power_target } } character_event = { id = DBV2.698 days = 1 } }
+ }
+}
+# Direct execution by inherited Godslayer blood: no Sickle and no severing stage required.
+character_event = {
+ id = DBV2.641 hide_window = yes is_triggered_only = yes
+ immediate = {
+  event_target:db_power_target = { set_character_flag = db_divine_death_authorized remove_trait = immortal remove_trait = db_death_chess_ward diplomatic_immunity = no death = { death_reason = death_murder killer = ROOT } }
+  set_global_flag = db_god_can_die_proven
+  any_character = { limit = { is_alive = yes db_is_true_god_trigger = yes NOT = { character = event_target:db_power_target } } character_event = { id = DBV2.698 days = 1 } }
+  prestige = 500
+ }
+}
+narrative_event = { id = DBV2.642 title = DBV2_642_T desc = DBV2_642_D picture = GFX_evt_death is_triggered_only = yes major = yes option = { name = DBV2_642_A } }
+character_event = {
+ id = DBV2.645 title = DBV2_645_T desc = DBV2_645_D picture = GFX_evt_melee is_triggered_only = yes
+ option = {
+  name = DBV2_645_A
+  ai_chance = { factor = 100 }
+  add_character_modifier = { name = db_godslayer_hunt_cooldown days = 365 }
+  save_event_target_as = combatant_1
+  event_target:db_power_target = { save_event_target_as = combatant_2 }
+  set_character_flag = add_duel_xp
+  set_character_flag = deadly_duel@event_target:combatant_2
+  character_event = { id = HFP.10100 }
+ }
+ option = { name = DBV2_CANCEL ai_chance = { factor = 0 } }
+}
+
+
+# ===== Demigods: heroic destinies, trials and cults =====
+character_event = {
+ id = DBV2.660 title = DBV2_660_T desc = DBV2_660_D picture = GFX_evt_melee is_triggered_only = yes
+ immediate = { set_character_flag = db_hero_path_offered }
+ option = { name = DBV2_660_A add_character_modifier = { name = db_hero_warrior years = 1000 } add_character_modifier = { name = db_heroic_trial_cooldown years = 2 } set_character_flag = db_hero_path_settled prestige = 100 ai_chance = { factor = 25 modifier = { factor = 2 martial >= 12 } } }
+ option = { name = DBV2_660_B add_character_modifier = { name = db_hero_seeker years = 1000 } add_character_modifier = { name = db_heroic_trial_cooldown years = 2 } set_character_flag = db_hero_path_settled prestige = 100 ai_chance = { factor = 20 modifier = { factor = 2 intrigue >= 12 } } }
+ option = { name = DBV2_660_C add_character_modifier = { name = db_hero_guardian years = 1000 } add_character_modifier = { name = db_heroic_trial_cooldown years = 2 } set_character_flag = db_hero_path_settled piety = 100 ai_chance = { factor = 20 modifier = { factor = 2 diplomacy >= 12 } } }
+ option = { name = DBV2_660_E add_character_modifier = { name = db_hero_sage years = 1000 } add_character_modifier = { name = db_heroic_trial_cooldown years = 2 } set_character_flag = db_hero_path_settled piety = 100 ai_chance = { factor = 20 modifier = { factor = 2 learning >= 12 } } }
+ option = { name = DBV2_660_F add_character_modifier = { name = db_hero_trickster years = 1000 } add_character_modifier = { name = db_heroic_trial_cooldown years = 2 } set_character_flag = db_hero_path_settled prestige = 100 ai_chance = { factor = 15 modifier = { factor = 2 intrigue >= 14 } } }
+}
+
+character_event = {
+ id = DBV2.661 hide_window = yes is_triggered_only = yes
+ trigger = { is_alive = yes age >= 20 db_is_heroic_demigod_trigger = yes has_character_flag = db_hero_path_settled NOT = { has_character_modifier = db_heroic_trial_cooldown } }
+ immediate = {
+  if = { limit = { has_global_flag = db_age_of_heroes } random = { chance = 18 character_event = { id = DBV2.662 } } }
+  else = { random = { chance = 12 character_event = { id = DBV2.662 } } }
+ }
+}
+
+character_event = {
+ id = DBV2.662 title = DBV2_662_T desc = DBV2_662_D picture = GFX_evt_melee is_triggered_only = yes
+ option = { name = DBV2_662_A trigger = { has_character_modifier = db_hero_warrior } prestige = 250 change_martial = 1 change_variable = { which = db_heroic_trials value = 1 } random = { chance = 15 add_trait = brave } add_character_modifier = { name = db_heroic_trial_cooldown years = 5 } }
+ option = { name = DBV2_662_B trigger = { has_character_modifier = db_hero_seeker } prestige = 200 wealth = 100 change_variable = { which = db_heroic_trials value = 1 } add_character_modifier = { name = db_heroic_trial_cooldown years = 5 } }
+ option = { name = DBV2_662_C trigger = { has_character_modifier = db_hero_guardian } prestige = 150 piety = 200 change_variable = { which = db_heroic_trials value = 1 } add_character_modifier = { name = db_heroic_trial_cooldown years = 5 } }
+ option = { name = DBV2_662_E trigger = { has_character_modifier = db_hero_sage } piety = 250 change_learning = 1 change_variable = { which = db_heroic_trials value = 1 } add_character_modifier = { name = db_heroic_trial_cooldown years = 5 } }
+ option = { name = DBV2_662_F trigger = { has_character_modifier = db_hero_trickster } prestige = 150 change_intrigue = 1 change_variable = { which = db_heroic_trials value = 1 } add_character_modifier = { name = db_heroic_trial_cooldown years = 5 } }
+}
+
+
+
+character_event = {
+ id = DBV2.663 hide_window = yes is_triggered_only = yes
+ trigger = { is_alive = yes age >= 30 db_is_heroic_demigod_trigger = yes prestige = 3000 check_variable = { which = db_heroic_trials value >= 2 } NOT = { has_character_flag = db_hero_cult_established } }
+ immediate = { set_character_flag = db_hero_cult_established add_character_modifier = { name = db_hero_cult years = 1000 } character_event = { id = DBV2.665 } }
+}
+
+character_event = { id = DBV2.665 title = DBV2_665_T desc = DBV2_665_D picture = GFX_evt_feast is_triggered_only = yes option = { name = DBV2_665_A prestige = 250 } }
+character_event = {
+ id = DBV2.664 hide_window = yes is_triggered_only = yes
+ trigger = { has_character_flag = db_hero_cult_established NOT = { has_global_flag = db_first_hero_death_announced } }
+ immediate = { set_global_flag = db_first_hero_death_announced narrative_event = { id = DBV2.666 } }
+}
+narrative_event = { id = DBV2.666 title = DBV2_666_T desc = DBV2_666_D picture = GFX_evt_death is_triggered_only = yes major = yes option = { name = DBV2_666_A } }
+
+# ===== Birth and population milestones =====
+character_event = {
+ id = DBV2.670 hide_window = yes is_triggered_only = yes
+ immediate = {
+  if = { limit = { trait = zeus_demigod_blood NOT = { has_global_flag = db_first_zeus_demigod_announced } } set_global_flag = db_first_zeus_demigod_announced narrative_event = { id = DBV2.671 } }
+  if = { limit = { trait = odin_demigod_blood NOT = { has_global_flag = db_first_odin_demigod_announced } } set_global_flag = db_first_odin_demigod_announced narrative_event = { id = DBV2.672 } }
+  if = { limit = { db_is_true_god_trigger = yes NOT = { has_global_flag = db_first_born_true_god_announced } } set_global_flag = db_first_born_true_god_announced narrative_event = { id = DBV2.673 } }
+  if = {
+   limit = { NOT = { has_global_flag = db_first_reawakening_announced } db_has_active_divine_blood_trigger = yes OR = { father_even_if_dead = { OR = { has_character_flag = db_zeus_latent_p has_character_flag = db_odin_latent_p } } mother_even_if_dead = { OR = { has_character_flag = db_zeus_latent_m has_character_flag = db_odin_latent_m } } } }
+   set_global_flag = db_first_reawakening_announced narrative_event = { id = DBV2.674 }
+  }
+ }
+}
+narrative_event = { id = DBV2.671 title = DBV2_671_T desc = DBV2_671_D picture = GFX_evt_birth is_triggered_only = yes major = yes option = { name = DBV2_671_A } }
+narrative_event = { id = DBV2.672 title = DBV2_672_T desc = DBV2_672_D picture = GFX_evt_birth is_triggered_only = yes major = yes option = { name = DBV2_672_A } }
+narrative_event = { id = DBV2.673 title = DBV2_673_T desc = DBV2_673_D picture = GFX_evt_birth is_triggered_only = yes major = yes option = { name = DBV2_673_A } }
+narrative_event = { id = DBV2.674 title = DBV2_674_T desc = DBV2_674_D picture = GFX_evt_birth is_triggered_only = yes major = yes option = { name = DBV2_674_A } }
+character_event = {
+ id = DBV2.682 hide_window = yes is_triggered_only = yes trigger = { ai = no }
+ immediate = {
+  if = { limit = { NOT = { has_global_flag = db_return_of_gods_announced } any_character = { count = 20 is_alive = yes OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } } } set_global_flag = db_return_of_gods_announced add_character_modifier = { name = db_return_of_gods years = 1000 } narrative_event = { id = DBV2.683 } }
+  if = { limit = { NOT = { has_global_flag = db_world_of_gods_announced } any_character = { count = 50 is_alive = yes OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } } } set_global_flag = db_world_of_gods_announced add_character_modifier = { name = db_world_of_gods years = 1000 } narrative_event = { id = DBV2.684 } }
+ }
+}
+narrative_event = { id = DBV2.683 title = DBV2_683_T desc = DBV2_683_D picture = GFX_evt_feast is_triggered_only = yes major = yes option = { name = DBV2_683_A } }
+narrative_event = { id = DBV2.684 title = DBV2_684_T desc = DBV2_684_D picture = GFX_evt_throne_room is_triggered_only = yes major = yes option = { name = DBV2_684_A } }
+
+# ===== The lost Sickle of Cronus =====
+narrative_event = { id = DBV2.690 title = DBV2_690_T desc = DBV2_690_D picture = GFX_evt_throne_room is_triggered_only = yes major = yes option = { name = DBV2_690_A } }
+
+character_event = {
+ id = DBV2.691 title = DBV2_691_T desc = DBV2_691_D picture = GFX_evt_throne_room is_triggered_only = yes
+ option = {
+  name = DBV2_691_A
+  ai_chance = { factor = 100 }
+  change_society_currency = -500
+  add_character_modifier = { name = db_order_operation_cooldown days = 365 }
+  add_character_modifier = { name = db_relic_search_cooldown years = 5 }
+  character_event = { id = DBV2.692 days = 30 }
+ }
+ option = { name = DBV2_CANCEL ai_chance = { factor = 0 } }
+}
+
+character_event = {
+ id = DBV2.692 title = DBV2_692_T desc = DBV2_692_D picture = GFX_evt_spymaster is_triggered_only = yes
+ option = {
+  name = DBV2_692_A
+  ai_chance = { factor = 100 }
+  random_list = {
+   65 = { character_event = { id = DBV2.693 } }
+   35 = { prestige = -100 character_event = { id = DBV2.695 } }
+  }
+ }
+ option = { name = DBV2_CANCEL ai_chance = { factor = 0 } }
+}
+
+character_event = {
+ id = DBV2.693 title = DBV2_693_T desc = DBV2_693_D picture = GFX_evt_throne_room is_triggered_only = yes
+ option = {
+  name = DBV2_693_A
+  trigger = { NOT = { has_global_flag = db_sickle_recovered } NOT = { has_global_flag = db_sickle_destroyed } }
+  add_artifact = db_sickle_of_cronus
+  set_global_flag = db_sickle_recovered
+  set_character_flag = db_sickle_finder
+  save_global_event_target_as = db_sickle_holder
+  prestige = 750
+  narrative_event = { id = DBV2.694 }
+  any_character = {
+   limit = { is_alive = yes db_is_true_god_trigger = yes NOT = { has_character_flag = db_sickle_recovery_personally_warned } }
+   set_character_flag = db_sickle_recovery_personally_warned
+   character_event = { id = DBV2.697 days = 1 }
+  }
+  any_character = {
+   limit = { is_alive = yes society_member_of = db_order_sickle society_rank >= 3 }
+   character_event = { id = DBH.150 days = 1 }
+  }
+ }
+ option = {
+  name = DBV2_693_B
+  trigger = { OR = { has_global_flag = db_sickle_recovered has_global_flag = db_sickle_destroyed } }
+  prestige = 100
+ }
+}
+narrative_event = { id = DBV2.694 title = DBV2_694_T desc = DBV2_694_D picture = GFX_evt_throne_room is_triggered_only = yes major = yes option = { name = DBV2_694_A } }
+character_event = { id = DBV2.695 title = DBV2_695_T desc = DBV2_695_D picture = GFX_evt_throne_room is_triggered_only = yes option = { name = DBV2_695_A } }
+
+# ===== Divine religious mission AI and reformation milestones =====
+character_event = {
+ id = DBV2.730 hide_window = yes is_triggered_only = yes
+ trigger = { ai = yes is_alive = yes is_adult = yes db_is_true_god_trigger = yes OR = { has_character_flag = db_zeus_line_head has_character_flag = db_odin_line_head } }
+ immediate = {
+  if = {
+   limit = { OR = { religion = hellenic_pagan religion = norse_pagan } }
+   if = { limit = { NOT = { has_character_modifier = db_divine_reform_mission } } add_character_modifier = { name = db_divine_reform_mission years = 1000 } }
+   remove_character_modifier = db_divine_dominion_mission
+   if = { limit = { NOT = { trait = ambitious } } add_trait = ambitious }
+   if = { limit = { NOT = { trait = zealous } } add_trait = zealous }
+   if = { limit = { religion = hellenic_pagan } character_event = { id = DBV2.735 } }
+   if = { limit = { religion = norse_pagan } character_event = { id = DBV2.736 } }
+   piety = 75 prestige = 50
+  }
+  else_if = {
+   limit = { OR = { religion = hellenic_pagan_reformed religion = norse_pagan_reformed } }
+   remove_character_modifier = db_divine_reform_mission
+   if = { limit = { NOT = { has_character_modifier = db_divine_dominion_mission } } add_character_modifier = { name = db_divine_dominion_mission years = 1000 } }
+   if = { limit = { NOT = { trait = ambitious } } add_trait = ambitious }
+   prestige = 100 piety = 50
+  }
+ }
+}
+character_event = {
+ id = DBV2.731 hide_window = yes is_triggered_only = yes
+ immediate = {
+  if = { limit = { religion = hellenic_pagan_reformed NOT = { has_global_flag = db_hellenic_reformed_announced } } set_global_flag = db_hellenic_reformed_announced remove_character_modifier = db_divine_reform_mission add_character_modifier = { name = db_divine_dominion_mission years = 1000 } narrative_event = { id = DBV2.732 } }
+  if = { limit = { religion = norse_pagan_reformed NOT = { has_global_flag = db_norse_reformed_announced } } set_global_flag = db_norse_reformed_announced remove_character_modifier = db_divine_reform_mission add_character_modifier = { name = db_divine_dominion_mission years = 1000 } narrative_event = { id = DBV2.733 } }
+ }
+}
+narrative_event = { id = DBV2.732 title = DBV2_732_T desc = DBV2_732_D picture = GFX_evt_throne_room is_triggered_only = yes major = yes option = { name = DBV2_732_A } }
+narrative_event = { id = DBV2.733 title = DBV2_733_T desc = DBV2_733_D picture = GFX_evt_throne_room is_triggered_only = yes major = yes option = { name = DBV2_733_A } }
+
+
+
+# ===== HOTFIX4: restoration mission strong claims on the five holy sites =====
+# add_claim creates a strong claim. Monthly hooks also repair saves where the mission pre-dates this patch.
+character_event = {
+ id = DBV2.735 hide_window = yes is_triggered_only = yes
+ trigger = {
+  has_character_modifier = db_divine_reform_mission
+  OR = { religion = hellenic_pagan religion = hellenic_pagan_reformed }
+  NOT = { has_character_flag = db_hellenic_holy_site_claims_granted }
+ }
+ immediate = {
+  add_claim = c_atheniai
+  add_claim = c_thessalonike
+  add_claim = c_siracusa
+  add_claim = c_roma
+  add_claim = c_alexandria
+  set_character_flag = db_hellenic_holy_site_claims_granted
+ }
+}
+character_event = {
+ id = DBV2.736 hide_window = yes is_triggered_only = yes
+ trigger = {
+  has_character_modifier = db_divine_reform_mission
+  OR = { religion = norse_pagan religion = norse_pagan_reformed }
+  NOT = { has_character_flag = db_norse_holy_site_claims_granted }
+ }
+ immediate = {
+  add_claim = c_sjaelland
+  add_claim = c_nidaros
+  add_claim = c_uppland
+  add_claim = c_zeeland
+  add_claim = c_paderborn
+  set_character_flag = db_norse_holy_site_claims_granted
+ }
+}
+
+# ===== Save migration / repair =====
+character_event = {
+ id = DBV2.750 hide_window = yes is_triggered_only = yes
+ trigger = { is_alive = yes NOT = { has_character_flag = db_v212_migrated } OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes trait = db_portrait_swan trait = db_portrait_bull trait = db_portrait_eagle trait = db_portrait_serpent } }
+ immediate = {
+  set_character_flag = db_v212_migrated
+  if = { limit = { db_is_true_god_trigger = yes NOT = { trait = db_severed_immortality } age >= 16 } add_trait = immortal diplomatic_immunity = no  }
+  # Re-sync animal portrait traits from form modifiers without touching DNA/culture.
+  if = { limit = { has_character_modifier = db_form_swan } remove_trait = db_portrait_bull remove_trait = db_portrait_eagle remove_trait = db_portrait_serpent add_trait = db_portrait_swan }
+  if = { limit = { has_character_modifier = db_form_bull } remove_trait = db_portrait_swan remove_trait = db_portrait_eagle remove_trait = db_portrait_serpent add_trait = db_portrait_bull }
+  if = { limit = { has_character_modifier = db_form_eagle } remove_trait = db_portrait_swan remove_trait = db_portrait_bull remove_trait = db_portrait_serpent add_trait = db_portrait_eagle }
+  if = { limit = { has_character_modifier = db_form_serpent } remove_trait = db_portrait_swan remove_trait = db_portrait_bull remove_trait = db_portrait_eagle add_trait = db_portrait_serpent }
+ }
+}
+
+
+# ===== v2.1.3: personal Sickle warnings for every true god =====
+character_event = {
+ id = DBV2.696 title = DBV2_696_T desc = DBV2_696_D picture = GFX_evt_throne_room is_triggered_only = yes
+ option = {
+  name = DBV2_696_A
+  prestige = 50
+ }
+}
+character_event = {
+ id = DBV2.697 title = DBV2_697_T desc = DBV2_697_D picture = GFX_evt_throne_room is_triggered_only = yes
+ option = { name = DBV2_697_A prestige = 100 }
+}
+character_event = {
+ id = DBV2.698 title = DBV2_698_T desc = DBV2_698_D picture = GFX_evt_death is_triggered_only = yes
+ option = { name = DBV2_698_A prestige = -50 }
+}
+
+# Maintenance for true gods created after the legend/recovery events and for upgraded old saves.
+character_event = {
+ id = DBV2.699 hide_window = yes is_triggered_only = yes
+ trigger = {
+  db_is_true_god_trigger = yes
+  OR = {
+   AND = { has_global_flag = db_sickle_legend_awakened NOT = { has_character_flag = db_sickle_legend_personally_warned } }
+   AND = { has_global_flag = db_sickle_recovered NOT = { has_character_flag = db_sickle_recovery_personally_warned } }
+  }
+ }
+ immediate = {
+  if = {
+   limit = { has_global_flag = db_sickle_legend_awakened NOT = { has_character_flag = db_sickle_legend_personally_warned } }
+   set_character_flag = db_sickle_legend_personally_warned
+   character_event = { id = DBV2.696 days = 1 }
+  }
+  if = {
+   limit = { has_global_flag = db_sickle_recovered NOT = { has_character_flag = db_sickle_recovery_personally_warned } }
+   set_character_flag = db_sickle_recovery_personally_warned
+   character_event = { id = DBV2.697 days = 2 }
+  }
+ }
+}
+
+# Diagnostic only: on_death is too late to resurrect a CK2 character, so any intact true-god death
+# which was not explicitly authorized by our Sickle/Godslayer paths is logged for exact event tracing.
+character_event = {
+ id = DBV2.998 hide_window = yes is_triggered_only = yes
+ trigger = {
+  db_is_true_god_trigger = yes
+  NOT = { trait = db_severed_immortality }
+  NOT = { has_character_flag = db_divine_death_authorized }
+ }
+ immediate = {
+  log = "DIVINE_BLOODLINES_V214_UNAUTHORIZED_TRUE_GOD_DEATH: [Root.GetBestName] (ID [Root.GetID]) died while intact. Check the immediately preceding game.log/error.log event chain."
+ }
+}

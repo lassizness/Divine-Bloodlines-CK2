@@ -1,0 +1,31 @@
+# Divine Bloodlines v2.2.7.4.6 - generic scripted death guard.
+# Early-loading override of the vanilla/CleanSlate helper used by many accident chains.
+# Intact full gods aged 16+ survive these generic accidents; age<16 remains vulnerable.
+
+random_accident_death_effect = {
+    if = {
+        limit = { db_is_death_guarded_true_god_trigger = yes }
+        db_mortal_harm_survival_effect = yes
+    }
+    else = {
+        tooltip = { death = { death_reason = death_accident } }
+        random_list = {
+            10 = {
+                trigger = { host = { capital_scope = { NOT = { region = world_africa } } } }
+                death = { death_reason = death_accident_drowning }
+            }
+            10 = {
+                trigger = { host = { capital_scope = { NOT = { region = world_africa } } } }
+                death = { death_reason = death_accident_bear }
+            }
+            10 = { death = { death_reason = death_accident_boar } }
+            10 = { death = { death_reason = death_accident_fall } }
+            10 = { death = { death_reason = death_accident_arrow } }
+            10 = { death = { death_reason = death_accident_snakes } }
+            10 = {
+                trigger = { host = { capital_scope = { region = world_india } } }
+                death = { death_reason = death_accident_tiger }
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+einherjar = {
+    morale = 60 maintenance = 0.05
+    phase_skirmish_attack = 25 phase_melee_attack = 45 phase_pursue_attack = 35
+    phase_skirmish_defense = 50 phase_melee_defense = 70 phase_pursue_defense = 50
+    base_type = heavy_infantry
+}
+
+kouretes = {
+    morale = 55 maintenance = 0.05
+    phase_skirmish_attack = 35 phase_melee_attack = 70 phase_pursue_attack = 55
+    phase_skirmish_defense = 35 phase_melee_defense = 45 phase_pursue_defense = 38
+    base_type = heavy_infantry
+}

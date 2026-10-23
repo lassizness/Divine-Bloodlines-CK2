@@ -1,0 +1,28 @@
+Divine Bloodlines v2.1.5
+=========================
+
+- Zeus and Odin auto-arrivals now create fresh independent characters; existing rulers are never overwritten.
+- Both auto-arrived founders receive their own independent manifestation title: Odin cannot become/retain somebody else's spiritual adviser, and Zeus cannot remain a patriarch or temple vassal.
+- Auto-arrived founders use landless independent manifestation titles, preventing inherited theocracy/council roles (including Odin becoming a spiritual adviser).
+- Founder sanitation removes inherited celibacy/eunuch/monastic/incapable states, reasserts pantheon faith, and repairs auto-arrived founders from 2.1.4 saves by granting the independent manifestation title.
+- Universal divine allure increased; religion-independent Divine Union and Divine Romance interactions can be initiated by either the divine character or a mortal of any faith.
+- Order of the Sickle remains an explicit hostile exception to divine allure.
+- Order AI now pays the same currency costs and receives the same cooldowns/success rolls as the player; AI no longer fabricates intel.
+- Sickle theft now targets the Sickle itself when present; Sickle tracing respects the relic-search cooldown.
+- Order intelligence now ages and loses levels over time.
+- Poseidon/Hades/Demeter/Hestia descendants now receive an Olympian demigod/fading/latent blood cycle.
+- Full Zeus-blood descendants now inherit Zeus' transformation/animal-form suite, matching the already-inherited full-blood Odin abilities; standalone Olympian blood is no longer misclassified as Zeus blood.
+- True goddesses can conceive past mortal age limits; late conception moved to yearly tiered chances to prevent population explosions.
+- Base demigod fertility and late-fertility bonuses reduced to keep multi-century campaigns stable.
+- Zeus/Odin line-head succession now prefers direct children, then dynasty members, then any valid full-blooded heir.
+- Searchable mythic relics are campaign-unique and registered for old saves.
+- Several maintenance hooks moved from monthly to yearly pulses.
+- Existing 2.1.4 god protection against disease, ordinary murder plots, execution and battle deaths is preserved.
+
+Hotfix: divine social interaction
+---------------------------------
+- Removed the visible DBV2.1041 "Divine Attraction" romance event and its targeted interaction. It no longer fires on every eligible woman/man and cannot create global-distance lovers.
+- Divine allure remains a passive opinion/sex-appeal modifier only; it does not force or auto-offer romance.
+- The interfaith marriage bypass remains as a player-invoked Divine Union interaction only when religions differ and one side is a true god/active demigod.
+- Divine Union is now restricted by normal diplomatic range and AI cannot initiate it, preventing repetitive proposal popups.
+- Ordinary mortal/mortal and same-faith marriage rules remain vanilla.

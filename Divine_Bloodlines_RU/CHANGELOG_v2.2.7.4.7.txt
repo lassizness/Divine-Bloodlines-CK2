@@ -1,0 +1,11 @@
+Divine Bloodlines CK2 3.3.5.1 v2.2.7.4.7
+
+- Fixed the 4.6 start-host flag split. Player Zeus and Odin now use the same db_start_host_received flag as recovery/arrival logic, preventing Odin from receiving 2,000 + 2,000 troops.
+- Added old-save reconciliation: if both obsolete player-start and recovery hosts exist, only the obsolete player-start earmark is disbanded; if only the old flag exists it is migrated to the shared flag.
+- Added a broad vanilla general-event guard for intact adult true gods, keeping them out of mundane random-event pools that can end in scripted accidents.
+- Added late direct-death overrides for additional Horse Lords, Conclave, Holy Fury tribal, Hermetic, Reaper's Due and Warrior Lodge accident branches that bypass random_accident_death_effect.
+- Fixed Holy Fury ritual-hunt branches where can_be_maimed_trigger = no paradoxically sent protected gods into a direct death branch. Ordinary mortal/environmental harm now uses the shared 90% no effect / 10% Wounded result for protected gods.
+- Added player-facing recruitment to the Order of the Sickle. DBH.13 lets the living grandmaster approach an eligible mortal player independently of the AI member cap; DBH.11 presents the actual invitation. Accepting joins at rank I with starting Secret Knowledge, declining applies a five-year recruitment cooldown.
+- Added emergency Order leadership recovery so recruitment cannot permanently stop merely because the current grandmaster dies.
+
+File/static validation only; CK2 runtime behavior still requires in-game testing.

@@ -1,0 +1,41 @@
+Divine Bloodlines v2.1.6.8 static validation
+Target: Crusader Kings II 3.3.5.1
+Variants: EN / RU
+
+PASS  UTF-8 BOM: 0 gameplay files
+PASS  Brace balance: 0 errors
+PASS  Custom DBV2/DBH event IDs: 166 unique per variant
+PASS  Duplicate DBV2/DBH event IDs: 0
+PASS  Unresolved internal/custom DBV2/DBH event references: 0
+PASS  Localization duplicate keys: 0
+PASS  Required v2.1.6.8 localization keys present
+PASS  Custom trait duplicate definitions: 0
+PASS  religion_is_matriarchal_trigger gameplay references: 0
+PASS  Divine Bloodlines override of is_member_of_any_warrior_lodge_trigger: removed
+PASS  DBV2.660 removed from on_adulthood
+PASS  DBV2.661 Heroic Trial controller present on yearly pulse
+PASS  DBV2.1100 Legendary Gathering repair present on monthly pulse
+PASS  DBV2.1101 Legendary top-bracket capture guard present on monthly pulse
+PASS  adult true-god death guard remains age >= 16
+PASS  Sickle targeted challenge uses filter = all
+PASS  Sickle duel has explicit sever stage (DBV2.1111)
+PASS  Sickle duel has explicit canonical finishing stage (DBV2.640)
+PASS  Godslayer Challenge no longer contains old instant-kill random_list
+PASS  Thunderbolt mortal death branch = 20
+PASS  Gungnir mortal death branch = 18
+PASS  custom divine-strike death definitions contain no killer assignment
+PASS  Age of Heroes requires delayed db_age_of_heroes_eligible flag
+PASS  Mixed Demigod + Cross-Pantheon God states present
+PASS  relic search resolution delayed by 60 + random 120 days
+PASS  EN/RU gameplay files byte-identical except intentional founder names/dynasties/localisation and historical reports
+PASS  referenced new custom trait textures exist
+
+RUNTIME SMOKE TESTS RECOMMENDED
+1. Load an existing save with Legendary progress stuck at 100% and a true god at Warrior Lodge rank IV; verify a second Hero appears and HF Legendary Journey starts.
+2. Sickle vs intact adult god in another realm: a strong winning result must sever immortality but not kill. Repeat against the severed god: a strong winning result must kill and create/announce the first Godslayer if none exists.
+3. Godslayer descendant vs intact god: verify a lethal duel result can still kill directly.
+4. Thunderbolt/Gungnir death: verify victim history shows anonymous divine-judgment death text without a killer character link; verify survivors gain resistance trait.
+5. God x god births: test Zeus x Odin, Odin x independent Olympian, and two independent Olympians; verify full-god child states and essence inheritance.
+6. Run 20+ observer years: verify Age of Heroes cannot begin before year 15 after first divine arrival, and Order / arrival systems remain stable.
+
+NOTE: This report is static/package validation; CK2 engine runtime behavior cannot be executed in this environment.

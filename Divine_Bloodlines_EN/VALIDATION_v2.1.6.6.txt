@@ -1,0 +1,27 @@
+Divine Bloodlines v2.1.6.6 validation report
+
+Target: Crusader Kings II 3.3.5.1
+Variants checked: EN, RU
+
+STATIC CHECKS
+PASS  UTF-8 BOM scan: 0 gameplay/text assets with BOM
+PASS  Brace balance: 0 errors
+PASS  Top-level DBV2/DBH definitions: 154 per variant
+PASS  Duplicate DBV2/DBH event IDs: 0
+PASS  Unresolved internal DBV2/DBH event references: 0
+PASS  CleanSlate-only religion_is_matriarchal_trigger references: 0
+PASS  Required arrival events: DBV2.981, .982, .1060, .1063 each defined exactly once
+PASS  Required Order events: DBH.2, .7, .8, .9, .10 each defined exactly once
+PASS  DBV2.1060 removed from on_monthly_pulse
+PASS  Order recruitment restricted to society grandmaster
+PASS  Normal Order recruitment stops at 45 members
+PASS  Emergency Order pruning threshold: >60
+PASS  Order rank capacities: 45 / 20 / 8 / 3
+PASS  Sickle of Cronus: indestructible = yes
+PASS  Old player-only native-campaign marker is no longer used as an arrival repair condition
+PASS  Arrival diagnostic log markers present
+PASS  EN/RU changed gameplay files byte-identical
+
+NOTE
+This is a static/package validation. CK2 engine runtime behaviour still needs an observer smoke test,
+especially the two-day title-transfer/independence sequence and old-save society pruning.

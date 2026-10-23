@@ -1,0 +1,22 @@
+Divine Bloodlines v2.2.7.4.4 - static validation
+
+PASS: all .txt gameplay files in EN and RU have balanced braces.
+PASS: no duplicate DBV2/DBH event IDs inside either mod branch.
+PASS: no duplicate db_* decision keys across decision files.
+PASS: on_birth contains only DBV2.1199; the mod genetics pass is delayed one day.
+PASS: DBV2.11 ordered newborn pipeline is DBV2.1000 -> DBV2.10 -> DBV2.1206 -> DBV2.70 -> DBV2.990 -> DBV2.670.
+PASS: no add_trait = db_essence_* remains; essence/ancestry state is flag-based.
+PASS: Hera/Frigg founder setup contains their own essence flags and generic pantheon-god state.
+PASS: DBV2.1206 strips founder/demigod/hybrid conflicts and resolves God x God to one generic true-god state.
+PASS: designated-heir decision requires a close adult divine relative and sets native + line-specific designation state.
+PASS: Zeus/Odin line-authority scripted triggers are present; Kouretes/Einherjar use them.
+PASS: HF.12201 protected-death guard is present; protected Legendary Journey survivors are rescheduled into HF.12003.
+PASS: DBV2.1103/DBV2.1104 orphaned Legendary Gathering recovery handlers are present.
+PASS: stale RU-only DBV2.1207 is absent from both branches.
+PASS: all decision diplomacy_icon references resolve uniquely and point to 28x28 textures.
+PASS: 15 added relic-search textures exist in both EN/RU and are 28x28.
+PASS: RU localisation/divine_bloodlines.csv is CP1251-decodable and has no UTF-8 BOM.
+PASS: gameplay files modified for this patch are EN/RU-equivalent ignoring BOM/blank-line differences.
+
+Important limitation:
+No CK2 executable/runtime test was performed in this environment. In particular, manual newborn naming, native set_designated_heir behavior under every succession law, and Holy Fury runtime event flow still require in-game verification.

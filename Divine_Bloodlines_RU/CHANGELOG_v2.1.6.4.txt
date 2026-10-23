@@ -1,0 +1,14 @@
+Divine Bloodlines v2.1.6.4
+God Death Guard hardening.
+
+- Kept the intended age gate: full-blood gods only gain lethal protection from age 16.
+- Added db_is_death_guarded_true_god_trigger; under-16 full-blood children remain vulnerable.
+- Restored missing DBV2.293 and wired execution protection to on_executed.
+- Ordinary captors cannot retain an intact adult true god for execution, torture or sacrifice; Sickle/Godslayer captors are exceptions.
+- Added a one-day captive escape safety net for scripted capture routes.
+- Generic random accident deaths (drowning, bear, boar, fall, arrow, snakes, tiger) now spare intact adult true gods.
+- Tiger and warrior-lodge beast-hunt target flags are removed from intact adult true gods.
+- Assassination, duel and battle guards now share the same age-16 protection boundary.
+- Sickle still severs immortality first; once severed, ordinary death is allowed.
+- Active Godslayer blood remains the only direct bypass against an intact adult god.
+- Restored DBV2.990 passive divine-allure maintenance accidentally dropped by the 2.1.6.3 arrival rewrite.

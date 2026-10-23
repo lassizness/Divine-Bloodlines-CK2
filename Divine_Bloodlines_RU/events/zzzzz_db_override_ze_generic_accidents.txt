@@ -1,0 +1,21 @@
+namespace = ZE
+
+# v2.2.7.4.7 - Conclave direct accident outcome.
+character_event = {
+ id = ZE.8100 desc = EVTDESC_ZE_8100 picture = GFX_evt_feast border = GFX_event_normal_frame_diplomacy
+ is_triggered_only = yes hide_from = yes min_age = 16 has_dlc = "Conclave" only_capable = yes prisoner = no in_command = no
+ trigger = {
+  trigger_if = { limit = { religion_group = muslim } trait = decadent }
+  is_inaccessible_trigger = no
+  NOR = { trait = temperate trait = drunkard }
+  any_voter = { is_inaccessible_or_incapable_trigger = no NOR = { character = ROOT holds_favor_on = ROOT is_rival = ROOT } }
+ }
+ weight_multiplier = { factor = 1 mult_modifier = { factor = 2 trait = gluttonous } mult_modifier = { factor = 2 trait = hedonist } }
+ immediate = { random_voter = { limit = { is_inaccessible_or_incapable_trigger = no NOR = { character = ROOT holds_favor_on = ROOT is_rival = ROOT } } save_event_target_as = target_voter } }
+ option = { name = EVTOPTA_ZE_8100 event_target:target_voter = { show_scope_change = no character_event = { id = ZE.8101 tooltip = EVTOPTA_ZE_8100_TOOLTIP } } }
+ option = {
+  name = EVTOPTB_ZE_8100
+  if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes }
+  else = { random_list = { 60 = { } 30 = { trigger = { NOT = { trait = wounded } } add_trait_wounded_effect = yes } 10 = { death = { death_reason = death_accident } } } }
+ }
+}

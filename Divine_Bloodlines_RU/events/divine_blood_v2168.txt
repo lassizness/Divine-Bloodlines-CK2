@@ -1,0 +1,163 @@
+namespace = DBV2
+
+
+# The Age of Heroes cannot begin immediately after divine arrival.
+character_event = {
+ id = DBV2.511 hide_window = yes is_triggered_only = yes
+ trigger = { NOT = { has_global_flag = db_age_of_heroes_eligible } }
+ immediate = { set_global_flag = db_age_of_heroes_eligible }
+}
+
+# v2.1.6.8 - Heroic Path is an earned adulthood event, not an automatic age-16 popup.
+character_event = {
+ id = DBV2.659 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes age >= 20 db_is_active_demigod_trigger = yes
+  NOT = { has_character_flag = db_hero_path_offered }
+  NOR = { has_character_modifier = db_hero_warrior has_character_modifier = db_hero_seeker has_character_modifier = db_hero_guardian has_character_modifier = db_hero_sage has_character_modifier = db_hero_trickster }
+  OR = { prestige >= 500 martial >= 12 diplomacy >= 12 intrigue >= 12 learning >= 12 }
+ }
+ immediate = { random = { chance = 25 character_event = { id = DBV2.660 } } }
+}
+
+# Legendary Gathering repair: Holy Fury requires two accessible rank-IV heroes.
+# If a true god is already a Hero, promote an available lodge veteran before the progress bar fills.
+character_event = {
+ id = DBV2.1100 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes db_is_true_god_trigger = yes society_rank == 4 is_member_of_any_warrior_lodge_trigger = yes
+  society = { society_has_active_progress = yes }
+  NOT = { has_character_flag = call_to_legend_active }
+  NOT = { society = { any_society_member = { count >= 2 society_rank == 4 is_inaccessible_trigger = no } } }
+ }
+ immediate = {
+  society = {
+   random_society_member = {
+    limit = { ai = yes is_alive = yes is_adult = yes prisoner = no is_incapable = no NOT = { character = ROOT } society_rank < 4 }
+    if = { limit = { society_rank == 3 } society_rank_up = 1 }
+    else_if = { limit = { society_rank == 2 } society_rank_up = 2 }
+    else = { society_rank_up = 3 }
+    set_character_flag = db_divine_legend_companion
+   }
+  }
+ }
+}
+
+# Legendary Journey protection: a true god entering the top bracket cannot be removed by the vanilla 10% "guards imprison the hero" branch, which only applies below progress 10.
+character_event = {
+ id = DBV2.1101 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes db_is_death_guarded_true_god_trigger = yes
+  has_character_flag = call_to_legend_active
+  has_character_flag = top_bracket
+  check_variable = { which = legendary_event_progress value < 10 }
+ }
+ immediate = { set_variable = { which = legendary_event_progress value = 10 } }
+}
+
+
+
+# If a Legendary Journey participant dies and no active hero remains, release the warrior lodge state immediately.
+character_event = {
+ id = DBV2.1103 hide_window = yes is_triggered_only = yes
+ trigger = { has_character_flag = call_to_legend_active }
+ immediate = {
+  if = {
+   limit = {
+    is_in_society = yes
+    NOT = { society = { any_society_member = { is_alive = yes is_dying = no has_character_flag = call_to_legend_active } } }
+   }
+   society = {
+    set_society_progress = 0
+    clr_flag = block_society_progress
+    clr_flag = used_legendary_gathering
+    any_society_member = { limit = { OR = { has_character_flag = call_to_legend_active has_character_flag = completed_call_to_legend } } clean_up_after_legendary_showdown_effect = yes }
+   }
+  }
+ }
+}
+
+# Old-save watchdog: clear a blocked Legendary Gathering if every active hero has already died/disappeared.
+character_event = {
+ id = DBV2.1104 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes is_in_society = yes
+  society = {
+   has_flag = block_society_progress
+   NOT = { any_society_member = { is_alive = yes is_dying = no has_character_flag = call_to_legend_active } }
+  }
+ }
+ immediate = {
+  society = {
+   set_society_progress = 0
+   clr_flag = block_society_progress
+   clr_flag = used_legendary_gathering
+   any_society_member = { limit = { OR = { has_character_flag = call_to_legend_active has_character_flag = completed_call_to_legend } } clean_up_after_legendary_showdown_effect = yes }
+  }
+ }
+}
+
+# A Sickle lethal victory against an intact god severs immortality instead of killing on the first blow.
+character_event = {
+ id = DBV2.1111 hide_window = yes is_triggered_only = yes
+ immediate = {
+  event_target:combatant_2 = {
+   remove_trait = immortal
+   add_trait = db_severed_immortality
+   add_trait = db_death_chess_ward
+   diplomatic_immunity = no
+   add_trait = wounded
+   add_character_modifier = { name = db_fading_divine_spark years = 1 }
+  }
+  prestige = 250
+  set_winner_flags_and_save_opponent_effect = yes
+  apply_generic_duel_victory_effect = yes
+  clean_up_after_duel_effect = yes
+ }
+}
+
+# Delayed relic expedition resolution.
+character_event = {
+ id = DBV2.401 hide_window = yes is_triggered_only = yes
+ immediate = {
+  remove_character_modifier = db_relic_search_active
+  if = { limit = { has_character_flag = db_seek_aegis } if = { limit = { has_global_flag = db_aegis_created } character_event = { id = DBV2.404 } } else = { random_list = { 45 = { add_artifact = db_aegis_of_zeus set_global_flag = db_aegis_created character_event = { id = DBV2.402 } } 55 = { character_event = { id = DBV2.403 } } } } }
+  else_if = { limit = { has_character_flag = db_seek_scepter } if = { limit = { has_global_flag = db_scepter_created } character_event = { id = DBV2.404 } } else = { random_list = { 45 = { add_artifact = db_scepter_of_olympus set_global_flag = db_scepter_created character_event = { id = DBV2.402 } } 55 = { character_event = { id = DBV2.403 } } } } }
+  else_if = { limit = { has_character_flag = db_seek_ambrosia } if = { limit = { has_global_flag = db_ambrosia_created } character_event = { id = DBV2.404 } } else = { random_list = { 40 = { add_artifact = db_ambrosia set_global_flag = db_ambrosia_created character_event = { id = DBV2.402 } } 60 = { character_event = { id = DBV2.403 } } } } }
+  else_if = { limit = { has_character_flag = db_seek_draupnir } if = { limit = { has_global_flag = db_draupnir_created } character_event = { id = DBV2.404 } } else = { random_list = { 45 = { add_artifact = db_draupnir set_global_flag = db_draupnir_created character_event = { id = DBV2.402 } } 55 = { character_event = { id = DBV2.403 } } } } }
+  else_if = { limit = { has_character_flag = db_seek_runes } if = { limit = { has_global_flag = db_runes_created } character_event = { id = DBV2.404 } } else = { random_list = { 40 = { add_artifact = db_runes_of_yggdrasil set_global_flag = db_runes_created character_event = { id = DBV2.402 } } 60 = { character_event = { id = DBV2.403 } } } } }
+  else_if = { limit = { has_character_flag = db_seek_mead } if = { limit = { has_global_flag = db_mead_created } character_event = { id = DBV2.404 } } else = { random_list = { 45 = { add_artifact = db_mead_of_poetry set_global_flag = db_mead_created character_event = { id = DBV2.402 } } 55 = { character_event = { id = DBV2.403 } } } } }
+  else_if = { limit = { has_character_flag = db_seek_apple } if = { limit = { has_global_flag = db_apple_created } character_event = { id = DBV2.404 } } else = { random_list = { 40 = { add_artifact = db_apple_of_idunn set_global_flag = db_apple_created character_event = { id = DBV2.402 } } 60 = { character_event = { id = DBV2.403 } } } } }
+ }
+}
+character_event = { id = DBV2.402 title = DBV2_402_T desc = DBV2_402_D picture = GFX_evt_throne_room is_triggered_only = yes immediate = { prestige = 250 add_character_modifier = { name = db_relic_search_cooldown years = 5 } } option = { name = DBV2_402_A clr_character_flag = db_seek_aegis clr_character_flag = db_seek_scepter clr_character_flag = db_seek_ambrosia clr_character_flag = db_seek_draupnir clr_character_flag = db_seek_runes clr_character_flag = db_seek_mead clr_character_flag = db_seek_apple } }
+character_event = { id = DBV2.403 title = DBV2_403_T desc = DBV2_403_D picture = GFX_evt_spymaster is_triggered_only = yes immediate = { prestige = -100 add_character_modifier = { name = db_relic_search_cooldown years = 3 } } option = { name = DBV2_403_A clr_character_flag = db_seek_aegis clr_character_flag = db_seek_scepter clr_character_flag = db_seek_ambrosia clr_character_flag = db_seek_draupnir clr_character_flag = db_seek_runes clr_character_flag = db_seek_mead clr_character_flag = db_seek_apple } }
+character_event = { id = DBV2.404 title = DBV2_404_T desc = DBV2_404_D picture = GFX_evt_throne_room is_triggered_only = yes immediate = { add_character_modifier = { name = db_relic_search_cooldown years = 1 } } option = { name = DBV2_404_A clr_character_flag = db_seek_aegis clr_character_flag = db_seek_scepter clr_character_flag = db_seek_ambrosia clr_character_flag = db_seek_draupnir clr_character_flag = db_seek_runes clr_character_flag = db_seek_mead clr_character_flag = db_seek_apple } }
+
+
+# Old-save migration for new essence markers and god x god semantics.
+character_event = {
+ id = DBV2.1105 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes
+  OR = {
+   db_has_active_divine_blood_trigger = yes
+   db_is_faded_divine_blood_trigger = yes
+   db_has_latent_divine_blood_trigger = yes
+   has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder
+   has_character_flag = db_poseidon has_character_flag = db_hades has_character_flag = db_demeter has_character_flag = db_hestia has_character_flag = db_hera has_character_flag = db_frigg
+  }
+ }
+ immediate = {
+  character_event = { id = DBV2.1292 }
+  if = {
+   limit = {
+    NOT = { has_character_flag = zeus_blood_founder } NOT = { has_character_flag = odin_blood_founder }
+    NOT = { has_character_flag = db_poseidon } NOT = { has_character_flag = db_hades } NOT = { has_character_flag = db_demeter } NOT = { has_character_flag = db_hestia } NOT = { has_character_flag = db_hera } NOT = { has_character_flag = db_frigg }
+    NOT = { trait = db_blood_two_thrones }
+   }
+   character_event = { id = DBV2.1290 }
+  }
+ }
+}
+

@@ -1,0 +1,20 @@
+Divine Bloodlines v2.2.7.4.5 - static validation
+
+PASS: on_birth still dispatches only DBV2.1199; DBV2.1199 delays DBV2.11 by one day for native child naming.
+PASS: DBV2.11 calls only DBV2.1290 for genetics; old DBV2.1000/DBV2.1206 are compatibility wrappers to the same resolver.
+PASS: Hera receives no fake Zeus P/M bloodline membership; Frigg receives no fake Odin P/M bloodline membership.
+PASS: old-save canonical repair removes fake Hera/Frigg memberships and stale Zeus/Odin essence leakage.
+PASS: one visible blood-strength state is enforced by DBV2.1290.
+PASS: same-pantheon full union with Zeus-line parent resolves to pure_divine_blood_zeus.
+PASS: same-pantheon full union with Odin-line parent resolves to pure_divine_blood_odin.
+PASS: Frigg-only descendants use db_norse_demigod_blood -> db_norse_faded_blood -> latent flag.
+PASS: cross-pantheon dilution has a dedicated mixed faded state; latent state remains flag-based.
+PASS: no add_trait = db_essence_* or latent technical trait grants were introduced.
+PASS: all new traits are append-only at the end of divine_blood_traits.txt.
+PASS: direct scripted tiger/bear/boar/snake/hunt-arrow death paths patched in late-loaded override files.
+PASS: direct event override files sort after ordinary event files; Holy Fury lethal duel branches retain two-sided Godslayer guards.
+PASS: all script .txt files brace-balanced.
+PASS: event IDs are unique inside each mod branch.
+PASS: EN/RU new gameplay files are byte-identical where they should be; RU localization remains CP1251/no UTF-8 BOM.
+
+Not runtime-tested: CK2 3.3.5.1 executable is not available in this environment.

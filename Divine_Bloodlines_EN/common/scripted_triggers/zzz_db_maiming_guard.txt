@@ -1,0 +1,20 @@
+# Divine Bloodlines v2.1.6.7 - generic maiming/death candidate guard.
+# Many vanilla hunting, battle, feast and job events gate dangerous outcomes through this trigger.
+# Adult intact full gods are not valid ordinary maiming candidates.
+can_be_maimed_trigger = {
+    NOT = { db_is_death_guarded_true_god_trigger = yes }
+
+    trigger_if = {
+        limit = { has_dlc = "Reapers" }
+        NOR = {
+            trait = one_eyed
+            trait = one_handed
+            trait = one_legged
+            trait = disfigured
+            trait = mangled
+        }
+    }
+    trigger_else = {
+        NOT = { trait = maimed }
+    }
+}

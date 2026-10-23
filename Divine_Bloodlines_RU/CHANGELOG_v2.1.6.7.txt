@@ -1,0 +1,40 @@
+Divine Bloodlines v2.1.6.7 — Death Guard / Duel Hotfix
+
+CORE RULE
+- Full gods younger than 16 remain vulnerable as before.
+- Adult intact full gods (age >= 16, immortality not severed) cannot be killed by ordinary mortals or ordinary animal/accident paths covered by the vanilla helpers below.
+- Active Godslayer blood remains a valid exception and may kill an intact adult full god.
+- Gods whose immortality was severed by the Sickle remain normally mortal.
+
+DUELS
+- Added a late override of Holy Fury send_duel_result_event_effect.
+- All lethal random-result branches are now victim-aware:
+  * double death;
+  * attacker death;
+  * defender death;
+  * battlefield lethal/prison result;
+  * legendary-lodge attacker death;
+  * legendary-lodge defender death;
+  * legendary-lodge double death.
+- A lethal branch involving a protected god is excluded unless the opposing combatant has active Godslayer blood.
+- Fixed HFP.10105 "kill them anyway" protection when the actual loser is stored in event_target:other_combatant rather than combatant_2.
+- Existing non-lethal duel outcomes are preserved.
+
+ANIMALS / INJURY CANDIDATE SAFETY
+- Added a vanilla-compatible can_be_maimed_trigger override: protected adult intact gods are not valid ordinary maiming candidates.
+- This blocks many vanilla hunting, feast, battle, job and random-event paths before they can select a god for a dangerous result.
+- Extended the existing one-day animal safety scrubber to clear lethal duel carry-over flags and reassert immortality/diplomatic immunity.
+- Clears queued HFP.10102 / HF.12205 loser events when the protected god itself is the delayed target.
+- Existing tiger/wolf/eagle/bear/lion hunting target flags continue to be scrubbed.
+
+EXISTING GUARDS RETAINED
+- Standard targeted duels and post-duel executions.
+- Battlefield duel helper / Indomitable protection.
+- Standard assassination and murder-plot guards.
+- Random accident helper guard.
+- Prison escape and hardcoded execution-interaction guard.
+
+COMPATIBILITY
+- No vanilla event IDs are duplicated by this patch.
+- No events/ replace_path is used.
+- The patch overrides only specific scripted helpers late in load order, preserving normal vanilla behavior for non-gods.

@@ -1,0 +1,179 @@
+namespace = DBV2
+
+# ============================================================
+# v2.1.6 - territorial divine arrivals
+# ============================================================
+# Auto-arrived founders no longer remain as abstract landless manifestation rulers.
+# Zeus takes a random county in de jure Epirus, Odin takes Uppland; both become independent rulers and receive
+# a one-time 2,000-man non-reinforcing host for their first wars of expansion.
+# The same event repairs saves created with the first v2.1.5 build.
+# v2.1.6.6 arrival stage B: grant only the destination county.
+# Political hierarchy changes and army spawning are delayed until the next event.
+character_event = {
+ id = DBV2.1060 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes
+  NOT = { has_character_flag = db_v216_arrival_established }
+  NOT = { has_character_flag = db_v216_arrival_title_granted }
+  OR = {
+   AND = { has_character_flag = db_auto_arrived_zeus has_character_flag = zeus_blood_founder }
+   AND = { has_character_flag = db_auto_arrived_odin has_character_flag = odin_blood_founder }
+  }
+ }
+ immediate = {
+  if = {
+   limit = { has_character_flag = db_auto_arrived_zeus }
+   log = "[DB ARRIVAL] ZEUS_EPIRUS_TITLE_STAGE"
+   if = {
+    limit = {
+     NOR = {
+      has_landed_title = c_arta
+      has_landed_title = c_epeiros
+      has_landed_title = c_naupaktos
+      has_landed_title = c_thessalia
+     }
+    }
+    random_list = {
+     34 = { c_arta = { grant_title = ROOT } }
+     33 = { c_epeiros = { grant_title = ROOT } }
+     33 = { c_naupaktos = { grant_title = ROOT } }
+    }
+   }
+   if = {
+    limit = {
+     OR = {
+      has_landed_title = c_arta
+      has_landed_title = c_epeiros
+      has_landed_title = c_naupaktos
+      has_landed_title = c_thessalia
+     }
+    }
+    set_character_flag = db_v216_arrival_title_granted
+    log = "[DB ARRIVAL] ZEUS_EPIRUS_TITLE_GRANTED"
+    character_event = { id = DBV2.1063 days = 1 }
+   }
+  }
+  else_if = {
+   limit = { has_character_flag = db_auto_arrived_odin }
+   log = "[DB ARRIVAL] ODIN_TITLE_STAGE"
+   if = { limit = { NOT = { has_landed_title = c_uppland } } c_uppland = { grant_title = ROOT } }
+   if = {
+    limit = { has_landed_title = c_uppland }
+    set_character_flag = db_v216_arrival_title_granted
+    log = "[DB ARRIVAL] ODIN_TITLE_GRANTED"
+    character_event = { id = DBV2.1063 days = 1 }
+   }
+  }
+ }
+}
+
+# v2.1.6.6 arrival stage C. By now CK2 has completed the county transfer.
+# Set the founder independent, choose the county as primary, then spawn the one-time host.
+character_event = {
+ id = DBV2.1063 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes
+  has_character_flag = db_v216_arrival_title_granted
+  NOT = { has_character_flag = db_v216_arrival_established }
+ }
+ immediate = {
+  if = {
+   limit = {
+    has_character_flag = db_auto_arrived_zeus
+    OR = {
+     has_landed_title = c_arta
+     has_landed_title = c_epeiros
+     has_landed_title = c_naupaktos
+     has_landed_title = c_thessalia
+    }
+   }
+   if = { limit = { has_landed_title = c_arta } c_arta = { make_primary_title = yes } }
+   else_if = { limit = { has_landed_title = c_epeiros } c_epeiros = { make_primary_title = yes } }
+   else_if = { limit = { has_landed_title = c_naupaktos } c_naupaktos = { make_primary_title = yes } }
+   else = { c_thessalia = { make_primary_title = yes } } # old-save fallback only
+   set_defacto_liege = THIS
+   log = "[DB ARRIVAL] ZEUS_INDEPENDENT_EPIRUS"
+
+   spawn_unit = {
+    province = capital_scope
+    home = capital_scope
+    owner = ROOT
+    earmark = db_zeus_arrival_host
+    attrition = 1
+    maintenance_multiplier = 0
+    reinforces = no
+    troops = {
+     light_infantry = { 500 500 }
+     heavy_infantry = { 700 700 }
+     archers = { 350 350 }
+     pikemen = { 250 250 }
+     light_cavalry = { 150 150 }
+     knights = { 50 50 }
+    }
+   }
+
+   clr_character_flag = db_v216_arrival_title_granted
+   set_character_flag = db_v216_arrival_established
+   set_character_flag = db_start_host_received
+   log = "[DB ARRIVAL] ZEUS_ESTABLISHED_EPIRUS"
+   if = {
+    limit = { has_character_flag = db_v216_fresh_arrival }
+    clr_character_flag = db_v216_fresh_arrival
+    narrative_event = { id = DBV2.983 days = 1 }
+   }
+   else = { narrative_event = { id = DBV2.1061 days = 1 } }
+  }
+  else_if = {
+   limit = { has_character_flag = db_auto_arrived_odin has_landed_title = c_uppland }
+   c_uppland = { make_primary_title = yes }
+   set_defacto_liege = THIS
+   log = "[DB ARRIVAL] ODIN_INDEPENDENT"
+
+   spawn_unit = {
+    province = c_uppland
+    home = c_uppland
+    owner = ROOT
+    earmark = db_odin_arrival_host
+    attrition = 1
+    maintenance_multiplier = 0
+    reinforces = no
+    troops = {
+     light_infantry = { 650 650 }
+     heavy_infantry = { 800 800 }
+     archers = { 300 300 }
+     light_cavalry = { 150 150 }
+     knights = { 100 100 }
+    }
+   }
+
+   clr_character_flag = db_v216_arrival_title_granted
+   set_character_flag = db_v216_arrival_established
+   set_character_flag = db_start_host_received
+   log = "[DB ARRIVAL] ODIN_ESTABLISHED"
+   if = {
+    limit = { has_character_flag = db_v216_fresh_arrival }
+    clr_character_flag = db_v216_fresh_arrival
+    narrative_event = { id = DBV2.984 days = 1 }
+   }
+   else = { narrative_event = { id = DBV2.1062 days = 1 } }
+  }
+  else = {
+   clr_character_flag = db_v216_arrival_title_granted
+   character_event = { id = DBV2.1060 days = 30 }
+  }
+ }
+}
+
+# Save-repair notifications. They only fire once when a v2.1.5 landless auto-arrival
+# is converted into the territorial v2.1.6 form.
+narrative_event = {
+ id = DBV2.1061 title = DBV2_1061_T desc = DBV2_1061_D picture = GFX_evt_large_army
+ is_triggered_only = yes major = yes
+ option = { name = DBV2_1061_A }
+}
+
+narrative_event = {
+ id = DBV2.1062 title = DBV2_1062_T desc = DBV2_1062_D picture = GFX_evt_large_army
+ is_triggered_only = yes major = yes
+ option = { name = DBV2_1062_A }
+}

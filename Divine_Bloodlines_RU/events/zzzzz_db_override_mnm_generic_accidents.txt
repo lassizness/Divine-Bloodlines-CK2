@@ -1,0 +1,47 @@
+namespace = MNM
+
+# v2.2.7.4.7 - Hermetic accident deaths that bypass the shared accident helper.
+character_event = {
+ id = MNM.1443 picture = GFX_evt_burning_house border = GFX_event_normal_frame_intrigue is_triggered_only = yes hide_from = yes
+ desc = { text = EVTDESC_MNM_1443_A trigger = { has_character_flag = lab_destruction } }
+ desc = { text = EVTDESC_MNM_1443_B trigger = { has_character_flag = lab_damage } }
+ desc = { text = EVTDESC_MNM_1443_C trigger = { has_character_flag = lab_explosion_death } }
+ trigger = { has_quest = quest_hermetics_infiltrate_laboratory }
+ immediate = {
+  random_list = {
+   40 = { trigger = { event_target:infiltration_target = { has_character_flag = built_laboratory } } mult_modifier = { learning >= 12 factor = 1.2 } mult_modifier = { learning >= 13 factor = 1.2 } mult_modifier = { learning >= 16 factor = 1.2 } mult_modifier = { learning >= 18 factor = 1.2 } set_character_flag = lab_destruction }
+   55 = { mult_modifier = { learning >= 10 factor = 1.2 } mult_modifier = { learning >= 12 factor = 1.1 } mult_modifier = { learning >= 13 factor = 1.1 } mult_modifier = { learning >= 16 factor = 1.1 } mult_modifier = { learning >= 18 factor = 1.1 } set_character_flag = lab_damage }
+   5 = { trigger = { event_target:infiltration_target = { has_character_flag = built_laboratory } } mult_modifier = { learning < 10 factor = 1.5 } mult_modifier = { learning < 8 factor = 2 } mult_modifier = { learning < 6 factor = 2 } mult_modifier = { factor = 1.2 event_target:infiltration_target = { has_character_flag = hidden_lab } } mult_modifier = { factor = 1.5 event_target:infiltration_target = { has_character_flag = very_hidden_lab } } set_character_flag = lab_explosion_death }
+  }
+ }
+ option = {
+  name = EVTOPTA_MNM_1443 trigger = { has_character_flag = lab_destruction }
+  event_target:infiltration_target = { show_scope_change = no tooltip = { trigger_switch = { on_trigger = has_character_modifier cheap_laboratory = { remove_character_modifier = cheap_laboratory } normal_laboratory = { remove_character_modifier = normal_laboratory } good_laboratory = { remove_character_modifier = good_laboratory } great_laboratory = { remove_character_modifier = great_laboratory } best_laboratory = { remove_character_modifier = best_laboratory } } destroy_all_ingredients_effect = yes } }
+  add_society_currency_major_effect = yes
+ }
+ option = {
+  name = EVTOPTA_MNM_1443 trigger = { has_character_flag = lab_damage }
+  tooltip = { event_target:infiltration_target = { show_scope_change = no scaled_wealth = { value = -0.3 min = -30 } destroy_random_ingredients_effect = yes } }
+  add_society_currency_medium_effect = yes
+ }
+ option = {
+  name = EVTOPTC_MNM_1443 trigger = { has_character_flag = lab_explosion_death }
+  if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes }
+  else = { death = { death_reason = death_accident } }
+ }
+ after = { hidden_effect = { event_target:infiltration_target = { character_event = { id = MNM.1444 } } character_event = { id = MNM.1450 days = 40 } } }
+}
+
+character_event = {
+ id = MNM.1449 desc = EVTDESC_MNM_1449 picture = GFX_evt_burning_house border = GFX_event_normal_frame_intrigue is_triggered_only = yes
+ trigger = { has_quest = quest_hermetics_infiltrate_laboratory }
+ option = {
+  name = EVTOPTA_MNM_1449
+  event_target:infiltration_companion = {
+   show_scope_change = no
+   if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes }
+   else = { death = { death_reason = death_accident } }
+  }
+  clr_quest = { id = quest_hermetics_infiltrate_laboratory failure = yes }
+ }
+}

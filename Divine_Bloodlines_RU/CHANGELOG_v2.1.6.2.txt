@@ -1,0 +1,6 @@
+Divine Bloodlines v2.1.6.2 hotfix
+
+- Restored reliable Ruler Designer founder startup: DBV2.1 now runs from the universal on_startup hook, keeps the Chronicle hook as a fallback, and is also checked on monthly pulse.
+- Automatic Zeus/Odin arrivals no longer depend on Chronicle startup. Fresh games arm a global 1-3 year controller; yearly watchdog guarantees recovery by the third yearly pass, and old broken saves are re-armed on monthly pulse.
+- Fixed the two blank visible Olympian descendant trait icons by adding explicit GFX aliases.
+- Hardened territorial arrival finalization: Thessalia/Uppland is made primary before the temporary manifestation duchy is destroyed; the unsafe self-liege effect was removed.

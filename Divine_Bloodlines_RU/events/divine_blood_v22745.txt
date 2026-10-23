@@ -1,0 +1,265 @@
+namespace = DBV2
+
+# v2.2.7.4.5 - authoritative divine inheritance resolver.
+# Genealogy/bloodlines, ancestry flags and visible blood strength are deliberately separate.
+character_event = {
+ id = DBV2.1290 hide_window = yes is_triggered_only = yes
+ trigger = { is_alive = yes }
+ immediate = {
+  # Rebuild ancestry from the biological parents. This clears stale Hera/Frigg -> Zeus/Odin leakage from old saves.
+  clr_character_flag = db_ancestry_olympian
+  clr_character_flag = db_ancestry_norse
+  clr_character_flag = db_zeus_faded_p
+  clr_character_flag = db_zeus_faded_m
+  clr_character_flag = db_odin_faded_p
+  clr_character_flag = db_odin_faded_m
+  clr_character_flag = db_zeus_latent_p
+  clr_character_flag = db_zeus_latent_m
+  clr_character_flag = db_odin_latent_p
+  clr_character_flag = db_odin_latent_m
+  clr_character_flag = db_essence_zeus
+  clr_character_flag = db_essence_odin
+  clr_character_flag = db_essence_hera
+  clr_character_flag = db_essence_frigg
+  clr_character_flag = db_essence_poseidon
+  clr_character_flag = db_essence_hades
+  clr_character_flag = db_essence_demeter
+  clr_character_flag = db_essence_hestia
+
+  if = { limit = { OR = { father_even_if_dead = { OR = { has_character_flag = db_essence_zeus db_has_active_zeus_blood_trigger = yes trait = zeus_faded_blood has_character_flag = db_zeus_faded_p has_character_flag = db_zeus_faded_m has_character_flag = db_zeus_latent_p has_character_flag = db_zeus_latent_m } } mother_even_if_dead = { OR = { has_character_flag = db_essence_zeus db_has_active_zeus_blood_trigger = yes trait = zeus_faded_blood has_character_flag = db_zeus_faded_p has_character_flag = db_zeus_faded_m has_character_flag = db_zeus_latent_p has_character_flag = db_zeus_latent_m } } } } set_character_flag = db_essence_zeus }
+  if = { limit = { OR = { father_even_if_dead = { OR = { has_character_flag = db_essence_odin db_has_active_odin_blood_trigger = yes trait = odin_faded_blood has_character_flag = db_odin_faded_p has_character_flag = db_odin_faded_m has_character_flag = db_odin_latent_p has_character_flag = db_odin_latent_m } } mother_even_if_dead = { OR = { has_character_flag = db_essence_odin db_has_active_odin_blood_trigger = yes trait = odin_faded_blood has_character_flag = db_odin_faded_p has_character_flag = db_odin_faded_m has_character_flag = db_odin_latent_p has_character_flag = db_odin_latent_m } } } } set_character_flag = db_essence_odin }
+  if = { limit = { OR = { father_even_if_dead = { has_character_flag = db_essence_hera } mother_even_if_dead = { has_character_flag = db_essence_hera } } } set_character_flag = db_essence_hera }
+  if = { limit = { OR = { father_even_if_dead = { has_character_flag = db_essence_frigg } mother_even_if_dead = { has_character_flag = db_essence_frigg } } } set_character_flag = db_essence_frigg }
+  if = { limit = { OR = { father_even_if_dead = { has_character_flag = db_essence_poseidon } mother_even_if_dead = { has_character_flag = db_essence_poseidon } } } set_character_flag = db_essence_poseidon }
+  if = { limit = { OR = { father_even_if_dead = { has_character_flag = db_essence_hades } mother_even_if_dead = { has_character_flag = db_essence_hades } } } set_character_flag = db_essence_hades }
+  if = { limit = { OR = { father_even_if_dead = { has_character_flag = db_essence_demeter } mother_even_if_dead = { has_character_flag = db_essence_demeter } } } set_character_flag = db_essence_demeter }
+  if = { limit = { OR = { father_even_if_dead = { has_character_flag = db_essence_hestia } mother_even_if_dead = { has_character_flag = db_essence_hestia } } } set_character_flag = db_essence_hestia }
+
+  # Pantheon ancestry survives even when the visible power has completely faded.
+  if = { limit = { OR = { father_even_if_dead = { db_has_olympian_ancestry_trigger = yes } mother_even_if_dead = { db_has_olympian_ancestry_trigger = yes } } } set_character_flag = db_ancestry_olympian }
+  if = { limit = { OR = { father_even_if_dead = { db_has_norse_ancestry_trigger = yes } mother_even_if_dead = { db_has_norse_ancestry_trigger = yes } } } set_character_flag = db_ancestry_norse }
+  if = { limit = { OR = { has_character_flag = db_essence_zeus has_character_flag = db_essence_hera has_character_flag = db_essence_poseidon has_character_flag = db_essence_hades has_character_flag = db_essence_demeter has_character_flag = db_essence_hestia } } set_character_flag = db_ancestry_olympian }
+  if = { limit = { OR = { has_character_flag = db_essence_odin has_character_flag = db_essence_frigg } } set_character_flag = db_ancestry_norse }
+
+  # Bloodline objects are genealogical facts, not the current power level. A descendant keeps the founder genealogy even if power fades.
+  if = { limit = { has_character_flag = db_essence_zeus } any_bloodline = { limit = { has_bloodline_flag = db_zeus_paternal } add_bloodline_member = ROOT } any_bloodline = { limit = { has_bloodline_flag = db_zeus_maternal } add_bloodline_member = ROOT } }
+  if = { limit = { has_character_flag = db_essence_odin } any_bloodline = { limit = { has_bloodline_flag = db_odin_paternal } add_bloodline_member = ROOT } any_bloodline = { limit = { has_bloodline_flag = db_odin_maternal } add_bloodline_member = ROOT } }
+  if = { limit = { has_character_flag = db_essence_hera } any_bloodline = { limit = { has_bloodline_flag = db_hera_bloodline } add_bloodline_member = ROOT } }
+  if = { limit = { has_character_flag = db_essence_frigg } any_bloodline = { limit = { has_bloodline_flag = db_frigg_bloodline } add_bloodline_member = ROOT } }
+
+  clr_character_flag = db_olympian_latent
+  clr_character_flag = db_norse_latent
+  clr_character_flag = db_mixed_latent
+
+  # The special merged-thrones trait is already a full divine state. Never stack another blood-strength trait on it.
+  if = {
+   limit = { trait = db_blood_two_thrones }
+   remove_trait = pure_divine_blood_zeus remove_trait = pure_divine_blood_odin
+   remove_trait = zeus_demigod_blood remove_trait = odin_demigod_blood
+   remove_trait = zeus_faded_blood remove_trait = odin_faded_blood
+   remove_trait = db_olympian_god remove_trait = db_norse_god remove_trait = db_cross_pantheon_god
+   remove_trait = db_olympian_demigod_blood remove_trait = db_norse_demigod_blood remove_trait = db_mixed_demigod_blood
+   remove_trait = db_olympian_faded_blood remove_trait = db_norse_faded_blood remove_trait = db_mixed_faded_blood
+   remove_trait = db_stormrune_blood remove_trait = db_fate_thunder_blood remove_trait = db_child_two_pantheons
+  }
+  else = {
+   # Exactly one visible blood-strength trait is allowed.
+   remove_trait = pure_divine_blood_zeus remove_trait = pure_divine_blood_odin
+   remove_trait = zeus_demigod_blood remove_trait = odin_demigod_blood
+   remove_trait = zeus_faded_blood remove_trait = odin_faded_blood
+   remove_trait = db_olympian_god remove_trait = db_norse_god remove_trait = db_cross_pantheon_god
+   remove_trait = db_olympian_demigod_blood remove_trait = db_norse_demigod_blood remove_trait = db_mixed_demigod_blood
+   remove_trait = db_olympian_faded_blood remove_trait = db_norse_faded_blood remove_trait = db_mixed_faded_blood
+   remove_trait = db_stormrune_blood remove_trait = db_fate_thunder_blood remove_trait = db_child_two_pantheons
+
+   # TRUE GOD: God x God, or God x active demigod restores full divine blood.
+   if = {
+    limit = {
+     OR = {
+      AND = { father_even_if_dead = { db_is_true_god_trigger = yes } mother_even_if_dead = { db_is_true_god_trigger = yes } }
+      AND = { father_even_if_dead = { db_is_true_god_trigger = yes } mother_even_if_dead = { db_is_active_demigod_trigger = yes } }
+      AND = { mother_even_if_dead = { db_is_true_god_trigger = yes } father_even_if_dead = { db_is_active_demigod_trigger = yes } }
+     }
+    }
+    # Cross-pantheon remains cross if the active parents collectively carry both pantheons.
+    if = {
+     limit = {
+      OR = {
+       AND = { father_even_if_dead = { db_has_active_olympian_blood_trigger = yes } mother_even_if_dead = { db_has_active_norse_blood_trigger = yes } }
+       AND = { father_even_if_dead = { db_has_active_norse_blood_trigger = yes } mother_even_if_dead = { db_has_active_olympian_blood_trigger = yes } }
+      }
+     }
+     add_trait = db_cross_pantheon_god
+    }
+    else_if = {
+     limit = {
+      father_even_if_dead = { db_has_active_norse_blood_trigger = yes }
+      mother_even_if_dead = { db_has_active_norse_blood_trigger = yes }
+      OR = { father_even_if_dead = { db_has_active_odin_blood_trigger = yes } mother_even_if_dead = { db_has_active_odin_blood_trigger = yes } }
+     }
+     add_trait = pure_divine_blood_odin
+     any_bloodline = { limit = { has_bloodline_flag = db_odin_paternal } add_bloodline_member = ROOT }
+     any_bloodline = { limit = { has_bloodline_flag = db_odin_maternal } add_bloodline_member = ROOT }
+     clr_character_flag = db_odin_faded_p clr_character_flag = db_odin_faded_m clr_character_flag = db_odin_latent_p clr_character_flag = db_odin_latent_m
+    }
+    else_if = {
+     limit = { father_even_if_dead = { db_has_active_norse_blood_trigger = yes } mother_even_if_dead = { db_has_active_norse_blood_trigger = yes } }
+     add_trait = db_norse_god
+    }
+    else_if = {
+     limit = {
+      OR = { father_even_if_dead = { db_has_active_zeus_blood_trigger = yes } mother_even_if_dead = { db_has_active_zeus_blood_trigger = yes } }
+     }
+     add_trait = pure_divine_blood_zeus
+     any_bloodline = { limit = { has_bloodline_flag = db_zeus_paternal } add_bloodline_member = ROOT }
+     any_bloodline = { limit = { has_bloodline_flag = db_zeus_maternal } add_bloodline_member = ROOT }
+     clr_character_flag = db_zeus_faded_p clr_character_flag = db_zeus_faded_m clr_character_flag = db_zeus_latent_p clr_character_flag = db_zeus_latent_m
+    }
+    else = { add_trait = db_olympian_god }
+   }
+   # DEMIGOD: one full god with a mortal/weakened partner, two demigods, or demigod + faded blood.
+   else_if = {
+    limit = {
+     OR = {
+      father_even_if_dead = { db_is_true_god_trigger = yes }
+      mother_even_if_dead = { db_is_true_god_trigger = yes }
+      AND = { father_even_if_dead = { db_is_active_demigod_trigger = yes } mother_even_if_dead = { db_is_active_demigod_trigger = yes } }
+      AND = { father_even_if_dead = { db_is_active_demigod_trigger = yes } mother_even_if_dead = { db_is_faded_divine_blood_trigger = yes } }
+      AND = { mother_even_if_dead = { db_is_active_demigod_trigger = yes } father_even_if_dead = { db_is_faded_divine_blood_trigger = yes } }
+     }
+    }
+    if = { limit = { db_has_olympian_ancestry_trigger = yes db_has_norse_ancestry_trigger = yes } add_trait = db_mixed_demigod_blood }
+    else_if = { limit = { has_character_flag = db_essence_zeus } add_trait = zeus_demigod_blood }
+    else_if = { limit = { has_character_flag = db_essence_odin } add_trait = odin_demigod_blood }
+    else_if = { limit = { db_has_norse_ancestry_trigger = yes } add_trait = db_norse_demigod_blood }
+    else = { add_trait = db_olympian_demigod_blood }
+   }
+   # FADED: demigod + mortal/latent, or two faded divine branches.
+   else_if = {
+    limit = {
+     OR = {
+      father_even_if_dead = { db_is_active_demigod_trigger = yes }
+      mother_even_if_dead = { db_is_active_demigod_trigger = yes }
+      AND = { father_even_if_dead = { db_is_faded_divine_blood_trigger = yes } mother_even_if_dead = { db_is_faded_divine_blood_trigger = yes } }
+     }
+    }
+    if = { limit = { db_has_olympian_ancestry_trigger = yes db_has_norse_ancestry_trigger = yes } add_trait = db_mixed_faded_blood }
+    else_if = { limit = { has_character_flag = db_essence_zeus } add_trait = zeus_faded_blood }
+    else_if = { limit = { has_character_flag = db_essence_odin } add_trait = odin_faded_blood }
+    else_if = { limit = { db_has_norse_ancestry_trigger = yes } add_trait = db_norse_faded_blood }
+    else = { add_trait = db_olympian_faded_blood }
+   }
+   # LATENT: a faded parent with a mortal/latent partner. No technical visible trait.
+   else_if = {
+    limit = { OR = { father_even_if_dead = { db_is_faded_divine_blood_trigger = yes } mother_even_if_dead = { db_is_faded_divine_blood_trigger = yes } } }
+    if = { limit = { db_has_olympian_ancestry_trigger = yes db_has_norse_ancestry_trigger = yes } set_character_flag = db_mixed_latent }
+    else_if = { limit = { db_has_norse_ancestry_trigger = yes } set_character_flag = db_norse_latent }
+    else = { set_character_flag = db_olympian_latent }
+   }
+   # Old latent blood may resurface: preserve the old 3% manifestation / 67% latent / 30% lost behavior.
+   else_if = {
+    limit = { OR = { father_even_if_dead = { db_has_latent_divine_blood_trigger = yes } mother_even_if_dead = { db_has_latent_divine_blood_trigger = yes } } }
+    random_list = {
+     3 = {
+      if = { limit = { db_has_olympian_ancestry_trigger = yes db_has_norse_ancestry_trigger = yes } add_trait = db_mixed_demigod_blood }
+      else_if = { limit = { has_character_flag = db_essence_zeus } add_trait = zeus_demigod_blood }
+      else_if = { limit = { has_character_flag = db_essence_odin } add_trait = odin_demigod_blood }
+      else_if = { limit = { db_has_norse_ancestry_trigger = yes } add_trait = db_norse_demigod_blood }
+      else = { add_trait = db_olympian_demigod_blood }
+     }
+     67 = {
+      if = { limit = { db_has_olympian_ancestry_trigger = yes db_has_norse_ancestry_trigger = yes } set_character_flag = db_mixed_latent }
+      else_if = { limit = { db_has_norse_ancestry_trigger = yes } set_character_flag = db_norse_latent }
+      else = { set_character_flag = db_olympian_latent }
+     }
+     30 = { }
+    }
+   }
+  }
+
+  set_character_flag = db_v22745_inheritance_repaired
+
+  if = {
+   limit = { db_is_true_god_trigger = yes NOT = { trait = db_severed_immortality } }
+   if = { limit = { age >= 16 NOT = { trait = immortal } } add_trait = immortal }
+   if = { limit = { NOT = { has_character_modifier = db_true_god_low_fertility_mod } } add_character_modifier = { name = db_true_god_low_fertility_mod duration = -1 } }
+  }
+  else = { remove_character_modifier = db_true_god_low_fertility_mod }
+
+  character_event = { id = DBV2.70 }
+  character_event = { id = DBV2.990 }
+ }
+}
+
+# Old-save repair is intentionally parent-gated. It walks down the genealogy over successive monthly pulses
+# instead of classifying grandchildren from stale pre-patch parent state.
+character_event = {
+ id = DBV2.1291 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes
+  NOT = { has_character_flag = db_v22745_inheritance_repaired }
+  NOT = { has_character_flag = zeus_blood_founder }
+  NOT = { has_character_flag = odin_blood_founder }
+  NOT = { has_character_flag = db_hera }
+  NOT = { has_character_flag = db_frigg }
+  NOT = { has_character_flag = db_poseidon }
+  NOT = { has_character_flag = db_hades }
+  NOT = { has_character_flag = db_demeter }
+  NOT = { has_character_flag = db_hestia }
+  NOT = { trait = db_blood_two_thrones }
+  OR = {
+   father_even_if_dead = { OR = { has_character_flag = db_v22745_inheritance_repaired has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder has_character_flag = db_hera has_character_flag = db_frigg has_character_flag = db_poseidon has_character_flag = db_hades has_character_flag = db_demeter has_character_flag = db_hestia } }
+   mother_even_if_dead = { OR = { has_character_flag = db_v22745_inheritance_repaired has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder has_character_flag = db_hera has_character_flag = db_frigg has_character_flag = db_poseidon has_character_flag = db_hades has_character_flag = db_demeter has_character_flag = db_hestia } }
+  }
+  OR = {
+   db_has_active_divine_blood_trigger = yes
+   db_is_faded_divine_blood_trigger = yes
+   db_has_latent_divine_blood_trigger = yes
+   has_character_flag = db_essence_zeus has_character_flag = db_essence_odin has_character_flag = db_essence_hera has_character_flag = db_essence_frigg
+   has_character_flag = db_essence_poseidon has_character_flag = db_essence_hades has_character_flag = db_essence_demeter has_character_flag = db_essence_hestia
+   father_even_if_dead = { OR = { db_has_active_divine_blood_trigger = yes db_is_faded_divine_blood_trigger = yes db_has_latent_divine_blood_trigger = yes } }
+   mother_even_if_dead = { OR = { db_has_active_divine_blood_trigger = yes db_is_faded_divine_blood_trigger = yes db_has_latent_divine_blood_trigger = yes } }
+  }
+ }
+ immediate = { character_event = { id = DBV2.1290 } }
+}
+
+# Canonical founders/family repair. Removes the old fake Hera->Zeus and Frigg->Odin bloodline injections.
+character_event = {
+ id = DBV2.1292 hide_window = yes is_triggered_only = yes
+ trigger = { is_alive = yes OR = { has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder has_character_flag = db_hera has_character_flag = db_frigg has_character_flag = db_poseidon has_character_flag = db_hades has_character_flag = db_demeter has_character_flag = db_hestia } }
+ immediate = {
+  if = { limit = { has_character_flag = zeus_blood_founder } set_character_flag = db_essence_zeus add_trait = pure_divine_blood_zeus set_character_flag = db_v22745_inheritance_repaired }
+  if = { limit = { has_character_flag = odin_blood_founder } set_character_flag = db_essence_odin add_trait = pure_divine_blood_odin set_character_flag = db_v22745_inheritance_repaired }
+  if = {
+   limit = { has_character_flag = db_hera }
+   clr_character_flag = db_essence_zeus set_character_flag = db_essence_hera
+   if = { limit = { NOT = { any_owned_bloodline = { has_bloodline_flag = db_hera_bloodline } } } create_bloodline = { type = db_hera_bloodline } }
+   any_owned_bloodline = { limit = { has_bloodline_flag = db_zeus_paternal } remove_bloodline_member = ROOT }
+   any_owned_bloodline = { limit = { has_bloodline_flag = db_zeus_maternal } remove_bloodline_member = ROOT }
+   remove_trait = pure_divine_blood_zeus remove_trait = pure_divine_blood_odin remove_trait = zeus_demigod_blood remove_trait = odin_demigod_blood
+   remove_trait = db_norse_god remove_trait = db_cross_pantheon_god remove_trait = db_olympian_demigod_blood remove_trait = db_norse_demigod_blood remove_trait = db_mixed_demigod_blood
+   remove_trait = zeus_faded_blood remove_trait = odin_faded_blood remove_trait = db_olympian_faded_blood remove_trait = db_norse_faded_blood remove_trait = db_mixed_faded_blood
+   remove_trait = db_stormrune_blood remove_trait = db_fate_thunder_blood remove_trait = db_child_two_pantheons
+   add_trait = db_olympian_god set_character_flag = db_v22745_inheritance_repaired
+  }
+  if = {
+   limit = { has_character_flag = db_frigg }
+   clr_character_flag = db_essence_odin set_character_flag = db_essence_frigg
+   if = { limit = { NOT = { any_owned_bloodline = { has_bloodline_flag = db_frigg_bloodline } } } create_bloodline = { type = db_frigg_bloodline } }
+   any_owned_bloodline = { limit = { has_bloodline_flag = db_odin_paternal } remove_bloodline_member = ROOT }
+   any_owned_bloodline = { limit = { has_bloodline_flag = db_odin_maternal } remove_bloodline_member = ROOT }
+   remove_trait = pure_divine_blood_zeus remove_trait = pure_divine_blood_odin remove_trait = zeus_demigod_blood remove_trait = odin_demigod_blood
+   remove_trait = db_olympian_god remove_trait = db_cross_pantheon_god remove_trait = db_olympian_demigod_blood remove_trait = db_norse_demigod_blood remove_trait = db_mixed_demigod_blood
+   remove_trait = zeus_faded_blood remove_trait = odin_faded_blood remove_trait = db_olympian_faded_blood remove_trait = db_norse_faded_blood remove_trait = db_mixed_faded_blood
+   remove_trait = db_stormrune_blood remove_trait = db_fate_thunder_blood remove_trait = db_child_two_pantheons
+   add_trait = db_norse_god set_character_flag = db_v22745_inheritance_repaired
+  }
+  if = { limit = { has_character_flag = db_poseidon } set_character_flag = db_essence_poseidon add_trait = db_olympian_god set_character_flag = db_v22745_inheritance_repaired }
+  if = { limit = { has_character_flag = db_hades } set_character_flag = db_essence_hades add_trait = db_olympian_god set_character_flag = db_v22745_inheritance_repaired }
+  if = { limit = { has_character_flag = db_demeter } set_character_flag = db_essence_demeter add_trait = db_olympian_god set_character_flag = db_v22745_inheritance_repaired }
+  if = { limit = { has_character_flag = db_hestia } set_character_flag = db_essence_hestia add_trait = db_olympian_god set_character_flag = db_v22745_inheritance_repaired }
+
+  if = { limit = { db_is_true_god_trigger = yes NOT = { trait = db_severed_immortality } age >= 16 NOT = { trait = immortal } } add_trait = immortal }
+ }
+}

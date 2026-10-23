@@ -1,0 +1,20 @@
+# Direct regency duel death.
+character_event = {
+ id = 61232
+ desc = EVTDESC61232
+ picture = GFX_evt_bloody_man
+ is_triggered_only = yes
+ immediate = {
+  FROM = { save_event_target_as = db_direct_duel_killer }
+  if = {
+   limit = { db_direct_duel_death_blocked_trigger = yes }
+   db_survive_forbidden_direct_duel_effect = yes
+  }
+  else = {
+   db_mark_authorized_direct_duel_death_effect = yes
+   FROM = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = FROM } } clear_event_target = db_direct_duel_killer
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+ option = { name = EVTOPTA61232 }
+}

@@ -1,0 +1,19 @@
+namespace = HF
+
+# v2.2.7.4.7 - Holy Fury tribal-festival direct accident branches.
+character_event = {
+ id = HF.23832 title = EVTTITLEHF_TRIBAL_FESTIVAL desc = EVTDESCHFA23832 picture = GFX_evt_mysterious_forest border = GFX_event_normal_frame_diplomacy portrait = event_target:tribal_festival_potential_enemy_2 is_triggered_only = yes
+ option = {
+  name = EVTOPTAHF23832 opinion = { name = opinion_antagonized_3 who = FROM years = 15 }
+  if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes }
+  else = { random_list = { 50 = { } 20 = { trigger = { NOT = { trait = wounded } } add_trait = wounded } 10 = { trigger = { has_dlc = "Reapers" NOT = { trait = mangled } } add_trait = mangled } 10 = { trigger = { NOR = { has_dlc = "Reapers" trait = mangled } } add_trait = maimed } 5 = { death = { death_reason = death_accident } } } }
+ }
+}
+character_event = {
+ id = HF.23856 title = EVTTITLEHF_TRIBAL_FESTIVAL desc = EVTDESCHFA23856 picture = GFX_evt_child_talking border = GFX_event_normal_frame_diplomacy is_triggered_only = yes
+ option = {
+  name = EVTOPTAHF23856
+  if = { limit = { db_is_death_guarded_true_god_trigger = yes } db_mortal_harm_survival_effect = yes }
+  else = { random = { chance = 25 if = { limit = { trait = wounded } death = { death_reason = death_accident } } else = { add_trait_wounded_effect = yes } } }
+ }
+}

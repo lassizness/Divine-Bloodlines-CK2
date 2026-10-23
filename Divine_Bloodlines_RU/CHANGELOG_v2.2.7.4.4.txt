@@ -1,0 +1,17 @@
+Divine Bloodlines v2.2.7.4.4
+
+- Unified newborn pipeline: on_birth now only schedules DBV2.1199; genetics starts one day later, then DBV2.11 runs ancestry/dilution (DBV2.1000), founder-line strength (DBV2.10), and the authoritative full-god finalizer (DBV2.1206). This keeps the native CK2 newborn-name tick clear for Zeus and Odin alike.
+- Founder identity no longer leaks through bloodline components. Zeus/Odin founder traits remain personal. Founder-line demigod classification now requires the matching ancestry/essence, so Hera/Frigg and their descendants are not reclassified as Zeus/Odin merely because genealogy contains the old founder bloodlines.
+- God x God children are normalized to exactly one visible true-god trait: db_olympian_god, db_norse_god, or db_cross_pantheon_god. Ancestry remains in character flags instead of new hidden traits.
+- Hera and Frigg receive their own ancestry flags and generic pantheon-god traits; old-save recovery strips accidental Zeus/Odin identity traits from them while preserving genealogy.
+- Designated divine heir now requires a close adult divine relative and is tied to the actual Zeus/Odin line-head office. Line succession checks the designated heir first, then true-god children, demigod children, and finally valid dynasty members.
+- AI line heads designate a valid close divine successor without overwriting player choices.
+- Kouretes/Einherjar summons are inherited line-head powers rather than founder-trait powers. Mjolnir's active power now accepts active Norse blood and uses line-head authority for the Einherjar synergy.
+- Removed the duplicate legacy db_seek_draupnir decision; the v2.2.7 relic-search implementation is authoritative.
+- Rebuilt HF.12201 Legendary Journey death guard and added post-survival continuation. Added on-death and monthly orphan-state recovery so a dead/vanished last hero cannot leave a warrior lodge permanently blocked.
+- Fixed targeted-action icon alignment by routing action buttons to normalized 28x28 decision textures instead of mixed 48x48 ability art.
+- Added distinct normalized 28x28 search icons for the new Olympian/Norse relic decisions and verified decision icon references resolve to 28x28 textures.
+- Updated designated-heir description so it no longer promises ordinary title inheritance unsupported by the active CK2 succession law.
+- Removed the stale RU-only DBV2.1207 event so EN/RU gameplay branches use the same active host-recovery path.
+
+Static/file-level validation only. No CK2 executable/runtime test was performed in this environment.

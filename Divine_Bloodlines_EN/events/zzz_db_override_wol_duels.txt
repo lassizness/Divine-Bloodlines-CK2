@@ -1,0 +1,78 @@
+namespace = WoL
+
+character_event = {
+ id = WoL.1038
+ picture = GFX_evt_family_feud_republic
+ border = GFX_event_normal_frame_intrigue
+ desc = { text = EVTDESC_WOL_1038 trigger = { event_target:accuser = { has_character_flag = enemy_yields } } }
+ desc = { text = EVTDESC_WOL_1038_WOUND trigger = { event_target:accuser = { has_character_flag = enemy_wounded } } }
+ desc = { text = EVTDESC_WOL_1038_MAIM trigger = { event_target:accuser = { has_character_flag = enemy_maimed } } }
+ desc = { text = EVTDESC_WOL_1038_DEATH trigger = { event_target:accuser = { has_character_flag = enemy_killed } } }
+ is_triggered_only = yes
+ show_from_from = yes
+ immediate = {
+  if = {
+   limit = { event_target:accuser = { has_character_flag = enemy_killed } }
+   event_target:accuser = { save_event_target_as = db_direct_duel_killer }
+   if = {
+    limit = { db_direct_duel_death_blocked_trigger = yes }
+    db_survive_forbidden_direct_duel_effect = yes
+    event_target:accuser = { clr_character_flag = enemy_killed set_character_flag = enemy_wounded }
+   }
+   else = {
+    db_mark_authorized_direct_duel_death_effect = yes
+    event_target:accuser = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = event_target:accuser } } clear_event_target = db_direct_duel_killer
+   }
+   clear_event_target = db_direct_duel_killer
+  }
+ }
+ option = { name = EVTOPTA_WOL_1038 trigger = { event_target:accuser = { NOT = { has_character_flag = enemy_killed } } } remove_lover = event_target:cheating_spouse }
+ option = {
+  name = EVTOPTB_WOL_1038
+  trigger = { event_target:accuser = { NOT = { has_character_flag = enemy_killed } } }
+  add_rival = event_target:accuser
+  if = { limit = { trait = kind } random = { chance = 50 remove_trait_kind_effect = yes } }
+  else = { random = { chance = 25 add_trait_cruel_effect = yes } }
+ }
+ option = { name = EVTOPTC_WOL_1038 trigger = { event_target:accuser = { has_character_flag = enemy_killed } } }
+}
+
+character_event = {
+ id = WoL.1041
+ picture = GFX_evt_family_feud_republic
+ border = GFX_event_normal_frame_intrigue
+ desc = { text = EVTDESC_WOL_1041 trigger = { event_target:adulterer = { has_character_flag = enemy_yields } } }
+ desc = { text = EVTDESC_WOL_1041_WOUND trigger = { event_target:adulterer = { has_character_flag = enemy_wounded } } }
+ desc = { text = EVTDESC_WOL_1041_MAIM trigger = { event_target:adulterer = { has_character_flag = enemy_maimed } } }
+ desc = { text = EVTDESC_WOL_1041_DEATH trigger = { event_target:adulterer = { has_character_flag = enemy_killed } } }
+ is_triggered_only = yes
+ show_from_from = yes
+ immediate = {
+  if = {
+   limit = { event_target:adulterer = { has_character_flag = enemy_killed } }
+   event_target:adulterer = { save_event_target_as = db_direct_duel_killer }
+   if = {
+    limit = { db_direct_duel_death_blocked_trigger = yes }
+    db_survive_forbidden_direct_duel_effect = yes
+    event_target:adulterer = { clr_character_flag = enemy_killed set_character_flag = enemy_wounded }
+   }
+   clear_event_target = db_direct_duel_killer
+  }
+ }
+ option = { name = EVTOPTA_WOL_1041 trigger = { event_target:adulterer = { NOT = { has_character_flag = enemy_killed } } } }
+ option = {
+  name = EVTOPTB_WOL_1038
+  trigger = { event_target:adulterer = { NOT = { has_character_flag = enemy_killed } } }
+  add_rival = event_target:adulterer
+  if = { limit = { trait = kind } random = { chance = 50 remove_trait_kind_effect = yes } }
+  else = { random = { chance = 25 add_trait_cruel_effect = yes } }
+ }
+ option = {
+  name = EVTOPTC_WOL_1041
+  trigger = { event_target:adulterer = { has_character_flag = enemy_killed } }
+  event_target:adulterer = { save_event_target_as = db_direct_duel_killer }
+  db_mark_authorized_direct_duel_death_effect = yes
+  event_target:adulterer = { save_event_target_as = db_direct_duel_killer } if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = event_target:adulterer } } clear_event_target = db_direct_duel_killer
+  clear_event_target = db_direct_duel_killer
+ }
+}

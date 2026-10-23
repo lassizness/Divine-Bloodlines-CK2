@@ -1,0 +1,9 @@
+# Divine Bloodlines v2.1.6.9 - council access for true gods.
+# Special flags bypass vanilla gender/law gates but retain imprisonment/incapable/independent checks.
+db_grant_divine_council_access_effect = {
+ set_character_flag = special_chancellor
+ set_character_flag = special_marshal
+ set_character_flag = special_treasurer
+ set_character_flag = special_spymaster
+ set_character_flag = special_spiritual
+}

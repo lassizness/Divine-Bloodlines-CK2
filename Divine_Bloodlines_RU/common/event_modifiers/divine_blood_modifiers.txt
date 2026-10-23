@@ -1,0 +1,185 @@
+# Age stages are modifiers to keep the trait bar clean.
+db_zeus_age_16 = { combat_rating = 5 icon = 5 }
+db_zeus_age_50 = { martial = 1 diplomacy = 1 combat_rating = 10 icon = 5 }
+db_zeus_age_100 = { martial = 1 diplomacy = 1 intrigue = 1 learning = 1 combat_rating = 20 monthly_character_prestige = 0.25 icon = 5 }
+db_zeus_age_250 = { martial = 2 diplomacy = 2 stewardship = 1 intrigue = 1 learning = 1 combat_rating = 30 monthly_character_prestige = 0.25 monthly_character_piety = 0.25 icon = 5 }
+db_zeus_age_500 = { martial = 3 diplomacy = 3 stewardship = 2 intrigue = 2 learning = 2 combat_rating = 50 monthly_character_prestige = 0.75 monthly_character_piety = 0.75 icon = 5 }
+
+db_odin_age_16 = { combat_rating = 5 icon = 12 }
+db_odin_age_50 = { martial = 1 learning = 1 combat_rating = 10 icon = 12 }
+db_odin_age_100 = { martial = 1 intrigue = 1 learning = 2 combat_rating = 20 plot_discovery_chance = 0.10 icon = 12 }
+db_odin_age_250 = { martial = 3 intrigue = 2 learning = 2 combat_rating = 30 monthly_character_prestige = 0.25 plot_discovery_chance = 0.10 icon = 12 }
+db_odin_age_500 = { martial = 4 diplomacy = 1 stewardship = 1 intrigue = 3 learning = 3 combat_rating = 50 monthly_character_prestige = 0.75 monthly_character_piety = 0.75 plot_discovery_chance = 0.10 icon = 12 }
+
+# Demigod growth and aspects
+db_zeus_demigod_16 = { martial = 1 diplomacy = 1 combat_rating = 10 icon = 5 }
+db_zeus_demigod_50 = { martial = 1 health = 2 fertility = 0.25 combat_rating = 5 monthly_character_prestige = 0.10 icon = 5 }
+db_zeus_demigod_100 = { learning = 1 diplomacy = 1 health = 2 fertility = 0.20 combat_rating = 10 monthly_character_prestige = 0.25 icon = 12 }
+db_odin_demigod_16 = { martial = 1 diplomacy = 1 combat_rating = 10 icon = 12 }
+db_odin_demigod_50 = { learning = 1 health = 2 fertility = 0.25 combat_rating = 5 monthly_character_prestige = 0.10 icon = 12 }
+db_odin_demigod_100 = { learning = 1 diplomacy = 1 health = 2 fertility = 0.20 combat_rating = 10 monthly_character_prestige = 0.25 icon = 12 }
+db_demigod_refuses_to_fade = { health = 1 icon = 12 }
+
+db_zeus_aspect_heracles = { martial = 3 combat_rating = 25 icon = 5 }
+db_zeus_aspect_athlete = { martial = 1 health = 1 combat_rating = 15 icon = 5 }
+db_zeus_aspect_ruler = { diplomacy = 3 stewardship = 2 monthly_character_prestige = 0.25 icon = 12 }
+db_zeus_aspect_trickster = { intrigue = 3 diplomacy = 1 icon = 36 }
+db_zeus_aspect_sage = { learning = 3 stewardship = 1 icon = 12 }
+db_odin_aspect_berserker = { martial = 3 combat_rating = 25 icon = 5 }
+db_odin_aspect_rune_seer = { learning = 4 intrigue = 2 icon = 12 }
+db_odin_aspect_raven = { intrigue = 3 plot_discovery_chance = 0.20 icon = 36 }
+db_odin_aspect_skald = { diplomacy = 3 learning = 2 monthly_character_prestige = 0.25 icon = 12 }
+db_odin_aspect_wanderer = { intrigue = 2 diplomacy = 2 learning = 1 icon = 36 }
+
+# Zeus forms and divine powers
+db_form_swan = { diplomacy = 2 intrigue = 1 sex_appeal_opinion = 15 icon = 36 }
+db_form_bull = { martial = 3 combat_rating = 15 icon = 5 }
+db_form_eagle = { martial = 2 intrigue = 2 combat_rating = 10 icon = 5 }
+db_form_serpent = { intrigue = 3 plot_power_modifier = 0.15 icon = 36 }
+db_lightning_wrath = { martial = 4 combat_rating = 30 monthly_character_prestige = 0.25 icon = 5 }
+
+# Odin powers
+db_rune_war = { martial = 4 combat_rating = 20 icon = 5 }
+db_rune_plots = { intrigue = 4 plot_power_modifier = 0.20 plot_discovery_chance = 0.15 icon = 36 }
+db_rune_governance = { stewardship = 4 diplomacy = 2 icon = 12 }
+db_rune_fate = { learning = 4 health = 1 monthly_character_piety = 0.25 icon = 12 }
+db_huginn_muninn = { intrigue = 3 learning = 2 plot_discovery_chance = 0.25 icon = 36 }
+db_odins_fury = { martial = 5 combat_rating = 30 icon = 5 }
+db_grey_wanderer = { diplomacy = 2 intrigue = 3 learning = 2 icon = 36 }
+db_seidr_curse = { health = -2 fertility = -0.50 diplomacy = -2 martial = -3 stewardship = -2 intrigue = -2 learning = -2 combat_rating = -20 general_opinion = -10 monthly_character_prestige = -0.25 icon = 15 }
+# Intact gods may be heavily weakened by Seidr, but the curse cannot bypass divine immortality through raw health loss.
+db_seidr_curse_divine = { fertility = -0.35 diplomacy = -2 martial = -3 stewardship = -2 intrigue = -2 learning = -2 combat_rating = -20 general_opinion = -10 monthly_character_prestige = -0.25 icon = 15 }
+db_price_of_wisdom = { learning = 3 intrigue = 2 plot_discovery_chance = 0.15 icon = 12 }
+db_yggdrasil_rune_master = { learning = 5 intrigue = 3 martial = 2 monthly_character_piety = 0.50 combat_rating = 10 icon = 12 }
+
+# Artifact/guard powers
+db_gungnir_foresight = { martial = 2 learning = 3 intrigue = 2 plot_discovery_chance = 0.15 icon = 12 }
+db_mjolnir_storm = { martial = 5 combat_rating = 35 monthly_character_piety = 0.25 icon = 5 }
+db_valhalla_thunder = { martial = 4 combat_rating = 25 icon = 5 }
+db_fading_divine_spark = { health = 10 icon = 12 }
+
+# Global/world-era flavour states on rulers involved in the trigger.
+db_age_of_heroes = { monthly_character_prestige = 0.10 martial = 1 icon = 5 }
+db_pantheon_war = { martial = 2 monthly_character_prestige = 0.25 icon = 5 }
+db_pantheon_alliance = { diplomacy = 2 monthly_character_piety = 0.25 icon = 12 }
+
+# Cooldowns
+db_guard_cooldown = { icon = 1 }
+db_shape_cooldown = { icon = 1 }
+db_runes_cooldown = { icon = 1 }
+db_ravens_cooldown = { icon = 1 }
+db_fury_cooldown = { icon = 1 }
+db_wanderer_cooldown = { icon = 1 }
+db_seidr_cooldown = { icon = 1 }
+db_artifact_power_cooldown = { icon = 1 }
+db_relic_search_cooldown = { icon = 1 }
+
+# v2.1 blood degeneration / mourning
+db_mourning_zeus = { diplomacy = -1 martial = -1 monthly_character_prestige = -0.10 icon = 15 }
+db_mourning_odin = { learning = -1 martial = -1 monthly_character_piety = -0.10 icon = 15 }
+
+
+# Late divine fertility/longevity. Used only by active full gods/demigods, not latent blood.
+db_divine_late_fertility = { fertility = 0.20 health = 1 icon = 12 }
+
+# Animal-form unique action effects.
+db_bull_terrorized = { diplomacy = -2 martial = -1 general_opinion = -5 icon = 15 }
+db_eagle_vision = { intrigue = 4 learning = 2 plot_discovery_chance = 0.25 icon = 36 }
+db_serpent_shadow = { intrigue = 4 plot_power_modifier = 0.25 icon = 36 }
+db_serpent_mark = { intrigue = -2 health = -1 plot_discovery_chance = -0.15 icon = 15 }
+
+# Thunderbolt aftermath.
+db_lightning_scorched = { health = -2 martial = -2 combat_rating = -15 icon = 15 }
+# Intact gods receive the combat scar without a raw health penalty.
+db_lightning_scorched_divine = { martial = -2 combat_rating = -15 icon = 15 }
+
+# ===== v2.1.2: form actions =====
+db_form_power_cooldown = { icon = 1 }
+db_swan_veil = { intrigue = 4 diplomacy = 2 plot_discovery_chance = 0.15 icon = 36 }
+db_swan_charmed = { diplomacy = 2 intrigue = -1 general_opinion = 5 icon = 12 }
+db_bull_war_roar = { martial = 4 combat_rating = 20 monthly_character_prestige = 0.25 icon = 5 }
+db_bull_broken = { martial = -3 health = -1 combat_rating = -15 icon = 15 }
+db_eagle_sky_guard = { intrigue = 3 learning = 2 plot_discovery_chance = 0.35 icon = 36 }
+db_eagle_omen = { diplomacy = 2 monthly_character_prestige = 0.20 monthly_character_piety = 0.20 icon = 12 }
+db_serpent_whispers = { intrigue = 4 plot_power_modifier = 0.30 icon = 36 }
+db_serpent_venom = { health = -2 fertility = -0.10 combat_rating = -10 icon = 15 }
+
+# ===== v2.1.2: Odin's active powers =====
+db_odin_power_cooldown = { icon = 1 }
+db_raven_exposed = { intrigue = -2 plot_discovery_chance = -0.25 icon = 15 }
+db_runic_oath = { martial = 2 diplomacy = 2 monthly_character_prestige = 0.15 icon = 12 }
+db_runic_blessing = { martial = 2 learning = 2 health = 1 combat_rating = 10 icon = 12 }
+db_valkyrie_favor = { martial = 4 combat_rating = 20 health = 1 icon = 5 }
+db_draupnir_bounty = { stewardship = 3 monthly_character_prestige = 0.20 icon = 12 }
+db_poetic_inspiration = { diplomacy = 4 learning = 3 monthly_character_prestige = 0.25 icon = 12 }
+db_sleipnir_favor = { martial = 3 intrigue = 2 combat_rating = 15 icon = 5 }
+
+# ===== v2.1.2: captivity / Godslayers =====
+db_godslayer_hunt_cooldown = { icon = 1 }
+db_divine_escape_cooldown = { icon = 1 }
+db_divine_captive_fury = { martial = 2 intrigue = 2 combat_rating = 15 icon = 5 }
+
+# ===== v2.1.2: demigod heroic destinies =====
+db_hero_warrior = { martial = 3 combat_rating = 20 monthly_character_prestige = 0.15 icon = 5 }
+db_hero_seeker = { martial = 1 intrigue = 2 learning = 2 monthly_character_prestige = 0.15 icon = 36 }
+db_hero_guardian = { diplomacy = 2 martial = 2 health = 1 monthly_character_piety = 0.10 icon = 12 }
+db_hero_sage = { learning = 4 stewardship = 2 monthly_character_piety = 0.15 icon = 12 }
+db_hero_trickster = { intrigue = 4 diplomacy = 2 plot_power_modifier = 0.15 icon = 36 }
+db_heroic_trial_cooldown = { icon = 1 }
+db_hero_cult = { diplomacy = 2 monthly_character_prestige = 0.50 monthly_character_piety = 0.25 general_opinion = 5 icon = 12 }
+
+# ===== v2.1.2: divine religious missions / world ages =====
+db_divine_reform_mission = { martial = 1 diplomacy = 1 monthly_character_piety = 0.50 icon = 12 }
+db_divine_dominion_mission = { martial = 2 diplomacy = 2 monthly_character_prestige = 0.50 icon = 5 }
+db_return_of_gods = { monthly_character_prestige = 0.15 monthly_character_piety = 0.10 icon = 12 }
+db_world_of_gods = { monthly_character_prestige = 0.25 martial = 1 diplomacy = 1 icon = 5 }
+
+# HOTFIX4: hidden compensation when an intact god is stripped of vanilla Berserker to avoid TOG.3003 direct death.
+db_divine_battle_fury = { martial = 2 combat_rating = 15 health = 1 icon = 5 }
+
+
+# ===== v2.1.3: Order of the Sickle =====
+db_order_operation_cooldown = { icon = 1 }
+db_order_great_hunt_cooldown = { icon = 1 }
+db_order_hunted_wound = { health = -1 combat_rating = -5 icon = 15 }
+db_order_exposed_cell = { intrigue = -2 plot_discovery_chance = -0.15 icon = 15 }
+
+
+# ===== v2.1.4: universal divine allure =====
+# Religion-independent vanilla AI levers: everyone sees gods/demigods as socially and romantically compelling.
+db_true_god_allure = { general_opinion = 80 sex_appeal_opinion = 80 diplomacy = 3 icon = 12 }
+db_demigod_allure = { general_opinion = 40 sex_appeal_opinion = 50 diplomacy = 1 icon = 12 }
+
+# ===== v2.1.5: Order intelligence lifecycle =====
+db_order_intel_fresh = { icon = 36 }
+
+# v2.1.6.8
+db_relic_search_active = { intrigue = -1 icon = 36 }
+
+# v2.1.6.9.1: technical god fertility state moved out of hidden traits so it does not consume a trait UI slot.
+db_true_god_low_fertility_mod = { fertility = -0.40 is_visible = { always = no } }
+
+# v2.2.7
+db_divine_reconquest_cooldown = { monthly_character_prestige = -0.10 icon = 5 }
+
+# v2.2.7.4.6: secondary safety layer. Player assassination targeting is blocked by the
+# assassination trigger and AI murder plots are cancelled by DBV2.29/291; this makes any
+# already-running/external plot extremely ineffective while the god remains intact.
+db_divine_hostile_ward = {
+    defensive_plot_power_modifier = 10.0
+    plot_discovery_chance = 1.0
+    is_visible = { always = no }
+}
+
+# v2.2.7.4.7 - declined Sickle recruitment cooldown.
+db_order_recruitment_cooldown = { icon = 1 }
+
+
+# v2.2.7.4.8 - Huginn and Muninn are now a real intelligence system, not a prestige lottery.
+db_ravens_counterplots = { intrigue = 4 plot_discovery_chance = 0.50 icon = 36 }
+db_ravens_war_scouting = { martial = 4 combat_rating = 15 monthly_character_prestige = 0.20 icon = 36 }
+db_ravens_wisdom = { learning = 4 diplomacy = 2 monthly_character_prestige = 0.25 icon = 36 }
+db_raven_dossier = { intrigue = 2 plot_power_modifier = 0.20 icon = 36 }
+
+# Multi-stage Order of the Sickle initiation state.
+db_order_initiation_pending = { icon = 1 }

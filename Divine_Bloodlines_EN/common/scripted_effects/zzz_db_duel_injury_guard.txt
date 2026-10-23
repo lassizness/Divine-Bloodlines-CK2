@@ -1,0 +1,36 @@
+# v2.2.7.4.6 - ordinary duel harm only has a low chance to wound an intact adult true god; mortal duel resolution cannot maim them.
+apply_selected_duel_injury_effect = {
+ if = {
+  limit = { db_is_death_guarded_true_god_trigger = yes }
+  db_mortal_harm_survival_effect = yes
+  clr_character_flag = mildly_injured
+  clr_character_flag = severely_injured
+  clr_character_flag = injury_both_eyes
+  clr_character_flag = injury_eye
+  clr_character_flag = injury_hand
+  clr_character_flag = injury_leg
+  clr_character_flag = injury_face
+  clr_character_flag = injury_mangled_body
+  clr_character_flag = injury_maimed
+  clr_character_flag = injury_could_be_lethal
+ }
+ else = {
+  if = { limit = { has_character_flag = mildly_injured } apply_duel_wounded_effect = yes }
+  else_if = { limit = { has_character_flag = severely_injured } add_severely_injured_effect = yes }
+  else = {
+   trigger_switch = {
+    on_trigger = has_character_flag
+    injury_both_eyes = { remove_trait = one_eyed add_trait = blinded }
+    injury_eye = { add_trait = one_eyed }
+    injury_hand = { add_trait = one_handed }
+    injury_leg = { add_trait = one_legged }
+    injury_face = { add_trait = disfigured }
+    injury_mangled_body = { add_trait = mangled }
+    injury_maimed = { add_trait = maimed }
+   }
+   add_trait = severely_injured
+   resolve_severely_injured_effect = yes
+   if = { limit = { has_character_flag = injury_could_be_lethal character = ROOT } custom_tooltip = { text = you_crawl_off_and_die_tt } }
+  }
+ }
+}

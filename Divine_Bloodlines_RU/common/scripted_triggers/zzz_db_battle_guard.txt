@@ -1,0 +1,30 @@
+# HOTFIX4: battle-death guard for intact true gods.
+# CK2's immortal trait does not stop explicit scripted death = { death_reason = death_battle }.
+# These early-loading overrides protect the Holy Fury battle tombola while preserving Godslayer exceptions.
+# v2.1.3 invariant: an intact true god may only die to an attacker with active Godslayer blood; Sickle users must sever first.
+
+# Vanilla Holy Fury uses this trigger to exclude "very bad" combat outcomes.
+# An intact true god is indomitable against ordinary opponents.
+is_indomitable_trigger = {
+    OR = {
+        AND = {
+            society_rank == 4
+            is_member_of_any_warrior_lodge_trigger = yes
+        }
+
+        any_owned_bloodline = {
+            has_bloodline_flag = indomitable_bloodline
+            bloodline_is_active_for = PREV
+        }
+
+        has_character_flag = is_special_character
+
+        AND = {
+            db_is_death_guarded_true_god_trigger = yes
+            OR = {
+                NOT = { event_target:enemy_commander = { always = yes } }
+                event_target:enemy_commander = { NOT = { db_has_godslayer_blood_trigger = yes } }
+            }
+        }
+    }
+}

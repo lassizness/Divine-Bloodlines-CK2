@@ -1,0 +1,49 @@
+namespace = DBV2
+
+# v2.1.6.9.2 - one-time canonical identity pass.
+# Ruler Designer/startup ordering can apply the origin marker before the final character name/portrait is settled.
+# Run again one day later and on monthly pulse for old saves, then lock the result.
+character_event = {
+ id = DBV2.1145 hide_window = yes is_triggered_only = yes
+ trigger = {
+  is_alive = yes
+  NOT = { has_character_flag = db_v21692_canonical_identity_done }
+  OR = {
+   has_character_flag = zeus_blood_founder
+   has_character_flag = odin_blood_founder
+  }
+ }
+ immediate = {
+  if = {
+   limit = { has_character_flag = zeus_blood_founder }
+   set_name = "Zeus"
+   culture = greek
+   set_graphical_culture = greek
+   if = {
+    limit = { NOR = { religion = hellenic_pagan religion = hellenic_pagan_reformed } }
+    religion = hellenic_pagan
+   }
+  }
+  else_if = {
+   limit = { has_character_flag = odin_blood_founder }
+   set_name = "Odin"
+   culture = norse
+   set_graphical_culture = norse
+   if = {
+    limit = { NOR = { religion = norse_pagan religion = norse_pagan_reformed } }
+    religion = norse_pagan
+   }
+  }
+  set_character_flag = db_v21692_canonical_identity_done
+ }
+}
+
+# The proposer now receives a definite answer to a divine marriage proposal.
+character_event = {
+ id = DBV2.1042 title = DBV2_1042_T desc = DBV2_1042_D picture = GFX_evt_lovers portrait = event_target:db_social_target is_triggered_only = yes
+ option = { name = DBV2_1042_A }
+}
+character_event = {
+ id = DBV2.1043 title = DBV2_1043_T desc = DBV2_1043_D picture = GFX_evt_lovers portrait = event_target:db_social_target is_triggered_only = yes
+ option = { name = DBV2_1043_A }
+}

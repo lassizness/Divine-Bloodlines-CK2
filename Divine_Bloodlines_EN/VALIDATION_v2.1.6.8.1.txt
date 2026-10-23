@@ -1,0 +1,23 @@
+VALIDATION — Divine Bloodlines v2.1.6.8.1
+
+SCOPE
+- Point hotfix over v2.1.6.8.
+- Adds the agreed 2,000-man starting host to a player-selected Zeus/Odin founder.
+
+CHECKS
+- Zeus player-start host total: 2,000 (500 LI + 700 HI + 350 Archers + 250 Pikemen + 150 LC + 50 Knights).
+- Odin player-start host total: 2,000 (650 LI + 800 HI + 300 Archers + 150 LC + 100 Knights).
+- Host spawns in capital_scope / home = capital_scope.
+- maintenance_multiplier = 0, reinforces = no, matching the existing auto-arrival host behavior.
+- ai = no: applies to the player-selected founder path only.
+- db_auto_arrived_zeus / db_auto_arrived_odin explicitly excluded: no double host for manifestation events.
+- db_player_start_host_received character flag prevents duplicate start-host spawning.
+- EN/RU gameplay copies patched identically.
+- Gameplay-script brace validation: PASS.
+- DBV2/DBH event ID duplicate scan: PASS.
+- Gameplay UTF-8 BOM scan: PASS.
+
+UNCHANGED
+- Auto-arrival host sizes and compositions.
+- Auto-arrival title/independence staging.
+- Divine death guard, Sickle/Godslayer, Legendary Gathering, genetics and Order of the Sickle.

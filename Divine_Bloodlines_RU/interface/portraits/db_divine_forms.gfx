@@ -1,0 +1,35 @@
+spriteTypes = {
+ spriteType = { name = "GFX_db_swan_portrait" textureFile = "gfx/characters/divine_forms/swan.dds" noOfFrames = 1 noRefCount = yes can_be_lowres = yes }
+ spriteType = { name = "GFX_db_bull_portrait" textureFile = "gfx/characters/divine_forms/bull.dds" noOfFrames = 1 noRefCount = yes can_be_lowres = yes }
+ spriteType = { name = "GFX_db_eagle_portrait" textureFile = "gfx/characters/divine_forms/eagle.dds" noOfFrames = 1 noRefCount = yes can_be_lowres = yes }
+ spriteType = { name = "GFX_db_serpent_portrait" textureFile = "gfx/characters/divine_forms/serpent.dds" noOfFrames = 1 noRefCount = yes can_be_lowres = yes }
+
+ portraitType = {
+  name = "PORTRAIT_db_swan_override"
+  effectFile = "gfx/FX/portrait.lua"
+  weight = { additive_modifier = { value = 100000 portrait_clothing = yes portrait_has_trait = db_portrait_swan } }
+  layer = { "GFX_empty:c0" "GFX_empty:c2" "GFX_empty:c3" "GFX_empty:c1" "GFX_empty:c4" "GFX_empty:p1:h:y" "GFX_db_swan_portrait:c5" }
+  allow_property_values = { 1 = { 0 = { always = yes } } 5 = { 0 = { portrait_has_trait = db_portrait_swan } } }
+ }
+ portraitType = {
+  name = "PORTRAIT_db_bull_override"
+  effectFile = "gfx/FX/portrait.lua"
+  weight = { additive_modifier = { value = 100000 portrait_clothing = yes portrait_has_trait = db_portrait_bull } }
+  layer = { "GFX_empty:c0" "GFX_empty:c2" "GFX_empty:c3" "GFX_empty:c1" "GFX_empty:c4" "GFX_empty:p1:h:y" "GFX_db_bull_portrait:c5" }
+  allow_property_values = { 1 = { 0 = { always = yes } } 5 = { 0 = { portrait_has_trait = db_portrait_bull } } }
+ }
+ portraitType = {
+  name = "PORTRAIT_db_eagle_override"
+  effectFile = "gfx/FX/portrait.lua"
+  weight = { additive_modifier = { value = 100000 portrait_clothing = yes portrait_has_trait = db_portrait_eagle } }
+  layer = { "GFX_empty:c0" "GFX_empty:c2" "GFX_empty:c3" "GFX_empty:c1" "GFX_empty:c4" "GFX_empty:p1:h:y" "GFX_db_eagle_portrait:c5" }
+  allow_property_values = { 1 = { 0 = { always = yes } } 5 = { 0 = { portrait_has_trait = db_portrait_eagle } } }
+ }
+ portraitType = {
+  name = "PORTRAIT_db_serpent_override"
+  effectFile = "gfx/FX/portrait.lua"
+  weight = { additive_modifier = { value = 100000 portrait_clothing = yes portrait_has_trait = db_portrait_serpent } }
+  layer = { "GFX_empty:c0" "GFX_empty:c2" "GFX_empty:c3" "GFX_empty:c1" "GFX_empty:c4" "GFX_empty:p1:h:y" "GFX_db_serpent_portrait:c5" }
+  allow_property_values = { 1 = { 0 = { always = yes } } 5 = { 0 = { portrait_has_trait = db_portrait_serpent } } }
+ }
+}

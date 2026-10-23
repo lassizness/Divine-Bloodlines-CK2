@@ -1,0 +1,247 @@
+# Divine Bloodlines v2.1.3 - Order of the Sickle operations
+
+decisions = {
+
+    db_order_open_codex = {
+        diplomacy_icon = GFX_db_decision_sickle
+        potential = { society_member_of = db_order_sickle is_adult = yes }
+        allow = { always = yes }
+        effect = { character_event = { id = DBH.160 } }
+        ai_will_do = { factor = 0 }
+    }
+
+    db_order_trace_sickle = {
+        diplomacy_icon = GFX_db_decision_sickle
+        is_high_prio = yes
+        potential = {
+            society_member_of = db_order_sickle
+            society_rank >= 3
+            is_adult = yes
+            has_global_flag = db_sickle_legend_awakened
+            NOT = { has_global_flag = db_sickle_destroyed }
+        }
+        allow = {
+            society_currency >= 500
+            NOT = { has_character_modifier = db_order_operation_cooldown }
+            NOT = { has_character_modifier = db_relic_search_cooldown }
+        }
+        effect = {
+            if = {
+                limit = { has_global_flag = db_sickle_recovered }
+                change_society_currency = -500
+                add_character_modifier = { name = db_order_operation_cooldown days = 365 }
+                character_event = { id = DBH.150 }
+            }
+            else = {
+                character_event = { id = DBV2.691 days = 1 }
+            }
+        }
+        ai_will_do = {
+            factor = 1
+            modifier = { factor = 4 db_has_godslayer_blood_trigger = yes }
+            modifier = { factor = 3 trait = ambitious }
+        }
+    }
+}
+
+targeted_decisions = {
+
+    db_order_read_dossier = {
+        diplomacy_icon = GFX_db_decision_ravens
+        filter = all ai_target_filter = all
+        from_potential = { society_member_of = db_order_sickle is_adult = yes }
+        potential = { is_alive = yes NOT = { character = FROM } OR = { db_is_true_god_trigger = yes db_is_active_demigod_trigger = yes } }
+        allow = { always = yes }
+        effect = { save_event_target_as = dbh_target FROM = { character_event = { id = DBH.161 } } }
+        ai_will_do = { factor = 0 }
+    }
+
+    db_order_observe_divine = {
+        diplomacy_icon = GFX_db_decision_ravens
+        filter = all
+        ai_target_filter = all
+        from_potential = {
+            society_member_of = db_order_sickle
+            society_rank >= 1
+            is_adult = yes
+        }
+        potential = {
+            is_alive = yes
+            is_adult = yes
+            NOT = { character = FROM }
+            OR = {
+                db_is_true_god_trigger = yes
+                db_is_active_demigod_trigger = yes
+            }
+        }
+        allow = {
+            FROM = {
+                society_currency >= 50
+                NOT = { has_character_modifier = db_order_operation_cooldown }
+            }
+        }
+        effect = {
+            save_event_target_as = dbh_target
+            FROM = { character_event = { id = DBH.100 } }
+        }
+        ai_will_do = { factor = 1 }
+    }
+
+    db_order_hunt_demigod = {
+        diplomacy_icon = GFX_db_decision_sickle
+        filter = all
+        ai_target_filter = all
+        from_potential = {
+            society_member_of = db_order_sickle
+            society_rank >= 2
+            is_adult = yes
+        }
+        potential = {
+            is_alive = yes
+            is_adult = yes
+            db_is_active_demigod_trigger = yes
+            NOT = { db_is_true_god_trigger = yes }
+            has_character_flag = db_order_intel_1
+            NOT = { character = FROM }
+        }
+        allow = {
+            FROM = {
+                society_currency >= 200
+                NOT = { has_character_modifier = db_order_operation_cooldown }
+            }
+        }
+        effect = {
+            save_event_target_as = dbh_target
+            FROM = { character_event = { id = DBH.110 } }
+        }
+        ai_will_do = { factor = 0.8 }
+    }
+
+    db_order_steal_divine_relic = {
+        diplomacy_icon = GFX_db_decision_relic
+        filter = all
+        ai_target_filter = all
+        from_potential = {
+            society_member_of = db_order_sickle
+            society_rank >= 2
+            is_adult = yes
+        }
+        potential = {
+            is_alive = yes
+            NOT = { character = FROM }
+            any_artifact = { has_artifact_flag = divine_bloodlines }
+            OR = {
+                NOT = { db_is_true_god_trigger = yes }
+                has_character_flag = db_order_intel_2
+            }
+            OR = {
+                NOT = { has_artifact = db_sickle_of_cronus }
+                FROM = { society_rank >= 3 }
+            }
+        }
+        allow = {
+            FROM = {
+                society_currency >= 250
+                NOT = { has_character_modifier = db_order_operation_cooldown }
+            }
+        }
+        effect = {
+            save_event_target_as = dbh_target
+            FROM = { character_event = { id = DBH.120 } }
+        }
+        ai_will_do = {
+            factor = 0.4
+            modifier = { factor = 4 has_artifact = db_sickle_of_cronus }
+        }
+    }
+
+    db_order_prepare_god_trap = {
+        diplomacy_icon = GFX_db_decision_sickle
+        filter = all
+        ai_target_filter = all
+        from_potential = {
+            society_member_of = db_order_sickle
+            society_rank >= 3
+            is_adult = yes
+        }
+        potential = {
+            is_alive = yes
+            is_adult = yes
+            db_is_true_god_trigger = yes
+            has_character_flag = db_order_intel_2
+            NOT = { has_character_flag = db_order_trap_prepared }
+            NOT = { character = FROM }
+        }
+        allow = {
+            FROM = {
+                society_currency >= 350
+                NOT = { has_character_modifier = db_order_operation_cooldown }
+            }
+        }
+        effect = {
+            save_event_target_as = dbh_target
+            FROM = { character_event = { id = DBH.140 } }
+        }
+        ai_will_do = { factor = 0.5 }
+    }
+
+    db_order_grand_hunt = {
+        diplomacy_icon = GFX_db_decision_sickle
+        filter = all
+        ai_target_filter = all
+        from_potential = {
+            society_member_of = db_order_sickle
+            society_rank >= 4
+            is_adult = yes
+        }
+        potential = {
+            is_alive = yes
+            is_adult = yes
+            db_is_true_god_trigger = yes
+            has_character_flag = db_order_intel_3
+            NOT = { character = FROM }
+        }
+        allow = {
+            FROM = {
+                society_currency >= 1000
+                NOT = { has_character_modifier = db_order_great_hunt_cooldown }
+            }
+        }
+        effect = {
+            save_event_target_as = dbh_target
+            save_event_target_as = db_power_target
+            FROM = { character_event = { id = DBH.200 } }
+        }
+        ai_will_do = {
+            factor = 0.2
+            modifier = { factor = 8 FROM = { db_has_godslayer_blood_trigger = yes } }
+            modifier = { factor = 6 FROM = { has_artifact = db_sickle_of_cronus } }
+            modifier = { factor = 3 has_character_flag = db_order_trap_prepared }
+        }
+    }
+
+    # Divine counter-intelligence. Only revealed Order members in the god's realm can be seized directly.
+    db_divine_break_order_cell = {
+        diplomacy_icon = GFX_db_decision_ravens
+        filter = realm
+        ai_target_filter = realm
+        from_potential = {
+            db_is_true_god_trigger = yes
+            is_adult = yes
+        }
+        potential = {
+            is_alive = yes
+            society_member_of = db_order_sickle
+            is_society_discovered = yes
+            NOT = { character = FROM }
+        }
+        allow = { prisoner = no }
+        effect = {
+            imprison = FROM
+            change_society_currency = -200
+            prestige = -100
+            FROM = { prestige = 100 }
+        }
+        ai_will_do = { factor = 1 }
+    }
+}

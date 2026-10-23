@@ -1,0 +1,179 @@
+# Original artwork is shipped with the mod. Vanilla Mjolnir is not redefined.
+
+db_thunderbolt_of_zeus = {
+ quality = 5 martial = 4 combat_rating = 35 monthly_character_prestige = 0.75 monthly_character_piety = 0.50
+ command_modifier = { morale_offence = 0.20 morale_defence = 0.15 }
+ active = { is_adult = yes OR = { trait = pure_divine_blood_zeus trait = zeus_demigod_blood trait = db_stormrune_blood trait = db_fate_thunder_blood trait = db_blood_two_thrones } } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines }
+ stacking = no indestructible = yes picture = "GFX_db_art_thunderbolt"
+}
+
+db_aegis_of_zeus = {
+ quality = 5 martial = 2 diplomacy = 2 combat_rating = 20 plot_discovery_chance = 0.20 vassal_opinion = 10
+ command_modifier = { defence = 0.25 morale_defence = 0.25 }
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no picture = "GFX_db_art_aegis" slot = torso
+}
+
+db_scepter_of_olympus = {
+ quality = 5 diplomacy = 4 stewardship = 2 monthly_character_prestige = 0.75 monthly_character_piety = 0.25 vassal_opinion = 10
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no picture = "GFX_db_art_scepter" slot = ceremonial_weapon
+}
+
+db_ambrosia = {
+ quality = 5 health = 2 monthly_character_piety = 0.25
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no picture = "GFX_db_art_ambrosia"
+}
+
+db_gungnir = {
+ quality = 5 martial = 5 learning = 2 combat_rating = 40 monthly_character_prestige = 0.75
+ command_modifier = { morale_offence = 0.25 morale_defence = 0.10 }
+ active = { is_adult = yes OR = { trait = pure_divine_blood_odin trait = odin_demigod_blood trait = db_stormrune_blood trait = db_fate_thunder_blood trait = db_blood_two_thrones } } allowed_gift = { always = yes }
+ flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_gungnir"
+}
+
+db_draupnir = {
+ quality = 5 stewardship = 2 diplomacy = 1 monthly_character_wealth = 4 monthly_character_prestige = 0.35 monthly_character_piety = 0.15
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no picture = "GFX_db_art_draupnir"
+}
+
+db_runes_of_yggdrasil = {
+ quality = 5 learning = 5 intrigue = 3 plot_discovery_chance = 0.20 monthly_character_piety = 0.50
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no picture = "GFX_db_art_runes"
+}
+
+db_mead_of_poetry = {
+ quality = 5 diplomacy = 4 learning = 4 monthly_character_prestige = 0.50
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no picture = "GFX_db_art_mead"
+}
+
+db_apple_of_idunn = {
+ quality = 5 health = 3 monthly_character_piety = 0.25
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no picture = "GFX_db_art_apple"
+}
+
+db_sickle_of_cronus = {
+ quality = 5 martial = 2 combat_rating = 25 plot_power_modifier = 0.15
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { very_rare combat_weapon divine_bloodlines anti_divine }
+ stacking = no indestructible = yes picture = "GFX_db_art_sickle" slot = weapon
+}
+
+
+db_trident_of_poseidon = {
+ quality = 5 martial = 5 stewardship = 2 combat_rating = 40 monthly_character_prestige = 0.50
+ command_modifier = { morale_offence = 0.20 morale_defence = 0.10 }
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare combat_weapon divine_bloodlines }
+ stacking = no indestructible = yes picture = "GFX_db_art_poseidon_trident" slot = weapon
+}
+
+db_helm_of_hades = {
+ quality = 5 intrigue = 5 learning = 2 combat_rating = 20 plot_discovery_chance = 0.25
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines }
+ stacking = no indestructible = yes picture = "GFX_db_art_hades_helm"
+}
+
+# v2.1.6.9 - personal regalia for the canonical Olympians and Frigg.
+db_scepter_of_hera = {
+ quality = 5 diplomacy = 4 stewardship = 2 intrigue = 1 vassal_opinion = 10 monthly_character_prestige = 0.50 monthly_character_piety = 0.25
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_scepter" slot = ceremonial_weapon
+}
+db_diadem_of_hera = {
+ quality = 5 diplomacy = 3 intrigue = 2 learning = 1 general_opinion = 5 monthly_character_prestige = 0.50
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_aegis" slot = crown
+}
+db_chariot_of_poseidon = {
+ quality = 5 martial = 3 stewardship = 2 combat_rating = 15 monthly_character_prestige = 0.40
+ command_modifier = { morale_offence = 0.15 morale_defence = 0.10 }
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_poseidon_trident"
+}
+db_scepter_of_hades = {
+ quality = 5 intrigue = 4 stewardship = 2 learning = 2 plot_power_modifier = 0.15 monthly_character_prestige = 0.35
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_scepter" slot = ceremonial_weapon
+}
+db_torches_of_demeter = {
+ quality = 5 stewardship = 4 learning = 3 diplomacy = 1 fertility = 0.10 monthly_character_piety = 0.40
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_ambrosia" slot = ceremonial_weapon
+}
+db_cornucopia_of_demeter = {
+ quality = 5 stewardship = 4 health = 1 diplomacy = 2 monthly_character_prestige = 0.30 monthly_character_piety = 0.25
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_ambrosia"
+}
+db_sacred_flame_of_hestia = {
+ quality = 5 stewardship = 3 diplomacy = 2 learning = 2 health = 1 vassal_opinion = 5 monthly_character_piety = 0.50
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_thunderbolt"
+}
+db_veil_of_hestia = {
+ quality = 5 diplomacy = 3 learning = 3 stewardship = 2 general_opinion = 5 monthly_character_piety = 0.50
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_aegis" slot = crown
+}
+db_distaff_of_frigg = {
+ quality = 5 stewardship = 3 learning = 3 diplomacy = 2 fertility = 0.10 monthly_character_piety = 0.40
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_runes" slot = ceremonial_weapon
+}
+db_keys_of_fensalir = {
+ quality = 5 intrigue = 3 diplomacy = 3 learning = 2 plot_discovery_chance = 0.20 monthly_character_prestige = 0.30
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_draupnir"
+}
+
+
+
+# v2.2.7 - searchable pantheon relics.
+db_cornucopia_of_amalthea = {
+ quality = 5 stewardship = 2 diplomacy = 1 monthly_character_wealth = 4 monthly_character_prestige = 0.35
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_ambrosia"
+}
+
+db_bident_of_hades = {
+ quality = 5 martial = 3 intrigue = 3 combat_rating = 30 monthly_character_prestige = 0.40
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare combat_weapon divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_hades_helm" slot = weapon
+}
+
+db_labrys_of_labyrinth = {
+ quality = 5 martial = 4 combat_rating = 45 monthly_character_prestige = 0.50
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare combat_weapon divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_sickle" slot = weapon
+}
+
+db_chariot_of_zeus = {
+ quality = 5 martial = 2 diplomacy = 1 combat_rating = 15 monthly_character_prestige = 0.40
+ command_modifier = { morale_offence = 0.10 morale_defence = 0.10 }
+ active = { is_adult = yes } allowed_gift = { always = yes }
+ flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_thunderbolt"
+}
+
+
+# v2.2.7.2 COMPLETE CANONICAL RELIC SET
+# Ordinary weapons use slot=weapon. Divine implements intentionally do not occupy it.
+db_bow_of_apollo = { quality = 5 martial = 3 learning = 2 combat_rating = 25 monthly_character_prestige = 0.35 active = { is_adult = yes } allowed_gift = { always = yes } flags = { religious hellenic_pagan very_rare combat_weapon divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_poseidon_trident" slot = weapon }
+db_bow_of_artemis = { quality = 5 martial = 3 intrigue = 2 combat_rating = 25 plot_discovery_chance = 0.10 active = { is_adult = yes } allowed_gift = { always = yes } flags = { religious hellenic_pagan very_rare combat_weapon divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_poseidon_trident" slot = weapon }
+db_caduceus_of_hermes = { quality = 5 diplomacy = 3 intrigue = 3 stewardship = 2 monthly_character_prestige = 0.30 active = { is_adult = yes } allowed_gift = { always = yes } flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_scepter" slot = ceremonial_weapon }
+db_girdle_of_aphrodite = { quality = 5 diplomacy = 5 fertility = 0.15 sex_appeal_opinion = 15 monthly_character_prestige = 0.25 active = { is_adult = yes } allowed_gift = { always = yes } flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_aegis" }
+db_golden_fleece = { quality = 5 diplomacy = 2 stewardship = 3 health = 1 monthly_character_prestige = 0.50 active = { is_adult = yes } allowed_gift = { always = yes } flags = { religious hellenic_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_ambrosia" }
+
+db_megingjord = { quality = 5 martial = 3 combat_rating = 25 health = 1 active = { is_adult = yes } allowed_gift = { always = yes } flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_draupnir" }
+db_jarngreipr = { quality = 5 martial = 2 combat_rating = 30 active = { is_adult = yes } allowed_gift = { always = yes } flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_draupnir" }
+db_skidbladnir = { quality = 5 martial = 2 stewardship = 3 monthly_character_prestige = 0.35 command_modifier = { movement_speed = 0.15 } active = { is_adult = yes } allowed_gift = { always = yes } flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_gungnir" }
+db_brisingamen = { quality = 5 diplomacy = 4 intrigue = 2 fertility = 0.10 monthly_character_prestige = 0.35 active = { is_adult = yes } allowed_gift = { always = yes } flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_draupnir" }
+db_gjallarhorn = { quality = 5 martial = 3 diplomacy = 2 monthly_character_prestige = 0.40 command_modifier = { morale_offence = 0.15 morale_defence = 0.15 } active = { is_adult = yes } allowed_gift = { always = yes } flags = { religious norse_pagan very_rare divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_gungnir" slot = ceremonial_weapon }
+db_gram = { quality = 5 martial = 4 combat_rating = 40 monthly_character_prestige = 0.40 active = { is_adult = yes } allowed_gift = { always = yes } flags = { religious norse_pagan very_rare combat_weapon divine_bloodlines } stacking = no indestructible = yes picture = "GFX_db_art_sickle" slot = weapon }

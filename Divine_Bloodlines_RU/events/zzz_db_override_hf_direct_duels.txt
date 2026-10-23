@@ -1,0 +1,105 @@
+namespace = HF
+
+# Child of Destiny attempted-murder event can select an unrelated true god as the attacker.
+character_event = {
+ id = HF.225
+ desc = HF_225_DESC
+ picture = GFX_evt_shadow
+ portrait = event_target:attempted_murderer
+ is_triggered_only = yes
+ hide_new = yes
+ immediate = {
+  set_character_flag = child_of_destiny_attempted_murder
+  top_liege = {
+   random_realm_character = {
+    limit = { OR = { is_devil_worshiper_trigger = yes trait = lunatic trait = possessed } is_adult = yes ai = yes is_inaccessible_or_incapable_trigger = no NOR = { is_parent_of = event_target:child_of_destiny is_liege_of = event_target:child_of_destiny } }
+    preferred_limit = { is_devil_worshiper_trigger = yes }
+    save_event_target_as = attempted_murderer
+    add_blood_splatter_effect = yes
+   }
+   if = {
+    limit = { NOT = { event_target:attempted_murderer = { always = yes } } }
+    create_character = { religion = event_target:child_of_destiny culture = event_target:child_of_destiny dynasty = none age = 33 random_traits = yes female = 50 add_trait = lunatic add_trait = possessed add_trait = ugly }
+    new_character = { remove_trait = attractive add_scarred_high_effect = yes save_event_target_as = attempted_murderer add_blood_splatter_effect = yes }
+   }
+  }
+ }
+ option = {
+  name = HF_225_OPTA
+  event_target:child_of_destiny = { save_event_target_as = db_direct_duel_killer }
+  event_target:attempted_murderer = { if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = event_target:child_of_destiny } } }
+  add_character_modifier = { name = lightning_reflexes duration = -1 }
+  add_trait_fully_silently_paranoid_effect = yes
+  ai_chance = { factor = 90 }
+  clear_event_target = db_direct_duel_killer
+ }
+ option = {
+  name = HF_225_OPTB
+  event_target:child_of_destiny = { save_event_target_as = db_direct_duel_killer }
+  event_target:attempted_murderer = { if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes } else = { db_mark_authorized_direct_duel_death_effect = yes death = { death_reason = death_duel killer = event_target:child_of_destiny } } }
+  add_character_modifier = { name = protected_from_evil duration = -1 }
+  add_trait_fully_silently_humble_effect = yes
+  ai_chance = { factor = 10 }
+  clear_event_target = db_direct_duel_killer
+ }
+ after = {
+  any_player = { limit = { NOT = { character = event_target:child_of_destiny } OR = { is_parent_of = event_target:child_of_destiny is_liege_of = event_target:child_of_destiny } } character_event = { id = HF.226 } }
+  clear_event_target = attempted_murderer
+  character_event = { id = HF.210 days = 365 random = 500 }
+ }
+}
+
+# Legendary double-death events: each protected god independently refuses an illegal mortal kill.
+character_event = {
+ id = HF.12204
+ title = getDuelTitle
+ picture = GFX_evt_duel_scene
+ border = GFX_event_normal_frame_war
+ portrait = event_target:combatant_2
+ desc = { text = EVTDESC_HFP_10101_default trigger = { NOR = { has_character_flag = elegant_double_KO has_character_flag = clumsy_double_KO } } }
+ desc = { text = EVTDESC_HFP_10101_clumsy trigger = { has_character_flag = clumsy_double_KO } }
+ desc = { text = EVTDESC_HFP_10101_elegant trigger = { has_character_flag = elegant_double_KO } }
+ is_triggered_only = yes
+ immediate = {
+  hidden_effect = { if = { limit = { event_target:combatant_1 = { has_character_flag = WL_desc_Z } } event_target:combatant_2 = { set_graphical_culture = bear } } }
+  if = { limit = { character = event_target:combatant_1 } event_target:combatant_2 = { save_event_target_as = db_direct_duel_killer } }
+  else = { event_target:combatant_1 = { save_event_target_as = db_direct_duel_killer } }
+  if = {
+   limit = { db_direct_duel_death_blocked_trigger = yes }
+   db_survive_forbidden_direct_duel_effect = yes
+  }
+  else = {
+   db_mark_authorized_direct_duel_death_effect = yes
+   if = { limit = { character = event_target:combatant_1 } death = { death_reason = death_legendary_fail_duel killer = event_target:combatant_2 } }
+   else = { death = { death_reason = death_legendary_win_duel killer = event_target:combatant_1 } }
+  }
+  clear_event_target = db_direct_duel_killer
+ }
+ option = { name = EVTOPTA_HFP_10101_default custom_tooltip = { text = no_one_wins_the_duel_tt } hidden_effect = { clean_up_after_duel_effect = yes } }
+}
+
+character_event = {
+ id = HF.12205
+ title = getDuelTitle
+ picture = GFX_evt_duel_scene
+ border = GFX_event_normal_frame_war
+ portrait = event_target:combatant_1
+ desc = { text = EVTDESC_HFP_10102_default trigger = { NOR = { has_character_flag = elegant_double_KO has_character_flag = clumsy_double_KO } } }
+ desc = { text = EVTDESC_HFP_10102_clumsy trigger = { has_character_flag = clumsy_double_KO } }
+ desc = { text = EVTDESC_HFP_10102_elegant trigger = { has_character_flag = elegant_double_KO } }
+ is_triggered_only = yes
+ immediate = {
+  hidden_effect = { if = { limit = { event_target:combatant_1 = { has_character_flag = WL_desc_Z } } event_target:combatant_2 = { set_graphical_culture = bear } } }
+  if = { limit = { character = event_target:combatant_1 } event_target:combatant_2 = { save_event_target_as = db_direct_duel_killer } }
+  else = { event_target:combatant_1 = { save_event_target_as = db_direct_duel_killer } }
+  if = { limit = { db_direct_duel_death_blocked_trigger = yes } db_survive_forbidden_direct_duel_effect = yes }
+  else = {
+   db_mark_authorized_direct_duel_death_effect = yes
+   if = { limit = { character = event_target:combatant_1 } death = { death_reason = death_legendary_fail_duel killer = event_target:combatant_2 } }
+   else = { death = { death_reason = death_legendary_win_duel killer = event_target:combatant_1 } }
+  }
+  clean_up_after_duel_effect = yes
+  clear_event_target = db_direct_duel_killer
+ }
+ option = { name = EVTOPTA_HFP_10102_default custom_tooltip = { text = no_one_wins_the_duel_tt } }
+}

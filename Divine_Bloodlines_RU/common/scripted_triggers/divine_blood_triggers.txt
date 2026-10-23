@@ -1,0 +1,219 @@
+# Divine Bloodlines v2.1.2 helpers.
+# Pantheons remain genetically separate; the helpers below describe active blood and godhood.
+
+db_has_active_zeus_blood_trigger = {
+    OR = {
+        trait = pure_divine_blood_zeus
+        trait = zeus_demigod_blood
+        trait = db_stormrune_blood
+        trait = db_fate_thunder_blood
+        trait = db_blood_two_thrones
+        AND = { trait = db_cross_pantheon_god has_character_flag = db_essence_zeus }
+        AND = { trait = db_mixed_demigod_blood has_character_flag = db_essence_zeus }
+    }
+}
+
+db_has_active_odin_blood_trigger = {
+    OR = {
+        trait = pure_divine_blood_odin
+        trait = odin_demigod_blood
+        trait = db_stormrune_blood
+        trait = db_fate_thunder_blood
+        trait = db_blood_two_thrones
+        AND = { trait = db_cross_pantheon_god has_character_flag = db_essence_odin }
+        AND = { trait = db_mixed_demigod_blood has_character_flag = db_essence_odin }
+    }
+}
+
+db_has_active_olympian_blood_trigger = {
+    OR = {
+        trait = pure_divine_blood_zeus
+        trait = zeus_demigod_blood
+        trait = db_olympian_god
+        trait = db_olympian_demigod_blood
+        trait = db_cross_pantheon_god
+        AND = { trait = db_mixed_demigod_blood OR = { has_character_flag = db_essence_zeus has_character_flag = db_essence_hera has_character_flag = db_essence_poseidon has_character_flag = db_essence_hades has_character_flag = db_essence_demeter has_character_flag = db_essence_hestia } }
+    }
+}
+
+
+
+db_has_active_norse_blood_trigger = {
+ OR = { trait = pure_divine_blood_odin trait = odin_demigod_blood trait = db_norse_god trait = db_norse_demigod_blood trait = db_cross_pantheon_god AND = { trait = db_mixed_demigod_blood OR = { has_character_flag = db_essence_odin has_character_flag = db_essence_frigg } } }
+}
+db_has_active_divine_blood_trigger = {
+    OR = {
+        db_has_active_zeus_blood_trigger = yes
+        db_has_active_odin_blood_trigger = yes
+        db_has_active_olympian_blood_trigger = yes
+        db_has_active_norse_blood_trigger = yes
+    }
+}
+
+# Any genuine full god, including descendants and the converged Zeus/Odin heir.
+db_is_true_god_trigger = {
+    OR = {
+        trait = pure_divine_blood_zeus
+        trait = pure_divine_blood_odin
+        trait = db_blood_two_thrones
+        trait = db_olympian_god
+        trait = db_norse_god
+        trait = db_cross_pantheon_god
+    }
+}
+
+db_is_intact_true_god_trigger = {
+    db_is_true_god_trigger = yes
+    NOT = { trait = db_severed_immortality }
+}
+
+# v2.1.6.4: lethal protection deliberately starts only at age 16.
+# Full-blood children remain vulnerable until adulthood, as designed.
+db_is_death_guarded_true_god_trigger = {
+    db_is_intact_true_god_trigger = yes
+    age >= 16
+}
+
+db_is_active_demigod_trigger = {
+    OR = {
+        trait = zeus_demigod_blood
+        trait = odin_demigod_blood
+        trait = db_stormrune_blood
+        trait = db_fate_thunder_blood
+        trait = db_child_two_pantheons
+        trait = db_olympian_demigod_blood
+        trait = db_norse_demigod_blood
+        trait = db_mixed_demigod_blood
+    }
+}
+
+db_has_godslayer_blood_trigger = {
+    any_owned_bloodline = { has_bloodline_flag = db_godslayer_bloodline bloodline_is_active_for = PREV }
+}
+
+db_is_heroic_demigod_trigger = {
+    db_is_active_demigod_trigger = yes
+    OR = {
+        has_character_modifier = db_hero_warrior
+        has_character_modifier = db_hero_seeker
+        has_character_modifier = db_hero_guardian
+        has_character_modifier = db_hero_sage
+        has_character_modifier = db_hero_trickster
+    }
+}
+
+
+# v2.1.3 universal kill-permission helpers.
+# Scope: ROOT = potential divine victim, FROM = potential killer.
+db_is_protected_from_from_trigger = {
+    db_is_death_guarded_true_god_trigger = yes
+    FROM = { NOT = { db_has_godslayer_blood_trigger = yes } }
+}
+
+db_can_be_killed_by_from_trigger = {
+    OR = {
+        NOT = { db_is_death_guarded_true_god_trigger = yes }
+        FROM = { db_has_godslayer_blood_trigger = yes }
+    }
+}
+
+# v2.1.6.8.2 direct scripted duel guard.
+# Scope: ROOT = intended victim; event_target:db_direct_duel_killer = intended killer.
+db_direct_duel_death_blocked_trigger = {
+    db_is_death_guarded_true_god_trigger = yes
+    event_target:db_direct_duel_killer = { NOT = { db_has_godslayer_blood_trigger = yes } }
+}
+
+
+# v2.2.7.4.4 line authority. These describe inherited office, not founder identity.
+db_is_zeus_line_authority_trigger = {
+    has_character_flag = db_zeus_line_head
+    db_has_active_olympian_blood_trigger = yes
+}
+
+db_is_odin_line_authority_trigger = {
+    has_character_flag = db_odin_line_head
+    db_has_active_norse_blood_trigger = yes
+}
+
+# v2.2.7.4.5 ancestry/strength helpers used by the single birth resolver.
+db_has_olympian_ancestry_trigger = {
+    OR = {
+        has_character_flag = db_ancestry_olympian
+        db_has_active_olympian_blood_trigger = yes
+        trait = zeus_faded_blood
+        trait = db_olympian_faded_blood
+        trait = db_mixed_faded_blood
+        has_character_flag = db_olympian_latent
+        has_character_flag = db_mixed_latent
+        has_character_flag = db_essence_zeus
+        has_character_flag = db_essence_hera
+        has_character_flag = db_essence_poseidon
+        has_character_flag = db_essence_hades
+        has_character_flag = db_essence_demeter
+        has_character_flag = db_essence_hestia
+        has_character_flag = db_zeus_faded_p
+        has_character_flag = db_zeus_faded_m
+        has_character_flag = db_zeus_latent_p
+        has_character_flag = db_zeus_latent_m
+    }
+}
+
+db_has_norse_ancestry_trigger = {
+    OR = {
+        has_character_flag = db_ancestry_norse
+        db_has_active_norse_blood_trigger = yes
+        trait = odin_faded_blood
+        trait = db_norse_faded_blood
+        trait = db_mixed_faded_blood
+        has_character_flag = db_norse_latent
+        has_character_flag = db_mixed_latent
+        has_character_flag = db_essence_odin
+        has_character_flag = db_essence_frigg
+        has_character_flag = db_odin_faded_p
+        has_character_flag = db_odin_faded_m
+        has_character_flag = db_odin_latent_p
+        has_character_flag = db_odin_latent_m
+    }
+}
+
+db_is_faded_divine_blood_trigger = {
+    OR = {
+        trait = zeus_faded_blood
+        trait = odin_faded_blood
+        trait = db_olympian_faded_blood
+        trait = db_norse_faded_blood
+        trait = db_mixed_faded_blood
+    }
+}
+
+db_has_latent_divine_blood_trigger = {
+    OR = {
+        has_character_flag = db_zeus_latent_p
+        has_character_flag = db_zeus_latent_m
+        has_character_flag = db_odin_latent_p
+        has_character_flag = db_odin_latent_m
+        has_character_flag = db_olympian_latent
+        has_character_flag = db_norse_latent
+        has_character_flag = db_mixed_latent
+    }
+}
+
+# One shared gate for every lethal branch of the Holy Fury duel resolver.
+# ROOT = combatant_1, event_target:combatant_2 = opponent. A lethal result is illegal
+# if either intact adult true god would be killed by an opponent without Godslayer blood.
+db_duel_lethal_outcome_allowed_trigger = {
+    NOT = {
+        OR = {
+            AND = {
+                db_is_death_guarded_true_god_trigger = yes
+                event_target:combatant_2 = { NOT = { db_has_godslayer_blood_trigger = yes } }
+            }
+            AND = {
+                event_target:combatant_2 = { db_is_death_guarded_true_god_trigger = yes }
+                NOT = { db_has_godslayer_blood_trigger = yes }
+            }
+        }
+    }
+}
+

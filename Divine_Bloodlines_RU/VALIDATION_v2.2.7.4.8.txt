@@ -1,0 +1,12 @@
+VALIDATION v2.2.7.4.8
+
+Static validation only; CK2 runtime was not available.
+Checks performed before packaging:
+- EN/RU gameplay files changed by this patch are byte-identical where localization is not involved.
+- All text-script braces and quotes are balanced.
+- DBH.11/14/15/16/18 and DBH.13 are unique event IDs.
+- Hera and Frigg bloodline definitions exist and canonical creation/old-save repair reference them.
+- DBV2.1290 propagates Hera/Frigg genealogies independently from Zeus/Odin.
+- Raven powers no longer contain the old random prestige/piety reward list.
+- Russian localization remains CP1251; English remains UTF-8.
+- Archive passes unzip -t.

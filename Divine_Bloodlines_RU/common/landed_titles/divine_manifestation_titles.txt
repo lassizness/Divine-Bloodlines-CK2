@@ -1,0 +1,18 @@
+# Divine Bloodlines v2.2.7 - AI pantheon realms only.
+k_olympus = {
+ color = { 225 190 55 }
+ color2 = { 255 255 255 }
+ capital = 470 # Epirus area; AI arrival only
+ culture = greek
+ religion = hellenic_pagan
+ allow = { always = no }
+}
+
+k_asgard = {
+ color = { 80 105 145 }
+ color2 = { 220 220 220 }
+ capital = 290 # Uppland
+ culture = norse
+ religion = norse_pagan
+ allow = { always = no }
+}

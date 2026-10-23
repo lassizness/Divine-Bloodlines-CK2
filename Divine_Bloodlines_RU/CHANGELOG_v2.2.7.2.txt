@@ -1,0 +1,11 @@
+Divine Bloodlines v2.2.7.2
+
+Hotfix/full integration pass over v2.2.7.1:
+- Canonical divine family is actively returned to Zeus/Odin court and receives CK2 special council/commander eligibility flags. This runs for old saves too.
+- Removed the non-engine can_be_commander character flag from the previous repair.
+- Zeus and Zeus-blood characters now count as active Olympian blood for Olympian relic discovery; Labrys is visible to Zeus.
+- Expanded Labrys from the placeholder two-event roll into a multi-stage Crete/Labyrinth/Minotaur chain with stat/divinity-dependent routes.
+- Preserved Labrys as a normal weapon; it does not replace Cronus' Sickle for permanent god-killing.
+- Start-host recovery remains exactly 2,000 and now has startup/chronicle recovery in addition to monthly recovery.
+- Russian hardcoded divine names/dynasties remain Windows-1251; Olympus dynasty = Олимпиды, Aesir dynasty = Асы.
+- Retains v2.2.7 systems: AI-only Olympus/Asgard realms and return-host preparation, designated divine heir independent of those realms, Zeus chariot, blood/ancestry layers, carried Thunderbolt/Gungnir, searchable relics, +4 wealth Cornucopia/Draupnir, minor targeting and death guards.

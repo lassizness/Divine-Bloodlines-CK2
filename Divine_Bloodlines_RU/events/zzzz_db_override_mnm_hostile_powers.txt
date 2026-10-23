@@ -1,0 +1,47 @@
+namespace = MNM
+
+# v2.2.7.4.6 safety net for a Tainted Touch already queued in an old save.
+character_event = {
+ id = MNM.7819
+ hide_window = yes
+ is_triggered_only = yes
+ immediate = {
+  if = {
+   limit = { db_is_death_guarded_true_god_trigger = yes }
+   remove_character_modifier = curse_cooldown_timer
+  }
+  else = {
+   random_list = {
+    30 = {
+     random_list = {
+      10 = { give_ill_effect = yes }
+      10 = { trigger = { has_dlc = "Reapers" } give_flu_effect = yes }
+      10 = { trigger = { has_dlc = "Reapers" } give_food_poisoning_effect = yes }
+      10 = { trigger = { has_dlc = "Reapers" } give_gout_effect = yes }
+     }
+    }
+    50 = {
+     mult_modifier = { factor = 1.3 event_target:curser = { society_rank == 4 } }
+     mult_modifier = { factor = 1.3 event_target:curser = { is_learned_trigger = yes } }
+     mult_modifier = { factor = 0.75 has_character_flag = small_defense_against_dark_forces }
+     mult_modifier = { factor = 0.5 has_character_flag = medium_defense_against_dark_forces }
+     mult_modifier = { factor = 0.1 has_character_flag = large_defense_against_dark_forces }
+     random_list = {
+      10 = { give_pneumonic_effect = yes } 10 = { give_great_pox_effect = yes } 10 = { give_consumption_effect = yes } 10 = { give_smallpox_effect = yes } 10 = { give_measles_effect = yes } 10 = { give_slow_fever_effect = yes }
+      10 = { trigger = { has_dlc = "Reapers" } give_dysentery_effect = yes }
+      10 = { trigger = { has_dlc = "Reapers" } give_cancer_effect = yes }
+     }
+    }
+    20 = {
+     mult_modifier = { factor = 1.5 event_target:curser = { society_rank == 4 } }
+     mult_modifier = { factor = 1.5 event_target:curser = { is_learned_trigger = yes } }
+     mult_modifier = { factor = 0.75 has_character_flag = small_defense_against_dark_forces }
+     mult_modifier = { factor = 0.5 has_character_flag = medium_defense_against_dark_forces }
+     mult_modifier = { factor = 0.1 has_character_flag = large_defense_against_dark_forces }
+     random_list = { 50 = { give_bubonic_plague_effect = yes } 50 = { trigger = { has_dlc = "Reapers" } give_rabies_effect = yes } }
+    }
+   }
+   character_event = { id = MNM.7820 days = 7 }
+  }
+ }
+}
