@@ -8,7 +8,7 @@ DIST = ROOT / "dist"
 
 def main():
     version = (ROOT / "VERSION").read_text(encoding="ascii").strip()
-    if len(version.split(".")) != 5 or not all(part.isdigit() for part in version.split(".")):
+    if len(version.split(".")) != 3 or not all(part.isdigit() for part in version.split(".")) or any(int(part) > 9 for part in version.split(".")[1:]):
         raise SystemExit(f"Invalid version: {version}")
 
     DIST.mkdir(exist_ok=True)

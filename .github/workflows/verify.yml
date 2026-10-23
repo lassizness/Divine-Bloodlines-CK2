@@ -18,6 +18,9 @@ jobs:
       - name: Compile release scripts
         run: python3 -m compileall -q scripts/
 
+      - name: Test three-part version increments
+        run: python3 -m unittest discover -s tests -v
+
       - name: Validate the current version and ZIP layouts
         run: python3 scripts/package_release.py
 
