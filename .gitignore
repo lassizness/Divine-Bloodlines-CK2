@@ -1,0 +1,23 @@
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local debugging and temporary outputs
+*.log
+*.tmp
+*.bak
+*.orig
+*.rej
+__pycache__/
+.pytest_cache/
+
+# Local archives and extracted working copies
+*.zip
+*.7z
+*.rar
