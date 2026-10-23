@@ -63,8 +63,6 @@ character_event = {
    add_trait = ares_own
 
    add_artifact = db_thunderbolt_of_zeus
-   add_artifact = db_aegis_of_zeus
-   set_global_flag = db_aegis_created
    set_character_flag = db_v2169_canonical_relics_granted
 
    # v2.2.7.4.7: player Zeus uses the shared db_start_host_received guard; no duplicate recovery host.
