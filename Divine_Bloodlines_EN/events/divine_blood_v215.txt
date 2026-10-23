@@ -57,7 +57,7 @@ character_event = {
   if = { limit = { any_character = { has_artifact = db_aegis_of_zeus } } set_global_flag = db_aegis_created }
   if = { limit = { any_character = { has_artifact = db_scepter_of_olympus } } set_global_flag = db_scepter_created }
   if = { limit = { any_character = { has_artifact = db_ambrosia } } set_global_flag = db_ambrosia_created }
-  if = { limit = { any_character = { has_artifact = db_draupnir } } set_global_flag = db_draupnir_created }
+  if = { limit = { any_character = { has_artifact = db_draupnir } } set_global_flag = db_draupnir_created set_global_flag = db_relic_draupnir_created }
   if = { limit = { any_character = { has_artifact = db_runes_of_yggdrasil } } set_global_flag = db_runes_created }
   if = { limit = { any_character = { has_artifact = db_mead_of_poetry } } set_global_flag = db_mead_created }
   if = { limit = { any_character = { has_artifact = db_apple_of_idunn } } set_global_flag = db_apple_created }
@@ -73,7 +73,7 @@ character_event = {
   if = { limit = { any_character = { has_artifact = db_aegis_of_zeus } } set_global_flag = db_aegis_created } else = { clr_global_flag = db_aegis_created }
   if = { limit = { any_character = { has_artifact = db_scepter_of_olympus } } set_global_flag = db_scepter_created } else = { clr_global_flag = db_scepter_created }
   if = { limit = { any_character = { has_artifact = db_ambrosia } } set_global_flag = db_ambrosia_created } else = { clr_global_flag = db_ambrosia_created }
-  if = { limit = { any_character = { has_artifact = db_draupnir } } set_global_flag = db_draupnir_created } else = { clr_global_flag = db_draupnir_created }
+  if = { limit = { any_character = { has_artifact = db_draupnir } } set_global_flag = db_draupnir_created set_global_flag = db_relic_draupnir_created } else = { clr_global_flag = db_draupnir_created clr_global_flag = db_relic_draupnir_created }
   if = { limit = { any_character = { has_artifact = db_runes_of_yggdrasil } } set_global_flag = db_runes_created } else = { clr_global_flag = db_runes_created }
   if = { limit = { any_character = { has_artifact = db_mead_of_poetry } } set_global_flag = db_mead_created } else = { clr_global_flag = db_mead_created }
   if = { limit = { any_character = { has_artifact = db_apple_of_idunn } } set_global_flag = db_apple_created } else = { clr_global_flag = db_apple_created }
