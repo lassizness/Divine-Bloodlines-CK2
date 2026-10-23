@@ -4,7 +4,7 @@
 
 This is the **curated repository-wide changelog**, based on the historical files already shipped with the mod. The original files remain untouched under `Divine_Bloodlines_EN/` and `Divine_Bloodlines_RU/` and are indexed below.
 
-**Version-label caveat:** The newest original changelog is **2.2.7.4.8**, while both current `.mod` descriptors still show **2.2.7.4.6**. Therefore 2.2.7.4.8 below means *latest documented changes*, **not** a verified release/tag. No in-game runtime verification is implied by the archived static validation reports.
+**Release tracking:** The last imported changelog is **2.2.7.4.8**. New releases are versioned from the root `VERSION` file, update both `.mod` descriptors automatically, and publish generated notes under [GitHub Releases](https://github.com/lassizness/Divine-Bloodlines-CK2/releases). Historical entries below are not runtime playtest certifications.
 
 ## Latest documented changes
 
