@@ -4,7 +4,7 @@
 
 A mythology-focused mod for **Crusader Kings II 3.3.5.1**, introducing divine rulers, hereditary godhood, evolving bloodlines, legendary relics, divine powers, and a mortal secret society that can challenge the gods.
 
-> **Versions and releases:** The repository uses a five-part `VERSION` number. Each update to `master` automatically increments its last component, updates both `.mod` descriptors, and publishes [GitHub Releases](https://github.com/lassizness/Divine-Bloodlines-CK2/releases) with separate EN/RU installation ZIPs. The bundled `CHANGELOG_v*.txt` files preserve historical development; their last imported entry is **v2.2.7.4.8**. Archived validation was static only; in-game verification is still needed.
+> **Versions and releases:** The repository uses a three-part `VERSION` number. Each update to `master` automatically increments the patch digit (with a carry every ten increments: `2.2.7` → `2.2.8` → `2.2.9` → `2.3.0`), updates both `.mod` descriptors, and publishes [GitHub Releases](https://github.com/lassizness/Divine-Bloodlines-CK2/releases) with separate EN/RU installation ZIPs. The bundled `CHANGELOG_v*.txt` files preserve historical development; their last imported entry is **v2.2.7.4.8**. Archived validation was static only; in-game verification is still needed.
 
 ## Contents
 
@@ -133,11 +133,11 @@ The repository already includes original per-version `CHANGELOG_v*.txt` and `VAL
 
 ## Automated releases
 
-Every new push to **`master`**, including a merged pull request, runs [Release Divine Bloodlines](.github/workflows/release.yml). The action increments the **fifth component** of `VERSION` (for example `2.2.7.4.8` → `2.2.7.4.9` → `2.2.7.4.10`), updates both `.mod` display names, and commits these three version changes to `master`. It then creates a matching `v...` Git tag and publishes a GitHub Release containing two **separate, installation-ready language ZIPs** and `SHA256SUMS.txt`. GitHub generates release notes from merged changes.
+Every new push to **`master`**, including a merged pull request, runs [Release Divine Bloodlines](.github/workflows/release.yml). The action increments the **third component** of `VERSION` with a decimal carry (`2.2.7` → `2.2.8` → `2.2.9` → `2.3.0`; `2.9.9` → `3.0.0`), updates both `.mod` display names, and commits these three version changes to `master`. It then creates a matching `v...` Git tag and publishes a GitHub Release containing two **separate, installation-ready language ZIPs** and `SHA256SUMS.txt`. GitHub generates release notes from merged changes.
 
 Pull requests are checked by [Verify release packages](.github/workflows/verify.yml), which checks archive layout and simulates a version bump without pushing any changes. You can also manually re-run the release workflow from the Actions tab to recover a failed release; a version already committed by the release bot is reused rather than incremented again.
 
-The workflow requires the repository Actions token to have **Contents: write** permission and must be allowed to push its version commit to `master` (including under any branch protection rules). Historical `CHANGELOG_v*.txt` files are not rewritten for every release; use [GitHub Releases](https://github.com/lassizness/Divine-Bloodlines-CK2/releases) for automatically generated release notes.
+The workflow requires the repository Actions token to have **Contents: write** permission and must be allowed to push its version commit to `master` (including under any branch protection rules). Older five-part tags, including `v2.2.7.4.9`, remain available without renaming. Historical `CHANGELOG_v*.txt` files are not rewritten for every release; use [GitHub Releases](https://github.com/lassizness/Divine-Bloodlines-CK2/releases) for automatically generated release notes.
 
 ## Troubleshooting and feedback
 
