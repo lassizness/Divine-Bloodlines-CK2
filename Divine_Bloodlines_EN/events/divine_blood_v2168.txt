@@ -1,4 +1,4 @@
-﻿namespace = DBV2
+namespace = DBV2
 
 
 # The Age of Heroes cannot begin immediately after divine arrival.
@@ -156,7 +156,7 @@ character_event = {
     NOT = { has_character_flag = db_poseidon } NOT = { has_character_flag = db_hades } NOT = { has_character_flag = db_demeter } NOT = { has_character_flag = db_hestia } NOT = { has_character_flag = db_hera } NOT = { has_character_flag = db_frigg }
     NOT = { trait = db_blood_two_thrones }
    }
-   character_event = { id = DBV2.1290 }
+   character_event = { id = DBV2.1291 }
   }
  }
 }

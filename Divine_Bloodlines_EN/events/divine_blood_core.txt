@@ -1,4 +1,4 @@
-﻿namespace = DBV2
+namespace = DBV2
 
 # Exact biological inheritance. CK2 automatic bloodline inheritance is disabled for our four components.
 # P is taken ONLY from father_even_if_dead. M is taken ONLY from mother_even_if_dead.
@@ -309,20 +309,14 @@ character_event = {
   if = { limit = { religion = hellenic_pagan_reformed } set_global_flag = db_hellenic_reformed_announced set_character_flag = db_pref_hellenic_reformed }
   if = { limit = { religion = norse_pagan_reformed } set_global_flag = db_norse_reformed_announced set_character_flag = db_pref_norse_reformed }
 
-  # Characters with only one active pantheon are unambiguous. Independent Olympian
-  # blood is Hellenic but is deliberately NOT classified as Zeus blood.
+  # Unmixed divine blood belongs to one pantheon; mixed descendants follow their paternal line.
   if = {
-   limit = { db_has_active_olympian_blood_trigger = yes NOT = { db_has_active_odin_blood_trigger = yes } NOT = { db_has_active_zeus_blood_trigger = yes } }
+   limit = { db_has_active_olympian_blood_trigger = yes NOT = { db_has_active_norse_blood_trigger = yes } }
    set_character_flag = db_pantheon_hellenic
    clr_character_flag = db_pantheon_norse
   }
   else_if = {
-   limit = { db_has_active_zeus_blood_trigger = yes NOT = { db_has_active_odin_blood_trigger = yes } }
-   set_character_flag = db_pantheon_hellenic
-   clr_character_flag = db_pantheon_norse
-  }
-  else_if = {
-   limit = { db_has_active_odin_blood_trigger = yes NOT = { db_has_active_zeus_blood_trigger = yes } }
+   limit = { db_has_active_norse_blood_trigger = yes NOT = { db_has_active_olympian_blood_trigger = yes } }
    set_character_flag = db_pantheon_norse
    clr_character_flag = db_pantheon_hellenic
   }
@@ -335,6 +329,16 @@ character_event = {
    }
    else_if = {
     limit = { trait = db_fate_thunder_blood }
+    set_character_flag = db_pantheon_norse
+    clr_character_flag = db_pantheon_hellenic
+   }
+   else_if = {
+    limit = { father_even_if_dead = { has_character_flag = db_pantheon_hellenic } }
+    set_character_flag = db_pantheon_hellenic
+    clr_character_flag = db_pantheon_norse
+   }
+   else_if = {
+    limit = { father_even_if_dead = { has_character_flag = db_pantheon_norse } }
     set_character_flag = db_pantheon_norse
     clr_character_flag = db_pantheon_hellenic
    }

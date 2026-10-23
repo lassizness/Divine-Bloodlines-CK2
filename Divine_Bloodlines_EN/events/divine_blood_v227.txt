@@ -96,7 +96,7 @@ character_event = {
 # Landless AI founder recovery: preparation -> host -> real claim war -> realm restoration.
 character_event = {
  id = DBV2.1203 hide_window = yes is_triggered_only = yes
- trigger = { ai = yes is_alive = yes is_landed = no OR = { AND = { has_character_flag = db_auto_arrived_zeus has_character_flag = zeus_blood_founder } AND = { has_character_flag = db_auto_arrived_odin has_character_flag = odin_blood_founder } } NOT = { has_character_modifier = db_divine_reconquest_cooldown } NOT = { has_character_flag = db_divine_reconquest_active } }
+ trigger = { ai = yes is_alive = yes OR = { is_landed = no num_of_count_titles_in_realm = 0 } OR = { AND = { has_character_flag = db_auto_arrived_zeus has_character_flag = zeus_blood_founder } AND = { has_character_flag = db_auto_arrived_odin has_character_flag = odin_blood_founder } } NOT = { has_character_modifier = db_divine_reconquest_cooldown } NOT = { has_character_flag = db_divine_reconquest_active } }
  immediate = {
   set_character_flag = db_divine_reconquest_active
   add_character_modifier = { name = db_divine_reconquest_cooldown years = 5 }
@@ -108,7 +108,7 @@ character_event = {
 # After the preparation period the SAME god raises a host and starts a real war for the canonical county.
 character_event = {
  id = DBV2.1265 hide_window = yes is_triggered_only = yes
- trigger = { ai = yes is_alive = yes is_landed = no has_character_flag = db_divine_reconquest_active }
+ trigger = { ai = yes is_alive = yes OR = { is_landed = no num_of_count_titles_in_realm = 0 } has_character_flag = db_divine_reconquest_active }
  immediate = {
   if = {
    limit = { has_character_flag = zeus_blood_founder }
@@ -221,7 +221,7 @@ character_event = {
  immediate = {
   if = { limit = { has_artifact = db_thunderbolt_of_zeus } set_global_flag = db_thunderbolt_created }
   if = { limit = { has_artifact = db_gungnir } set_global_flag = db_gungnir_created }
-  if = { limit = { has_artifact = db_draupnir } set_global_flag = db_relic_draupnir_created }
+  if = { limit = { has_artifact = db_draupnir } set_global_flag = db_draupnir_created set_global_flag = db_relic_draupnir_created }
   if = { limit = { has_artifact = db_cornucopia_of_amalthea } set_global_flag = db_amalthea_created }
   if = { limit = { has_artifact = db_bident_of_hades } set_global_flag = db_bident_created }
   if = { limit = { has_artifact = db_labrys_of_labyrinth } set_global_flag = db_labrys_created }
@@ -243,7 +243,7 @@ character_event = {
 # Successful AI restoration: clear reconquest state and reunite the canonical divine court.
 character_event = {
  id = DBV2.1270 hide_window = yes is_triggered_only = yes
- trigger = { ai = yes is_alive = yes is_landed = yes has_character_flag = db_divine_reconquest_active OR = { has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder } }
+ trigger = { ai = yes is_alive = yes is_landed = yes num_of_count_titles_in_realm > 0 has_character_flag = db_divine_reconquest_active OR = { has_character_flag = zeus_blood_founder has_character_flag = odin_blood_founder } }
  immediate = {
   clr_character_flag = db_divine_reconquest_active
   if = { limit = { has_character_flag = zeus_blood_founder } any_spouse = { limit = { has_character_flag = db_hera is_alive = yes is_landed = no } move_character = ROOT db_grant_divine_council_access_effect = yes } any_sibling = { limit = { is_alive = yes is_landed = no OR = { has_character_flag = db_poseidon has_character_flag = db_hades has_character_flag = db_demeter has_character_flag = db_hestia } } move_character = ROOT db_grant_divine_council_access_effect = yes } }
