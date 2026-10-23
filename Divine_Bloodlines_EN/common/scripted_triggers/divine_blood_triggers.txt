@@ -1,4 +1,4 @@
-﻿# Divine Bloodlines v2.1.2 helpers.
+# Divine Bloodlines v2.1.2 helpers.
 # Pantheons remain genetically separate; the helpers below describe active blood and godhood.
 
 db_has_active_zeus_blood_trigger = {
