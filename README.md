@@ -16,6 +16,7 @@ A mythology-focused mod for **Crusader Kings II 3.3.5.1**, introducing divine ru
 - [Order of the Sickle](#order-of-the-sickle)
 - [World events and heroism](#world-events-and-heroism)
 - [Development and compatibility](#development-and-compatibility)
+- [Automated releases](#automated-releases)
 - [Troubleshooting and feedback](#troubleshooting-and-feedback)
 
 ## Requirements and installation
@@ -129,6 +130,14 @@ CHANGELOG.ru.md          Russian summary of version history
 - Preserve existing CK2 scripting conventions and change only what the fix requires.
 
 The repository already includes original per-version `CHANGELOG_v*.txt` and `VALIDATION_v*.txt` files under **both** language folders. Those are historical source records and remain unchanged. Read [the English changelog](CHANGELOG.md) or [Russian changelog](CHANGELOG.ru.md) for an organized summary.
+
+## Automated releases
+
+Every new push to **`master`**, including a merged pull request, runs [Release Divine Bloodlines](.github/workflows/release.yml). The action increments the **fifth component** of `VERSION` (for example `2.2.7.4.8` → `2.2.7.4.9` → `2.2.7.4.10`), updates both `.mod` display names, and commits these three version changes to `master`. It then creates a matching `v...` Git tag and publishes a GitHub Release containing two **separate, installation-ready language ZIPs** and `SHA256SUMS.txt`. GitHub generates release notes from merged changes.
+
+Pull requests are checked by [Verify release packages](.github/workflows/verify.yml), which checks archive layout and simulates a version bump without pushing any changes. You can also manually re-run the release workflow from the Actions tab to recover a failed release; a version already committed by the release bot is reused rather than incremented again.
+
+The workflow requires the repository Actions token to have **Contents: write** permission and must be allowed to push its version commit to `master` (including under any branch protection rules). Historical `CHANGELOG_v*.txt` files are not rewritten for every release; use [GitHub Releases](https://github.com/lassizness/Divine-Bloodlines-CK2/releases) for automatically generated release notes.
 
 ## Troubleshooting and feedback
 
