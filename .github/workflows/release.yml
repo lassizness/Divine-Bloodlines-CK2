@@ -1,0 +1,107 @@
+name: Release Divine Bloodlines
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: divine-bloodlines-master-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out master
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Prepare version and archives
+        id: prepare
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          git fetch origin master --tags
+          git checkout -B master origin/master
+
+          subject="$(git log -1 --format=%s)"
+          already_bumped=false
+
+          if [[ "$subject" =~ ^chore\(release\):\ v([0-9]+(\.[0-9]+){4})$ ]]; then
+            version="${BASH_REMATCH[1]}"
+            if [[ "$version" != "$(cat VERSION)" ]]; then
+              echo "Release commit does not match VERSION" >&2
+              exit 1
+            fi
+            already_bumped=true
+          else
+            python3 scripts/bump_version.py
+            version="$(cat VERSION)"
+          fi
+
+          python3 scripts/package_release.py
+          (cd dist && sha256sum ./*.zip > SHA256SUMS.txt)
+
+          if [[ "$already_bumped" == false ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add VERSION Divine_Bloodlines_EN.mod Divine_Bloodlines_RU.mod
+            git diff --cached --check
+            git commit -m "chore(release): v${version}"
+            git push origin HEAD:master
+          fi
+
+          tag="v${version}"
+          if git rev-parse --verify "refs/tags/${tag}" >/dev/null 2>&1; then
+            if [[ "$(git rev-list -n 1 "${tag}")" != "$(git rev-parse HEAD)" ]]; then
+              echo "Tag ${tag} points to a different commit" >&2
+              exit 1
+            fi
+          else
+            git tag -a "${tag}" -m "Divine Bloodlines ${tag}"
+            git push origin "refs/tags/${tag}"
+          fi
+
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+
+          if gh release view "${tag}" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish GitHub Release
+        if: steps.prepare.outputs.exists == 'false'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.prepare.outputs.version }}
+          TAG: ${{ steps.prepare.outputs.tag }}
+        run: |
+          set -euo pipefail
+
+          gh release create "$TAG" \
+            "dist/Divine_Bloodlines_EN_v${VERSION}.zip#English mod package" \
+            "dist/Divine_Bloodlines_RU_v${VERSION}.zip#Russian mod package" \
+            dist/SHA256SUMS.txt \
+            --verify-tag \
+            --title "Divine Bloodlines v${VERSION}" \
+            --generate-notes \
+            --notes "Crusader Kings II 3.3.5.1
+
+          **EN:** Extract the English ZIP into Documents/Paradox Interactive/Crusader Kings II/mod/.
+          **RU:** Распакуйте русский ZIP в Документы/Paradox Interactive/Crusader Kings II/mod/.
+          Activate only one language variant in the launcher.
+
+          Release assets contain the matching mod folder and .mod descriptor."
