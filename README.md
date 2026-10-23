@@ -4,7 +4,7 @@
 
 A mythology-focused mod for **Crusader Kings II 3.3.5.1**, introducing divine rulers, hereditary godhood, evolving bloodlines, legendary relics, divine powers, and a mortal secret society that can challenge the gods.
 
-> **Development status:** This repository contains both English and Russian variants of the mod. The latest historical changelog is **v2.2.7.4.8**, but both `.mod` descriptors currently display **v2.2.7.4.6**. These labels have not yet been reconciled. The archived validation for 2.2.7.4.8 is static only; full in-game verification is still needed.
+> **Versions and releases:** The repository uses a five-part `VERSION` number. Each update to `master` automatically increments its last component, updates both `.mod` descriptors, and publishes [GitHub Releases](https://github.com/lassizness/Divine-Bloodlines-CK2/releases) with separate EN/RU installation ZIPs. The bundled `CHANGELOG_v*.txt` files preserve historical development; their last imported entry is **v2.2.7.4.8**. Archived validation was static only; in-game verification is still needed.
 
 ## Contents
 
